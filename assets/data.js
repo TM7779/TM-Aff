@@ -60,7 +60,7 @@ const STORES = [
     color: "#1F6F8B",
     about: "Vitamin and herbal patches, hydrogel eye masks and scar tape. Free shipping on US orders over $20.",
     coupons: [
-      { title: "Extra savings with code SALA38 at checkout", discount: "Code", code: "SALA38", expires: "", verified: false },
+      { title: "10% off your order", discount: "10%", code: "SALA38", expires: "", verified: false },
       { title: "Free shipping on US orders over $20", discount: "Free ship", code: "", expires: "", verified: true },
     ],
   },
@@ -73,7 +73,7 @@ const STORES = [
     color: "#2F5D46",
     about: "The eight-herb powdered Essiac tea formula from Rene Caisse, sold for over 21 years.",
     coupons: [
-      { title: "Extra savings with code MANH10 at checkout", discount: "Code", code: "MANH10", expires: "", verified: false },
+      { title: "10% off your order", discount: "10%", code: "MANH10", expires: "", verified: false },
     ],
   },
 ];
