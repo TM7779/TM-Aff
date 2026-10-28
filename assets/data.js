@@ -22,8 +22,9 @@
 const SITE = {
   name: "Clipjar",
   tagline: "Coupon codes for independent online stores.",
-  // On Hostinger this comes from the CONTACT_EMAIL environment variable.
-  email: (window.SITE_ENV && window.SITE_ENV.email) || "hello@example.com",
+  // Left empty so no email is shown. To show one later, set it here (or CONTACT_EMAIL on Hostinger)
+  // and add <a data-site-email href="#"></a> where it should appear.
+  email: (window.SITE_ENV && window.SITE_ENV.email) || "",
 };
 
 const CATEGORIES = [
