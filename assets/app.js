@@ -17,6 +17,8 @@
   const today = new Date().toISOString().slice(0, 10);
   const liveCoupons = (store) => store.coupons.filter((c) => !c.expires || c.expires >= today);
   const categoryBySlug = (slug) => CATEGORIES.find((c) => c.slug === slug);
+  // Categories without any store are left out of the chips and footer.
+  const activeCategories = CATEGORIES.filter((c) => STORES.some((s) => s.category === c.slug));
   const storeUrl = (s) => `store.html?s=${encodeURIComponent(s.slug)}`;
   const categoryUrl = (c) => `category.html?c=${encodeURIComponent(c.slug)}`;
 
@@ -86,7 +88,7 @@
   }
 
   function renderFooter() {
-    const cats = CATEGORIES.map((c) => `<li><a href="${categoryUrl(c)}">${esc(c.name)}</a></li>`).join("");
+    const cats = activeCategories.map((c) => `<li><a href="${categoryUrl(c)}">${esc(c.name)}</a></li>`).join("");
     document.getElementById("footer").outerHTML = `
       <footer class="site-footer">
         <div class="wrap">
@@ -110,7 +112,7 @@
   function chipsHTML(activeSlug) {
     const items = [`<li><a href="index.html"${activeSlug ? "" : ' aria-current="page"'}>All</a></li>`]
       .concat(
-        CATEGORIES.map(
+        activeCategories.map(
           (c) => `<li><a href="${categoryUrl(c)}"${c.slug === activeSlug ? ' aria-current="page"' : ""}>${esc(c.name)}</a></li>`
         )
       )
@@ -145,7 +147,7 @@
           <form role="search" onsubmit="return false">
             <label class="search">${ICON_SEARCH}
               <span class="skip">Search for a store</span>
-              <input id="q" type="search" placeholder="Search for a store, like “Linden”" autocomplete="off" value="${esc(q)}">
+              <input id="q" type="search" placeholder="Search for a store${STORES[0] ? `, like “${esc(STORES[0].name)}”` : ""}" autocomplete="off" value="${esc(q)}">
             </label>
           </form>
           ${chipsHTML(null)}
