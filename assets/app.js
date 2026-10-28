@@ -8,19 +8,44 @@
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>';
   const ICON_CHECK =
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+  // A four-point "nova" star.
   const BRAND_MARK =
-    '<svg class="brand-mark" viewBox="0 0 34 34" aria-hidden="true"><path fill="#F26B1D" d="M4 6h26a2 2 0 0 1 2 2v5a4 4 0 0 0 0 8v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-5a4 4 0 0 0 0-8V8a2 2 0 0 1 2-2Z"/><path stroke="#10233A" stroke-width="2" stroke-dasharray="2.5 2.5" d="M22 9v16"/><circle cx="11" cy="13" r="2.2" fill="#10233A"/><circle cx="15" cy="21" r="2.2" fill="#10233A"/><path stroke="#10233A" stroke-width="2" stroke-linecap="round" d="M16.5 11.5 9.5 22.5"/></svg>';
+    '<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path fill="#EF4E7B" d="M16 1c1.2 7.6 7.4 13.8 15 15-7.6 1.2-13.8 7.4-15 15-1.2-7.6-7.4-13.8-15-15C8.6 14.8 14.8 8.6 16 1Z"/></svg>';
 
   const esc = (s) =>
     String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
   const today = new Date().toISOString().slice(0, 10);
   const liveCoupons = (store) => store.coupons.filter((c) => !c.expires || c.expires >= today);
+  // The headline offer for a store: the first live coupon that has a code, else the first live deal.
+  const bestCoupon = (store) => {
+    const live = liveCoupons(store);
+    return live.find((c) => c.code) || live[0];
+  };
   const categoryBySlug = (slug) => CATEGORIES.find((c) => c.slug === slug);
   // Categories without any store are left out of the chips and footer.
   const activeCategories = CATEGORIES.filter((c) => STORES.some((s) => s.category === c.slug));
   const storeUrl = (s) => `store.html?s=${encodeURIComponent(s.slug)}`;
   const categoryUrl = (c) => `category.html?c=${encodeURIComponent(c.slug)}`;
+  const OUT = 'target="_blank" rel="sponsored nofollow noopener"';
+
+  // Ask Shopify's image CDN for a smaller file than the original upload.
+  function sized(url, width) {
+    if (!/cdn\.shopify\.com|\/cdn\/shop\//.test(url)) return url;
+    try {
+      const u = new URL(url);
+      u.searchParams.set("width", width);
+      return u.toString();
+    } catch {
+      return url;
+    }
+  }
+
+  // The store's cover photo; --zoom crops off any border built into the image.
+  function coverImg(store, width, attrs) {
+    const zoom = store.coverZoom ? ` style="--zoom:${Number(store.coverZoom)}"` : "";
+    return `<img src="${esc(sized(store.cover, width))}"${zoom} ${attrs}>`;
+  }
 
   function formatDate(iso) {
     const d = new Date(iso + "T00:00:00");
@@ -40,9 +65,9 @@
   function logoHTML(store, large) {
     const cls = large ? "logo lg" : "logo";
     if (store.logo) {
-      return `<span class="${cls}"><img src="${esc(store.logo)}" alt="" loading="lazy" width="96" height="96"></span>`;
+      return `<span class="${cls}"><img src="${esc(sized(store.logo, 160))}" alt="" loading="lazy" width="72" height="72"></span>`;
     }
-    return `<span class="${cls}" style="background:${esc(store.color || "#10233A")}" aria-hidden="true">${esc(initials(store.name))}</span>`;
+    return `<span class="${cls}" style="background:${esc(store.color || "#261A2E")}" aria-hidden="true">${esc(initials(store.name))}</span>`;
   }
 
   // "15%" and "$20" get a big number plus "off"; anything else ("Free ship") is set smaller.
@@ -52,6 +77,22 @@
       return `<div class="stub"><span class="amt">${esc(discount)}</span><span class="unit">off</span></div>`;
     }
     return `<div class="stub"><span class="amt long">${esc(discount)}</span></div>`;
+  }
+
+  function metaHTML(c) {
+    return [
+      c.verified ? `<span class="ok">${ICON_CHECK}Verified</span>` : "",
+      c.expires ? `<span>Expires ${formatDate(c.expires)}</span>` : `<span>No expiry date</span>`,
+      c.code ? "" : `<span>No code needed</span>`,
+    ].join("");
+  }
+
+  // The button that reveals a code (or opens a no-code deal). Indexes point into liveCoupons(store).
+  function actionHTML(store, c) {
+    const index = liveCoupons(store).indexOf(c);
+    return c.code
+      ? `<button class="btn" type="button" data-reveal="${esc(store.slug)}" data-index="${index}">Show code</button>`
+      : `<a class="btn" href="${esc(store.url)}" ${OUT}>Get deal</a>`;
   }
 
   /* ---------- Shared chrome ---------- */
@@ -72,7 +113,7 @@
         : `<form class="header-search" action="index.html" role="search">
              <label class="search">${ICON_SEARCH}
                <span class="skip">Search stores</span>
-               <input type="search" name="q" placeholder="Search stores" autocomplete="off">
+               <input type="search" name="q" placeholder="Search stores and products" autocomplete="off">
              </label>
            </form>`;
 
@@ -92,9 +133,12 @@
     document.getElementById("footer").outerHTML = `
       <footer class="site-footer">
         <div class="wrap">
-          <p>${esc(SITE.name)} earns a commission when you buy through links on this site, at no extra cost to you.
-             <a href="disclaimer.html">How this works</a>.</p>
-          <ul aria-label="Categories">${cats}</ul>
+          <div>
+            <a class="brand" href="index.html">${BRAND_MARK}<span>${esc(SITE.name)}</span></a>
+            <p>${esc(SITE.name)} earns a commission when you buy through links on this site, at no extra cost to you.
+               <a href="disclaimer.html">How this works</a>.</p>
+          </div>
+          <ul aria-label="More">${cats}<li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul>
         </div>
       </footer>
       <div class="toast" role="status" aria-live="polite"></div>`;
@@ -106,10 +150,11 @@
     el.textContent = msg;
     el.classList.add("show");
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => el.classList.remove("show"), 2200);
+    toastTimer = setTimeout(() => el.classList.remove("show"), 2400);
   }
 
   function chipsHTML(activeSlug) {
+    if (activeCategories.length < 2) return "";
     const items = [`<li><a href="index.html"${activeSlug ? "" : ' aria-current="page"'}>All</a></li>`]
       .concat(
         activeCategories.map(
@@ -120,67 +165,140 @@
     return `<nav aria-label="Categories"><ul class="chips">${items}</ul></nav>`;
   }
 
-  function storeCardHTML(store) {
-    const best = liveCoupons(store)[0];
+  /* ---------- Cards ---------- */
+
+  function ticketHTML(store) {
+    const best = bestCoupon(store);
+    if (!best || !store.cover) return "";
+    const amount = /^[$€£]?\d+%?$/.test(best.discount) ? `${best.discount} off` : best.discount;
+    return `<a class="ticket" href="${storeUrl(store)}">
+      <span class="ticket-img">${coverImg(store, 600, `alt="${esc(store.name)}" width="270" height="230"`)}</span>
+      <span class="tear"><span class="store">${esc(store.name)}</span><span class="amt">${esc(amount)}</span></span>
+    </a>`;
+  }
+
+  function dealCardHTML(store) {
+    const best = bestCoupon(store);
     if (!best) return "";
+    const photo = store.cover
+      ? `<a class="deal-photo" href="${storeUrl(store)}" tabindex="-1" aria-hidden="true">${coverImg(store, 500, 'alt="" loading="lazy" width="168" height="180"')}</a>`
+      : `<span class="deal-photo"></span>`;
+    return `<li class="deal">
+      ${photo}
+      <div class="deal-body">
+        <a class="who" href="${storeUrl(store)}">${logoHTML(store)}<span>${esc(store.name)}</span></a>
+        <h3>${esc(best.title)}</h3>
+        <div class="meta">${metaHTML(best)}</div>
+        <div class="action">${actionHTML(store, best)}</div>
+      </div>
+      ${stubHTML(best.discount)}
+    </li>`;
+  }
+
+  function productCardHTML(product, store) {
+    const best = bestCoupon(store);
+    const tag = best && best.code && /%|\$/.test(best.discount) ? `<span class="tag">${esc(best.discount)} off with ${esc(best.code)}</span>` : "";
     return `<li>
-      <a class="store-card" href="${storeUrl(store)}">
-        <div class="body">
-          <div class="who">${logoHTML(store)}<span class="name">${esc(store.name)}</span></div>
-          <p class="offer">${esc(best.title)}</p>
-        </div>
-        ${stubHTML(best.discount)}
+      <a class="product" href="${esc(product.url)}" ${OUT}>
+        <span class="img"><img src="${esc(sized(product.image, 500))}" alt="" loading="lazy" width="250" height="250"></span>
+        <span class="info">
+          <span class="name">${esc(product.name)}</span>
+          <span class="from">${esc(store.name)}</span>
+          ${tag}
+        </span>
       </a>
     </li>`;
   }
+
+  // Interleave products from every store so one brand doesn't fill the whole grid.
+  function allProducts(stores) {
+    const lists = stores.map((s) => (s.products || []).map((p) => [p, s]));
+    const out = [];
+    for (let i = 0; lists.some((l) => l[i]); i++) lists.forEach((l) => l[i] && out.push(l[i]));
+    return out;
+  }
+
+  const STEPS_HTML = `
+    <section class="section" aria-labelledby="how-title">
+      <div class="wrap">
+        <div class="section-head"><h2 id="how-title">How it works</h2></div>
+        <ol class="steps">
+          <li><h3>Pick a code</h3><p>Select <strong>Show code</strong> on any offer. The code is copied for you.</p></li>
+          <li><h3>Shop the store</h3><p>The store opens in a new tab. Add what you like to your cart.</p></li>
+          <li><h3>Paste at checkout</h3><p>Paste the code in the discount box and the price drops before you pay.</p></li>
+        </ol>
+      </div>
+    </section>`;
 
   /* ---------- Pages ---------- */
 
   function renderHome() {
     const main = document.getElementById("main");
     const q = params.get("q") || "";
+    const first = STORES[0];
     main.innerHTML = `
       <section class="hero">
         <div class="wrap">
-          <h1>Find a working code before you check out.</h1>
-          <p>${esc(SITE.tagline)} Pick a store, show the code, paste it at checkout.</p>
-          <form role="search" onsubmit="return false">
-            <label class="search">${ICON_SEARCH}
-              <span class="skip">Search for a store</span>
-              <input id="q" type="search" placeholder="Search for a store${STORES[0] ? `, like “${esc(STORES[0].name)}”` : ""}" autocomplete="off" value="${esc(q)}">
-            </label>
-          </form>
-          ${chipsHTML(null)}
+          <div>
+            <h1>Self-care, for less.</h1>
+            <p>${esc(SITE.tagline)}</p>
+            <form role="search" onsubmit="return false">
+              <label class="search">${ICON_SEARCH}
+                <span class="skip">Search stores and products</span>
+                <input id="q" type="search" placeholder="Search${first ? `, like “${esc(first.name)}”` : ""}" autocomplete="off" value="${esc(q)}">
+              </label>
+            </form>
+            ${chipsHTML(null)}
+          </div>
+          <div class="ticket-fan">${STORES.slice(0, 2).map(ticketHTML).join("")}</div>
         </div>
       </section>
-      <section class="section" aria-labelledby="list-title">
+      <section class="section" aria-labelledby="deals-title">
         <div class="wrap">
-          <h2 id="list-title">All stores</h2>
+          <div class="section-head"><h2 id="deals-title">Today’s codes</h2></div>
           <p class="result-note" id="note" aria-live="polite"></p>
-          <ul class="grid" id="grid"></ul>
+          <ul class="deals" id="deals"></ul>
         </div>
-      </section>`;
+      </section>
+      <section class="section" aria-labelledby="shop-title" id="shop-section">
+        <div class="wrap">
+          <div class="section-head">
+            <h2 id="shop-title">Shop the favourites</h2>
+            <p>Your code still works on these. Each opens on the store’s own site.</p>
+          </div>
+          <ul class="products" id="products"></ul>
+        </div>
+      </section>
+      ${STEPS_HTML}`;
 
     const input = document.getElementById("q");
-    const grid = document.getElementById("grid");
+    const deals = document.getElementById("deals");
+    const products = document.getElementById("products");
+    const shopSection = document.getElementById("shop-section");
     const note = document.getElementById("note");
-    const title = document.getElementById("list-title");
 
     function update() {
       const term = input.value.trim().toLowerCase();
-      const matches = STORES.filter((s) => {
-        if (!term) return true;
+      const matchesStore = (s) => {
         const cat = categoryBySlug(s.category);
-        const hay = [s.name, cat && cat.name, ...s.coupons.map((c) => c.title)].join(" ").toLowerCase();
-        return hay.includes(term);
-      });
-      title.textContent = term ? "Search results" : "All stores";
-      note.textContent = term
-        ? matches.length
-          ? `${matches.length} store${matches.length === 1 ? "" : "s"} match “${input.value.trim()}”.`
-          : `No stores match “${input.value.trim()}”. Check the spelling or browse a category above.`
-        : "";
-      grid.innerHTML = matches.map(storeCardHTML).join("");
+        return [s.name, cat && cat.name, s.about, ...s.coupons.map((c) => c.title)].join(" ").toLowerCase().includes(term);
+      };
+      const storeHits = term ? STORES.filter(matchesStore) : STORES;
+      const productHits = allProducts(STORES).filter(
+        ([p, s]) => !term || storeHits.includes(s) || p.name.toLowerCase().includes(term)
+      );
+      // A product match also surfaces its store's code.
+      const dealStores = term ? STORES.filter((s) => storeHits.includes(s) || productHits.some(([, ps]) => ps === s)) : STORES;
+
+      deals.innerHTML = dealStores.map(dealCardHTML).join("");
+      products.innerHTML = productHits.map(([p, s]) => productCardHTML(p, s)).join("");
+      shopSection.hidden = productHits.length === 0;
+      note.textContent = !term
+        ? ""
+        : dealStores.length
+          ? `${dealStores.length} store${dealStores.length === 1 ? "" : "s"} match “${input.value.trim()}”.`
+          : `Nothing matches “${input.value.trim()}”. Check the spelling or clear the search to see every code.`;
+
       const url = new URL(location);
       term ? url.searchParams.set("q", input.value.trim()) : url.searchParams.delete("q");
       history.replaceState(null, "", url);
@@ -197,6 +315,7 @@
 
     document.title = `${cat.name} coupon codes | ${SITE.name}`;
     const stores = STORES.filter((s) => s.category === cat.slug);
+    const products = allProducts(stores);
     main.innerHTML = `
       <section class="page-head">
         <div class="wrap">
@@ -205,15 +324,23 @@
           ${chipsHTML(cat.slug)}
         </div>
       </section>
-      <section class="section" aria-label="Stores">
+      <section class="section" aria-label="Codes">
         <div class="wrap">
           ${
             stores.length
-              ? `<ul class="grid">${stores.map(storeCardHTML).join("")}</ul>`
+              ? `<ul class="deals">${stores.map(dealCardHTML).join("")}</ul>`
               : `<div class="empty"><h2>No stores here yet</h2><p>New codes are added every week. Browse <a href="index.html">all stores</a> in the meantime.</p></div>`
           }
         </div>
-      </section>`;
+      </section>
+      ${
+        products.length
+          ? `<section class="section" aria-labelledby="shop-title"><div class="wrap">
+               <div class="section-head"><h2 id="shop-title">Shop the favourites</h2></div>
+               <ul class="products">${products.map(([p, s]) => productCardHTML(p, s)).join("")}</ul>
+             </div></section>`
+          : ""
+      }`;
   }
 
   function renderStore() {
@@ -223,47 +350,45 @@
 
     const cat = categoryBySlug(store.category);
     const coupons = liveCoupons(store);
-    document.title = `${store.name} coupon codes | ${SITE.name}`;
+    const best = bestCoupon(store);
+    document.title = `${store.name} coupon codes${best ? `: ${best.title}` : ""} | ${SITE.name}`;
 
     const couponItems = coupons
-      .map((c, i) => {
-        const meta = [
-          c.verified ? `<span class="ok">${ICON_CHECK}Verified</span>` : "",
-          c.expires ? `<span>Expires ${formatDate(c.expires)}</span>` : `<span>No expiry date</span>`,
-          c.code ? "" : `<span>No code needed</span>`,
-        ].join("");
-        const action = c.code
-          ? `<button class="btn" type="button" data-reveal="${i}">Show code</button>`
-          : `<a class="btn" href="${esc(store.url)}" target="_blank" rel="sponsored nofollow noopener">Get deal</a>`;
-        return `<li class="coupon">
+      .map(
+        (c) => `<li class="coupon">
           ${stubHTML(c.discount)}
           <div class="main">
             <div>
               <h2>${esc(c.title)}</h2>
-              <div class="meta">${meta}</div>
+              <div class="meta">${metaHTML(c)}</div>
             </div>
-            <div class="action">${action}</div>
+            <div class="action">${actionHTML(store, c)}</div>
           </div>
-        </li>`;
-      })
+        </li>`
+      )
       .join("");
 
+    const products = (store.products || []).map((p) => productCardHTML(p, store)).join("");
+
     main.innerHTML = `
-      <div class="wrap">
-        <div class="store-head">
-          ${logoHTML(store, true)}
+      <section class="store-hero">
+        <div class="wrap">
           <div>
-            <div class="crumbs"><a href="index.html">All stores</a> / ${cat ? `<a href="${categoryUrl(cat)}">${esc(cat.name)}</a>` : ""}</div>
+            <div class="crumbs"><a href="index.html">All stores</a>${cat ? ` / <a href="${categoryUrl(cat)}">${esc(cat.name)}</a>` : ""}</div>
             <h1>${esc(store.name)} coupon codes</h1>
             <p>${esc(store.about)}</p>
+            <a class="btn secondary" href="${esc(store.url)}" ${OUT}>Visit ${esc(store.name)}</a>
           </div>
+          ${store.cover ? `<div class="cover">${coverImg(store, 900, `alt="${esc(store.name)}" width="480" height="360"`)}</div>` : logoHTML(store, true)}
         </div>
+      </section>
+      <div class="wrap">
         <div class="store-layout">
           <section aria-label="Offers">
             ${
               coupons.length
                 ? `<ul class="coupons">${couponItems}</ul>`
-                : `<div class="empty"><h2>No active codes right now</h2><p>The last code for ${esc(store.name)} has expired. You can still shop the store directly.</p><a class="btn" href="${esc(store.url)}" target="_blank" rel="sponsored nofollow noopener">Visit ${esc(store.name)}</a></div>`
+                : `<div class="empty"><h2>No active codes right now</h2><p>The last code for ${esc(store.name)} has expired. You can still shop the store directly.</p><a class="btn" href="${esc(store.url)}" ${OUT}>Visit ${esc(store.name)}</a></div>`
             }
           </section>
           <aside>
@@ -271,42 +396,35 @@
               <h2>How to use a code</h2>
               <ol>
                 <li>Select <strong>Show code</strong>. The store opens in a new tab.</li>
-                <li>Copy the code from this page.</li>
-                <li>Paste it in the promo code box at checkout.</li>
+                <li>The code is copied for you. You can also copy it from this page.</li>
+                <li>Paste it in the discount box at checkout.</li>
               </ol>
-            </div>
-            <div class="panel">
-              <h2>About ${esc(store.name)}</h2>
-              <p>${esc(store.about)}</p>
-              <a class="btn secondary" href="${esc(store.url)}" target="_blank" rel="sponsored nofollow noopener">Visit store</a>
             </div>
           </aside>
         </div>
-      </div>`;
-
-    main.addEventListener("click", (e) => {
-      const reveal = e.target.closest("[data-reveal]");
-      if (reveal) {
-        const coupon = coupons[Number(reveal.dataset.reveal)];
-        reveal.parentElement.innerHTML = `
-          <div class="code-box">
-            <span class="code">${esc(coupon.code)}</span>
-            <button type="button" data-copy="${esc(coupon.code)}">Copy</button>
-          </div>`;
-        copy(coupon.code);
-        // Open the affiliate link last so a blocked popup can't stop the code from showing.
-        try {
-          window.open(store.url, "_blank", "noopener");
-        } catch {}
-        return;
-      }
-      const copyBtn = e.target.closest("[data-copy]");
-      if (copyBtn) {
-        copy(copyBtn.dataset.copy);
-        copyBtn.textContent = "Copied";
-      }
-    });
+      </div>
+      ${
+        products
+          ? `<section class="section" aria-labelledby="popular-title"><div class="wrap">
+               <div class="section-head"><h2 id="popular-title">Popular at ${esc(store.name)}</h2></div>
+               <ul class="products">${products}</ul>
+             </div></section>`
+          : ""
+      }`;
   }
+
+  function renderNotFound(message) {
+    document.getElementById("main").innerHTML = `
+      <div class="wrap page-head">
+        <div class="empty">
+          <h1>Page not found</h1>
+          <p>${esc(message)} It may have been removed or the link is mistyped.</p>
+          <a class="btn secondary" href="index.html">Browse all stores</a>
+        </div>
+      </div>`;
+  }
+
+  /* ---------- Code reveal and copy ---------- */
 
   function copy(text) {
     const done = () => toast(`Code ${text} copied. Paste it at checkout.`);
@@ -329,16 +447,30 @@
     }
   }
 
-  function renderNotFound(message) {
-    document.getElementById("main").innerHTML = `
-      <div class="wrap page-head">
-        <div class="empty">
-          <h1>Page not found</h1>
-          <p>${esc(message)} It may have been removed or the link is mistyped.</p>
-          <a class="btn secondary" href="index.html">Browse all stores</a>
-        </div>
-      </div>`;
-  }
+  document.addEventListener("click", (e) => {
+    const reveal = e.target.closest("[data-reveal]");
+    if (reveal) {
+      const store = STORES.find((s) => s.slug === reveal.dataset.reveal);
+      const coupon = store && liveCoupons(store)[Number(reveal.dataset.index)];
+      if (!coupon) return;
+      reveal.parentElement.innerHTML = `
+        <div class="code-box">
+          <span class="code">${esc(coupon.code)}</span>
+          <button type="button" data-copy="${esc(coupon.code)}">Copy</button>
+        </div>`;
+      copy(coupon.code);
+      // Open the affiliate link last so a blocked popup can't stop the code from showing.
+      try {
+        window.open(store.url, "_blank", "noopener");
+      } catch {}
+      return;
+    }
+    const copyBtn = e.target.closest("[data-copy]");
+    if (copyBtn) {
+      copy(copyBtn.dataset.copy);
+      copyBtn.textContent = "Copied";
+    }
+  });
 
   /* ---------- Boot ---------- */
 
