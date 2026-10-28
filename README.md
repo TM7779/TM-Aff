@@ -1,4 +1,4 @@
-# Clipjar – web coupon affiliate
+# Nova Beauty – web coupon affiliate
 
 Web tĩnh (HTML/CSS/JS thuần), không cần cài đặt gì, up thẳng lên Hostinger là chạy được.
 
@@ -23,7 +23,7 @@ Coupon hết hạn (`expires` đã qua) sẽ tự ẩn.
 2. Link affiliate mở trong tab mới → cookie affiliate được ghi nhận
 
 ## Đổi tên thương hiệu
-Sửa `SITE.name` trong `assets/data.js`, và thay chữ "Clipjar" trong thẻ `<title>` của 6 file HTML.
+Sửa `SITE.name` trong `assets/data.js`, và thay chữ "Nova Beauty" trong thẻ `<title>` của 6 file HTML. Mỗi lần sửa CSS/JS, tăng số `?v=` trong 6 file HTML để khách không bị dính bản cũ.
 
 ## Chạy thử trên máy
 ```
