@@ -19,6 +19,7 @@
  *       code     - the coupon code; leave "" for a deal that needs no code
  *       expires  - "YYYY-MM-DD" or "" if it doesn't expire
  *       verified - true if you've checked the code works
+ *       details  - optional terms shown under "See details" and in the code dialog
  *   products  - a few popular products, each linking to the product page WITH your affiliate ref:
  *       name, image, url
  */
@@ -65,8 +66,22 @@ const STORES = [
     cover: "https://cdn.shopify.com/s/files/1/0619/3476/4164/files/Facemask-PINK-1_2.jpg?v=1779696868",
     about: "Bio-collagen face masks, hydrogel eye patches and vitamin patches. Free shipping on US orders over $20.",
     coupons: [
-      { title: "10% off your order", discount: "10%", code: "SALA38", expires: "", verified: false },
-      { title: "Free shipping on US orders over $20", discount: "Free ship", code: "", expires: "", verified: true },
+      {
+        title: "10% off your order",
+        discount: "10%",
+        code: "SALA38",
+        expires: "",
+        verified: false,
+        details: "Enter SALA38 in the discount box at checkout on shop.tolevita.com to take 10% off your order.",
+      },
+      {
+        title: "Free shipping on US orders over $20",
+        discount: "Free ship",
+        code: "",
+        expires: "",
+        verified: true,
+        details: "Shipping is free on US orders over $20. No code needed.",
+      },
     ],
     products: [
       {
@@ -112,7 +127,14 @@ const STORES = [
     coverZoom: 1.34, // the original photo has a white frame; zooming in crops it off
     about: "The eight-herb powdered Essiac tea formula from Rene Caisse, sold for over 21 years.",
     coupons: [
-      { title: "10% off your order", discount: "10%", code: "MANH10", expires: "", verified: false },
+      {
+        title: "10% off your order",
+        discount: "10%",
+        code: "MANH10",
+        expires: "",
+        verified: false,
+        details: "Enter MANH10 in the discount box at checkout on genuineessiac.com to take 10% off your order.",
+      },
     ],
     products: [
       {

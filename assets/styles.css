@@ -152,6 +152,8 @@ h1, h2, h3 { font-weight: 400; text-wrap: balance; }
   .main-nav { order: 3; width: 100%; }
   .main-nav ul { gap: 0; }
   .main-nav a { padding: 10px 8px; font-size: 0.9375rem; }
+  /* About is also in the footer; dropping it keeps the menu on one line. */
+  .main-nav .nav-about { display: none; }
 }
 
 /* ---------- Home hero ---------- */
@@ -579,8 +581,10 @@ h1, h2, h3 { font-weight: 400; text-wrap: balance; }
 .crumbs a { color: var(--ink-soft); }
 
 @media (max-width: 860px) {
+  .store-hero { padding: 28px 0 20px; }
   .store-hero .wrap { grid-template-columns: 1fr; gap: 24px; }
-  .store-hero .cover img { aspect-ratio: 16 / 9; }
+  /* On phones the codes come straight after the title, so the big photo steps aside. */
+  .store-hero .cover { display: none; }
 }
 
 .store-layout {
@@ -628,7 +632,7 @@ h1, h2, h3 { font-weight: 400; text-wrap: balance; }
   align-items: center;
   justify-content: space-between;
 }
-.coupon h2 {
+.coupon h3 {
   font-family: var(--font-display);
   font-size: 1.5rem;
   line-height: 1.2;
@@ -732,6 +736,171 @@ h1, h2, h3 { font-weight: 400; text-wrap: balance; }
 .panel ol { margin: 0; padding-left: 20px; color: var(--ink-soft); }
 .panel ol li + li { margin-top: 6px; }
 .panel + .panel { margin-top: 16px; }
+
+/* ---------- Show code button: the code's last characters peek out from under it ---------- */
+
+.reveal {
+  position: relative;
+  display: inline-flex;
+  min-width: 200px;
+  min-height: 48px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+.reveal-peek {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 14px;
+  border: 2px dashed var(--gold-ink);
+  border-radius: 999px;
+  background: var(--gold-tint);
+  color: var(--gold-ink);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+.reveal-label {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 50px;
+  padding: 0 26px 0 22px;
+  border-radius: 999px 0 0 999px;
+  background: var(--nova);
+  color: var(--ink);
+  font-weight: 800;
+  /* The slanted right edge reads as a sticker being peeled back. */
+  clip-path: polygon(0 0, 100% 0, calc(100% - 16px) 100%, 0 100%);
+  transition: background-color 150ms ease-out, margin-right 200ms ease-out;
+}
+.reveal:hover .reveal-label { background: var(--nova-hover); margin-right: 58px; }
+.reveal:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 999px; }
+
+@media (max-width: 560px) {
+  .reveal { width: 100%; }
+}
+
+/* ---------- Offer labels and terms ---------- */
+
+.labels { display: flex; flex-wrap: wrap; gap: 6px; }
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--ink-soft);
+  font-size: 0.8125rem;
+  font-weight: 800;
+}
+.label.ok { background: #e3f1ea; color: var(--sage); }
+.label svg { width: 14px; height: 14px; }
+
+.coupon .text { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.terms summary {
+  cursor: pointer;
+  color: var(--focus);
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+.terms p { margin: 6px 0 0; color: var(--ink-soft); font-size: 0.9375rem; max-width: 52ch; }
+
+.list-title {
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  line-height: 1.2;
+  margin: 0 0 16px;
+}
+
+/* ---------- Code highlights panel ---------- */
+
+.panel.highlights { background: var(--ink); color: #fff; }
+.highlights dl { margin: 0; }
+.highlights dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+.highlights dt { color: #d9cfe0; }
+.highlights dd { margin: 0; font-weight: 800; }
+.highlights dl div:first-child dd { color: var(--nova); }
+
+/* ---------- Code dialog ---------- */
+
+body.modal-open { overflow: hidden; }
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(38, 26, 46, 0.55);
+  animation: fade 160ms ease-out;
+}
+.modal-card {
+  position: relative;
+  width: min(100%, 460px);
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  padding: 32px 28px 28px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  text-align: center;
+  box-shadow: 0 24px 64px rgba(38, 26, 46, 0.3);
+  animation: pop 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.modal-card .logo { margin: 0 auto 16px; }
+.modal-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  line-height: 1.15;
+  margin: 0 0 8px;
+}
+.modal-sub { margin: 0 0 20px; color: var(--ink-soft); }
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--ink);
+  cursor: pointer;
+}
+.modal-close svg { width: 18px; height: 18px; }
+.code-box.big { min-height: 60px; margin-bottom: 14px; }
+.code-box.big .code { justify-content: center; font-size: 1.5rem; }
+.code-box button.done { background: var(--sage); }
+.btn.wide { width: 100%; }
+.modal-details {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  text-align: left;
+}
+.modal-details h3 { font-size: 0.9375rem; font-weight: 800; margin: 0 0 4px; }
+.modal-details p { margin: 0; color: var(--ink-soft); font-size: 0.9375rem; }
+
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pop {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
 
 /* ---------- Simple pages ---------- */
 

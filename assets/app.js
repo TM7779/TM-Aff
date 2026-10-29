@@ -8,6 +8,8 @@
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>';
   const ICON_CHECK =
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+  const ICON_CLOSE =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>';
   // A four-point "nova" star.
   const BRAND_MARK =
     '<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path fill="#EF4E7B" d="M16 1c1.2 7.6 7.4 13.8 15 15-7.6 1.2-13.8 7.4-15 15-1.2-7.6-7.4-13.8-15-15C8.6 14.8 14.8 8.6 16 1Z"/></svg>';
@@ -79,20 +81,29 @@
     return `<div class="stub"><span class="amt long">${esc(discount)}</span></div>`;
   }
 
+  function labelsHTML(c) {
+    return `<div class="labels">
+      <span class="label">${c.code ? "Code" : "Deal"}</span>
+      ${c.verified ? `<span class="label ok">${ICON_CHECK}Verified</span>` : ""}
+    </div>`;
+  }
+
   function metaHTML(c) {
     return [
-      c.verified ? `<span class="ok">${ICON_CHECK}Verified</span>` : "",
       c.expires ? `<span>Expires ${formatDate(c.expires)}</span>` : `<span>No expiry date</span>`,
       c.code ? "" : `<span>No code needed</span>`,
     ].join("");
   }
 
   // The button that reveals a code (or opens a no-code deal). Indexes point into liveCoupons(store).
+  // The last few characters of the code peek out from under the button, like a half-peeled sticker.
   function actionHTML(store, c) {
     const index = liveCoupons(store).indexOf(c);
-    return c.code
-      ? `<button class="btn" type="button" data-reveal="${esc(store.slug)}" data-index="${index}">Show code</button>`
-      : `<a class="btn" href="${esc(store.url)}" ${OUT}>Get deal</a>`;
+    if (!c.code) return `<a class="btn" href="${esc(store.url)}" ${OUT}>Get deal</a>`;
+    return `<button class="reveal" type="button" data-reveal="${esc(store.slug)}" data-index="${index}">
+      <span class="reveal-peek" aria-hidden="true">${esc(c.code.slice(-3))}</span>
+      <span class="reveal-label">Show code</span>
+    </button>`;
   }
 
   /* ---------- Shared chrome ---------- */
@@ -105,7 +116,7 @@
       ["disclaimer.html", "Affiliate disclosure", "disclaimer"],
     ];
     const nav = navItems
-      .map(([href, label, key]) => `<li><a href="${href}"${key === page ? ' aria-current="page"' : ""}>${label}</a></li>`)
+      .map(([href, label, key]) => `<li class="nav-${key}"><a href="${href}"${key === page ? ' aria-current="page"' : ""}>${label}</a></li>`)
       .join("");
     const headerSearch =
       page === "home"
@@ -187,6 +198,7 @@
       ${photo}
       <div class="deal-body">
         <a class="who" href="${storeUrl(store)}">${logoHTML(store)}<span>${esc(store.name)}</span></a>
+        ${labelsHTML(best)}
         <h3>${esc(best.title)}</h3>
         <div class="meta">${metaHTML(best)}</div>
         <div class="action">${actionHTML(store, best)}</div>
@@ -199,7 +211,7 @@
     const best = bestCoupon(store);
     const tag = best && best.code && /%|\$/.test(best.discount) ? `<span class="tag">${esc(best.discount)} off with ${esc(best.code)}</span>` : "";
     return `<li>
-      <a class="product" href="${esc(product.url)}" ${OUT}>
+      <a class="product" href="${esc(product.url)}" data-store="${esc(store.slug)}" ${OUT}>
         <span class="img"><img src="${esc(sized(product.image, 500))}" alt="" loading="lazy" width="250" height="250"></span>
         <span class="info">
           <span class="name">${esc(product.name)}</span>
@@ -358,9 +370,11 @@
         (c) => `<li class="coupon">
           ${stubHTML(c.discount)}
           <div class="main">
-            <div>
-              <h2>${esc(c.title)}</h2>
+            <div class="text">
+              ${labelsHTML(c)}
+              <h3>${esc(c.title)}</h3>
               <div class="meta">${metaHTML(c)}</div>
+              ${c.details ? `<details class="terms"><summary>See details</summary><p>${esc(c.details)}</p></details>` : ""}
             </div>
             <div class="action">${actionHTML(store, c)}</div>
           </div>
@@ -369,6 +383,15 @@
       .join("");
 
     const products = (store.products || []).map((p) => productCardHTML(p, store)).join("");
+    const listDate = new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+    const highlights = [
+      ["Best discount", best ? (/^[$€£]?\d+%?$/.test(best.discount) ? `${best.discount} off` : best.discount) : "None"],
+      ["Coupon codes", coupons.filter((c) => c.code).length],
+      ["Deals", coupons.filter((c) => !c.code).length],
+      ["Verified", coupons.filter((c) => c.verified).length],
+    ]
+      .map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`)
+      .join("");
 
     main.innerHTML = `
       <section class="store-hero">
@@ -384,7 +407,8 @@
       </section>
       <div class="wrap">
         <div class="store-layout">
-          <section aria-label="Offers">
+          <section aria-labelledby="offers-title">
+            <h2 class="list-title" id="offers-title">Top ${esc(store.name)} codes for ${listDate}</h2>
             ${
               coupons.length
                 ? `<ul class="coupons">${couponItems}</ul>`
@@ -392,12 +416,16 @@
             }
           </section>
           <aside>
+            <div class="panel highlights">
+              <h2>Code highlights</h2>
+              <dl>${highlights}</dl>
+            </div>
             <div class="panel">
               <h2>How to use a code</h2>
               <ol>
-                <li>Select <strong>Show code</strong>. The store opens in a new tab.</li>
-                <li>The code is copied for you. You can also copy it from this page.</li>
-                <li>Paste it in the discount box at checkout.</li>
+                <li>Select <strong>Show code</strong>. Your code opens in a new tab and is copied for you.</li>
+                <li>This tab takes you to ${esc(store.name)}. Add what you like to your cart.</li>
+                <li>Paste the code in the discount box at checkout.</li>
               </ol>
             </div>
           </aside>
@@ -411,6 +439,10 @@
              </div></section>`
           : ""
       }`;
+
+    // Opened from a "Show code" click: this tab is the one that shows the code.
+    const fromReveal = coupons[Number(params.get("c"))];
+    if (params.has("c") && fromReveal && fromReveal.code) openModal(store, fromReveal);
   }
 
   function renderNotFound(message) {
@@ -447,28 +479,113 @@
     }
   }
 
+  // The code dialog: store logo, offer, the code with a Copy button, and a way on to the store.
+  let lastFocus = null;
+
+  function openModal(store, coupon, product) {
+    closeModal(true);
+    lastFocus = document.activeElement;
+    const wrap = document.createElement("div");
+    wrap.className = "modal";
+    wrap.innerHTML = `
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close" type="button" aria-label="Close">${ICON_CLOSE}</button>
+        ${logoHTML(store, true)}
+        <h2 id="modal-title">${esc(coupon.title)}</h2>
+        <p class="modal-sub">${
+          product
+            ? `${esc(product)} is open in a new tab. Paste this code at checkout on ${esc(store.name)}.`
+            : `Copy this code and paste it at checkout on ${esc(store.name)}.`
+        }</p>
+        <div class="code-box big">
+          <span class="code">${esc(coupon.code)}</span>
+          <button type="button" data-copy="${esc(coupon.code)}">Copy</button>
+        </div>
+        <a class="btn secondary wide" href="${esc(store.url)}" ${OUT}>Shop at ${esc(store.name)}</a>
+        ${coupon.details ? `<div class="modal-details"><h3>Offer details</h3><p>${esc(coupon.details)}</p></div>` : ""}
+      </div>`;
+    document.body.appendChild(wrap);
+    document.body.classList.add("modal-open");
+    wrap.addEventListener("click", (e) => {
+      if (e.target === wrap || e.target.closest(".modal-close")) closeModal();
+    });
+    wrap.querySelector("[data-copy]").focus();
+  }
+
+  function closeModal(silent) {
+    const m = document.querySelector(".modal");
+    if (!m) return;
+    m.remove();
+    document.body.classList.remove("modal-open");
+    const url = new URL(location);
+    if (url.searchParams.has("c")) {
+      url.searchParams.delete("c");
+      history.replaceState(null, "", url);
+    }
+    if (!silent && lastFocus && document.contains(lastFocus)) lastFocus.focus();
+  }
+
+  document.addEventListener("keydown", (e) => {
+    const m = document.querySelector(".modal");
+    if (!m) return;
+    if (e.key === "Escape") closeModal();
+    if (e.key === "Tab") {
+      // Keep keyboard focus inside the dialog.
+      const items = [...m.querySelectorAll("button, a[href]")];
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  // "Show code": a new tab opens on this site with the code dialog, and this tab goes to the store
+  // through the affiliate link. If the browser blocks the new tab, the dialog opens here instead.
+  function revealCode(store, coupon, index) {
+    copy(coupon.code);
+    const codeTab = window.open(`${storeUrl(store)}&c=${index}`, "_blank");
+    if (codeTab) {
+      try {
+        codeTab.opener = null;
+      } catch {}
+      setTimeout(() => location.assign(store.url), 60);
+    } else {
+      openModal(store, coupon);
+    }
+  }
+
   document.addEventListener("click", (e) => {
     const reveal = e.target.closest("[data-reveal]");
     if (reveal) {
       const store = STORES.find((s) => s.slug === reveal.dataset.reveal);
-      const coupon = store && liveCoupons(store)[Number(reveal.dataset.index)];
-      if (!coupon) return;
-      reveal.parentElement.innerHTML = `
-        <div class="code-box">
-          <span class="code">${esc(coupon.code)}</span>
-          <button type="button" data-copy="${esc(coupon.code)}">Copy</button>
-        </div>`;
-      copy(coupon.code);
-      // Open the affiliate link last so a blocked popup can't stop the code from showing.
-      try {
-        window.open(store.url, "_blank", "noopener");
-      } catch {}
+      const index = Number(reveal.dataset.index);
+      const coupon = store && liveCoupons(store)[index];
+      if (coupon) revealCode(store, coupon, index);
       return;
     }
+
+    // A product opens in a new tab (the link's own behaviour); this tab keeps the store's code ready.
+    const productLink = e.target.closest("a.product[data-store]");
+    if (productLink) {
+      const store = STORES.find((s) => s.slug === productLink.dataset.store);
+      const coupon = store && bestCoupon(store);
+      if (coupon && coupon.code) {
+        copy(coupon.code);
+        openModal(store, coupon, productLink.querySelector(".name")?.textContent);
+      }
+      return;
+    }
+
     const copyBtn = e.target.closest("[data-copy]");
     if (copyBtn) {
       copy(copyBtn.dataset.copy);
       copyBtn.textContent = "Copied";
+      copyBtn.classList.add("done");
     }
   });
 
