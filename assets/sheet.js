@@ -125,16 +125,18 @@
     return m ? m[0] : "Deal";
   }
 
-  // Product links get the same ref parameters as the store's affiliate link (when both are on one site).
+  // Every way to the shop goes through the affiliate link. A product link gets the affiliate link's
+  // ref parameters (?sca_ref=…) when it has some; when the ref is in the path instead (/CODE) or on
+  // another site, it can't be carried over, so the product opens the affiliate link itself.
   function withRef(link, affiliate) {
     const p = toURL(link);
     const a = toURL(affiliate);
-    if (!p) return link;
-    if (a && siteOf(a.hostname) === siteOf(p.hostname)) {
-      a.searchParams.forEach((value, key) => {
-        if (!p.searchParams.has(key)) p.searchParams.set(key, value);
-      });
-    }
+    if (!p || !a) return link;
+    const samePage = a.origin === p.origin && a.pathname.replace(/\/$/, "") === p.pathname.replace(/\/$/, "");
+    if (siteOf(a.hostname) !== siteOf(p.hostname) || (![...a.searchParams.keys()].length && !samePage)) return a.toString();
+    a.searchParams.forEach((value, key) => {
+      if (!p.searchParams.has(key)) p.searchParams.set(key, value);
+    });
     return p.toString();
   }
 
@@ -145,7 +147,11 @@
     if (found && site && /^(https?:)?\//.test(found)) {
       try {
         const u = new URL(found.startsWith("//") ? `https:${found}` : found, site.origin);
-        if (/\/cdn\/shop\/|cdn\.shopify\.com/.test(u.href)) ["crop", "height", "width"].forEach((k) => u.searchParams.delete(k));
+        if (/\/cdn\/shop\/|cdn\.shopify\.com/.test(u.href)) {
+          ["crop", "height", "width"].forEach((k) => u.searchParams.delete(k));
+          // Older Shopify themes put the size in the file name: logo_32x32.png
+          u.pathname = u.pathname.replace(/_(\d+x\d*|x\d+)(?=\.\w+$)/, "");
+        }
         return u.href.replace(/^http:/, "https:");
       } catch {}
     }
