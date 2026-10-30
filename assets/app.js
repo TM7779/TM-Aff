@@ -75,6 +75,8 @@
     return `<span class="${cls}" style="background:${esc(store.color || "#261A2E")}" aria-hidden="true">${esc(initials(store.name))}${img}</span>`;
   }
 
+  const isAmountOff = (discount) => /^[$€£]?\d+(\.\d+)?%?$/.test(discount);
+
   // "15%" and "$20" get a big number plus "off"; anything else ("Free ship") is set smaller.
   function stubHTML(discount) {
     const isAmount = /^[$€£]?\d+%?$/.test(discount);
@@ -114,12 +116,15 @@
   function renderHeader() {
     const navItems = [
       ["index.html", "All stores", "home"],
+      ["blog.html", "Blog", "blog"],
       ["about.html", "About", "about"],
       ["contact.html", "Contact", "contact"],
-      ["disclaimer.html", "Affiliate disclosure", "disclaimer"],
+      ["disclaimer.html", "Disclosure", "disclaimer"],
     ];
+    // A post counts as being in the Blog section.
+    const section = page === "post" ? "blog" : page;
     const nav = navItems
-      .map(([href, label, key]) => `<li class="nav-${key}"><a href="${href}"${key === page ? ' aria-current="page"' : ""}>${label}</a></li>`)
+      .map(([href, label, key]) => `<li class="nav-${key}"><a href="${href}"${key === section ? ' aria-current="page"' : ""}>${label}</a></li>`)
       .join("");
     const headerSearch =
       page === "home"
@@ -152,7 +157,7 @@
             <p>${esc(SITE.name)} earns a commission when you buy through links on this site, at no extra cost to you.
                <a href="disclaimer.html">How this works</a>.</p>
           </div>
-          <ul aria-label="More">${cats}<li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul>
+          <ul aria-label="More">${cats}<li><a href="blog.html">Blog</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul>
         </div>
       </footer>
       <div class="toast" role="status" aria-live="polite"></div>`;
@@ -259,6 +264,37 @@
     </li>`;
   }
 
+  /* ---------- Blog ---------- */
+
+  const posts = typeof POSTS === "undefined" ? [] : POSTS;
+  const postCategories = typeof POST_CATEGORIES === "undefined" ? [] : POST_CATEGORIES;
+  const postCategory = (slug) => postCategories.find((c) => c.slug === slug);
+
+  function postCardHTML(post) {
+    const cat = postCategory(post.category);
+    return `<li>
+      <a class="post-card" href="${esc(post.url)}">
+        <span class="post-card-img"><img src="${esc(sized(post.image, 700))}" alt="" loading="lazy" width="350" height="220"${post.focus ? ` style="object-position:${esc(post.focus)}"` : ""}></span>
+        <span class="post-card-body">
+          ${cat ? `<span class="post-card-tag">${esc(cat.name)}</span>` : ""}
+          <span class="post-card-title">${esc(post.title)}</span>
+          <span class="post-card-excerpt">${esc(post.excerpt)}</span>
+          <span class="post-card-meta"><span>${formatDate(post.date)}</span><span>${post.minutes} min read</span></span>
+        </span>
+      </a>
+    </li>`;
+  }
+
+  function postsSectionHTML(list, title, id, moreLink) {
+    if (!list.length) return "";
+    return `<section class="section" aria-labelledby="${id}">
+      <div class="wrap">
+        <div class="section-head"><h2 id="${id}">${title}</h2>${moreLink ? `<a class="section-link" href="blog.html">All posts</a>` : ""}</div>
+        <ul class="posts">${list.map(postCardHTML).join("")}</ul>
+      </div>
+    </section>`;
+  }
+
   // Interleave products from every store so one brand doesn't fill the whole grid.
   function allProducts(stores) {
     const lists = stores.map((s) => (s.products || []).map((p) => [p, s]));
@@ -327,6 +363,7 @@
           <ul class="products" id="products"></ul>
         </div>
       </section>
+      ${postsSectionHTML(posts.slice(0, 3), "From the blog", "blog-title", true)}
       ${STEPS_HTML}`;
 
     const input = document.getElementById("q");
@@ -406,6 +443,22 @@
       }`;
   }
 
+  // One offer in a store's list: gold stub, labels, title, expiry, terms and the reveal button.
+  function couponItemHTML(store, c) {
+    return `<li class="coupon">
+      ${stubHTML(c.discount)}
+      <div class="main">
+        <div class="text">
+          ${labelsHTML(c)}
+          <h3>${esc(c.title)}</h3>
+          <div class="meta">${metaHTML(c)}</div>
+          ${c.details ? `<details class="terms"><summary>See details</summary><p>${esc(c.details)}</p></details>` : ""}
+        </div>
+        <div class="action">${actionHTML(store, c)}</div>
+      </div>
+    </li>`;
+  }
+
   function renderStore() {
     const main = document.getElementById("main");
     const store = STORES.find((s) => s.slug === params.get("s"));
@@ -416,22 +469,7 @@
     const best = bestCoupon(store);
     document.title = `${store.name} coupon codes${best ? `: ${best.title}` : ""} | ${SITE.name}`;
 
-    const couponItems = coupons
-      .map(
-        (c) => `<li class="coupon">
-          ${stubHTML(c.discount)}
-          <div class="main">
-            <div class="text">
-              ${labelsHTML(c)}
-              <h3>${esc(c.title)}</h3>
-              <div class="meta">${metaHTML(c)}</div>
-              ${c.details ? `<details class="terms"><summary>See details</summary><p>${esc(c.details)}</p></details>` : ""}
-            </div>
-            <div class="action">${actionHTML(store, c)}</div>
-          </div>
-        </li>`
-      )
-      .join("");
+    const couponItems = coupons.map((c) => couponItemHTML(store, c)).join("");
 
     const products = (store.products || []).map((p) => productCardHTML(p, store)).join("");
     const listDate = new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
@@ -489,11 +527,83 @@
                <ul class="products">${products}</ul>
              </div></section>`
           : ""
-      }`;
+      }
+      ${postsSectionHTML(posts.filter((p) => p.store === store.slug), "Read before you buy", "store-posts-title", false)}`;
 
     // Opened from a "Show code" click: this tab is the one that shows the code.
     const fromReveal = coupons[Number(params.get("c"))];
     if (params.has("c") && fromReveal && fromReveal.code) openModal(store, fromReveal);
+  }
+
+  // Blog list, filtered by ?t=<category slug> through the chips.
+  function renderBlog() {
+    const main = document.getElementById("main");
+    const current = postCategory(params.get("t"));
+    const list = current ? posts.filter((p) => p.category === current.slug) : posts;
+    if (current) document.title = `${current.name} | Blog | ${SITE.name}`;
+    const used = postCategories.filter((c) => posts.some((p) => p.category === c.slug));
+    const chip = (href, label, n, on) =>
+      `<li><a href="${href}"${on ? ' aria-current="page"' : ""}>${esc(label)}<span class="count"><span class="skip">, </span>${n}<span class="skip"> posts</span></span></a></li>`;
+    const chips = used.length
+      ? `<nav aria-label="Blog categories"><ul class="chips">${[chip("blog.html", "All posts", posts.length, !current)]
+          .concat(used.map((c) => chip(`blog.html?t=${c.slug}`, c.name, posts.filter((p) => p.category === c.slug).length, c === current)))
+          .join("")}</ul></nav>`
+      : "";
+    main.innerHTML = `
+      <section class="page-head">
+        <div class="wrap">
+          <h1>${current ? esc(current.name) : "Blog"}</h1>
+          <p>Plain-English guides to the brands we list, and how to get the most from their codes.</p>
+          ${chips}
+        </div>
+      </section>
+      <section class="section" aria-label="Posts">
+        <div class="wrap">
+          ${
+            list.length
+              ? `<ul class="posts">${list.map(postCardHTML).join("")}</ul>`
+              : `<div class="empty"><h2>No posts here yet</h2><p>Read <a href="blog.html">all posts</a> in the meantime.</p></div>`
+          }
+        </div>
+      </section>`;
+  }
+
+  // A post's text is in its own HTML. This fills in the live parts: the current code and discount,
+  // the offer box with its Show code button, shop links, and other posts to read next.
+  function renderPost() {
+    const storeFor = (el, attr) => STORES.find((s) => s.slug === el.getAttribute(attr));
+    document.querySelectorAll("[data-code]").forEach((el) => {
+      const best = storeFor(el, "data-code") && bestCoupon(storeFor(el, "data-code"));
+      if (best && best.code) el.textContent = best.code;
+    });
+    document.querySelectorAll("[data-discount]").forEach((el) => {
+      const best = storeFor(el, "data-discount") && bestCoupon(storeFor(el, "data-discount"));
+      if (best && isAmountOff(best.discount)) el.textContent = best.discount;
+    });
+    document.querySelectorAll("[data-shop]").forEach((el) => {
+      const store = storeFor(el, "data-shop");
+      if (store) el.href = store.url;
+    });
+    document.querySelectorAll("[data-offer]").forEach((el) => {
+      const store = storeFor(el, "data-offer");
+      const best = store && bestCoupon(store);
+      if (!best) return;
+      el.innerHTML = `
+        <a class="who" href="${storeUrl(store)}">${logoHTML(store)}<span>${esc(store.name)} code</span></a>
+        <ul class="coupons">${couponItemHTML(store, best)}</ul>`;
+    });
+
+    // Pages may be served with or without ".html".
+    const fileOf = (url) => url.split("/").pop().replace(/\.html$/, "");
+    const here = fileOf(location.pathname);
+    const me = posts.find((p) => fileOf(p.url) === here) || {};
+    const related = posts
+      .filter((p) => fileOf(p.url) !== here)
+      .sort((a, b) => (b.store === me.store) - (a.store === me.store))
+      .slice(0, 3);
+    const box = document.getElementById("related");
+    if (box) box.innerHTML = related.map(postCardHTML).join("");
+    if (box && !related.length) box.closest("section").hidden = true;
   }
 
   function renderNotFound(message) {
@@ -644,11 +754,12 @@
 
   async function boot() {
     renderHeader();
-    // Pages that list codes wait for the sheet; the rest use the last saved copy for the footer.
+    // Pages that show codes wait for the sheet; the rest use the last saved copy for the footer.
+    // Posts keep their own text on screen while the sheet loads.
     const listsCodes = ["home", "category", "store"].includes(page);
     const main = document.getElementById("main");
     const slow = listsCodes && setTimeout(() => (main.innerHTML = '<p class="wrap loading">Loading today’s codes…</p>'), 500);
-    const fresh = window.loadSheetStores ? await window.loadSheetStores({ fetchSheet: listsCodes }) : null;
+    const fresh = window.loadSheetStores ? await window.loadSheetStores({ fetchSheet: listsCodes || page === "post" }) : null;
     clearTimeout(slow);
     if (fresh && fresh.length) STORES.splice(0, STORES.length, ...fresh);
     activeCategories = CATEGORIES.filter((c) => STORES.some((s) => s.category === c.slug));
@@ -663,6 +774,8 @@
     if (page === "home") renderHome();
     else if (page === "category") renderCategory();
     else if (page === "store") renderStore();
+    else if (page === "blog") renderBlog();
+    else if (page === "post") renderPost();
   }
 
   boot();
