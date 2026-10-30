@@ -1,5 +1,7 @@
 /*
- * All site content lives here. Edit this file to add stores, coupons and categories.
+ * Stores, codes and products now come from the Google Sheet published at SITE.sheet (see sheet.js).
+ * STORES below is the backup when the sheet can't be reached, and supplies photos, logos and
+ * descriptions the sheet leaves empty (matched by store name and product link).
  *
  * Categories with no stores are hidden automatically.
  *
@@ -30,6 +32,9 @@ const SITE = {
   // Left empty so no email is shown. To show one later, set it here (or CONTACT_EMAIL on Hostinger)
   // and add <a data-site-email href="#"></a> where it should appear.
   email: (window.SITE_ENV && window.SITE_ENV.email) || "",
+  // CSV link of the sheet's "Web (tự động, không sửa)" tab (File > Share > Publish to web). "" = use STORES only.
+  sheet:
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8QUQR3nHFFYR8UKnCxYtSMXGkgKnw-Ynx0wVcLUui3JGNUbrksUCZJSeq8by_TWNldXXDCcAIReWR/pub?gid=1706532640&single=true&output=csv",
 };
 
 const CATEGORIES = [

@@ -1,4 +1,5 @@
-/* Renders every page from the data in data.js. Each HTML file sets <body data-page="...">. */
+/* Renders every page from the Google Sheet (via sheet.js), falling back to data.js.
+   Each HTML file sets <body data-page="...">. */
 
 (function () {
   const page = document.body.dataset.page;
@@ -25,8 +26,8 @@
     return live.find((c) => c.code) || live[0];
   };
   const categoryBySlug = (slug) => CATEGORIES.find((c) => c.slug === slug);
-  // Categories without any store are left out of the chips and footer.
-  const activeCategories = CATEGORIES.filter((c) => STORES.some((s) => s.category === c.slug));
+  // Categories without any store are left out of the chips and footer. Set once the stores load.
+  let activeCategories = [];
   const storeUrl = (s) => `store.html?s=${encodeURIComponent(s.slug)}`;
   const categoryUrl = (c) => `category.html?c=${encodeURIComponent(c.slug)}`;
   const OUT = 'target="_blank" rel="sponsored nofollow noopener"';
@@ -193,7 +194,7 @@
     if (!best) return "";
     const photo = store.cover
       ? `<a class="deal-photo" href="${storeUrl(store)}" tabindex="-1" aria-hidden="true">${coverImg(store, 500, 'alt="" loading="lazy" width="168" height="180"')}</a>`
-      : `<span class="deal-photo"></span>`;
+      : `<span class="deal-photo blank" style="background:${esc(store.color || "#261A2E")}" aria-hidden="true">${esc(initials(store.name))}</span>`;
     return `<li class="deal">
       ${photo}
       <div class="deal-body">
@@ -212,7 +213,11 @@
     const tag = best && best.code && /%|\$/.test(best.discount) ? `<span class="tag">${esc(best.discount)} off with ${esc(best.code)}</span>` : "";
     return `<li>
       <a class="product" href="${esc(product.url)}" data-store="${esc(store.slug)}" ${OUT}>
-        <span class="img"><img src="${esc(sized(product.image, 500))}" alt="" loading="lazy" width="250" height="250"></span>
+        ${
+          product.image
+            ? `<span class="img"><img src="${esc(sized(product.image, 500))}" alt="" loading="lazy" width="250" height="250"></span>`
+            : `<span class="img blank" style="background:${esc(store.color || "#261A2E")}" aria-hidden="true">${esc(initials(store.name))}</span>`
+        }
         <span class="info">
           <span class="name">${esc(product.name)}</span>
           <span class="from">${esc(store.name)}</span>
@@ -591,15 +596,28 @@
 
   /* ---------- Boot ---------- */
 
-  renderHeader();
-  renderFooter();
-  document.querySelectorAll("[data-site-name]").forEach((el) => (el.textContent = SITE.name));
-  document.querySelectorAll("[data-site-email]").forEach((el) => {
-    el.textContent = SITE.email;
-    el.href = `mailto:${SITE.email}`;
-  });
+  async function boot() {
+    renderHeader();
+    // Pages that list codes wait for the sheet; the rest use the last saved copy for the footer.
+    const listsCodes = ["home", "category", "store"].includes(page);
+    const main = document.getElementById("main");
+    const slow = listsCodes && setTimeout(() => (main.innerHTML = '<p class="wrap loading">Loading today’s codes…</p>'), 500);
+    const fresh = window.loadSheetStores ? await window.loadSheetStores({ fetchSheet: listsCodes }) : null;
+    clearTimeout(slow);
+    if (fresh && fresh.length) STORES.splice(0, STORES.length, ...fresh);
+    activeCategories = CATEGORIES.filter((c) => STORES.some((s) => s.category === c.slug));
 
-  if (page === "home") renderHome();
-  else if (page === "category") renderCategory();
-  else if (page === "store") renderStore();
+    renderFooter();
+    document.querySelectorAll("[data-site-name]").forEach((el) => (el.textContent = SITE.name));
+    document.querySelectorAll("[data-site-email]").forEach((el) => {
+      el.textContent = SITE.email;
+      el.href = `mailto:${SITE.email}`;
+    });
+
+    if (page === "home") renderHome();
+    else if (page === "category") renderCategory();
+    else if (page === "store") renderStore();
+  }
+
+  boot();
 })();

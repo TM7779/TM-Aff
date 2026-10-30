@@ -362,6 +362,16 @@ h1, h2, h3 { font-weight: 400; text-wrap: balance; }
   transition: transform 300ms ease-out;
 }
 .deal-photo:hover img { transform: scale(calc(var(--zoom, 1) * 1.04)); }
+/* A store with no photo yet: its colour and initials. */
+.deal-photo.blank,
+.product .img.blank {
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+}
+.deal-photo.blank { min-height: 180px; }
 .deal-body {
   display: flex;
   flex-direction: column;
@@ -393,6 +403,7 @@ h1, h2, h3 { font-weight: 400; text-wrap: balance; }
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   }
   .deal-photo img { min-height: 0; aspect-ratio: 16 / 9; }
+  .deal-photo.blank { min-height: 0; aspect-ratio: 16 / 9; }
   .deal .stub { border-radius: 0 0 var(--radius-lg) 0; }
   .deal-body .btn, .deal-body .code-box { width: 100%; }
 }
@@ -928,6 +939,8 @@ body.modal-open { overflow: hidden; }
 }
 .prose p, .prose li { color: var(--ink-soft); }
 .prose a { color: var(--focus); }
+
+.loading { color: var(--ink-soft); padding-top: 48px; padding-bottom: 48px; }
 
 .empty {
   background: var(--surface);
