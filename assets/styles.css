@@ -232,7 +232,6 @@ h1, h2, h3 { font-weight: 400; text-wrap: balance; }
 
 /* Cover photos can carry --zoom (set from data.js) to crop a built-in border. */
 .ticket img,
-.deal-photo img,
 .cover img { transform: scale(var(--zoom, 1)); }
 .ticket .tear {
   position: relative;
@@ -401,63 +400,54 @@ h1, h2, h3 { font-weight: 400; text-wrap: balance; }
   .cat-meta { font-size: 0.875rem; }
 }
 
-/* ---------- Deal cards (home) ---------- */
+/* ---------- Deal cards (home and categories) ---------- */
 
+/* Compact ticket: store, offer and button on the left, gold stub on the right. Three across on wide
+   screens so the list stays short as stores are added. */
 .deals {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 520px), 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 16px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 .deal {
-  --notch: 12px;
+  --notch: 10px;
   display: grid;
-  grid-template-columns: 168px minmax(0, 1fr) 112px;
+  grid-template-columns: minmax(0, 1fr) 84px;
   height: 100%;
   background: var(--surface);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
 }
-.deal-photo {
-  display: block;
-  overflow: hidden;
-  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
-}
-.deal-photo img {
-  width: 100%;
-  height: 100%;
-  min-height: 180px;
-  object-fit: cover;
-  object-position: center 25%;
-  transition: transform 300ms ease-out;
-}
-.deal-photo:hover img { transform: scale(calc(var(--zoom, 1) * 1.04)); }
-/* A store with no photo yet: its colour and initials. */
-.deal-photo.blank,
-.product .img.blank {
-  display: grid;
-  place-items: center;
-  color: #fff;
-  font-family: var(--font-display);
-  font-size: 2.5rem;
-}
-.deal-photo.blank { min-height: 180px; }
 .deal-body {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 20px;
+  gap: 8px;
+  padding: 16px;
   min-width: 0;
 }
 .deal-body h3 {
   font-family: var(--font-display);
-  font-size: 1.5rem;
-  line-height: 1.15;
-  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  margin: 2px 0 0;
 }
-.deal-body .action { margin-top: auto; }
+.deal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+}
+.deal-meta .meta { margin: 0; font-size: 0.875rem; }
+.deal-body .action { margin-top: auto; padding-top: 4px; }
+.deal .reveal { width: 100%; min-width: 0; min-height: 44px; }
+.deal .btn { width: 100%; min-height: 44px; }
+.deal .stub { padding: 12px 6px; }
+.deal .stub .amt { font-size: 1.75rem; }
+.deal .stub .amt.long { font-size: 1.0625rem; }
+.deal .stub .unit { font-size: 0.875rem; }
 .who {
   display: flex;
   align-items: center;
@@ -468,16 +458,26 @@ h1, h2, h3 { font-weight: 400; text-wrap: balance; }
 }
 .who:hover { color: var(--ink); }
 
+/* A store or product with no photo yet: its colour and initials. */
+.product .img.blank {
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+}
+
+/* "Show more" under a long list. */
+.more { display: flex; justify-content: center; margin-top: 24px; }
+.more[hidden] { display: none; }
+.btn.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: #fff; }
+
 @media (max-width: 560px) {
-  .deal { grid-template-columns: minmax(0, 1fr) 96px; }
-  .deal-photo {
-    grid-column: 1 / -1;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  }
-  .deal-photo img { min-height: 0; aspect-ratio: 16 / 9; }
-  .deal-photo.blank { min-height: 0; aspect-ratio: 16 / 9; }
-  .deal .stub { border-radius: 0 0 var(--radius-lg) 0; }
-  .deal-body .btn, .deal-body .code-box { width: 100%; }
+  .deal { grid-template-columns: minmax(0, 1fr) 76px; }
+  .deal-body { padding: 12px 14px; gap: 6px; }
+  .deal-body h3 { font-size: 1.125rem; }
+  .deal .stub .amt { font-size: 1.5rem; }
 }
 
 /* Gold perforated stub, shared by deal cards and store coupons */
@@ -548,8 +548,8 @@ h1, h2, h3 { font-weight: 400; text-wrap: balance; }
 
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 165px), 1fr));
+  gap: 16px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -579,27 +579,36 @@ h1, h2, h3 { font-weight: 400; text-wrap: balance; }
 .product .info {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 14px 16px 16px;
+  gap: 4px;
+  padding: 10px 12px 12px;
   flex: 1;
 }
-.product .name { font-weight: 700; line-height: 1.3; }
-.product .from { font-size: 0.9375rem; color: var(--ink-soft); }
+/* Long product names stop after two lines so every card in a row lines up. */
+.product .name {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.product .from { font-size: 0.875rem; color: var(--ink-soft); }
 .tag {
   align-self: flex-start;
   margin-top: auto;
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: 999px;
   background: var(--gold-tint);
   color: var(--gold-ink);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 700;
 }
 
 @media (max-width: 560px) {
   .products { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  .product .info { padding: 12px; }
-  .product .name { font-size: 0.9375rem; }
+  .product .info { padding: 10px; }
+  .product .name { font-size: 0.875rem; }
 }
 
 /* ---------- How it works ---------- */

@@ -226,19 +226,15 @@
     </a>`;
   }
 
+  // Compact ticket for a store's best offer; the logo stands in for a photo so many fit on screen.
   function dealCardHTML(store) {
     const best = bestCoupon(store);
     if (!best) return "";
-    const photo = store.cover
-      ? `<a class="deal-photo" href="${storeUrl(store)}" tabindex="-1" aria-hidden="true">${coverImg(store, 500, 'alt="" loading="lazy" width="168" height="180"')}</a>`
-      : `<span class="deal-photo blank" style="background:${esc(store.color || "#261A2E")}" aria-hidden="true">${esc(initials(store.name))}</span>`;
     return `<li class="deal">
-      ${photo}
       <div class="deal-body">
         <a class="who" href="${storeUrl(store)}">${logoHTML(store)}<span>${esc(store.name)}</span></a>
-        ${labelsHTML(best)}
         <h3>${esc(best.title)}</h3>
-        <div class="meta">${metaHTML(best)}</div>
+        <div class="deal-meta">${labelsHTML(best)}<span class="meta">${metaHTML(best)}</span></div>
         <div class="action">${actionHTML(store, best)}</div>
       </div>
       ${stubHTML(best.discount)}
@@ -247,7 +243,7 @@
 
   function productCardHTML(product, store) {
     const best = bestCoupon(store);
-    const tag = best && best.code && /%|\$/.test(best.discount) ? `<span class="tag">${esc(best.discount)} off with ${esc(best.code)}</span>` : "";
+    const tag = best && best.code && isAmountOff(best.discount) ? `<span class="tag">${esc(best.discount)} off with code</span>` : "";
     return `<li>
       <a class="product" href="${esc(product.url)}" data-store="${esc(store.slug)}" ${OUT}>
         ${
@@ -352,6 +348,7 @@
           <div class="section-head"><h2 id="deals-title">Today’s codes</h2></div>
           <p class="result-note" id="note" aria-live="polite"></p>
           <ul class="deals" id="deals"></ul>
+          <div class="more" hidden><button class="btn ghost" type="button" id="more-deals"></button></div>
         </div>
       </section>
       <section class="section" aria-labelledby="shop-title" id="shop-section">
@@ -361,6 +358,7 @@
             <p>Your code still works on these. Each opens on the store’s own site.</p>
           </div>
           <ul class="products" id="products"></ul>
+          <div class="more" hidden><button class="btn ghost" type="button" id="more-products"></button></div>
         </div>
       </section>
       ${postsSectionHTML(posts.slice(0, 3), "From the blog", "blog-title", true)}
@@ -372,9 +370,30 @@
     const shopSection = document.getElementById("shop-section");
     const catsSection = document.getElementById("cats-section");
     const note = document.getElementById("note");
+    const moreDeals = document.getElementById("more-deals");
+    const moreProducts = document.getElementById("more-products");
+
+    // Long lists open a few rows at a time: three rows of codes, two rows of products on a wide screen.
+    const DEAL_STEP = 9;
+    const PRODUCT_STEP = 12;
+    let dealLimit = DEAL_STEP;
+    let productLimit = PRODUCT_STEP;
+    let lastTerm = "";
+
+    function showMore(button, list, total, step, label) {
+      const left = total - list.children.length;
+      const n = Math.min(left, step);
+      button.parentElement.hidden = left <= 0;
+      button.textContent = `Show ${n} more ${label}${n === 1 ? "" : "s"}`;
+    }
 
     function update() {
       const term = input.value.trim().toLowerCase();
+      if (term !== lastTerm) {
+        dealLimit = DEAL_STEP;
+        productLimit = PRODUCT_STEP;
+        lastTerm = term;
+      }
       const matchesStore = (s) => {
         const cat = categoryBySlug(s.category);
         return [s.name, cat && cat.name, s.about, ...s.coupons.map((c) => c.title)].join(" ").toLowerCase().includes(term);
@@ -386,8 +405,11 @@
       // A product match also surfaces its store's code.
       const dealStores = term ? STORES.filter((s) => storeHits.includes(s) || productHits.some(([, ps]) => ps === s)) : STORES;
 
-      deals.innerHTML = dealStores.map(dealCardHTML).join("");
-      products.innerHTML = productHits.map(([p, s]) => productCardHTML(p, s)).join("");
+      const dealCards = dealStores.filter(bestCoupon);
+      deals.innerHTML = dealCards.slice(0, dealLimit).map(dealCardHTML).join("");
+      products.innerHTML = productHits.slice(0, productLimit).map(([p, s]) => productCardHTML(p, s)).join("");
+      showMore(moreDeals, deals, dealCards.length, DEAL_STEP, "code");
+      showMore(moreProducts, products, productHits.length, PRODUCT_STEP, "product");
       shopSection.hidden = productHits.length === 0;
       // While searching, results come straight under the search box.
       if (catsSection) catsSection.hidden = Boolean(term);
@@ -401,6 +423,19 @@
       term ? url.searchParams.set("q", input.value.trim()) : url.searchParams.delete("q");
       history.replaceState(null, "", url);
     }
+
+    // After opening more, keyboard focus moves to the first new item so it isn't lost
+    // when the button disappears.
+    function openMore(list, step, setLimit) {
+      const before = list.children.length;
+      setLimit(before + step);
+      update();
+      const first = list.children[before];
+      const target = first && first.querySelector("a, button");
+      if (target) target.focus();
+    }
+    moreDeals.addEventListener("click", () => openMore(deals, DEAL_STEP, (n) => (dealLimit = n)));
+    moreProducts.addEventListener("click", () => openMore(products, PRODUCT_STEP, (n) => (productLimit = n)));
 
     input.addEventListener("input", update);
     update();
