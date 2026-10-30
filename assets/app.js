@@ -65,12 +65,14 @@
       .join("");
   }
 
+  // The store's logo sits over its coloured monogram; if the image fails to load it's removed,
+  // so the monogram shows instead of a broken image.
   function logoHTML(store, large) {
     const cls = large ? "logo lg" : "logo";
-    if (store.logo) {
-      return `<span class="${cls}"><img src="${esc(sized(store.logo, 160))}" alt="" loading="lazy" width="72" height="72"></span>`;
-    }
-    return `<span class="${cls}" style="background:${esc(store.color || "#261A2E")}" aria-hidden="true">${esc(initials(store.name))}</span>`;
+    const img = store.logo
+      ? `<img src="${esc(sized(store.logo, 160))}" alt="" loading="lazy" width="72" height="72" onerror="this.remove()">`
+      : "";
+    return `<span class="${cls}" style="background:${esc(store.color || "#261A2E")}" aria-hidden="true">${esc(initials(store.name))}${img}</span>`;
   }
 
   // "15%" and "$20" get a big number plus "off"; anything else ("Free ship") is set smaller.

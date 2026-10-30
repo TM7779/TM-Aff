@@ -10,7 +10,7 @@
  */
 
 (function () {
-  const CACHE_KEY = "nb-sheet-stores-v2";
+  const CACHE_KEY = "nb-sheet-stores-v3";
   const PRODUCT_CACHE_KEY = "nb-shopify-v1";
   const META_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
   const PALETTE = ["#1F6F8B", "#2F5D46", "#7A4B00", "#6B3FD1", "#B43C62", "#3E5C76"];
@@ -32,6 +32,8 @@
     cover: "link anh bia",
   };
   const PRODUCT_COLUMNS = { store: "cua hang", url: "link san pham", name: "ten san pham", image: "link anh" };
+  // Filled by an IMPORTXML formula on the Web tab: the icon link found on the store's home page.
+  const AUTO_LOGO_COLUMN = "logo tu dong";
 
   // "Tên cửa hàng *" -> "ten cua hang"
   function norm(s) {
@@ -136,6 +138,21 @@
     return p.toString();
   }
 
+  // A logo for stores with none: the icon from the store's home page (Shopify ones asked for at full
+  // size), else Google's copy of the site icon. A 404 there leaves the coloured monogram showing.
+  function iconFor(found, website) {
+    const site = toURL(website);
+    if (found && site && /^(https?:)?\//.test(found)) {
+      try {
+        const u = new URL(found.startsWith("//") ? `https:${found}` : found, site.origin);
+        if (/\/cdn\/shop\/|cdn\.shopify\.com/.test(u.href)) ["crop", "height", "width"].forEach((k) => u.searchParams.delete(k));
+        return u.href.replace(/^http:/, "https:");
+      } catch {}
+    }
+    if (!site) return "";
+    return `https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=${encodeURIComponent(site.origin)}`;
+  }
+
   function columnsFor(head, spec, from, to) {
     const out = {};
     for (const [key, label] of Object.entries(spec)) {
@@ -150,6 +167,7 @@
     const productStart = head.indexOf(PRODUCT_COLUMNS.store);
     const sc = columnsFor(head, STORE_COLUMNS, 0, productStart >= 0 ? productStart : head.length);
     const pc = productStart >= 0 ? columnsFor(head, PRODUCT_COLUMNS, productStart, head.length) : {};
+    const autoLogoCol = head.indexOf(AUTO_LOGO_COLUMN);
     const knownBySlug = new Map(known.map((s) => [s.slug, s]));
     const stores = [];
     const bySlug = new Map();
@@ -190,6 +208,7 @@
         set("website", get("website"));
         set("about", get("about"));
         set("logo", get("logo"));
+        if (autoLogoCol >= 0 && !store.foundIcon) store.foundIcon = String(row[autoLogoCol] || "").trim();
         if (get("cover")) set("cover", get("cover")) && (store.coverZoom = undefined);
         // "Tự động", empty or an old category name: sorted automatically later.
         const cat = CATEGORIES.find((c) => norm(c.name) === norm(get("category")) || c.slug === get("category"));
@@ -221,8 +240,9 @@
       .filter((s) => !s.paused && s.url)
       .map((s) => {
         const website = s.website || (toURL(s.url) ? toURL(s.url).origin : "");
-        const out = { ...s, website };
+        const out = { ...s, website, logo: s.logo || iconFor(s.foundIcon, website) };
         delete out.known;
+        delete out.foundIcon;
         Object.keys(out).forEach((key) => key.startsWith("_") && delete out[key]);
         return out;
       });

@@ -49,7 +49,8 @@ const CATEGORIES = [
     name: "Skincare & beauty",
     intro: "Face masks, eye patches, serums and other skincare from independent brands.",
     words: ["skin", "skincare", "face", "facial", "mask", "serum", "patch", "collagen", "wrinkle", "beauty", "cosmetic",
-      "makeup", "lipstick", "moisturizer", "moisturiser", "acne", "sunscreen", "spf", "nail", "fragrance", "perfume"],
+      "makeup", "lipstick", "moisturizer", "moisturiser", "acne", "sunscreen", "spf", "nail", "fragrance", "perfume",
+      "hair", "haircare", "shampoo", "conditioner"],
   },
   {
     slug: "vitamins-supplements",
