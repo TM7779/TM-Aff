@@ -8,7 +8,7 @@
  * Store fields:
  *   slug      - used in the URL: store.html?s=<slug> (lowercase, no spaces)
  *   name      - store name
- *   category  - slug of one category below
+ *   category  - slug of one of the CATEGORIES
  *   url       - YOUR affiliate link (every "Show code" / "Get deal" click opens it)
  *   logo      - optional image path or URL; leave "" to show a coloured monogram
  *   color     - monogram background when there is no logo
@@ -37,26 +37,57 @@ const SITE = {
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8QUQR3nHFFYR8UKnCxYtSMXGkgKnw-Ynx0wVcLUui3JGNUbrksUCZJSeq8by_TWNldXXDCcAIReWR/pub?gid=1706532640&single=true&output=csv",
 };
 
+/*
+ * Categories, in the order they're shown. A store whose "Ngành hàng" cell in the sheet is empty or
+ * "Tự động" is sorted automatically: its name, description, products and Shopify shop description
+ * are matched against each category's `words` (plurals count too), and the most matches win.
+ * A store with no matches goes to the last category.
+ */
 const CATEGORIES = [
+  {
+    slug: "skincare-beauty",
+    name: "Skincare & beauty",
+    intro: "Face masks, eye patches, serums and other skincare from independent brands.",
+    words: ["skin", "skincare", "face", "facial", "mask", "serum", "patch", "collagen", "wrinkle", "beauty", "cosmetic",
+      "makeup", "lipstick", "moisturizer", "moisturiser", "acne", "sunscreen", "spf", "nail", "fragrance", "perfume"],
+  },
+  {
+    slug: "vitamins-supplements",
+    name: "Vitamins & supplements",
+    intro: "Multivitamins, gummies, prenatal and longevity supplements, plus gut and brain support.",
+    words: ["vitamin", "multivitamin", "supplement", "gummy", "gummies", "capsule", "probiotic", "prebiotic", "magnesium",
+      "omega", "nutrition", "nutrient", "mineral", "prenatal", "longevity", "nootropic", "protein", "electrolyte", "creatine"],
+  },
+  {
+    slug: "herbal-teas",
+    name: "Herbal teas",
+    intro: "Herbal tea blends and traditional wellness drinks.",
+    words: ["tea", "herbal", "herb", "matcha", "infusion", "essiac", "chai", "tisane", "kombucha"],
+  },
   {
     slug: "clothing-accessories",
     name: "Clothing & accessories",
-    intro: "Bags, jewellery, everyday basics and statement pieces.",
+    intro: "Grip socks, activewear, bags and everyday basics.",
+    words: ["sock", "apparel", "clothing", "shirt", "dress", "legging", "activewear", "sportswear", "jewelry", "jewellery",
+      "handbag", "backpack", "shoe", "sneaker", "hoodie", "swimwear", "underwear", "bra"],
   },
   {
     slug: "home-garden",
     name: "Home & garden",
     intro: "Bedding, kitchenware, plants and tools for every room and yard.",
-  },
-  {
-    slug: "health-beauty",
-    name: "Health & beauty",
-    intro: "Skin patches, eye masks, herbal teas and other self-care products from independent brands.",
+    words: ["homeware", "kitchen", "cookware", "bedding", "pillow", "mattress", "furniture", "decor", "candle", "garden", "plant"],
   },
   {
     slug: "electronics",
     name: "Electronics",
     intro: "Audio, chargers, smart-home gear and accessories for your devices.",
+    words: ["electronic", "charger", "headphone", "earbud", "speaker", "laptop", "gadget", "camera", "smartwatch"],
+  },
+  {
+    slug: "more-deals",
+    name: "More deals",
+    intro: "Codes from stores that don't fit the other categories.",
+    words: [],
   },
 ];
 
@@ -64,7 +95,7 @@ const STORES = [
   {
     slug: "tolevita",
     name: "Tolevita",
-    category: "health-beauty",
+    category: "skincare-beauty",
     url: "https://shop.tolevita.com?sca_ref=11252630.LxmEzKMaaNq",
     logo: "https://shop.tolevita.com/cdn/shop/files/Tolevita_Logo_Creatine.png?v=1741773248&width=192",
     color: "#1F6F8B",
@@ -124,7 +155,7 @@ const STORES = [
   {
     slug: "genuine-essiac",
     name: "Genuine Essiac",
-    category: "health-beauty",
+    category: "herbal-teas",
     url: "https://genuineessiac.com/pages/genuine-essiac-tea?sca_ref=11220825.VSlmwyWinf",
     logo: "https://genuineessiac.com/cdn/shop/files/GE-white-bk_copy_300x300.jpg?v=1753917442",
     color: "#2F5D46",

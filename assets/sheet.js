@@ -4,13 +4,15 @@
  * from the "Cửa hàng" header onwards. Columns are matched by header text, so their order can change.
  *
  * Anything the sheet leaves empty is filled from STORES in data.js (matched by store name and product
- * link), then from the store's Shopify product data, then with a plain fallback.
+ * link), then from the store's Shopify data (shop name and description, product names and photos),
+ * then with a plain fallback. Stores without a category in the sheet are sorted by keyword (see data.js).
  * If the sheet can't be reached, the last good copy (or data.js) is used.
  */
 
 (function () {
-  const CACHE_KEY = "nb-sheet-stores-v1";
+  const CACHE_KEY = "nb-sheet-stores-v2";
   const PRODUCT_CACHE_KEY = "nb-shopify-v1";
+  const META_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
   const PALETTE = ["#1F6F8B", "#2F5D46", "#7A4B00", "#6B3FD1", "#B43C62", "#3E5C76"];
 
   const STORE_COLUMNS = {
@@ -166,7 +168,8 @@
           store = {
             slug,
             name: name || k.name || nameFromLink(url),
-            category: k.category || "health-beauty",
+            nameFromLink: !name && !k.name,
+            category: k.category || "",
             url: k.url || "",
             website: "",
             logo: k.logo || "",
@@ -188,8 +191,9 @@
         set("about", get("about"));
         set("logo", get("logo"));
         if (get("cover")) set("cover", get("cover")) && (store.coverZoom = undefined);
+        // "Tự động", empty or an old category name: sorted automatically later.
         const cat = CATEGORIES.find((c) => norm(c.name) === norm(get("category")) || c.slug === get("category"));
-        if (cat) set("category", cat.slug);
+        if (cat && set("category", cat.slug)) store.categoryFixed = true;
         if (norm(get("status")).startsWith("tam dung")) store.paused = true;
         current = store;
       } else if (!get("code") && !get("deal")) {
@@ -218,11 +222,39 @@
       .map((s) => {
         const website = s.website || (toURL(s.url) ? toURL(s.url).origin : "");
         const out = { ...s, website };
-        if (!out.about) out.about = `Coupon codes and deals for ${s.name}.`;
         delete out.known;
         Object.keys(out).forEach((key) => key.startsWith("_") && delete out[key]);
         return out;
       });
+  }
+
+  // The category whose words appear most often. Name, description and shop description count double.
+  function classify(store, meta) {
+    const strong = norm([store.name, store.about, meta && meta.description].join(" "));
+    const weak = norm([...store.products.map((p) => p.name), ...store.coupons.map((c) => c.title)].join(" "));
+    let best = "";
+    let bestScore = 0;
+    for (const cat of CATEGORIES) {
+      if (!cat.words || !cat.words.length) continue;
+      const re = new RegExp(`\\b(${cat.words.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})(s|es)?\\b`, "g");
+      const score = (strong.match(re) || []).length * 2 + (weak.match(re) || []).length;
+      if (score > bestScore) {
+        best = cat.slug;
+        bestScore = score;
+      }
+    }
+    return best;
+  }
+
+  // First sentence or two of a shop description, for stores the sheet doesn't describe.
+  function shortAbout(text) {
+    const sentences = String(text || "").replace(/\s+/g, " ").trim().match(/[^.!?]+[.!?]*/g) || [];
+    let out = "";
+    for (const s of sentences) {
+      if (out && (out + s).length > 200) break;
+      out += s;
+    }
+    return out.trim();
   }
 
   function addOffers(store, get) {
@@ -278,7 +310,21 @@
   async function fillFromShopify(stores) {
     const cache = readCache(PRODUCT_CACHE_KEY) || {};
     const jobs = [];
+    const metas = new Map();
     for (const store of stores) {
+      // Shop name and description from Shopify's small meta.json, kept for a week.
+      const origin = (toURL(store.website) || {}).origin;
+      if (origin) {
+        const key = `meta:${origin}`;
+        if (cache[key] && Date.now() - cache[key].at < META_MAX_AGE) metas.set(store, cache[key]);
+        else
+          jobs.push(
+            getJSON(`${origin}/meta.json`, 3000)
+              .then((d) => d && (cache[key] = { name: d.name || "", description: d.description || "", at: Date.now() }))
+              .catch(() => {})
+              .then(() => cache[key] && metas.set(store, cache[key]))
+          );
+      }
       for (const p of store.products) {
         if (p.name && p.image) continue;
         const u = toURL(p.url);
@@ -323,6 +369,12 @@
         }
       }
       if (!store.cover) store.cover = (store.products.find((p) => p.image) || {}).image || "";
+      const meta = metas.get(store);
+      if (store.nameFromLink && meta && meta.name) store.name = meta.name;
+      if (!store.about) store.about = shortAbout(meta && meta.description) || `Coupon codes and deals for ${store.name}.`;
+      if (!store.categoryFixed) store.category = classify(store, meta) || store.category || CATEGORIES[CATEGORIES.length - 1].slug;
+      delete store.nameFromLink;
+      delete store.categoryFixed;
     }
   }
 

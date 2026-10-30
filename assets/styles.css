@@ -328,6 +328,77 @@ h1, h2, h3 { font-weight: 400; text-wrap: balance; }
   border-color: var(--ink);
   color: #fff;
 }
+.chips .count {
+  margin-left: 8px;
+  min-width: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--ink-soft);
+  font-size: 0.8125rem;
+  text-align: center;
+}
+.chips a[aria-current="page"] .count { background: rgba(255, 255, 255, 0.16); color: #fff; }
+
+/* ---------- Category tiles (home) ---------- */
+
+.cats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cat-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  color: inherit;
+  text-decoration: none;
+}
+.cat-img {
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--line);
+}
+.cat-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  transform: scale(var(--zoom, 1));
+  transition: transform 300ms ease-out;
+}
+.cat-card:hover .cat-img img { transform: scale(calc(var(--zoom, 1) * 1.04)); }
+.cat-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  padding: 14px 16px 16px;
+}
+.cat-name {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  line-height: 1.15;
+}
+.cat-meta { color: var(--ink-soft); font-size: 0.9375rem; }
+.cat-logos { display: flex; gap: 6px; margin-top: auto; padding-top: 10px; }
+.cat-logos .logo { width: 30px; height: 30px; border-radius: 8px; font-size: 0.6875rem; }
+.page-head .cat-stat { margin-top: 8px; font-size: 1rem; font-weight: 600; color: var(--ink); }
+
+@media (max-width: 560px) {
+  .cats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .cat-body { padding: 12px; }
+  .cat-name { font-size: 1.125rem; }
+  .cat-meta { font-size: 0.875rem; }
+}
 
 /* ---------- Deal cards (home) ---------- */
 

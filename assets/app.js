@@ -165,16 +165,46 @@
     toastTimer = setTimeout(() => el.classList.remove("show"), 2400);
   }
 
+  const storesIn = (cat) => STORES.filter((s) => s.category === cat.slug);
+  const storeCount = (n) => `${n} store${n === 1 ? "" : "s"}`;
+
+  // The biggest percentage off among a set of stores' live codes, e.g. "25%".
+  function topPercent(stores) {
+    let best = 0;
+    stores.forEach((s) =>
+      liveCoupons(s).forEach((c) => {
+        const m = /^(\d+(?:\.\d+)?)%$/.exec(c.discount);
+        if (m) best = Math.max(best, parseFloat(m[1]));
+      })
+    );
+    return best ? `${best}%` : "";
+  }
+
   function chipsHTML(activeSlug) {
     if (activeCategories.length < 2) return "";
-    const items = [`<li><a href="index.html"${activeSlug ? "" : ' aria-current="page"'}>All</a></li>`]
-      .concat(
-        activeCategories.map(
-          (c) => `<li><a href="${categoryUrl(c)}"${c.slug === activeSlug ? ' aria-current="page"' : ""}>${esc(c.name)}</a></li>`
-        )
-      )
+    const chip = (href, label, n, current) =>
+      `<li><a href="${href}"${current ? ' aria-current="page"' : ""}>${esc(label)}<span class="count"><span class="skip">, </span>${n}<span class="skip"> stores</span></span></a></li>`;
+    const items = [chip("index.html", "All", STORES.length, !activeSlug)]
+      .concat(activeCategories.map((c) => chip(categoryUrl(c), c.name, storesIn(c).length, c.slug === activeSlug)))
       .join("");
     return `<nav aria-label="Categories"><ul class="chips">${items}</ul></nav>`;
+  }
+
+  // Home page category tile: a store photo, the category, how many stores and the best percentage.
+  function categoryCardHTML(cat) {
+    const stores = storesIn(cat);
+    const pic = stores.find((s) => s.cover);
+    const top = topPercent(stores);
+    return `<li>
+      <a class="cat-card" href="${categoryUrl(cat)}">
+        <span class="cat-img">${pic ? coverImg(pic, 500, 'alt="" loading="lazy" width="280" height="175"') : ""}</span>
+        <span class="cat-body">
+          <span class="cat-name">${esc(cat.name)}</span>
+          <span class="cat-meta">${storeCount(stores.length)}${top ? `, up to ${top} off` : ""}</span>
+          <span class="cat-logos" aria-hidden="true">${stores.slice(0, 5).map((s) => logoHTML(s)).join("")}</span>
+        </span>
+      </a>
+    </li>`;
   }
 
   /* ---------- Cards ---------- */
@@ -265,11 +295,20 @@
                 <input id="q" type="search" placeholder="Search${first ? `, like “${esc(first.name)}”` : ""}" autocomplete="off" value="${esc(q)}">
               </label>
             </form>
-            ${chipsHTML(null)}
           </div>
           <div class="ticket-fan">${STORES.slice(0, 2).map(ticketHTML).join("")}</div>
         </div>
       </section>
+      ${
+        activeCategories.length > 1
+          ? `<section class="section" aria-labelledby="cats-title" id="cats-section">
+               <div class="wrap">
+                 <div class="section-head"><h2 id="cats-title">Shop by category</h2></div>
+                 <ul class="cats">${activeCategories.map(categoryCardHTML).join("")}</ul>
+               </div>
+             </section>`
+          : ""
+      }
       <section class="section" aria-labelledby="deals-title">
         <div class="wrap">
           <div class="section-head"><h2 id="deals-title">Today’s codes</h2></div>
@@ -292,6 +331,7 @@
     const deals = document.getElementById("deals");
     const products = document.getElementById("products");
     const shopSection = document.getElementById("shop-section");
+    const catsSection = document.getElementById("cats-section");
     const note = document.getElementById("note");
 
     function update() {
@@ -310,6 +350,8 @@
       deals.innerHTML = dealStores.map(dealCardHTML).join("");
       products.innerHTML = productHits.map(([p, s]) => productCardHTML(p, s)).join("");
       shopSection.hidden = productHits.length === 0;
+      // While searching, results come straight under the search box.
+      if (catsSection) catsSection.hidden = Boolean(term);
       note.textContent = !term
         ? ""
         : dealStores.length
@@ -331,13 +373,15 @@
     if (!cat) return renderNotFound("We couldn't find that category.");
 
     document.title = `${cat.name} coupon codes | ${SITE.name}`;
-    const stores = STORES.filter((s) => s.category === cat.slug);
+    const stores = storesIn(cat);
     const products = allProducts(stores);
+    const top = topPercent(stores);
     main.innerHTML = `
       <section class="page-head">
         <div class="wrap">
           <h1>${esc(cat.name)}</h1>
           <p>${esc(cat.intro)}</p>
+          ${stores.length ? `<p class="cat-stat">${storeCount(stores.length)} with codes${top ? `, up to ${top} off` : ""}.</p>` : ""}
           ${chipsHTML(cat.slug)}
         </div>
       </section>
