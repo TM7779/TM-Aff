@@ -5,6 +5,11 @@
   const page = document.body.dataset.page;
   const params = new URLSearchParams(location.search);
 
+  // The home page's address is the site root: show "/" rather than "/index.html".
+  if (location.pathname.endsWith("/index.html")) {
+    history.replaceState(null, "", location.pathname.slice(0, -"index.html".length) + location.search + location.hash);
+  }
+
   const ICON_SEARCH =
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>';
   const ICON_CHECK =
@@ -115,7 +120,7 @@
 
   function renderHeader() {
     const navItems = [
-      ["index.html", "All stores", "home"],
+      ["./", "All stores", "home"],
       ["saving-tips.html", "Saving Tips", "blog"],
       ["about.html", "About", "about"],
       ["contact.html", "Contact", "contact"],
@@ -129,7 +134,7 @@
     const headerSearch =
       page === "home"
         ? ""
-        : `<form class="header-search" action="index.html" role="search">
+        : `<form class="header-search" action="./" role="search">
              <label class="search">${ICON_SEARCH}
                <span class="skip">Search stores</span>
                <input type="search" name="q" placeholder="Search stores and products" autocomplete="off">
@@ -140,7 +145,7 @@
       <a class="skip" href="#main">Skip to content</a>
       <header class="site-header">
         <div class="wrap">
-          <a class="brand" href="index.html">${BRAND_MARK}<span>${esc(SITE.name)}</span></a>
+          <a class="brand" href="./">${BRAND_MARK}<span>${esc(SITE.name)}</span></a>
           <nav class="main-nav" aria-label="Main"><ul>${nav}</ul></nav>
           ${headerSearch}
         </div>
@@ -153,7 +158,7 @@
       <footer class="site-footer">
         <div class="wrap">
           <div>
-            <a class="brand" href="index.html">${BRAND_MARK}<span>${esc(SITE.name)}</span></a>
+            <a class="brand" href="./">${BRAND_MARK}<span>${esc(SITE.name)}</span></a>
             <p>${esc(SITE.name)} earns a commission when you buy through links on this site, at no extra cost to you.
                <a href="disclaimer.html">How this works</a>.</p>
           </div>
@@ -191,7 +196,7 @@
     if (activeCategories.length < 2) return "";
     const chip = (href, label, n, current) =>
       `<li><a href="${href}"${current ? ' aria-current="page"' : ""}>${esc(label)}<span class="count"><span class="skip">, </span>${n}<span class="skip"> store${n === 1 ? "" : "s"}</span></span></a></li>`;
-    const items = [chip("index.html", "All", STORES.length, !activeSlug)]
+    const items = [chip("./", "All", STORES.length, !activeSlug)]
       .concat(activeCategories.map((c) => chip(categoryUrl(c), c.name, storesIn(c).length, c.slug === activeSlug)))
       .join("");
     return `<nav aria-label="Categories"><ul class="chips">${items}</ul></nav>`;
@@ -488,7 +493,7 @@
           ${
             stores.length
               ? `<ul class="deals">${stores.map(dealCardHTML).join("")}</ul>`
-              : `<div class="empty"><h2>No stores here yet</h2><p>New codes are added every week. Browse <a href="index.html">all stores</a> in the meantime.</p></div>`
+              : `<div class="empty"><h2>No stores here yet</h2><p>New codes are added every week. Browse <a href="./">all stores</a> in the meantime.</p></div>`
           }
         </div>
       </section>
@@ -545,7 +550,7 @@
       <section class="store-hero">
         <div class="wrap">
           <div>
-            <div class="crumbs"><a href="index.html">All stores</a>${cat ? ` / <a href="${categoryUrl(cat)}">${esc(cat.name)}</a>` : ""}</div>
+            <div class="crumbs"><a href="./">All stores</a>${cat ? ` / <a href="${categoryUrl(cat)}">${esc(cat.name)}</a>` : ""}</div>
             <h1>${esc(store.name)} coupon codes</h1>
             <p>${esc(store.about)}</p>
             <a class="btn secondary" href="${esc(store.url)}" ${OUT}>Visit ${esc(store.name)}</a>
@@ -671,7 +676,7 @@
         <div class="empty">
           <h1>Page not found</h1>
           <p>${esc(message)} It may have been removed or the link is mistyped.</p>
-          <a class="btn secondary" href="index.html">Browse all stores</a>
+          <a class="btn secondary" href="./">Browse all stores</a>
         </div>
       </div>`;
   }
