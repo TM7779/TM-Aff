@@ -27,7 +27,7 @@
  */
 
 const SITE = {
-  name: "Nova Beauty",
+  name: "Kinsley Deals",
   tagline: "Hand-picked codes for skin patches, eye masks and herbal teas from independent brands.",
   // Left empty so no email is shown. To show one later, set it here (or CONTACT_EMAIL on Hostinger)
   // and add <a data-site-email href="#"></a> where it should appear.
