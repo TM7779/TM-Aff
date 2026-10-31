@@ -1214,6 +1214,12 @@ body.modal-open { overflow: hidden; }
   margin: 0;
   padding: 0;
 }
+.footer-guides {
+  flex-basis: 100%;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+.site-footer .footer-guides p { margin-bottom: 10px; font-weight: 700; color: #fff; }
 
 .toast {
   position: fixed;

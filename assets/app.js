@@ -154,6 +154,11 @@
 
   function renderFooter() {
     const cats = activeCategories.map((c) => `<li><a href="${categoryUrl(c)}">${esc(c.name)}</a></li>`).join("");
+    // Every brand's discount code guide, linked from every page so search engines reach them all.
+    const guides = posts
+      .filter((p) => p.category === "coupon-guides")
+      .map((p) => `<li><a href="${esc(p.url)}">${esc(p.title.split(" Discount Code")[0])}</a></li>`)
+      .join("");
     document.getElementById("footer").outerHTML = `
       <footer class="site-footer">
         <div class="wrap">
@@ -163,6 +168,7 @@
                <a href="disclaimer.html">How this works</a>.</p>
           </div>
           <ul aria-label="More">${cats}<li><a href="saving-tips.html">Saving Tips</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul>
+          ${guides ? `<nav class="footer-guides" aria-labelledby="footer-guides-title"><p id="footer-guides-title">Discount codes by brand</p><ul>${guides}</ul></nav>` : ""}
         </div>
       </footer>
       <div class="toast" role="status" aria-live="polite"></div>`;
@@ -475,8 +481,11 @@
     const cat = categoryBySlug(params.get("c"));
     if (!cat) return renderNotFound("We couldn't find that category.");
 
-    document.title = `${cat.name} coupon codes | ${SITE.name}`;
+    document.title = `${cat.name} discount codes | ${SITE.name}`;
     const stores = storesIn(cat);
+    const names = stores.map((s) => s.name);
+    document.querySelector('meta[name="description"]')?.setAttribute("content",
+      `${cat.name} discount codes for ${names.slice(0, 4).join(", ")}${names.length > 4 ? " and more" : ""}, listed by ${SITE.name}.`);
     const products = allProducts(stores);
     const top = topPercent(stores);
     main.innerHTML = `

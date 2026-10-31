@@ -28,7 +28,7 @@
 
 const SITE = {
   name: "Kinsley Deals",
-  tagline: "Hand-picked codes for skin patches, eye masks and herbal teas from independent brands.",
+  tagline: "Discount codes for supplement and wellness brands like Heights, MaryRuth's and BodyBio, with guides to pay less on every order.",
   // Left empty so no email is shown. To show one later, set it here (or CONTACT_EMAIL on Hostinger)
   // and add <a data-site-email href="#"></a> where it should appear.
   email: (window.SITE_ENV && window.SITE_ENV.email) || "",
