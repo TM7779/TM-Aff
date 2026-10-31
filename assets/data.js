@@ -38,6 +38,63 @@ const SITE = {
 };
 
 /*
+ * Best sellers shown in "Shop the favourites", by store website. Picked on 2026-10-31 from each
+ * brand's own "best-selling" sort, keeping only products that are:
+ *   - in the store's top sellers, in stock and with a clear photo;
+ *   - a main product (no accessories, gift cards, tests, warranties or repeat sizes/flavours);
+ *   - free of medical-style promises (quit-smoking, hormone or fat-burning products are left out).
+ * Listed in best-selling order; up to three per brand. The site adds the store's affiliate ref to
+ * each link, ranks brands with bigger codes first and mixes brands so none fills a row.
+ * Products added in the sheet's "Sản phẩm" tab are shown too, after these.
+ */
+const SHOPIFY_CDN = "https://cdn.shopify.com/s/files/1/";
+const BEST_SELLERS = {
+  "heights.com": [
+    { name: "Vitals⁺ Daily Multivitamin", url: "https://www.heights.com/products/vitals", image: SHOPIFY_CDN + "0092/3834/7861/files/vitals_-_new.png" },
+    { name: "Biotic⁺ Probiotic + Zinc", url: "https://www.heights.com/products/biotic", image: SHOPIFY_CDN + "0092/3834/7861/files/Biotic_Shopify_product.jpg" },
+    { name: "Magnesium⁺ Glycinate", url: "https://www.heights.com/products/magnesium", image: SHOPIFY_CDN + "0092/3834/7861/files/Magnesium.png" },
+  ],
+  "maryruthorganics.com": [
+    { name: "Liquid Morning Multivitamin", url: "https://www.maryruthorganics.com/products/organic-liquid-morning-multivitamin", image: SHOPIFY_CDN + "0883/6750/files/liquid-morning-multivitamin-raspberry-32oz-maryruths.png" },
+    { name: "Liquid Morning Multivitamin + Hair Growth", url: "https://www.maryruthorganics.com/products/liquid-morning-multivitamin-hair-growth", image: SHOPIFY_CDN + "0883/6750/files/liquid-morning-multivitamin-hair-growth-peach-mango-30oz-maryruths.png" },
+    { name: "Kids Multivitamin Gummies", url: "https://www.maryruthorganics.com/products/kids-multivitamin-gummies-60-count", image: SHOPIFY_CDN + "0883/6750/files/1-kids-multivitamin-gummies-60ct-papaya-strawberry-maryruths-bottle-box-benefits-shopify_jpg.png" },
+  ],
+  "avea-life.com": [
+    { name: "Collagen Activator", url: "https://avea-life.com/products/collagen-activator", image: SHOPIFY_CDN + "0606/3226/9049/files/Collagen_Lem_Packshot_SQUARE_EN.png" },
+    { name: "Sereniser", url: "https://avea-life.com/products/sereniser", image: SHOPIFY_CDN + "0606/3226/9049/files/Frame_5_96c639a4-8ac9-4408-bbbe-b38206ba6c15.png" },
+    { name: "Stabiliser", url: "https://avea-life.com/products/stabiliser", image: SHOPIFY_CDN + "0606/3226/9049/files/Stabiliser__main_image_web_3.0.png" },
+  ],
+  "birdandbe.com": [
+    { name: "Female Fertility Power Prenatal Pack", url: "https://www.birdandbe.com/products/female-fertility-power-pack-prenatal-vitamins", image: SHOPIFY_CDN + "1443/0384/files/Female_Fertility_Power_Prenatal_Pack_image_1_f47618c6-669a-4430-afbc-51209d41eca6.png" },
+    { name: "Male Fertility Power Pack", url: "https://www.birdandbe.com/products/male-fertility-supplements-power-pack", image: SHOPIFY_CDN + "1443/0384/files/Male_Fertility_Power_Pack_image_1.png" },
+    { name: "Complete Prenatal Pack", url: "https://www.birdandbe.com/products/complete-prenatal-vitamins-dha-30-daily-pack", image: SHOPIFY_CDN + "1443/0384/files/Complete_Prenatal_Pack_image_1_1.png" },
+  ],
+  "wavwatch.com": [
+    { name: "WAVwatch 2.2", url: "https://wavwatch.com/products/wavwatch-2-2", image: SHOPIFY_CDN + "0810/1137/6405/files/WAVwatch2.2Image8.jpg" },
+  ],
+  "tolevita.com": [
+    { name: "Sleep Patches with Melatonin & Lavender", url: "https://shop.tolevita.com/products/sleep-patches-36-pcs-natural-sleep-aid-with-melatonin-lavender-l-theanine-gaba-herbal-extracts", image: SHOPIFY_CDN + "0619/3476/4164/files/sleep_patch-main_pic.jpg" },
+    { name: "NAD+ Patches for Daily Energy", url: "https://shop.tolevita.com/products/electrolyte-patches-replenish-balance-with-potassium-magnesium-iron-calcium-36-patches-copy", image: SHOPIFY_CDN + "0619/3476/4164/files/NADPatch_1.jpg" },
+    { name: "Energy Patches with Vitamin B12", url: "https://shop.tolevita.com/products/energy-patches-with-vitamin-b12-36-pcs", image: SHOPIFY_CDN + "0619/3476/4164/files/Energypatches-1.jpg" },
+  ],
+  "genuineessiac.com": [
+    { name: "Essiac Tea, 1 lb in four 4 oz packets", url: "https://genuineessiac.com/products/1-lb-of-essiac-blended-herbs-in-four-4-4-oz-packets", image: SHOPIFY_CDN + "2789/5818/files/1-lb-genuine-essiac-in-four-four-oz-bags.jpg" },
+    { name: "Essiac Tea, 1 lb bag", url: "https://genuineessiac.com/products/1-lb-of-essiac-blended-herbs", image: SHOPIFY_CDN + "2789/5818/files/1-lb-genuine-essiac-bag.jpg" },
+    { name: "Essiac Tea, 13 × 4 oz packets (most popular)", url: "https://genuineessiac.com/products/3-lb-4-oz-of-essiac-blended-herbs-in-thirteen-13-4-oz-packets", image: SHOPIFY_CDN + "2789/5818/files/3-lb-4-oz-geniune-essiac.jpg" },
+  ],
+  "elliosa.com": [
+    { name: "Pilates & Lattes Grip Socks", url: "https://www.elliosa.com/products/pilates-lattes", image: SHOPIFY_CDN + "0608/9362/6573/files/mixed_4.jpg" },
+    { name: "Grip Stripes Socks, Black", url: "https://www.elliosa.com/products/dual-direction-grip-stripes-black", image: SHOPIFY_CDN + "0608/9362/6573/files/8_13b666a9-bc47-4390-b3fc-43c8fc47dc90.jpg" },
+    { name: "Pilates Social Club Grip Socks", url: "https://www.elliosa.com/products/pilates-social-club", image: SHOPIFY_CDN + "0608/9362/6573/files/mixed_4_423caff9-84af-4316-aba4-577c2b1c487d.jpg" },
+  ],
+  "mizulabdrinks.com": [
+    { name: "Japanese Soda Electrolytes, Zero Sugar", url: "https://mizulabdrinks.com/products/japanese-soda-electrolytes-zero-sugar", image: SHOPIFY_CDN + "0809/4852/7408/files/446_ramune_fc39399a-36bf-4cd3-bf4f-d33a691239ba.jpg" },
+    { name: "White Peach Candy Electrolytes, Zero Sugar", url: "https://mizulabdrinks.com/products/white-peach-candy-electrolytes-zero-sugar", image: SHOPIFY_CDN + "0809/4852/7408/files/white_peach_flavor.png" },
+    { name: "Original Variety Pack, Zero Sugar", url: "https://mizulabdrinks.com/products/variety-pack-zero-sugar", image: SHOPIFY_CDN + "0809/4852/7408/files/20_341b74ed-300f-4aab-9726-e1221fe6a287.jpg" },
+  ],
+};
+
+/*
  * The two tickets at the top of the home page. Each shows a photo, a label and the store's best
  * discount from the sheet, and opens that store's page. Leave the list empty to show the first
  * two stores instead.

@@ -10,7 +10,7 @@
  */
 
 (function () {
-  const CACHE_KEY = "nb-sheet-stores-v3";
+  const CACHE_KEY = "nb-sheet-stores-v4";
   const PRODUCT_CACHE_KEY = "nb-shopify-v1";
   const META_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
   const PALETTE = ["#1F6F8B", "#2F5D46", "#7A4B00", "#6B3FD1", "#B43C62", "#3E5C76"];
@@ -239,7 +239,26 @@
         name: String(row[pc.name] || "").trim() || k.name || "",
         image: String(row[pc.image] || "").trim() || k.image || "",
         url: withRef(link, store.url),
+        path,
       });
+    }
+
+    // Each brand's researched best sellers (BEST_SELLERS in data.js) come first, in best-selling
+    // order; products from the sheet that aren't among them follow.
+    const best = typeof BEST_SELLERS === "undefined" ? {} : BEST_SELLERS;
+    for (const store of stores) {
+      const site = toURL(store.url) ? siteOf(toURL(store.url).hostname) : "";
+      (best[site] || []).forEach((pick, i) => {
+        const path = (toURL(pick.url) || { pathname: "" }).pathname.replace(/\/$/, "");
+        const listed = store.products.find((p) => p.path === path);
+        if (listed) Object.assign(listed, { name: listed.name || pick.name, image: listed.image || pick.image, rank: i + 1, bestseller: true });
+        else store.products.push({ name: pick.name, image: pick.image, url: withRef(pick.url, store.url), rank: i + 1, bestseller: true });
+      });
+      store.products.forEach((p, i) => {
+        if (!p.rank) p.rank = 100 + i;
+        delete p.path;
+      });
+      store.products.sort((a, b) => a.rank - b.rank);
     }
 
     return stores

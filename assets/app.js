@@ -259,12 +259,14 @@
   function productCardHTML(product, store) {
     const best = bestCoupon(store);
     const tag = best && best.code && isAmountOff(best.discount) ? `<span class="tag">${esc(best.discount)} off with code</span>` : "";
+    // Only products from the brand's own best-selling list (BEST_SELLERS) get the badge.
+    const badge = product.bestseller ? `<span class="badge">Best seller</span>` : "";
     return `<li>
       <a class="product" href="${esc(product.url)}" data-store="${esc(store.slug)}" ${OUT}>
         ${
           product.image
-            ? `<span class="img"><img src="${esc(sized(product.image, 500))}" alt="" loading="lazy" width="250" height="250"></span>`
-            : `<span class="img blank" style="background:${esc(store.color || "#261A2E")}" aria-hidden="true">${esc(initials(store.name))}</span>`
+            ? `<span class="img">${badge}<img src="${esc(sized(product.image, 500))}" alt="" loading="lazy" width="250" height="250"></span>`
+            : `<span class="img blank" style="background:${esc(store.color || "#261A2E")}" aria-hidden="true">${badge}${esc(initials(store.name))}</span>`
         }
         <span class="info">
           <span class="name">${esc(product.name)}</span>
@@ -306,9 +308,16 @@
     </section>`;
   }
 
-  // Interleave products from every store so one brand doesn't fill the whole grid.
+  // Brands with bigger codes come first; within a brand, products keep their best-selling order.
+  // Brands are interleaved so one brand doesn't fill the whole grid.
   function allProducts(stores) {
-    const lists = stores.map((s) => (s.products || []).map((p) => [p, s]));
+    const codeValue = (s) => {
+      const best = bestCoupon(s);
+      const m = best && /(\d+(?:\.\d+)?)/.exec(best.discount);
+      return m ? parseFloat(m[1]) : 0;
+    };
+    const ordered = [...stores].sort((a, b) => codeValue(b) - codeValue(a));
+    const lists = ordered.map((s) => (s.products || []).map((p) => [p, s]));
     const out = [];
     for (let i = 0; lists.some((l) => l[i]); i++) lists.forEach((l) => l[i] && out.push(l[i]));
     return out;
@@ -370,7 +379,7 @@
         <div class="wrap">
           <div class="section-head">
             <h2 id="shop-title">Shop the favourites</h2>
-            <p>Your code still works on these. Each opens on the store’s own site.</p>
+            <p>Each brand’s best sellers. Your code still works on these, and each opens on the store’s own site.</p>
           </div>
           <ul class="products" id="products"></ul>
           <div class="more" hidden><button class="btn ghost" type="button" id="more-products"></button></div>
