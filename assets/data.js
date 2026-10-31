@@ -92,6 +92,16 @@ const BEST_SELLERS = {
     { name: "White Peach Candy Electrolytes, Zero Sugar", url: "https://mizulabdrinks.com/products/white-peach-candy-electrolytes-zero-sugar", image: SHOPIFY_CDN + "0809/4852/7408/files/white_peach_flavor.png" },
     { name: "Original Variety Pack, Zero Sugar", url: "https://mizulabdrinks.com/products/variety-pack-zero-sugar", image: SHOPIFY_CDN + "0809/4852/7408/files/20_341b74ed-300f-4aab-9726-e1221fe6a287.jpg" },
   ],
+  "bodybio.com": [
+    { name: "BodyBio PC (Phospholipid Complex)", url: "https://bodybio.com/products/bodybio-pc-phosphatidylcholine", image: SHOPIFY_CDN + "0019/0958/8028/files/PC16_0c5b6a64-bb5b-4bce-b6bf-a853e752c351.png" },
+    { name: "Butyrate Capsules", url: "https://bodybio.com/products/butyrate", image: SHOPIFY_CDN + "0019/0958/8028/files/BUS100_8ffb963c-0c85-49ae-b4b2-3ed8178363c8.png" },
+    { name: "e-lyte Electrolyte Concentrate", url: "https://bodybio.com/products/e-lyte-balanced-electrolyte-concentrate", image: SHOPIFY_CDN + "0019/0958/8028/files/EOC16_bb2ff2c0-29a6-4c43-bb0e-382ac76f6847.png" },
+  ],
+  "jennibag.com": [
+    { name: "JenniBag 2.0 Travel Bag", url: "https://jennibag.com/products/jennitravelbag-2", image: SHOPIFY_CDN + "0593/6775/1722/files/New_Series_52_55c8527f-08b4-481d-a810-41919af4ff74.webp" },
+    { name: "JenniBag Signature", url: "https://jennibag.com/products/jennibag-signature-travel-bag", image: SHOPIFY_CDN + "0593/6775/1722/files/Jenni_Signature_9_1.webp" },
+    { name: "JenniBag Travel Bundle", url: "https://jennibag.com/products/jennibag-travel-bundle", image: SHOPIFY_CDN + "0593/6775/1722/files/121_6e172345-9a86-45d5-a297-8583d65091a4.webp" },
+  ],
 };
 
 /*
