@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://novabeauty.store/sitemap.xml
+Sitemap: https://kinsleydeals.com/sitemap.xml
