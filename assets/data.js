@@ -38,6 +38,27 @@ const SITE = {
 };
 
 /*
+ * The two tickets at the top of the home page. Each shows a photo, a label and the store's best
+ * discount from the sheet, and opens that store's page. Leave the list empty to show the first
+ * two stores instead.
+ *   store - store slug, label - text on the ticket, image - photo, focus - optional object-position
+ */
+const HERO_PICKS = [
+  {
+    store: "heights",
+    label: "Heights Vitals⁺",
+    image: "https://cdn.shopify.com/s/files/1/0092/3834/7861/files/Frame_15899.jpg?v=1746177487",
+    focus: "center 45%",
+  },
+  {
+    store: "heights",
+    label: "Heights Starter Kit",
+    image: "https://cdn.shopify.com/s/files/1/0092/3834/7861/files/Frame15916.jpg?v=1746177540",
+    focus: "center 72%",
+  },
+];
+
+/*
  * Categories, in the order they're shown. A store whose "Ngành hàng" cell in the sheet is empty or
  * "Tự động" is sorted automatically: its name, description, products and Shopify shop description
  * are matched against each category's `words` (plurals count too), and the most matches win.

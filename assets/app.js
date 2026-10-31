@@ -216,14 +216,29 @@
 
   /* ---------- Cards ---------- */
 
-  function ticketHTML(store) {
+  // A hero ticket: a store's cover and best discount, or a pick from HERO_PICKS with its own photo and label.
+  function ticketHTML(store, pick) {
     const best = bestCoupon(store);
-    if (!best || !store.cover) return "";
+    if (!best || !(pick ? pick.image : store.cover)) return "";
     const amount = /^[$€£]?\d+%?$/.test(best.discount) ? `${best.discount} off` : best.discount;
+    const label = pick ? pick.label || store.name : store.name;
+    const photo = pick
+      ? `<img src="${esc(sized(pick.image, 600))}" alt="${esc(label)}" width="270" height="230"${pick.focus ? ` style="object-position:${esc(pick.focus)}"` : ""}>`
+      : coverImg(store, 600, `alt="${esc(store.name)}" width="270" height="230"`);
     return `<a class="ticket" href="${storeUrl(store)}">
-      <span class="ticket-img">${coverImg(store, 600, `alt="${esc(store.name)}" width="270" height="230"`)}</span>
-      <span class="tear"><span class="store">${esc(store.name)}</span><span class="amt">${esc(amount)}</span></span>
+      <span class="ticket-img">${photo}</span>
+      <span class="tear"><span class="store">${esc(label)}</span><span class="amt">${esc(amount)}</span></span>
     </a>`;
+  }
+
+  // The hero's two tickets: HERO_PICKS whose store is live in the sheet, else the first two stores.
+  function heroTicketsHTML() {
+    const picks = (typeof HERO_PICKS === "undefined" ? [] : HERO_PICKS)
+      .map((p) => [STORES.find((s) => s.slug === p.store), p])
+      .filter(([s]) => s && bestCoupon(s));
+    return picks.length
+      ? picks.slice(0, 2).map(([s, p]) => ticketHTML(s, p)).join("")
+      : STORES.slice(0, 2).map((s) => ticketHTML(s)).join("");
   }
 
   // Compact ticket for a store's best offer; the logo stands in for a photo so many fit on screen.
@@ -330,7 +345,7 @@
               </label>
             </form>
           </div>
-          <div class="ticket-fan">${STORES.slice(0, 2).map(ticketHTML).join("")}</div>
+          <div class="ticket-fan">${heroTicketsHTML()}</div>
         </div>
       </section>
       ${
