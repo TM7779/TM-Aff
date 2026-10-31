@@ -1139,6 +1139,7 @@ body.modal-open { overflow: hidden; }
   line-height: 1.15;
   margin: 44px 0 14px;
 }
+.post-body h3 { font-size: 1.125rem; font-weight: 800; margin: 22px 0 8px; }
 .post-body p, .post-body ul, .post-body ol { margin: 0 0 18px; }
 .post-body li + li { margin-top: 8px; }
 .post-body a { color: var(--focus); }
