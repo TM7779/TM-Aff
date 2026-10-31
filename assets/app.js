@@ -190,7 +190,7 @@
   function chipsHTML(activeSlug) {
     if (activeCategories.length < 2) return "";
     const chip = (href, label, n, current) =>
-      `<li><a href="${href}"${current ? ' aria-current="page"' : ""}>${esc(label)}<span class="count"><span class="skip">, </span>${n}<span class="skip"> stores</span></span></a></li>`;
+      `<li><a href="${href}"${current ? ' aria-current="page"' : ""}>${esc(label)}<span class="count"><span class="skip">, </span>${n}<span class="skip"> store${n === 1 ? "" : "s"}</span></span></a></li>`;
     const items = [chip("index.html", "All", STORES.length, !activeSlug)]
       .concat(activeCategories.map((c) => chip(categoryUrl(c), c.name, storesIn(c).length, c.slug === activeSlug)))
       .join("");
@@ -602,7 +602,7 @@
     if (current) document.title = `${current.name} | Saving Tips | ${SITE.name}`;
     const used = postCategories.filter((c) => posts.some((p) => p.category === c.slug));
     const chip = (href, label, n, on) =>
-      `<li><a href="${href}"${on ? ' aria-current="page"' : ""}>${esc(label)}<span class="count"><span class="skip">, </span>${n}<span class="skip"> articles</span></span></a></li>`;
+      `<li><a href="${href}"${on ? ' aria-current="page"' : ""}>${esc(label)}<span class="count"><span class="skip">, </span>${n}<span class="skip"> article${n === 1 ? "" : "s"}</span></span></a></li>`;
     const chips = used.length
       ? `<nav aria-label="Saving tip categories"><ul class="chips">${[chip("saving-tips.html", "All tips", posts.length, !current)]
           .concat(used.map((c) => chip(`saving-tips.html?t=${c.slug}`, c.name, posts.filter((p) => p.category === c.slug).length, c === current)))
