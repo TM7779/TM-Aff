@@ -1045,7 +1045,19 @@ body.modal-open { overflow: hidden; }
   margin: 32px 0 8px;
 }
 .prose p, .prose li { color: var(--ink-soft); }
+.prose li { margin-bottom: 6px; }
+.prose li strong { color: var(--ink); }
 .prose a { color: var(--focus); }
+.prose .summary {
+  margin: 8px 0 12px;
+  padding: 20px 24px;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+.prose .summary h2 { margin-top: 0; }
+.prose .summary ul { margin: 0; padding-left: 20px; }
+.page-head .updated { margin-top: 10px; font-size: 0.875rem; }
 
 .loading { color: var(--ink-soft); padding-top: 48px; padding-bottom: 48px; }
 
