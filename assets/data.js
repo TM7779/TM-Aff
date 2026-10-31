@@ -158,7 +158,7 @@ const CATEGORIES = [
     name: "Clothing & accessories",
     intro: "Grip socks, activewear, bags and everyday basics.",
     words: ["sock", "apparel", "clothing", "shirt", "dress", "legging", "activewear", "sportswear", "jewelry", "jewellery",
-      "handbag", "backpack", "shoe", "sneaker", "hoodie", "swimwear", "underwear", "bra"],
+      "handbag", "backpack", "duffel", "duffle", "luggage", "suitcase", "shoe", "sneaker", "hoodie", "swimwear", "underwear", "bra"],
   },
   {
     slug: "home-garden",
