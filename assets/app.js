@@ -116,12 +116,12 @@
   function renderHeader() {
     const navItems = [
       ["index.html", "All stores", "home"],
-      ["blog.html", "Blog", "blog"],
+      ["saving-tips.html", "Saving Tips", "blog"],
       ["about.html", "About", "about"],
       ["contact.html", "Contact", "contact"],
       ["disclaimer.html", "Disclosure", "disclaimer"],
     ];
-    // A post counts as being in the Blog section.
+    // An article counts as being in the Saving Tips section.
     const section = page === "post" ? "blog" : page;
     const nav = navItems
       .map(([href, label, key]) => `<li class="nav-${key}"><a href="${href}"${key === section ? ' aria-current="page"' : ""}>${label}</a></li>`)
@@ -157,7 +157,7 @@
             <p>${esc(SITE.name)} earns a commission when you buy through links on this site, at no extra cost to you.
                <a href="disclaimer.html">How this works</a>.</p>
           </div>
-          <ul aria-label="More">${cats}<li><a href="blog.html">Blog</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul>
+          <ul aria-label="More">${cats}<li><a href="saving-tips.html">Saving Tips</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul>
         </div>
       </footer>
       <div class="toast" role="status" aria-live="polite"></div>`;
@@ -277,7 +277,7 @@
     </li>`;
   }
 
-  /* ---------- Blog ---------- */
+  /* ---------- Saving Tips ---------- */
 
   const posts = typeof POSTS === "undefined" ? [] : POSTS;
   const postCategories = typeof POST_CATEGORIES === "undefined" ? [] : POST_CATEGORIES;
@@ -302,7 +302,7 @@
     if (!list.length) return "";
     return `<section class="section" aria-labelledby="${id}">
       <div class="wrap">
-        <div class="section-head"><h2 id="${id}">${title}</h2>${moreLink ? `<a class="section-link" href="blog.html">All posts</a>` : ""}</div>
+        <div class="section-head"><h2 id="${id}">${title}</h2>${moreLink ? `<a class="section-link" href="saving-tips.html">All saving tips</a>` : ""}</div>
         <ul class="posts">${list.map(postCardHTML).join("")}</ul>
       </div>
     </section>`;
@@ -385,7 +385,7 @@
           <div class="more" hidden><button class="btn ghost" type="button" id="more-products"></button></div>
         </div>
       </section>
-      ${postsSectionHTML(posts.slice(0, 3), "From the blog", "blog-title", true)}
+      ${postsSectionHTML(posts.slice(0, 3), "Saving tips", "blog-title", true)}
       ${STEPS_HTML}`;
 
     const input = document.getElementById("q");
@@ -594,34 +594,34 @@
     if (params.has("c") && fromReveal && fromReveal.code) openModal(store, fromReveal);
   }
 
-  // Blog list, filtered by ?t=<category slug> through the chips.
+  // Saving Tips list, filtered by ?t=<category slug> through the chips.
   function renderBlog() {
     const main = document.getElementById("main");
     const current = postCategory(params.get("t"));
     const list = current ? posts.filter((p) => p.category === current.slug) : posts;
-    if (current) document.title = `${current.name} | Blog | ${SITE.name}`;
+    if (current) document.title = `${current.name} | Saving Tips | ${SITE.name}`;
     const used = postCategories.filter((c) => posts.some((p) => p.category === c.slug));
     const chip = (href, label, n, on) =>
-      `<li><a href="${href}"${on ? ' aria-current="page"' : ""}>${esc(label)}<span class="count"><span class="skip">, </span>${n}<span class="skip"> posts</span></span></a></li>`;
+      `<li><a href="${href}"${on ? ' aria-current="page"' : ""}>${esc(label)}<span class="count"><span class="skip">, </span>${n}<span class="skip"> articles</span></span></a></li>`;
     const chips = used.length
-      ? `<nav aria-label="Blog categories"><ul class="chips">${[chip("blog.html", "All posts", posts.length, !current)]
-          .concat(used.map((c) => chip(`blog.html?t=${c.slug}`, c.name, posts.filter((p) => p.category === c.slug).length, c === current)))
+      ? `<nav aria-label="Saving tip categories"><ul class="chips">${[chip("saving-tips.html", "All tips", posts.length, !current)]
+          .concat(used.map((c) => chip(`saving-tips.html?t=${c.slug}`, c.name, posts.filter((p) => p.category === c.slug).length, c === current)))
           .join("")}</ul></nav>`
       : "";
     main.innerHTML = `
       <section class="page-head">
         <div class="wrap">
-          <h1>${current ? esc(current.name) : "Blog"}</h1>
-          <p>Plain-English guides to the brands we list, and how to get the most from their codes.</p>
+          <h1>${current ? esc(current.name) : "Saving Tips"}</h1>
+          <p>Simple ways to pay less at the stores we list: how to use each code, and how to buy smarter.</p>
           ${chips}
         </div>
       </section>
-      <section class="section" aria-label="Posts">
+      <section class="section" aria-label="Articles">
         <div class="wrap">
           ${
             list.length
               ? `<ul class="posts">${list.map(postCardHTML).join("")}</ul>`
-              : `<div class="empty"><h2>No posts here yet</h2><p>Read <a href="blog.html">all posts</a> in the meantime.</p></div>`
+              : `<div class="empty"><h2>No tips here yet</h2><p>Read <a href="saving-tips.html">all saving tips</a> in the meantime.</p></div>`
           }
         </div>
       </section>`;
