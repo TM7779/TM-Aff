@@ -43,3 +43,4 @@ kinsleydeals.com chạy trên gói web hosting Hostinger, dạng trang web PHP/H
 - Trang hiện ngay từ bản dữ liệu cửa hàng có sẵn (`assets/snapshot.js`, hoặc bản trình duyệt đã lưu lần trước), rồi mới kiểm tra Google Sheet ở phía sau; có gì khác thì trang tự cập nhật.
 - Làm mới bản có sẵn sau khi sửa Sheet: `node tools/snapshot.mjs` (không đổi gì thì file giữ nguyên), rồi commit `assets/snapshot.js`.
 - Phông chữ nằm trong `assets/fonts`, không tải từ Google Fonts. Ảnh Shopify có `srcset` để mỗi màn hình tải đúng cỡ.
+- Phần đầu trang (logo, menu) và chữ lớn đầu trang chủ nằm sẵn trong HTML để trang không bị giật khi script chạy. Đổi tên web, menu hoặc `SITE.tagline` thì sửa `tools/static-header.py` cho khớp rồi chạy `python3 tools/static-header.py`.
