@@ -10,6 +10,8 @@
  */
 
 (function () {
+  // data.js's own stores, kept before app.js swaps STORES for the sheet's list.
+  const KNOWN = STORES.slice();
   const CACHE_KEY = "nb-sheet-stores-v4";
   const PRODUCT_CACHE_KEY = "nb-shopify-v1";
   const META_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
@@ -423,12 +425,19 @@
     }
   }
 
-  /* ---------- Entry point used by app.js ---------- */
+  /* ---------- Entry points used by app.js ---------- */
 
-  // Resolves to the sheet's stores, or null to keep data.js. `fetchSheet: false` only reads the cache.
+  // The newest saved store list: this browser's last load of the sheet, or the snapshot that ships
+  // with the site (assets/snapshot.js, made by tools/snapshot.mjs). Null when there's neither.
+  window.savedStores = function () {
+    const copies = [readCache(CACHE_KEY), window.STORE_SNAPSHOT].filter((c) => c && c.stores && c.stores.length);
+    copies.sort((a, b) => (b.at || 0) - (a.at || 0));
+    return copies.length ? copies[0].stores : null;
+  };
+
+  // Resolves to the sheet's stores, or the saved list (null keeps data.js). `fetchSheet: false` only reads saved copies.
   window.loadSheetStores = async function ({ fetchSheet = true } = {}) {
-    const cached = readCache(CACHE_KEY);
-    if (!SITE.sheet || !fetchSheet) return cached && cached.stores;
+    if (!SITE.sheet || !fetchSheet) return window.savedStores();
     try {
       const ctrl = new AbortController();
       const timer = setTimeout(() => ctrl.abort(), 5000);
@@ -437,14 +446,14 @@
       const res = await fetch(`${SITE.sheet}${sep}t=${Math.floor(Date.now() / 60000)}`, { signal: ctrl.signal });
       clearTimeout(timer);
       if (!res.ok) throw new Error(`Sheet returned ${res.status}`);
-      const stores = buildStores(parseCSV(await res.text()), STORES);
+      const stores = buildStores(parseCSV(await res.text()), KNOWN);
       if (!stores.length) throw new Error("Sheet has no stores");
       await fillFromShopify(stores);
       writeCache(CACHE_KEY, { at: Date.now(), stores });
       return stores;
     } catch (err) {
       console.warn("Using saved store data:", err.message);
-      return cached && cached.stores;
+      return window.savedStores();
     }
   };
 })();

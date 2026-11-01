@@ -49,10 +49,30 @@
     }
   }
 
+  // src plus, for Shopify photos, a srcset of the given widths so each screen loads the smallest file
+  // that is still sharp. `sizes` says how wide the image shows on the page.
+  function imgSrc(url, widths, sizes) {
+    const src = `src="${esc(sized(url, widths[widths.length - 1]))}"`;
+    if (sized(url, 1) === url) return src;
+    return `${src} srcset="${widths.map((w) => `${esc(sized(url, w))} ${w}w`).join(", ")}" sizes="${sizes}"`;
+  }
+
+  // Display widths, matching styles.css: [srcset widths, sizes].
+  const IMG = {
+    ticket: [[270, 400, 540], "(max-width: 600px) 46vw, 270px"],
+    category: [[280, 420, 560], "(max-width: 560px) 45vw, 280px"],
+    product: [[200, 300, 400, 500], "(max-width: 560px) 45vw, 230px"],
+    post: [[360, 540, 720], "(max-width: 700px) 92vw, 380px"],
+    // Store page cover: hidden on narrow screens (styles.css), so they take the smallest file.
+    cover: [[240, 480, 720, 960], "(max-width: 860px) 1px, 480px"],
+    logo: [[80, 160], "40px"],
+    logoLarge: [[80, 160], "72px"],
+  };
+
   // The store's cover photo; --zoom crops off any border built into the image.
-  function coverImg(store, width, attrs) {
+  function coverImg(store, kind, attrs) {
     const zoom = store.coverZoom ? ` style="--zoom:${Number(store.coverZoom)}"` : "";
-    return `<img src="${esc(sized(store.cover, width))}"${zoom} ${attrs}>`;
+    return `<img ${imgSrc(store.cover, ...IMG[kind])}${zoom} ${attrs}>`;
   }
 
   function formatDate(iso) {
@@ -75,7 +95,7 @@
   function logoHTML(store, large) {
     const cls = large ? "logo lg" : "logo";
     const img = store.logo
-      ? `<img src="${esc(sized(store.logo, 160))}" alt="" loading="lazy" width="72" height="72" onerror="this.remove()">`
+      ? `<img ${imgSrc(store.logo, ...IMG[large ? "logoLarge" : "logo"])} alt="" loading="lazy" decoding="async" width="72" height="72" onerror="this.remove()">`
       : "";
     return `<span class="${cls}" style="background:${esc(store.color || "#261A2E")}" aria-hidden="true">${esc(initials(store.name))}${img}</span>`;
   }
@@ -159,8 +179,10 @@
       .filter((p) => p.category === "coupon-guides")
       .map((p) => `<li><a href="${esc(p.url)}">${esc(p.title.split(" Discount Code")[0])}</a></li>`)
       .join("");
+    // Drawn again when fresh store data arrives; the toast is only added the first time.
+    const toastHTML = document.querySelector(".toast") ? "" : `<div class="toast" role="status" aria-live="polite"></div>`;
     document.getElementById("footer").outerHTML = `
-      <footer class="site-footer">
+      <footer class="site-footer" id="footer">
         <div class="wrap">
           <div>
             <a class="brand" href="./">${BRAND_MARK}<span>${esc(SITE.name)}</span></a>
@@ -171,7 +193,7 @@
           ${guides ? `<nav class="footer-guides" aria-labelledby="footer-guides-title"><p id="footer-guides-title">Discount codes by brand</p><ul>${guides}</ul></nav>` : ""}
         </div>
       </footer>
-      <div class="toast" role="status" aria-live="polite"></div>`;
+      ${toastHTML}`;
   }
 
   let toastTimer;
@@ -215,7 +237,7 @@
     const top = topPercent(stores);
     return `<li>
       <a class="cat-card" href="${categoryUrl(cat)}">
-        <span class="cat-img">${pic ? coverImg(pic, 500, 'alt="" loading="lazy" width="280" height="175"') : ""}</span>
+        <span class="cat-img">${pic ? coverImg(pic, "category", 'alt="" loading="lazy" decoding="async" width="280" height="175"') : ""}</span>
         <span class="cat-body">
           <span class="cat-name">${esc(cat.name)}</span>
           <span class="cat-meta">${storeCount(stores.length)}${top ? `, up to ${top} off` : ""}</span>
@@ -228,14 +250,15 @@
   /* ---------- Cards ---------- */
 
   // A hero ticket: a store's cover and best discount, or a pick from HERO_PICKS with its own photo and label.
+  // The hero photos are the first big images on the home page, so they load ahead of the rest.
   function ticketHTML(store, pick) {
     const best = bestCoupon(store);
     if (!best || !(pick ? pick.image : store.cover)) return "";
     const amount = /^[$€£]?\d+%?$/.test(best.discount) ? `${best.discount} off` : best.discount;
     const label = pick ? pick.label || store.name : store.name;
     const photo = pick
-      ? `<img src="${esc(sized(pick.image, 600))}" alt="${esc(label)}" width="270" height="230"${pick.focus ? ` style="object-position:${esc(pick.focus)}"` : ""}>`
-      : coverImg(store, 600, `alt="${esc(store.name)}" width="270" height="230"`);
+      ? `<img ${imgSrc(pick.image, ...IMG.ticket)} alt="${esc(label)}" fetchpriority="high" width="270" height="230"${pick.focus ? ` style="object-position:${esc(pick.focus)}"` : ""}>`
+      : coverImg(store, "ticket", `alt="${esc(store.name)}" fetchpriority="high" width="270" height="230"`);
     return `<a class="ticket" href="${storeUrl(store)}">
       <span class="ticket-img">${photo}</span>
       <span class="tear"><span class="store">${esc(label)}</span><span class="amt">${esc(amount)}</span></span>
@@ -276,7 +299,7 @@
       <a class="product" href="${esc(product.url)}" data-store="${esc(store.slug)}" ${OUT}>
         ${
           product.image
-            ? `<span class="img">${badge}<img src="${esc(sized(product.image, 500))}" alt="" loading="lazy" width="250" height="250"></span>`
+            ? `<span class="img">${badge}<img ${imgSrc(product.image, ...IMG.product)} alt="" loading="lazy" decoding="async" width="250" height="250"></span>`
             : `<span class="img blank" style="background:${esc(store.color || "#261A2E")}" aria-hidden="true">${badge}${esc(initials(store.name))}</span>`
         }
         <span class="info">
@@ -298,7 +321,7 @@
     const cat = postCategory(post.category);
     return `<li>
       <a class="post-card" href="${esc(post.url)}">
-        <span class="post-card-img"><img src="${esc(sized(post.image, 700))}" alt="" loading="lazy" width="350" height="220"${post.focus ? ` style="object-position:${esc(post.focus)}"` : ""}></span>
+        <span class="post-card-img"><img ${imgSrc(post.image, ...IMG.post)} alt="" loading="lazy" decoding="async" width="350" height="220"${post.focus ? ` style="object-position:${esc(post.focus)}"` : ""}></span>
         <span class="post-card-body">
           ${cat ? `<span class="post-card-tag">${esc(cat.name)}</span>` : ""}
           <span class="post-card-title">${esc(post.title)}</span>
@@ -350,7 +373,9 @@
 
   function renderHome() {
     const main = document.getElementById("main");
-    const q = params.get("q") || "";
+    // Read from the address bar, which the search box keeps up to date, so a redraw keeps the search.
+    const q = new URLSearchParams(location.search).get("q") || "";
+    const typing = document.activeElement && document.activeElement.id === "q";
     const first = STORES[0];
     main.innerHTML = `
       <section class="hero">
@@ -474,6 +499,10 @@
 
     input.addEventListener("input", update);
     update();
+    if (typing) {
+      input.focus();
+      input.setSelectionRange(input.value.length, input.value.length);
+    }
   }
 
   function renderCategory() {
@@ -564,7 +593,7 @@
             <p>${esc(store.about)}</p>
             <a class="btn secondary" href="${esc(store.url)}" ${OUT}>Visit ${esc(store.name)}</a>
           </div>
-          ${store.cover ? `<div class="cover">${coverImg(store, 900, `alt="${esc(store.name)}" width="480" height="360"`)}</div>` : logoHTML(store, true)}
+          ${store.cover ? `<div class="cover">${coverImg(store, "cover", `alt="${esc(store.name)}" width="480" height="360"`)}</div>` : logoHTML(store, true)}
         </div>
       </section>
       <div class="wrap">
@@ -603,9 +632,9 @@
       }
       ${postsSectionHTML(posts.filter((p) => p.store === store.slug), "Read before you buy", "store-posts-title", false)}`;
 
-    // Opened from a "Show code" click: this tab is the one that shows the code.
+    // Opened from a "Show code" click: this tab is the one that shows the code (once, not on a redraw).
     const fromReveal = coupons[Number(params.get("c"))];
-    if (params.has("c") && fromReveal && fromReveal.code) openModal(store, fromReveal);
+    if (!drawn && params.has("c") && fromReveal && fromReveal.code) openModal(store, fromReveal);
   }
 
   // Saving Tips list, filtered by ?t=<category slug> through the chips.
@@ -721,6 +750,8 @@
     lastFocus = document.activeElement;
     const wrap = document.createElement("div");
     wrap.className = "modal";
+    wrap.dataset.store = store.slug;
+    wrap.dataset.index = liveCoupons(store).indexOf(coupon);
     wrap.innerHTML = `
       <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <button class="modal-close" type="button" aria-label="Close">${ICON_CLOSE}</button>
@@ -744,6 +775,16 @@
       if (e.target === wrap || e.target.closest(".modal-close")) closeModal();
     });
     wrap.querySelector("[data-copy]").focus();
+  }
+
+  // After a redraw with fresh data, an open popup shows the store's current code.
+  function refreshModal() {
+    const m = document.querySelector(".modal[data-store]");
+    const store = m && STORES.find((s) => s.slug === m.dataset.store);
+    const coupon = store && liveCoupons(store)[Number(m.dataset.index)];
+    if (!coupon || !coupon.code) return;
+    m.querySelector(".code").textContent = coupon.code;
+    m.querySelector("[data-copy]").dataset.copy = coupon.code;
   }
 
   function closeModal(silent) {
@@ -825,16 +866,10 @@
 
   /* ---------- Boot ---------- */
 
-  async function boot() {
-    renderHeader();
-    // Pages that show codes wait for the sheet; the rest use the last saved copy for the footer.
-    // Posts keep their own text on screen while the sheet loads.
-    const listsCodes = ["home", "category", "store"].includes(page);
-    const main = document.getElementById("main");
-    const slow = listsCodes && setTimeout(() => (main.innerHTML = '<p class="wrap loading">Loading today’s codes…</p>'), 500);
-    const fresh = window.loadSheetStores ? await window.loadSheetStores({ fetchSheet: listsCodes || page === "post" }) : null;
-    clearTimeout(slow);
-    if (fresh && fresh.length) STORES.splice(0, STORES.length, ...fresh);
+  let drawn = false;
+
+  function draw(stores) {
+    if (stores && stores.length) STORES.splice(0, STORES.length, ...stores);
     activeCategories = CATEGORIES.filter((c) => STORES.some((s) => s.category === c.slug));
 
     renderFooter();
@@ -849,6 +884,42 @@
     else if (page === "store") renderStore();
     else if (page === "blog") renderBlog();
     else if (page === "post") renderPost();
+    if (drawn) refreshModal();
+    drawn = true;
+  }
+
+  // Checks the live sheet once the page's own images have loaded, and redraws only if a code,
+  // link or store changed since the saved copy.
+  function refreshLater() {
+    const run = async () => {
+      const shown = JSON.stringify(STORES);
+      const fresh = await window.loadSheetStores({ fetchSheet: true });
+      if (fresh && fresh.length && JSON.stringify(fresh) !== shown) draw(fresh);
+    };
+    if (document.readyState === "complete") setTimeout(run, 200);
+    else window.addEventListener("load", () => setTimeout(run, 200), { once: true });
+  }
+
+  async function boot() {
+    renderHeader();
+    // Pages that show codes (and posts, which fill in their store's code) need the live sheet.
+    // They draw at once from the newest saved copy, this browser's or the site's snapshot, and check
+    // the sheet in the background. Without a saved copy, or for a store the copy doesn't have yet,
+    // they wait for the sheet. Other pages only use the saved copy, for the footer.
+    const needsSheet = ["home", "category", "store", "post"].includes(page);
+    const saved = window.savedStores ? window.savedStores() : null;
+    const wanted = page === "store" ? params.get("s") : null;
+    if (saved && (!wanted || saved.some((s) => s.slug === wanted))) {
+      draw(saved);
+      if (needsSheet && window.loadSheetStores) refreshLater();
+      return;
+    }
+    const main = document.getElementById("main");
+    const listsCodes = ["home", "category", "store"].includes(page);
+    const slow = listsCodes && setTimeout(() => (main.innerHTML = '<p class="wrap loading">Loading today’s codes…</p>'), 500);
+    const fresh = window.loadSheetStores ? await window.loadSheetStores({ fetchSheet: needsSheet }) : null;
+    clearTimeout(slow);
+    draw(fresh);
   }
 
   boot();
