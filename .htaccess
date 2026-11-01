@@ -1,0 +1,25 @@
+# Settings for Hostinger's web server (LiteSpeed). GitHub Pages ignores this file.
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+# Scripts and styles change without a new ?v= number, so keep them for 10 minutes
+# (as GitHub Pages did) instead of the host's default 7 days
+<FilesMatch "\.(js|css)$">
+  Header set Cache-Control "public, max-age=600"
+</FilesMatch>
+
+RewriteEngine On
+
+# One address for the site: www goes to https://kinsleydeals.com (Hostinger already sends http to https)
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://kinsleydeals.com%{REQUEST_URI} [L,R=301]
+
+# Links without .html still open the page, as they did on GitHub Pages
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+# Repo files that are not part of the site
+RewriteRule (^|/)\.git(/|$) - [F,L]
+RewriteRule ^(server\.js|package\.json|README\.md|CNAME|\.gitignore)$ - [F,L]
