@@ -31,17 +31,10 @@ python3 -m http.server 8765 --directory coupon-site
 ```
 rồi mở http://localhost:8765
 
-## Đưa lên Hostinger (Node.js)
-Cần gói Hostinger có Node.js (Business hoặc Cloud).
+## Web đang chạy ở đâu
+kinsleydeals.com chạy trên gói web hosting Hostinger, dạng trang web PHP/HTML (web tĩnh, không cần Node.js).
 
-1. **Push lên GitHub**: tạo repo trống trên github.com (không tick README), rồi:
-   `git remote add origin https://github.com/<user>/<repo>.git` → `git push -u origin main`
-2. **hPanel → Websites → Add website → Node.js Apps → Import Git repository**, chọn repo vừa push.
-   - Entry file: `server.js`
-   - Node version: 18 trở lên
-   - Start command (nếu được hỏi): `npm start`
-3. **Install command**: `npm install --production` (web không có thư viện nào nên bước này chạy rất nhanh)
-4. **Environment variables**: thêm `CONTACT_EMAIL` = email liên hệ của anh. `PORT` Hostinger tự cấp, không cần thêm.
-5. **Trỏ domain** vào app (hPanel → Domains, hoặc đổi nameserver ở nơi mua domain sang Hostinger) → **Restart** app.
-
-Mỗi lần sửa `assets/data.js`: commit + push, rồi bấm Redeploy/Restart trong hPanel.
+- hPanel → Trang web → kinsleydeals.com → Nâng cao → GIT: kho `TM7779/TM-Aff`, nhánh `main`, thư mục `public_html`, **Triển khai tự động** đang bật.
+- Mỗi commit mới trên nhánh `main` được Hostinger tự chép vào `public_html` sau vài giây, không cần bấm gì thêm.
+- `.htaccess` lo trang 404, chuyển www về kinsleydeals.com, mở link không có đuôi `.html`, giữ CSS/JS trong bộ nhớ đệm 10 phút và chặn các file không thuộc web (`server.js`, `package.json`, `README.md`, `CNAME`, `.git`).
+- `server.js` và `package.json` chỉ dùng khi chạy web bằng Node.js; gói hiện tại không dùng tới.
