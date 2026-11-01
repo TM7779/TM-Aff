@@ -376,29 +376,38 @@
 
   function renderHome() {
     const main = document.getElementById("main");
-    // Whatever is already in the search box (the page's own hero, or before a redraw) is kept;
-    // otherwise the address bar's ?q=.
-    const box = document.getElementById("q");
-    const q = (box && box.value) || new URLSearchParams(location.search).get("q") || "";
-    const typing = document.activeElement && document.activeElement.id === "q";
-    const first = STORES[0];
-    main.innerHTML = `
-      <section class="hero">
-        <div class="wrap">
-          <div>
-            <h1>Self-care, for less.</h1>
-            <p>${esc(SITE.tagline)}</p>
-            <form role="search" onsubmit="return false">
-              <label class="search">${ICON_SEARCH}
-                <span class="skip">Search stores and products</span>
-                <input id="q" type="search" placeholder="Search${first ? `, like “${esc(first.name)}”` : ""}" autocomplete="off" value="${esc(q)}">
-              </label>
-            </form>
+    // The hero's text and search box are in index.html (tools/static-header.py) so they paint before
+    // the scripts run. They stay in place, with whatever was typed and the focus; only the tickets and
+    // everything below are drawn here, and drawn again on a redraw.
+    let hero = main.querySelector(".hero");
+    if (!hero) {
+      main.innerHTML = `
+        <section class="hero">
+          <div class="wrap">
+            <div>
+              <h1>Self-care, for less.</h1>
+              <p>${esc(SITE.tagline)}</p>
+              <form role="search" onsubmit="return false">
+                <label class="search">${ICON_SEARCH}
+                  <span class="skip">Search stores and products</span>
+                  <input id="q" type="search" autocomplete="off">
+                </label>
+              </form>
+            </div>
+            <div class="ticket-fan"></div>
           </div>
-          <div class="ticket-fan">${heroTicketsHTML()}</div>
-        </div>
-      </section>
-      ${
+        </section>`;
+      hero = main.querySelector(".hero");
+    }
+    const input = document.getElementById("q");
+    if (!input.value) input.value = new URLSearchParams(location.search).get("q") || "";
+    const first = STORES[0];
+    input.placeholder = `Search${first ? `, like “${first.name}”` : ""}`;
+    hero.querySelector(".ticket-fan").innerHTML = heroTicketsHTML();
+    [...main.children].forEach((el) => el !== hero && el.remove());
+    hero.insertAdjacentHTML(
+      "afterend",
+      `${
         activeCategories.length > 1
           ? `<section class="section" aria-labelledby="cats-title" id="cats-section">
                <div class="wrap">
@@ -427,9 +436,9 @@
         </div>
       </section>
       ${postsSectionHTML(posts.slice(0, 3), "Saving tips", "blog-title", true)}
-      ${STEPS_HTML}`;
+      ${STEPS_HTML}`
+    );
 
-    const input = document.getElementById("q");
     const deals = document.getElementById("deals");
     const products = document.getElementById("products");
     const shopSection = document.getElementById("shop-section");
@@ -502,12 +511,9 @@
     moreDeals.addEventListener("click", () => openMore(deals, DEAL_STEP, (n) => (dealLimit = n)));
     moreProducts.addEventListener("click", () => openMore(products, PRODUCT_STEP, (n) => (productLimit = n)));
 
-    input.addEventListener("input", update);
+    // A property, not addEventListener, so a redraw replaces the handler instead of adding another.
+    input.oninput = update;
     update();
-    if (typing) {
-      input.focus();
-      input.setSelectionRange(input.value.length, input.value.length);
-    }
   }
 
   function renderCategory() {
