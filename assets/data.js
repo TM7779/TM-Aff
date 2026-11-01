@@ -102,6 +102,16 @@ const BEST_SELLERS = {
     { name: "JenniBag Signature", url: "https://jennibag.com/products/jennibag-signature-travel-bag", image: SHOPIFY_CDN + "0593/6775/1722/files/Jenni_Signature_9_1.webp" },
     { name: "JenniBag Travel Bundle", url: "https://jennibag.com/products/jennibag-travel-bundle", image: SHOPIFY_CDN + "0593/6775/1722/files/121_6e172345-9a86-45d5-a297-8583d65091a4.webp" },
   ],
+  "korekawaii.com": [
+    { name: "Fluffy Bunny Plushie Keychains", url: "https://korekawaii.com/products/fluffy-bunny-plushie-keychains", image: SHOPIFY_CDN + "0279/9966/6254/files/S1f8406f54c8345e6ac400a1592d1bdfbh.webp" },
+    { name: "Chubby Pastel Dragon Plushies", url: "https://korekawaii.com/products/chubby-pastel-dragon-plushies", image: SHOPIFY_CDN + "0279/9966/6254/files/chubby-pastel-dragon-plushies.webp" },
+    { name: "Game Star Hoodie", url: "https://korekawaii.com/products/kawaii-game-star-hoodie", image: SHOPIFY_CDN + "0279/9966/6254/products/S1f99df344d11438ca28980f4da174f3aC.jpg" },
+  ],
+  "niepceinc.com": [
+    { name: "YE2032 Matte Black Joggers", url: "https://niepceinc.com/products/matte-black-strapped-joggers", image: SHOPIFY_CDN + "2541/1806/products/ye2032_techwear_pants.jpg" },
+    { name: "HiBag2 Industrial Crossbody Bag", url: "https://niepceinc.com/products/displaced-movement-bag-1", image: SHOPIFY_CDN + "2541/1806/files/d71b5854_cd222a75-af14-4d86-a9ab-5a447657283c.jpg" },
+    { name: "YC135 Pink Flowers Lightweight Pants", url: "https://niepceinc.com/products/yc-135", image: SHOPIFY_CDN + "2541/1806/products/1317fd56.jpg" },
+  ],
 };
 
 /*
