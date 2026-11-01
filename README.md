@@ -38,3 +38,8 @@ kinsleydeals.com chạy trên gói web hosting Hostinger, dạng trang web PHP/H
 - Mỗi commit mới trên nhánh `main` được Hostinger tự chép vào `public_html` sau vài giây, không cần bấm gì thêm.
 - `.htaccess` lo trang 404, chuyển www về kinsleydeals.com, mở link không có đuôi `.html`, giữ CSS/JS trong bộ nhớ đệm 10 phút và chặn các file không thuộc web (`server.js`, `package.json`, `README.md`, `CNAME`, `.git`).
 - `server.js` và `package.json` chỉ dùng khi chạy web bằng Node.js; gói hiện tại không dùng tới.
+
+## Tốc độ
+- Trang hiện ngay từ bản dữ liệu cửa hàng có sẵn (`assets/snapshot.js`, hoặc bản trình duyệt đã lưu lần trước), rồi mới kiểm tra Google Sheet ở phía sau; có gì khác thì trang tự cập nhật.
+- Làm mới bản có sẵn sau khi sửa Sheet: `node tools/snapshot.mjs` (không đổi gì thì file giữ nguyên), rồi commit `assets/snapshot.js`.
+- Phông chữ nằm trong `assets/fonts`, không tải từ Google Fonts. Ảnh Shopify có `srcset` để mỗi màn hình tải đúng cỡ.

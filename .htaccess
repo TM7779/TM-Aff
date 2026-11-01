@@ -2,10 +2,15 @@
 DirectoryIndex index.html
 ErrorDocument 404 /404.html
 
-# Scripts and styles change without a new ?v= number, so keep them for 10 minutes
-# (as GitHub Pages did) instead of the host's default 7 days
+# Scripts and styles change without a new ?v= number, so they count as fresh for 10 minutes
+# instead of the host's default 7 days. After that the browser still shows its copy at once and
+# fetches the new one in the background.
 <FilesMatch "\.(js|css)$">
-  Header set Cache-Control "public, max-age=600"
+  Header set Cache-Control "public, max-age=600, stale-while-revalidate=604800"
+</FilesMatch>
+# Font files never change.
+<FilesMatch "\.woff2$">
+  Header set Cache-Control "public, max-age=31536000, immutable"
 </FilesMatch>
 
 RewriteEngine On
@@ -22,4 +27,5 @@ RewriteRule ^(.+?)/?$ $1.html [L]
 
 # Repo files that are not part of the site
 RewriteRule (^|/)\.git(/|$) - [F,L]
+RewriteRule ^tools(/|$) - [F,L]
 RewriteRule ^(server\.js|package\.json|README\.md|CNAME|\.gitignore)$ - [F,L]
