@@ -187,7 +187,8 @@ h1, h2, h3 { font-weight: 400; text-wrap: balance; }
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   gap: 48px;
-  align-items: center;
+  /* Top-aligned so the text, which is in the page's HTML, stays put when the tickets are drawn. */
+  align-items: start;
 }
 .hero h1 {
   font-family: var(--font-display);

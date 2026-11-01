@@ -138,7 +138,10 @@
 
   /* ---------- Shared chrome ---------- */
 
+  // Pages ship this header in their HTML (written by tools/static-header.py) so nothing moves when the
+  // scripts run; it's only drawn here for a page that doesn't have it.
   function renderHeader() {
+    if (document.querySelector(".site-header")) return;
     const navItems = [
       ["./", "All stores", "home"],
       ["saving-tips.html", "Saving Tips", "blog"],
@@ -373,8 +376,10 @@
 
   function renderHome() {
     const main = document.getElementById("main");
-    // Read from the address bar, which the search box keeps up to date, so a redraw keeps the search.
-    const q = new URLSearchParams(location.search).get("q") || "";
+    // Whatever is already in the search box (the page's own hero, or before a redraw) is kept;
+    // otherwise the address bar's ?q=.
+    const box = document.getElementById("q");
+    const q = (box && box.value) || new URLSearchParams(location.search).get("q") || "";
     const typing = document.activeElement && document.activeElement.id === "q";
     const first = STORES[0];
     main.innerHTML = `
@@ -915,8 +920,8 @@
       return;
     }
     const main = document.getElementById("main");
-    const listsCodes = ["home", "category", "store"].includes(page);
-    const slow = listsCodes && setTimeout(() => (main.innerHTML = '<p class="wrap loading">Loading today’s codes…</p>'), 500);
+    // The home page keeps its hero on screen while it waits.
+    const slow = ["category", "store"].includes(page) && setTimeout(() => (main.innerHTML = '<p class="wrap loading">Loading today’s codes…</p>'), 500);
     const fresh = window.loadSheetStores ? await window.loadSheetStores({ fetchSheet: needsSheet }) : null;
     clearTimeout(slow);
     draw(fresh);
