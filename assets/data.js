@@ -127,6 +127,36 @@ const BEST_SELLERS = {
     { name: "N Onyx Gel Nail Strips", url: "https://ohora.com/products/n-onyx", image: SHOPIFY_CDN + "0596/8884/5517/files/1_tip_e9c089d9-d4b8-4ca3-ae3c-2454ba8e3e6d.jpg" },
     { name: "N Addict Gel Nail Strips", url: "https://ohora.com/products/nb-022", image: SHOPIFY_CDN + "0596/8884/5517/files/1_tip_6c04ee0d-7359-426c-926f-7ffa4e19f507.jpg" },
   ],
+  "tabasquishy.com": [
+    { name: "Random Blind Bag Taba Squishy", url: "https://tabasquishy.com/products/random-blind-bag-taba-squishy", image: SHOPIFY_CDN + "0606/0690/6412/files/750534a2c715062c150f6f8b6c09556e.jpg" },
+    { name: "Tie-dye Rainbow Dumpling", url: "https://tabasquishy.com/products/tie-dye-rainbow-dumpling", image: SHOPIFY_CDN + "0606/0690/6412/files/36ff5a54fcfb3b744906bcd14c36c2b9.jpg" },
+    { name: "Flocked Chick Taba Squishy", url: "https://tabasquishy.com/products/taba-squishy-chick-squeeze-toy", image: SHOPIFY_CDN + "0606/0690/6412/files/e2f8213c9bff462fb3a27393b3b905a1.jpg" },
+  ],
+  "fosiaudio.com": [
+    { name: "Merak CD Player", url: "https://fosiaudio.com/products/merak-cd-player", image: SHOPIFY_CDN + "2251/7913/files/CD_0bdc7150-f1a3-4570-8342-4ba520733fb3.png" },
+    { name: "BT20A Pro Bluetooth Stereo Amplifier", url: "https://fosiaudio.com/products/bt20a-pro-2-channel-bluetooth-power-amplifier", image: SHOPIFY_CDN + "2251/7913/files/BT20A_PRO_7b5daf0a-89d6-48f8-a268-ee9583cf1a07.png" },
+    { name: "ZA3 Balanced Stereo Amplifier", url: "https://fosiaudio.com/products/fosi-audio-za3-balanced-dual-mode-class-d-amplifier", image: SHOPIFY_CDN + "2251/7913/files/ZA3_346b5d67-3948-4455-ad62-0c8ce823f058.png" },
+  ],
+  "webbernaturals.com": [
+    { name: "Vitamin E 400 IU", url: "https://webbernaturals.com/products/vitamin-e-400-iu-softgels", image: SHOPIFY_CDN + "0556/0185/6591/files/wn3800__image-hi-res__vitamin-e-400-iu__1000486.png" },
+    { name: "Triple Strength Omega-3 900 mg", url: "https://webbernaturals.com/products/triple-strength-omega-3-900-mg-no-fishy-aftertaste", image: SHOPIFY_CDN + "0556/0185/6591/files/wn3395__image-hi-res__triple-strength-omega-3-900-mg-epa-dha__3731194.png" },
+    { name: "Vitamin K2 + D3", url: "https://webbernaturals.com/products/vitamin-k2-d3-120-mcg-1000-iu", image: SHOPIFY_CDN + "0556/0185/6591/files/wn3933__image-hi-res__vitamin-k2_d3-120-mcg-1000-iu__2439320.png" },
+  ],
+  "womierkeyboard.com": [
+    { name: "SK61 HE Hall Effect Wireless Keyboard", url: "https://womierkeyboard.com/products/womier-sk61-he-wireless-magnetic-keyboard", image: SHOPIFY_CDN + "0564/2289/1591/files/womier-sk61-he-wireless-magnetic-switch-60-aluminum-hollow-design-gaming-keyboard-5288314.jpg" },
+    { name: "WD75 HE Wooden Hall Effect Keyboard", url: "https://womierkeyboard.com/products/womier-wd75-he-magnetic-keyboard", image: SHOPIFY_CDN + "0564/2289/1591/files/womier-wd75-he-75-wireless-hall-effect-wooden-keyboard-4227636.jpg" },
+    { name: "Q61 Pro Wireless Gaming Keyboard", url: "https://womierkeyboard.com/products/womier-q61-pro-qmk-via-support-gasket-mounted-wireless-gaming-keyboard", image: SHOPIFY_CDN + "0564/2289/1591/files/womier-q61-pro-wireless-mechanical-gaming-keyboard-3198581.jpg" },
+  ],
+  "slimq.life": [
+    { name: "330W Gaming Laptop Charger", url: "https://slimq.life/products/330w-laptop-charger", image: SHOPIFY_CDN + "0262/8645/6912/files/330W1500.png" },
+    { name: "240W DC/USB-C Charger", url: "https://slimq.life/products/240w-dc-usb-c-gan-charger", image: SHOPIFY_CDN + "0262/8645/6912/files/240W_laptop_Charger.png" },
+    { name: "150W USB-C Charger PD3.1", url: "https://slimq.life/products/150w-3c1a-pd3-1-usb-c-charger", image: SHOPIFY_CDN + "0262/8645/6912/files/150W3C1500A.png" },
+  ],
+  "jessupbeauty.com": [
+    { name: "T500 Duo-End Brush Collection", url: "https://www.jessupbeauty.com/products/14-in-10-duo-end-brush-versatility-collection", image: SHOPIFY_CDN + "0034/3051/4757/files/T500-BFCM25-2000X2000.jpg" },
+    { name: "T329 Light Gray 14-Piece Brush Set", url: "https://www.jessupbeauty.com/products/luxury-light-gray-comprehensive-eye-and-face-brush-set-14pcs-t329", image: SHOPIFY_CDN + "0034/3051/4757/files/T329-Gift.png" },
+    { name: "Makeup Lover Phantom Black Collection", url: "https://www.jessupbeauty.com/products/luxury-phantom-black-21pcs", image: SHOPIFY_CDN + "0034/3051/4757/files/T271-FCM25-2000X2000.jpg" },
+  ],
 };
 
 /*
