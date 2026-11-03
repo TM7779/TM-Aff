@@ -45,8 +45,9 @@ import subprocess
 import sys
 
 SITE = "https://kinsleydeals.com/"
-ICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23EF4E7B' "
-        "d='M16 1c1.2 7.6 7.4 13.8 15 15-7.6 1.2-13.8 7.4-15 15-1.2-7.6-7.4-13.8-15-15C8.6 14.8 14.8 8.6 16 1Z'/%3E%3C/svg%3E")
+ICONS = ('<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">\n'
+         '<link rel="icon" href="/assets/favicon-96.png" sizes="96x96" type="image/png">\n'
+         '<link rel="apple-touch-icon" href="/apple-touch-icon.png">')
 KINDS = {
     "guide": dict(suffix="discount-code", category="coupon-guides", crumb="Coupon guides",
                   list_intro="Shopping another brand? See our discount code guides for ", link_word="guide"),
@@ -243,7 +244,7 @@ class Writer:
 <title>{esc(s["title_tag"])}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{url}">
-<link rel="icon" href="{ICON}">
+{ICONS}
 <meta name="theme-color" content="#261A2E">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Kinsley Deals">
