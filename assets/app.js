@@ -404,7 +404,8 @@
     const first = STORES[0];
     input.placeholder = `Search${first ? `, like “${first.name}”` : ""}`;
     hero.querySelector(".ticket-fan").innerHTML = heroTicketsHTML();
-    [...main.children].forEach((el) => el !== hero && el.remove());
+    // Sections marked data-keep (the questions at the bottom) are in index.html and stay below the lists.
+    [...main.children].forEach((el) => el !== hero && !el.hasAttribute("data-keep") && el.remove());
     hero.insertAdjacentHTML(
       "afterend",
       `${

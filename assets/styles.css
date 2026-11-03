@@ -1213,6 +1213,33 @@ body.modal-open { overflow: hidden; }
 .faq details { border-bottom: 1px solid var(--line); padding: 14px 0; }
 .faq summary { cursor: pointer; font-weight: 700; }
 .faq details p { margin: 10px 0 0; color: var(--ink-soft); }
+.faq details a { color: var(--focus); }
+.home-faq .faq { max-width: 760px; }
+
+/* Written by tools/article-seo.py: the list of sections under the code box, and the box at the end */
+.post-body .post-toc {
+  margin: 0 0 8px;
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+.post-body .post-toc p { margin: 0 0 8px; font-weight: 800; }
+.post-body .post-toc ul { margin: 0; padding-left: 20px; }
+.post-body .post-toc li + li { margin-top: 6px; }
+.post-body .post-sources { color: var(--ink-soft); font-size: 0.9375rem; }
+.post-body .post-author {
+  clear: both;
+  margin-top: 36px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 0.9375rem;
+}
+.post-body .post-author p { margin: 0; }
+.post-body .post-author strong { color: var(--ink); }
 
 @media (max-width: 600px) {
   .post { padding-top: 28px; }
