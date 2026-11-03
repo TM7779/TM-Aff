@@ -95,7 +95,7 @@
   function logoHTML(store, large) {
     const cls = large ? "logo lg" : "logo";
     const img = store.logo
-      ? `<img ${imgSrc(store.logo, ...IMG[large ? "logoLarge" : "logo"])} alt="" loading="lazy" decoding="async" width="72" height="72" onerror="this.remove()">`
+      ? `<img ${imgSrc(store.logo, ...IMG[large ? "logoLarge" : "logo"])} alt="${esc(store.name)} logo" loading="lazy" decoding="async" width="72" height="72" onerror="this.remove()">`
       : "";
     return `<span class="${cls}" style="background:${esc(store.color || "#261A2E")}" aria-hidden="true">${esc(initials(store.name))}${img}</span>`;
   }
@@ -302,7 +302,7 @@
       <a class="product" href="${esc(product.url)}" data-store="${esc(store.slug)}" ${OUT}>
         ${
           product.image
-            ? `<span class="img">${badge}<img ${imgSrc(product.image, ...IMG.product)} alt="" loading="lazy" decoding="async" width="250" height="250"></span>`
+            ? `<span class="img">${badge}<img ${imgSrc(product.image, ...IMG.product)} alt="${esc(product.name)}" loading="lazy" decoding="async" width="250" height="250"></span>`
             : `<span class="img blank" style="background:${esc(store.color || "#261A2E")}" aria-hidden="true">${badge}${esc(initials(store.name))}</span>`
         }
         <span class="info">
