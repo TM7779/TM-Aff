@@ -112,6 +112,21 @@ const BEST_SELLERS = {
     { name: "HiBag2 Industrial Crossbody Bag", url: "https://niepceinc.com/products/displaced-movement-bag-1", image: SHOPIFY_CDN + "2541/1806/files/d71b5854_cd222a75-af14-4d86-a9ab-5a447657283c.jpg" },
     { name: "YC135 Pink Flowers Lightweight Pants", url: "https://niepceinc.com/products/yc-135", image: SHOPIFY_CDN + "2541/1806/products/1317fd56.jpg" },
   ],
+  "lussotan.com": [
+    { name: "Rapid Tan Mousse, 200ml", url: "https://lussotan.com/products/rapid-tan-mousse", image: SHOPIFY_CDN + "0222/8109/3194/files/Rapid-Tan-Mousse-200ml-Lusso-Tan-178565511.png" },
+    { name: "Tinted Self Tanning Mousse, 200ml", url: "https://lussotan.com/products/tinted-self-tanning-mousse", image: SHOPIFY_CDN + "0222/8109/3194/files/Tinted-Self-Tanning-Mousse-200ml-_Variants_-Lusso-Tan-178577781.png" },
+    { name: "The Daily Gradual Tanner", url: "https://lussotan.com/products/the-daily-gradual-tanner-200ml", image: SHOPIFY_CDN + "0222/8109/3194/files/The-Daily-Gradual-Tanner-Lusso-Tan-178577476.png" },
+  ],
+  "protoarc.com": [
+    { name: "EM11 NL Ergonomic Vertical Mouse", url: "https://www.protoarc.com/products/em11-nl-vertical-mouse", image: SHOPIFY_CDN + "0551/3972/9497/files/em11-nl-vertical-mouse.webp" },
+    { name: "XK01 Foldable Keyboard", url: "https://www.protoarc.com/products/xk01-tri-fold-bluetooth-keyboard", image: SHOPIFY_CDN + "0551/3972/9497/files/xk01-keyboard-black.webp" },
+    { name: "EC300 Ergonomic Office Chair", url: "https://www.protoarc.com/products/ec300-ergonomic-office-chair", image: SHOPIFY_CDN + "0551/3972/9497/files/1_f5ba80ae-5fff-4ee0-be77-e5baddf571ca.jpg" },
+  ],
+  "ohora.com": [
+    { name: "Gel Nail Starter Kit", url: "https://ohora.com/products/ohora-starter-kit", image: SHOPIFY_CDN + "0596/8884/5517/files/NewStarterKit_mainthumb.jpg" },
+    { name: "N Onyx Gel Nail Strips", url: "https://ohora.com/products/n-onyx", image: SHOPIFY_CDN + "0596/8884/5517/files/1_tip_e9c089d9-d4b8-4ca3-ae3c-2454ba8e3e6d.jpg" },
+    { name: "N Addict Gel Nail Strips", url: "https://ohora.com/products/nb-022", image: SHOPIFY_CDN + "0596/8884/5517/files/1_tip_6c04ee0d-7359-426c-926f-7ffa4e19f507.jpg" },
+  ],
 };
 
 /*

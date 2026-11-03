@@ -417,7 +417,7 @@
       }
       if (!store.cover) store.cover = (store.products.find((p) => p.image) || {}).image || "";
       const meta = metas.get(store);
-      if (store.nameFromLink && meta && meta.name) store.name = meta.name;
+      if (store.nameFromLink && meta && meta.name.trim()) store.name = meta.name.trim();
       if (!store.about) store.about = shortAbout(meta && meta.description) || `Coupon codes and deals for ${store.name}.`;
       if (!store.categoryFixed) store.category = classify(store, meta) || store.category || CATEGORIES[CATEGORIES.length - 1].slug;
       delete store.nameFromLink;
