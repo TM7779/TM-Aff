@@ -50,3 +50,8 @@ kinsleydeals.com chạy trên gói web hosting Hostinger, dạng trang web PHP/H
 - Trang chủ có mục "Questions people ask" nằm sẵn trong `index.html` (đánh dấu `data-keep` để `app.js` giữ lại).
 - Sau khi sửa bài, câu hỏi hoặc mã giảm giá, chạy `python3 tools/article-seo.py`: công cụ tự viết lại mục lục, khung "Written by" và phần dữ liệu ẩn cho Google (FAQPage, BlogPosting) cho khớp với nội dung trên trang. Nhớ đổi ngày "Updated" và `<lastmod>` trong `sitemap.xml` khi sửa nội dung bài.
 - Kiểm tra dữ liệu ẩn: dán link bài vào https://validator.schema.org/ hoặc https://search.google.com/test/rich-results.
+
+## Bài Saving Tips cho cửa hàng mới
+- Khi Sheet có cửa hàng mới, lịch kiểm tra hằng ngày tự viết bài mã giảm giá và bài review cho cửa hàng đó, trừ thương hiệu mà bài viết phải nói về tác dụng chữa bệnh (cai thuốc, hormone, giảm mỡ...).
+- Công cụ: `python3 tools/new-article.py <file.json>`. Mã, mức giảm và link affiliate lấy từ `assets/snapshot.js` (chạy `node tools/snapshot.mjs` trước), nên luôn khớp với Sheet. Công cụ tự thêm bài vào `assets/posts.js`, `sitemap.xml`, link chéo trong các bài khác và trang About, rồi chạy `tools/static-header.py` và `tools/article-seo.py`.
+- Mẫu file JSON: `tools/article-examples/` (bài Niepce). Nhớ đổi `?v=` của `posts.js` trên mọi trang sau khi thêm bài.
