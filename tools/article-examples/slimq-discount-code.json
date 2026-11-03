@@ -1,0 +1,141 @@
+{
+  "type": "guide",
+  "store": "slimq",
+  "slug": "slimq",
+  "brand": "SlimQ",
+  "date": "2026-11-03",
+  "title": "SlimQ Discount Code: 5% Off GaN Laptop and USB-C Chargers",
+  "title_tag": "SlimQ Discount Code 2026: 5% Off | Kinsley Deals",
+  "description": "SlimQ discount code {code} takes 5% off GaN gaming laptop and USB-C chargers. Prices of the 330W, 240W and 150W chargers with the code, plus shipping.",
+  "excerpt": "Code {code} takes 5% off at SlimQ. What the 330W, 240W and 150W GaN chargers cost with it, plus free shipping and the return rules.",
+  "image": "https://cdn.shopify.com/s/files/1/0262/8645/6912/files/330W1500.png?v=1742369933",
+  "image_alt": "The SlimQ 330W gaming laptop charger",
+  "focus": "center 50%",
+  "lede": "Use SlimQ discount code {code} for {pct} off at SlimQ, the brand known for small GaN chargers that replace bulky gaming laptop power bricks. Here's what the best sellers cost with the code, and how to pay less.",
+  "cart_tip": "Orders over $60 ship free to the US, Hong Kong and Singapore, and over $90 to most other countries.",
+  "sections": [
+    {
+      "h2": "SlimQ prices with the code",
+      "parts": [
+        {
+          "table": {
+            "head": [
+              "Product",
+              "Price",
+              "Was",
+              "With 5% off"
+            ],
+            "rows": [
+              [
+                "330W Gaming Laptop Charger",
+                "$139.99",
+                "–",
+                "$132.99"
+              ],
+              [
+                "240W DC/USB-C Charger",
+                "$109.99",
+                "–",
+                "$104.49"
+              ],
+              [
+                "150W USB-C Charger PD3.1, with cable",
+                "$59.99",
+                "$79.99",
+                "$56.99"
+              ],
+              [
+                "150W USB-C Charger PD3.1, travel set",
+                "$69.99",
+                "$79.99",
+                "$66.49"
+              ],
+              [
+                "65W 3 USB-C GaN Charger",
+                "$34.99",
+                "–",
+                "$33.24"
+              ]
+            ]
+          }
+        },
+        {
+          "small": "Prices in US dollars on slimq.life on November 3, 2026. The price with the code assumes the code applies to that item."
+        }
+      ]
+    },
+    {
+      "figure": {
+        "src": "https://cdn.shopify.com/s/files/1/0262/8645/6912/files/240W_laptop_Charger.png?v=1753259030",
+        "alt": "The SlimQ 240W DC and USB-C charger",
+        "width": 300,
+        "height": 300
+      },
+      "h2": "1. Check the plug for your laptop first",
+      "parts": [
+        "The 330W and 240W chargers power gaming laptops through a DC plug (XT60 on the 330W, DC5525 on the 240W) and also have USB-C ports. SlimQ sells DC converters for other laptops separately. Buying the right converter the first time matters, because SlimQ doesn't refund shipping on returns and sale items can't be returned."
+      ]
+    },
+    {
+      "h2": "2. Reach $60 for free US shipping",
+      "parts": [
+        "Orders over $60 ship free to the US, Hong Kong and Singapore. A 65W charger at $34.99 doesn't reach it, but adding a cable or a second charger can."
+      ]
+    },
+    {
+      "h2": "3. Consider the sale price before the code",
+      "parts": [
+        "The 150W PD3.1 charger was $59.99 with a cable instead of $79.99. Sale items can't be refunded, though, so only buy on sale if you're sure it fits your devices."
+      ]
+    },
+    {
+      "h2": "Shipping and returns",
+      "parts": [
+        "SlimQ batch-ships orders twice a week and ships worldwide except a few restricted countries. International orders may owe import taxes or duties.",
+        "Unused items in their original packaging can be returned within 30 days of purchase. Contact SlimQ first; it doesn't provide return labels or refund the original shipping, and sale items can't be refunded."
+      ]
+    }
+  ],
+  "faq": [
+    [
+      "Is there a SlimQ discount code?",
+      "Yes. Code {code} takes {pct} off at slimq.life. Check the total at checkout before you pay."
+    ],
+    [
+      "Does SlimQ offer free shipping?",
+      "Yes, on orders over $60 to the US, Hong Kong and Singapore, and over $90 to most other countries."
+    ],
+    [
+      "How much is the SlimQ 330W charger?",
+      "$139.99, or $132.99 with code {code}."
+    ],
+    [
+      "How much is the SlimQ 240W charger?",
+      "$109.99, or $104.49 with the code."
+    ],
+    [
+      "How much is the SlimQ 150W USB-C charger?",
+      "$59.99 with a cable on sale (it was $79.99), or $56.99 with the code. The travel set is $69.99, or $66.49."
+    ],
+    [
+      "How much is the SlimQ 65W charger?",
+      "$34.99, or $33.24 with the code."
+    ],
+    [
+      "How long does SlimQ shipping take?",
+      "SlimQ batch-ships orders twice a week, so allow a few days before your order leaves."
+    ],
+    [
+      "What is SlimQ's return policy?",
+      "Unused items in original packaging within 30 days of purchase. Shipping isn't refunded, there are no return labels, and sale items can't be returned."
+    ],
+    [
+      "Does SlimQ have a subscription?",
+      "No. Chargers, converters and cables are sold one at a time."
+    ],
+    [
+      "Why isn't my SlimQ discount code working?",
+      "Type {code} exactly, with no spaces, and remove any other code: most stores accept one per order. The code may not apply on top of sale prices, so check the total before you pay. We list the current code on our [SlimQ coupon page](store.html?s=slimq)."
+    ]
+  ]
+}
