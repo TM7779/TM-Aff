@@ -118,7 +118,7 @@ const POSTS = [
     url: "saving-tips-mizu-lab-discount-code.html",
     title: "Mizu Lab Discount Code: 10% Off Zero-Sugar Electrolytes",
     excerpt:
-      "Code WICKENDENJAMES takes 10% off Mizu Lab's Asian-inspired electrolyte mixes. What each stick costs, and how to reach free shipping.",
+      "Code JAMESWICKENDEN takes 10% off Mizu Lab's Asian-inspired electrolyte mixes. What each stick costs, and how to reach free shipping.",
     image: "https://cdn.shopify.com/s/files/1/0809/4852/7408/files/446_ramune_fc39399a-36bf-4cd3-bf4f-d33a691239ba.jpg",
     imageAlt: "Mizu Lab Japanese Soda electrolyte drink",
     focus: "center",
