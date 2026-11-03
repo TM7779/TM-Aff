@@ -41,7 +41,71 @@
 <link rel="preconnect" href="https://cdn.shopify.com">
 <link rel="preload" href="assets/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/gloock-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/styles.css?v=16">
+<link rel="stylesheet" href="assets/styles.css?v=17">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Kinsley Deals?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A coupon site for supplement and wellness brands like Heights, MaryRuth's, BodyBio and AVEA. Every store here shows its current discount code, and most brands have a guide to the cheapest way to buy and a review."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I use a discount code from Kinsley Deals?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Select Show code on a store. The code is copied for you and the store opens. Add what you want to your cart, paste the code in the discount code box at checkout and check the total before you pay."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I pay anything to use the codes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The codes are free to use. When you buy through our links, the store may pay us a commission, at no extra cost to you. Read our affiliate disclosure."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often are the codes updated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When a brand gives us a new code, it shows on the site straight away, and we check every store page regularly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why isn't a discount code working?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check that you typed it exactly, with no spaces, and remove any other code: most stores accept one per order. Items that are already on sale may not take an extra code, so compare the totals and keep the lower one. Each brand's guide has more tips."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use a code on a subscription?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on the brand's rules at checkout. Many brands already take 10% to 25% off a subscription, so our guides show both prices side by side."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are the brand reviews based on our own tests?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Our reviews bring together each brand's own product facts, public ratings such as Trustpilot and its buying terms, with the date we checked them. We don't make health claims."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body data-page="home">
 <!-- header: written by tools/static-header.py -->
@@ -52,6 +116,43 @@
 <!-- hero: written by tools/static-header.py -->
 <section class="hero"><div class="wrap"><div><h1>Self-care, for less.</h1><p>Discount codes for supplement and wellness brands like Heights, MaryRuth&#39;s and BodyBio, with guides to pay less on every order.</p><form role="search" onsubmit="return false"><label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="skip">Search stores and products</span><input id="q" type="search" placeholder="Search" autocomplete="off" value=""></label></form></div><div class="ticket-fan"></div></div></section>
 <!-- /hero -->
+<!-- faq: renderHome keeps sections marked data-keep -->
+<section class="section home-faq" aria-labelledby="faq-title" data-keep>
+  <div class="wrap">
+    <div class="section-head"><h2 id="faq-title">Questions people ask</h2></div>
+    <div class="faq">
+      <details>
+        <summary>What is Kinsley Deals?</summary>
+        <p>A coupon site for supplement and wellness brands like Heights, MaryRuth's, BodyBio and AVEA. Every store here shows its current discount code, and most brands have a guide to the cheapest way to buy and a review.</p>
+      </details>
+      <details>
+        <summary>How do I use a discount code from Kinsley Deals?</summary>
+        <p>Select Show code on a store. The code is copied for you and the store opens. Add what you want to your cart, paste the code in the discount code box at checkout and check the total before you pay.</p>
+      </details>
+      <details>
+        <summary>Do I pay anything to use the codes?</summary>
+        <p>No. The codes are free to use. When you buy through our links, the store may pay us a commission, at no extra cost to you. Read our <a href="disclaimer.html">affiliate disclosure</a>.</p>
+      </details>
+      <details>
+        <summary>How often are the codes updated?</summary>
+        <p>When a brand gives us a new code, it shows on the site straight away, and we check every store page regularly.</p>
+      </details>
+      <details>
+        <summary>Why isn&#39;t a discount code working?</summary>
+        <p>Check that you typed it exactly, with no spaces, and remove any other code: most stores accept one per order. Items that are already on sale may not take an extra code, so compare the totals and keep the lower one. Each brand's guide has more tips.</p>
+      </details>
+      <details>
+        <summary>Can I use a code on a subscription?</summary>
+        <p>It depends on the brand's rules at checkout. Many brands already take 10% to 25% off a subscription, so our guides show both prices side by side.</p>
+      </details>
+      <details>
+        <summary>Are the brand reviews based on our own tests?</summary>
+        <p>No. Our reviews bring together each brand's own product facts, public ratings such as Trustpilot and its buying terms, with the date we checked them. We don't make health claims.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<!-- /faq -->
 </main>
 <div id="footer"></div>
 <script src="env.js"></script>
@@ -59,6 +160,6 @@
 <script src="assets/snapshot.js"></script>
 <script src="assets/sheet.js?v=16"></script>
 <script src="assets/posts.js?v=17"></script>
-<script src="assets/app.js?v=16"></script>
+<script src="assets/app.js?v=17"></script>
 </body>
 </html>
