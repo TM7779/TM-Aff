@@ -324,6 +324,20 @@ const POSTS = [
     minutes: 4,
   },
   {
+    slug: "jlm-marine-discount-code",
+    url: "saving-tips-jlm-marine-discount-code.html",
+    title: "JLM Marine Discount Code: 8% Off Outboard and Boat Engine Parts",
+    excerpt:
+      "Code PHAN takes 8% off at JLM Marine. What its best-selling water pump impeller kits and fuel pump kit cost with it, plus free shipping and the return rules.",
+    image: "https://cdn.shopify.com/s/files/1/0885/0433/6697/files/QM-5001594_09d0246f-9db3-4c70-9032-d87fad59bb0c.png?v=1762188886",
+    imageAlt: "JLM Marine water pump impeller repair kit for Johnson and Evinrude 90-225 HP outboards",
+    focus: "center 50%",
+    category: "coupon-guides",
+    store: "jlmmarine",
+    date: "2026-11-04",
+    minutes: 5,
+  },
+  {
     slug: "heights-on-a-budget",
     url: "saving-tips-heights-on-a-budget.html",
     title: "Heights on a Budget: What to Buy First and What It Costs per Day",
@@ -644,5 +658,19 @@ const POSTS = [
     store: "jessupbeauty",
     date: "2026-11-03",
     minutes: 4,
+  },
+  {
+    slug: "jlm-marine-review",
+    url: "saving-tips-jlm-marine-review.html",
+    title: "JLM Marine Reviews: Is JLM Marine Legit, and Are Its Boat Parts Worth It?",
+    excerpt:
+      "Is JLM Marine legit? What the Shanghai boat parts maker sells, its product ratings, the strict return rules, and who its aftermarket parts suit.",
+    image: "https://cdn.shopify.com/s/files/1/0885/0433/6697/files/18KO001OC_a563738c-9a1c-4f02-a58a-3c5941c2cdaa.png?v=1762053393",
+    imageAlt: "JLM Marine water pump impeller kit for Johnson and Evinrude 9.9 and 15 HP outboards",
+    focus: "center 50%",
+    category: "reviews",
+    store: "jlmmarine",
+    date: "2026-11-04",
+    minutes: 5,
   },
 ];
