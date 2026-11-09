@@ -478,6 +478,20 @@ const POSTS = [
     minutes: 4,
   },
   {
+    slug: "fosi-audio-v3-vs-za3",
+    url: "saving-tips-fosi-audio-v3-vs-za3.html",
+    title: "Fosi Audio V3 vs ZA3 vs V3 Mono: Which Amp Should You Buy?",
+    excerpt:
+      "Fosi Audio V3, ZA3 or V3 Mono? The specs side by side, what each setup costs with the code, and which one suits your speakers and sources.",
+    image: "https://cdn.shopify.com/s/files/1/2251/7913/files/ZA3_346b5d67-3948-4455-ad62-0c8ce823f058.png?v=1788947528",
+    imageAlt: "The Fosi Audio ZA3 amplifier with its copper-colored volume knob and side vents",
+    focus: "center 62%",
+    category: "buying-guides",
+    store: "fosiaudio",
+    date: "2026-11-09",
+    minutes: 6,
+  },
+  {
     slug: "heights-on-a-budget",
     url: "saving-tips-heights-on-a-budget.html",
     title: "Heights on a Budget: What to Buy First and What It Costs per Day",
