@@ -1,0 +1,123 @@
+{
+  "type": "guide",
+  "store": "palmpals",
+  "slug": "palm-pals",
+  "brand": "Palm Pals",
+  "date": "2026-11-09",
+  "title": "Palm Pals Discount Code: 5% Off Small Plush Toys",
+  "title_tag": "Palm Pals Discount Code 2026: 5% Off | Kinsley Deals",
+  "description": "Palm Pals discount code {code} takes 5% off small plush toys. What Tenderheart Bear, Good Luck Bear cost with the code, plus shipping and returns.",
+  "excerpt": "Code {code} takes 5% off at Palm Pals. What the best sellers cost with it, other ways to pay less, and the shipping and return rules.",
+  "image": "https://cdn.shopify.com/s/files/1/0565/7578/7180/files/42005.jpg?v=1792256847",
+  "image_alt": "The Tenderheart Bear Care Bears plush from Palm Pals",
+  "focus": "center 50%",
+  "lede": "Use the Palm Pals discount code {code} for {pct} off at {shop:palmpals.com}, the brand of palm-sized plush characters, including its licensed Care Bears collection by Aurora. Here's what the best sellers cost with the code, and how to pay less.",
+  "cart_tip": "Palm Pals are small, palm-sized plush toys, so check the size on the product page if you're buying a gift.",
+  "sections": [
+    {
+      "h2": "Palm Pals prices with the code",
+      "parts": [
+        {
+          "table": {
+            "head": [
+              "Product",
+              "Price",
+              "With 5% off"
+            ],
+            "rows": [
+              [
+                "Tenderheart Bear",
+                "$12.79",
+                "$12.15"
+              ],
+              [
+                "Good Luck Bear",
+                "$12.79",
+                "$12.15"
+              ],
+              [
+                "Funshine Bear",
+                "$12.79",
+                "$12.15"
+              ],
+              [
+                "Clover Bunny",
+                "$11.99",
+                "$11.39"
+              ]
+            ]
+          }
+        },
+        {
+          "small": "Prices in US dollars, checked on November 9, 2026. The price with the code assumes the code applies to that item."
+        }
+      ]
+    },
+    {
+      "h2": "1. Buy three to reach free shipping",
+      "parts": [
+        "The shipping policy offers free shipping over $35. Three Care Bears cost $38.37, or $36.45 with {pct} off, so a three-bear order stays over the limit if it counts the discounted total."
+      ]
+    },
+    {
+      "h2": "2. Mix in the cheaper characters",
+      "parts": [
+        "Clover Bunny was $11.99, against $12.79 for the licensed Care Bears. Prices change by character, so compare before you fill the cart."
+      ]
+    },
+    {
+      "h2": "3. Gift cards don't need a guess",
+      "parts": [
+        "If you can't pick a character, gift cards ran from $10 to $100. A code may not apply to a gift card."
+      ]
+    },
+    {
+      "h2": "Shipping and returns",
+      "parts": [
+        "Palm Pals aims to process orders within 3 business days, and standard US shipping is estimated at 4 to 9 business days. Orders can't be canceled once placed, so check your cart carefully. Most new, unopened items can be returned within 30 days. Original and return shipping aren't refunded unless the mistake was theirs."
+      ]
+    }
+  ],
+  "faq": [
+    [
+      "Is there a Palm Pals discount code?",
+      "Yes. Code {code} takes {pct} off at palmpals.com. Check the total at checkout before you pay."
+    ],
+    [
+      "Is there a Palm Pals promo code or coupon code?",
+      "Yes. For Palm Pals, a promo code, a coupon code and a discount code are the same thing: {code} takes {pct} off. People also search for it as Aurora Palm Pals, and it's the same code."
+    ],
+    [
+      "Does Palm Pals offer free shipping?",
+      "Yes, on orders over $35, according to its shipping policy. Standard delivery is estimated at 4 to 9 business days."
+    ],
+    [
+      "What is the Palm Pals return policy?",
+      "Most new, unopened items can be returned within 30 days. You pay return shipping unless the mistake was theirs, and refunds take 5 to 10 business days."
+    ],
+    [
+      "How much is the Palm Pals Tenderheart Bear?",
+      "$12.79, or $12.15 with code {code} if it applies to that item."
+    ],
+    [
+      "How much is the Palm Pals Good Luck Bear?",
+      "$12.79, or $12.15 with code {code} if it applies to that item."
+    ],
+    [
+      "How much is the Palm Pals Funshine Bear?",
+      "$12.79, or $12.15 with code {code} if it applies to that item."
+    ],
+    [
+      "How much is the Palm Pals Clover Bunny?",
+      "$11.99, or $11.39 with code {code} if it applies to that item."
+    ],
+    [
+      "Can I cancel a Palm Pals order?",
+      "No. The policy says orders can't be canceled once submitted, so check your cart before you pay."
+    ],
+    [
+      "Why isn't my Palm Pals discount code working?",
+      "Type {code} exactly, with no spaces, and remove any other code, because most stores accept one per order. Items on sale may not take it. We list the current code on our <a href=\"store.html?s=palmpals\">Palm Pals coupon page</a>."
+    ]
+  ]
+}
