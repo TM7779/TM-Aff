@@ -1,0 +1,123 @@
+{
+  "type": "guide",
+  "store": "meross",
+  "slug": "meross",
+  "brand": "Meross",
+  "date": "2026-11-09",
+  "title": "Meross Discount Code: 8% Off Smart Home Devices",
+  "title_tag": "Meross Discount Code 2026: 8% Off | Kinsley Deals",
+  "description": "Meross discount code {code} takes 8% off smart home devices. What Smart Garage Door Opener MSG100, Smart Garage Door Opener MSG200HK cost with the code, plus shipping and returns.",
+  "excerpt": "Code {code} takes 8% off at Meross. What the best sellers cost with it, other ways to pay less, and the shipping and return rules.",
+  "image": "https://cdn.shopify.com/s/files/1/0488/4289/9612/products/MSG100.jpg?v=1762132530",
+  "image_alt": "The Meross MSG100 smart garage door opener",
+  "focus": "center 50%",
+  "lede": "Use the Meross discount code {code} for {pct} off at {shop:shop.meross.com}, the smart home brand known for garage door openers, sensors and plugs that work with Apple Home, Alexa and Google. Here's what the best sellers cost with the code, and how to pay less.",
+  "cart_tip": "Pick your plug or region version on the product page. The US garage door openers cost $10 less than the EU, UK and AU versions.",
+  "sections": [
+    {
+      "h2": "Meross prices with the code",
+      "parts": [
+        {
+          "table": {
+            "head": [
+              "Product",
+              "Price",
+              "With 8% off"
+            ],
+            "rows": [
+              [
+                "Smart Garage Door Opener MSG100 (US)",
+                "$49.99",
+                "$45.99"
+              ],
+              [
+                "Smart Garage Door Opener MSG200HK (US)",
+                "$69.99",
+                "$64.39"
+              ],
+              [
+                "Matter Smart Presence Sensor MS600",
+                "$40.99",
+                "$37.71"
+              ],
+              [
+                "Smart Smoke Alarm Starter Kit MA151H (US)",
+                "$44.99",
+                "$41.39"
+              ]
+            ]
+          }
+        },
+        {
+          "small": "Prices in US dollars, checked on November 9, 2026. The price with the code assumes the code applies to that item."
+        }
+      ]
+    },
+    {
+      "h2": "1. Compare with the first-order code",
+      "parts": [
+        "The Meross site advertises code Welcome for 5% off a first order. Our code takes {pct} off, which saves more, so use {code} unless the Meross site shows a bigger offer at checkout."
+      ]
+    },
+    {
+      "h2": "2. Shipping is already free",
+      "parts": [
+        "Meross says it ships all orders free, so you don't need to reach a minimum and the discount is your full saving."
+      ]
+    },
+    {
+      "h2": "3. Choose the right version the first time",
+      "parts": [
+        "Some Meross devices need a hub, such as the smoke alarm, which needs the Matter Smart Hub. The starter kit at $44.99 includes one alarm and the hub, so check that before you buy a device on its own."
+      ]
+    },
+    {
+      "h2": "Shipping and returns",
+      "parts": [
+        "In the US, Canada and Australia, Meross ships through Amazon's logistics and quotes 3 to 5 business days; other countries take 7 to 14 days. Undamaged products with all accessories and original packaging can be refunded within 45 days. You pay return shipping unless it's a quality problem. Meross says it doesn't refund or replace lost or missing packages, so watch your tracking."
+      ]
+    }
+  ],
+  "faq": [
+    [
+      "Is there a Meross discount code?",
+      "Yes. Code {code} takes {pct} off at shop.meross.com. Check the total at checkout before you pay."
+    ],
+    [
+      "Is there a Meross promo code or coupon code?",
+      "Yes. For Meross, a promo code, a coupon code and a discount code are the same thing: {code} takes {pct} off. People also search for it as Meross smart home or Meross smarthome, and it's the same code."
+    ],
+    [
+      "Does Meross offer free shipping?",
+      "Yes. Meross says it ships all orders free. Delivery takes 3 to 5 business days in the US, Canada and Australia, and 7 to 14 days elsewhere."
+    ],
+    [
+      "What is Meross's return policy?",
+      "Undamaged products with all accessories and original packaging can be refunded within 45 days. You pay return shipping unless the problem is with quality."
+    ],
+    [
+      "How much is the Meross Smart Garage Door Opener MSG100?",
+      "$49.99, or $45.99 with code {code} if it applies to that item."
+    ],
+    [
+      "How much is the Meross Smart Garage Door Opener MSG200HK?",
+      "$69.99, or $64.39 with code {code} if it applies to that item."
+    ],
+    [
+      "How much is the Meross Matter Smart Presence Sensor MS600?",
+      "$40.99, or $37.71 with code {code} if it applies to that item."
+    ],
+    [
+      "How much is the Meross Smart Smoke Alarm Starter Kit MA151H?",
+      "$44.99, or $41.39 with code {code} if it applies to that item."
+    ],
+    [
+      "Is the Meross Welcome code better?",
+      "Welcome gives 5% off a first order, according to the Meross site. Code {code} gives {pct} off, so it saves more on the same cart."
+    ],
+    [
+      "Why isn't my Meross discount code working?",
+      "Type {code} exactly, with no spaces, and remove any other code, because most stores accept one per order. Items on sale may not take it. We list the current code on our <a href=\"store.html?s=meross\">Meross coupon page</a>."
+    ]
+  ]
+}
