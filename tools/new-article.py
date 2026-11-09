@@ -31,8 +31,8 @@ Spec (see tools/article-examples/ for a full guide and review):
   faq           about 10 [question, answer] pairs
   trustpilot    review only: the Trustpilot domain (as in trustpilot.com/review/<domain>), or null
   sources       optional extra [url, title, what it was used for] lists
-In any text, {code} and {pct} become the live code and discount, and {shop:Some text} a link to
-the store through its affiliate link. A bare & is fine. Never link to the store any other way.
+In any text, {code} and {pct} become the live code and discount, [Some text](saving-tips-x.html)
+a link to another article, and {shop:Some text} a link to the store through its affiliate link. A bare & is fine. Never link to the store any other way.
 """
 
 import datetime
@@ -114,12 +114,14 @@ class Writer:
         s = amp(s)
         s = s.replace("{code}", f'<strong data-code="{st}">{esc(self.code)}</strong>')
         s = s.replace("{pct}", f'<span data-discount="{st}">{esc(self.pct)}</span>')
+        s = re.sub(r"\[([^\]\n]+)\]\((saving-tips-[^)\s]+\.html)\)", r'<a href="\2">\1</a>', s)
         return re.sub(r"\{shop:([^}]+)\}",
                       lambda m: f'<a data-shop="{st}" href="{esc(self.aff)}" target="_blank" rel="sponsored nofollow noopener">{m.group(1)}</a>', s)
 
     def plain(self, s):
         """The text as the page shows it, for meta tags and search data."""
         s = s.replace("{code}", self.code).replace("{pct}", self.pct)
+        s = re.sub(r"\[([^\]\n]+)\]\((saving-tips-[^)\s]+\.html)\)", r"\1", s)
         return re.sub(r"\{shop:([^}]+)\}", r"\1", s)
 
     def part(self, p):
