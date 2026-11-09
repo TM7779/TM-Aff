@@ -162,6 +162,56 @@ const BEST_SELLERS = {
     { name: "Water Pump Impeller Kit for Johnson/Evinrude 9.9/15 HP", url: "https://jlmmarine.com/products/water-pump-impeller-kit-fits-johnson-evinrude-9-9-15-hp-replaces-394711-18-3327", image: SHOPIFY_CDN + "0885/0433/6697/files/18KO001OC_a563738c-9a1c-4f02-a58a-3c5941c2cdaa.png" },
     { name: "VRO Fuel Pump Replacement Kit for Johnson/Evinrude 90-115 HP", url: "https://jlmmarine.com/products/vro-fuel-pump-replacement-kit-fits-johnson-evinrude-60-v4-90-115-hp-replaces-5007420", image: SHOPIFY_CDN + "0885/0433/6697/files/V7-29O8-KUMO_a40b2f20-44e5-4d7a-8138-fbaa690f653d.png" },
   ],
+  "tomtoc.com": [
+    { name: "Defender-A14 Laptop Briefcase", url: "https://www.tomtoc.com/products/defender-a14-laptop-briefcase-for-14-inch-macbook-pro", image: SHOPIFY_CDN + "0256/7979/0179/files/laptop_A14_bf8f037a-ba4d-49e7-97d2-5a457e787585.jpg" },
+    { name: "Defender-A17 Laptop Handbag", url: "https://www.tomtoc.com/products/defender-a17-laptop-handbag-for-14-inch-macbook-pro", image: SHOPIFY_CDN + "0256/7979/0179/files/laptop_A17.jpg" },
+    { name: "Navigator-T66 Travel Backpack 40L", url: "https://www.tomtoc.com/products/40l-travel-backpack-carry-on", image: SHOPIFY_CDN + "0256/7979/0179/files/20251212-102147.jpg" },
+  ],
+  "meross.com": [
+    { name: "Smart Garage Door Opener MSG100", url: "https://shop.meross.com/products/smart-wifi-garage-door-opener", image: SHOPIFY_CDN + "0488/4289/9612/products/MSG100.jpg" },
+    { name: "Smart Garage Door Opener MSG200HK", url: "https://shop.meross.com/products/smart-garage-door-opener", image: SHOPIFY_CDN + "0488/4289/9612/products/1_4561a7ed-4f3f-4aaf-9dc2-8ce2a253fc5f.jpg" },
+    { name: "Matter Smart Presence Sensor MS600", url: "https://shop.meross.com/products/smart-presence-sensor-ms600", image: SHOPIFY_CDN + "0488/4289/9612/files/Untitleddesign_53c9fd08-ba88-482b-9330-a621eb904039.png" },
+  ],
+  "mellif-tools.com": [
+    { name: "Air Duster MFAD001", url: "https://mellif-tools.com/products/mellif-air-duster-blower-inflator-compatible-with-dewalt-20v-battery-pump", image: SHOPIFY_CDN + "0575/3893/7021/files/01_392388fd-7f89-458b-975a-9d7b5a6aedbf.jpg" },
+    { name: "20V 720GPH Stick Pump", url: "https://mellif-tools.com/products/mellif-stick-pump-compatible-with-dewalt-20v-battery", image: SHOPIFY_CDN + "0575/3893/7021/files/x___02.jpg" },
+    { name: "Cordless Snow Shovel", url: "https://mellif-tools.com/products/mellif-for-dewalt-cordless-snow-shovel-20v-2-battery-brushless-electric-power-snow-thrower-handheld-snow-blower-with-13-2-in", image: SHOPIFY_CDN + "0575/3893/7021/files/01_e0b5bff0-6227-4756-8018-bf48da0214ef.jpg" },
+  ],
+  "atk.store": [
+    { name: "RS6 V2 Hall Effect Keyboard", url: "https://www.atk.store/products/atk-rs6-v2-aluminum-hall-effect-gaming-keyboard", image: SHOPIFY_CDN + "0691/4942/5882/files/658baabe15b30353f6c8386a00a112e1.jpg" },
+    { name: "RS8 Series Gaming Keyboard", url: "https://www.atk.store/products/atk-rs8-series-high-performance-gaming-keyboard", image: SHOPIFY_CDN + "0691/4942/5882/files/NEO_78acac7d-19d5-4e5b-8e2c-07627d377b3b.jpg" },
+    { name: "Blazing Sky ZERO Wireless Mouse", url: "https://www.atk.store/products/atk-blazing-sky-zero-ultralight-wireless-gaming-mouse", image: SHOPIFY_CDN + "0691/4942/5882/files/1018eb4b165c295a804b3a2290659823.jpg" },
+  ],
+  "quntis.com": [
+    { name: "Monitor Light Bar Focus 20.1-inch", url: "https://www.quntis.com/products/monitor-light-bar-pro-with-remote-control-eye-care-technology-computer-monitor-lamp-with-auto-dimming-no-screen-glare", image: SHOPIFY_CDN + "0151/6932/3072/files/61rp_9wgQLL._AC_SL1500.jpg" },
+    { name: "Foldable Desk Lamp Studio 32.3-inch", url: "https://www.quntis.com/products/quntis-luxury-3-segment-foldable-dual-control-radar-sensor-smart-monitor-light-bar-multi-scene-eye-care-desk-lamp", image: SHOPIFY_CDN + "0151/6932/3072/files/20260506-094522.jpg" },
+    { name: "Curved Monitor Light Bar IM 26-inch", url: "https://www.quntis.com/products/quntis-foldable-dual-head-led-monitor-light-bar-wide-angle-screen-lamp-for-curved-monitors-with-rgb-backlight-remote-control-eye-care-design", image: SHOPIFY_CDN + "0151/6932/3072/files/2218.jpg" },
+  ],
+  "amandean.com": [
+    { name: "Premium Marine Collagen Powder 17.6 oz", url: "https://www.amandean.com/products/premium-anti-aging-marine-collagen-powder-17-6-oz-wild-caught-hydrolyzed-fish-collagen-peptides-type-1-3-collagen-protein-supplement-amino-acids-for-skin-hair-nails-paleo-friendly-non-gmo", image: SHOPIFY_CDN + "1397/2505/files/MC_500g.png" },
+    { name: "Premium Grass Fed Collagen Peptides 1 kg", url: "https://www.amandean.com/products/premium-grass-fed-collagen-peptides-1kg", image: SHOPIFY_CDN + "1397/2505/products/amandean_collagen_peptides_1kg.png" },
+    { name: "Premium Grass-Fed Gelatin Powder 1 kg", url: "https://www.amandean.com/products/premium-grass-fed-beef-gelatin-large-2-2lbs-unflavored-pure-collagen-protein-powder-healthy-paleo-baking-and-cooking", image: SHOPIFY_CDN + "1397/2505/products/gelatinpowder_Amandean.png" },
+  ],
+  "tidradio.com": [
+    { name: "TD-H9 10W Bluetooth Radio", url: "https://tidradio.com/products/td-h9-10w-bluetooth-aprs-radio-handheld", image: SHOPIFY_CDN + "0096/6479/0607/files/TIDRADIO-Orange-TD-H9-10W-APRS-GPS-UHF-VHF-AM-FM-Handheld-Radio-Wireless-Programming-SMS-Text-HA_8368_1.jpg" },
+    { name: "TD-H8 10W Ham GMRS Radio", url: "https://tidradio.com/products/4th-gen-td-h8-10w-ham-gmrs-radio-handheld-8-band-with-sms-am-fm-reception-dtmf-vox-scan", image: SHOPIFY_CDN + "0096/6479/0607/files/TIDRADIO_4th_Gen_TD-H8_Ham_GMRS_Radio_Handheld_Bluetooth-Headphone-connectable_AM_FM_UHF_VHF_NOAA_SMS.webp" },
+    { name: "TD-H3 Plus 5W Radio", url: "https://tidradio.com/products/h3-plus-5w-ham-gmrs-bluetooth-radio", image: SHOPIFY_CDN + "0096/6479/0607/files/H3-Plus_10W_Ham_GMRS_Handheld_Radio_Unlocked_APRS_GPS_Tracker_Spectrum_Analyzer_128MB_Large_Memory_SMS_Texting_Customizable_Screen_Global_Repeater_Compatible_Bluetooth_AM_Airband_Programmable_Long-Range_Upgradable_Firmwar.jpg" },
+  ],
+  "palmpals.com": [
+    { name: "Tenderheart Bear", url: "https://palmpals.com/products/tenderheart-bear", image: SHOPIFY_CDN + "0565/7578/7180/files/42005.jpg" },
+    { name: "Good Luck Bear", url: "https://palmpals.com/products/good-luck-bear", image: SHOPIFY_CDN + "0565/7578/7180/files/42004.jpg" },
+    { name: "Funshine Bear", url: "https://palmpals.com/products/funshine-bear", image: SHOPIFY_CDN + "0565/7578/7180/files/42003.jpg" },
+  ],
+  "grecell.com": [
+    { name: "Portable Power Station 240W", url: "https://grecell.com/products/portable-power-station-240w", image: SHOPIFY_CDN + "0284/7306/5544/files/screenshot_2026-09-15_10-26-59.png" },
+    { name: "Portable Power Station 300W", url: "https://grecell.com/products/power-station-300w", image: SHOPIFY_CDN + "0284/7306/5544/files/GC-T300S.jpg" },
+    { name: "Portable Power Station 1000W", url: "https://grecell.com/products/portable-power-station-1000w", image: SHOPIFY_CDN + "0284/7306/5544/files/t1000-gc2_2.jpg" },
+  ],
+  "barriorzz.com": [
+    { name: "Dip Belt Pro", url: "https://barriorzz.com/products/weighted-dip-belt-for-calisthenics", image: SHOPIFY_CDN + "0655/9740/7499/files/Dip_Belt_Pro.png" },
+    { name: "Athlete Ring Set", url: "https://barriorzz.com/products/athlete-workout-rings-set", image: SHOPIFY_CDN + "0655/9740/7499/files/Athlete_Rings_Set.png" },
+    { name: "Wrist Wraps", url: "https://barriorzz.com/products/wrist-wraps-for-calisthenics", image: SHOPIFY_CDN + "0655/9740/7499/files/Wrist_Wraps.png" },
+  ],
 };
 
 /*
