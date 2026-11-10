@@ -478,6 +478,20 @@ const POSTS = [
     minutes: 4,
   },
   {
+    slug: "tidradio-h3-plus-vs-h8-vs-h9",
+    url: "saving-tips-tidradio-h3-plus-vs-h8-vs-h9.html",
+    title: "TIDRADIO H3 Plus vs H8 vs H9: Which Radio Should You Buy?",
+    excerpt:
+      "TIDRADIO H3 Plus, H8 or H9? Power, Bluetooth, APRS and GPS side by side, what each costs with the code, and which one suits your first radio.",
+    image: "https://cdn.shopify.com/s/files/1/0096/6479/0607/files/TIDRADIO-Orange-TD-H9-10W-APRS-GPS-UHF-VHF-AM-FM-Handheld-Radio-Wireless-Programming-SMS-Text-HA_8368_1.jpg?v=1775209677",
+    imageAlt: "An orange TIDRADIO TD-H9 handheld radio with its APRS and GPS screen showing speed, distance and coordinates",
+    focus: "center 30%",
+    category: "buying-guides",
+    store: "tidradio",
+    date: "2026-11-10",
+    minutes: 6,
+  },
+  {
     slug: "fosi-audio-v3-vs-za3",
     url: "saving-tips-fosi-audio-v3-vs-za3.html",
     title: "Fosi Audio V3 vs ZA3 vs V3 Mono: Which Amp Should You Buy?",
