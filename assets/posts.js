@@ -492,6 +492,20 @@ const POSTS = [
     minutes: 5,
   },
   {
+    slug: "babyquip-discount-code",
+    url: "saving-tips-babyquip-discount-code.html",
+    title: "BabyQuip Promo Code: 5% Off Baby Gear Rentals, Plus 4 Ways to Pay Less",
+    excerpt:
+      "Code JAMESWICKENDEN takes 5% off at BabyQuip. What cribs, strollers and car seats cost to rent, the fees on top, the automatic discounts for longer trips and the cancellation rules.",
+    image: "https://d28w2s5u3j4b6n.cloudfront.net/baby_quip_modern/img/img-home-section2.png",
+    imageAlt: "A mother sitting with her two young children and a rainbow suitcase while traveling",
+    focus: "center 45%",
+    category: "coupon-guides",
+    store: "babyquip",
+    date: "2026-11-11",
+    minutes: 7,
+  },
+  {
     slug: "epomaker-discount-code",
     url: "saving-tips-epomaker-discount-code.html",
     title: "EPOMAKER Discount Code: 5% Off Mechanical and Hall Effect Keyboards",
@@ -1064,6 +1078,20 @@ const POSTS = [
     store: "elevatedfaith",
     date: "2026-11-11",
     minutes: 5,
+  },
+  {
+    slug: "babyquip-review",
+    url: "saving-tips-babyquip-review.html",
+    title: "BabyQuip Reviews: Is BabyQuip Legit for Baby Gear Rentals?",
+    excerpt:
+      "Is BabyQuip legit? How the baby gear rental marketplace works, what its app and Trustpilot ratings say, the complaints worth knowing, and what it costs.",
+    image: "https://d28w2s5u3j4b6n.cloudfront.net/baby_quip_modern/img/img-home-section2.png",
+    imageAlt: "A mother sitting with her two young children and a rainbow suitcase while traveling",
+    focus: "center 45%",
+    category: "reviews",
+    store: "babyquip",
+    date: "2026-11-11",
+    minutes: 7,
   },
   {
     slug: "epomaker-review",
