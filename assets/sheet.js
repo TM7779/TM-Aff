@@ -92,11 +92,11 @@
   }
   const siteOf = (host) => host.replace(/^www\./, "").split(".").slice(-2).join(".");
 
-  // "www.maryruthorganics.com" -> "Maryruthorganics"
+  // "www.maryruthorganics.com" -> "Maryruthorganics", "eu.topdon.com" -> "Topdon"
   function nameFromLink(link) {
     const u = toURL(link);
     if (!u) return "";
-    const label = u.hostname.replace(/^(www|shop|store)\./, "").split(".")[0];
+    const label = u.hostname.replace(/^(www|shop|store|eu|us|uk|ca|au)\./, "").split(".")[0];
     return label.charAt(0).toUpperCase() + label.slice(1);
   }
 

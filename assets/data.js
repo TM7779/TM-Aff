@@ -162,6 +162,11 @@ const BEST_SELLERS = {
     { name: "Water Pump Impeller Kit for Johnson/Evinrude 9.9/15 HP", url: "https://jlmmarine.com/products/water-pump-impeller-kit-fits-johnson-evinrude-9-9-15-hp-replaces-394711-18-3327", image: SHOPIFY_CDN + "0885/0433/6697/files/18KO001OC_a563738c-9a1c-4f02-a58a-3c5941c2cdaa.png" },
     { name: "VRO Fuel Pump Replacement Kit for Johnson/Evinrude 90-115 HP", url: "https://jlmmarine.com/products/vro-fuel-pump-replacement-kit-fits-johnson-evinrude-60-v4-90-115-hp-replaces-5007420", image: SHOPIFY_CDN + "0885/0433/6697/files/V7-29O8-KUMO_a40b2f20-44e5-4d7a-8138-fbaa690f653d.png" },
   ],
+  "elevatedfaith.com": [
+    { name: "WWJD Bracelet", url: "https://elevatedfaith.com/products/wwjd-bracelet", image: SHOPIFY_CDN + "0956/3508/products/wwjd-bracelet-christian-bracelet-31577497370775.jpg" },
+    { name: "Highs and Lows Ring", url: "https://elevatedfaith.com/products/highs-and-lows-ring", image: SHOPIFY_CDN + "0956/3508/products/highs-and-lows-ring-christian-ring-31593315139735.png" },
+    { name: "Child of God Unisex Hoodie", url: "https://elevatedfaith.com/products/child-of-god-unisex-hoodie", image: SHOPIFY_CDN + "0956/3508/products/Child-of-God-Unisex-Hoodie_01.jpg" },
+  ],
   "tomtoc.com": [
     { name: "Defender-A14 Laptop Briefcase", url: "https://www.tomtoc.com/products/defender-a14-laptop-briefcase-for-14-inch-macbook-pro", image: SHOPIFY_CDN + "0256/7979/0179/files/laptop_A14_bf8f037a-ba4d-49e7-97d2-5a457e787585.jpg" },
     { name: "Defender-A17 Laptop Handbag", url: "https://www.tomtoc.com/products/defender-a17-laptop-handbag-for-14-inch-macbook-pro", image: SHOPIFY_CDN + "0256/7979/0179/files/laptop_A17.jpg" },

@@ -478,6 +478,20 @@ const POSTS = [
     minutes: 4,
   },
   {
+    slug: "elevated-faith-discount-code",
+    url: "saving-tips-elevated-faith-discount-code.html",
+    title: "Elevated Faith Discount Code: 10% Off Christian Bracelets, Rings and Hoodies",
+    excerpt:
+      "Code JWickenden15 takes 10% off at Elevated Faith. What the WWJD Bracelet, Highs and Lows Ring and Child of God Hoodie cost with it, free shipping over $100, and what can't be returned.",
+    image: "https://cdn.shopify.com/s/files/1/0956/3508/products/Child-of-God-Unisex-Hoodie_01.jpg?v=1769189435",
+    imageAlt: "The Child of God Unisex Hoodie from Elevated Faith",
+    focus: "center 30%",
+    category: "coupon-guides",
+    store: "elevatedfaith",
+    date: "2026-11-11",
+    minutes: 5,
+  },
+  {
     slug: "tomtoc-a14-vs-a17-vs-a42",
     url: "saving-tips-tomtoc-a14-vs-a17-vs-a42.html",
     title: "tomtoc Defender A14 vs A17 vs A42: Which Laptop Bag Should You Buy?",
@@ -994,5 +1008,19 @@ const POSTS = [
     store: "barriorzz",
     date: "2026-11-09",
     minutes: 4,
+  },
+  {
+    slug: "elevated-faith-review",
+    url: "saving-tips-elevated-faith-review.html",
+    title: "Elevated Faith Reviews: Is Elevated Faith Legit?",
+    excerpt:
+      "Is Elevated Faith legit? A Wisconsin Christian apparel brand founded in 2015, with 4.8 to 4.9 star best sellers and a 4.6 Trustpilot score. Complaints, returns and who it suits.",
+    image: "https://cdn.shopify.com/s/files/1/0956/3508/products/highs-and-lows-ring-christian-ring-31593315139735.png?v=1762198964",
+    imageAlt: "The Highs and Lows Ring from Elevated Faith",
+    focus: "center 50%",
+    category: "reviews",
+    store: "elevatedfaith",
+    date: "2026-11-11",
+    minutes: 5,
   },
 ];
