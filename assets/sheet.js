@@ -203,7 +203,7 @@
             categoryFixed: Boolean(fixed.category),
             url: k.url || "",
             website: "",
-            logo: k.logo || "",
+            logo: fixed.logo || k.logo || "",
             color: k.color || PALETTE[stores.length % PALETTE.length],
             cover: k.cover || "",
             coverZoom: k.coverZoom,

@@ -321,7 +321,8 @@ const CATEGORIES = [
  * How each store shows on the site, by its slug (the part after store.html?s=). Shopify's own shop
  * name and description are often written for the brand's home page ("Our formulas…", "Official
  * Store"), so each store gets a clean name, a short neutral description and a fixed category here.
- * The sheet's own "Tên cửa hàng" and "Mô tả ngắn" cells still win when anh fills them.
+ * The sheet's own "Tên cửa hàng" and "Mô tả ngắn" cells still win when anh fills them. `logo` is
+ * optional: a clear logo for a store whose site icon is tiny (the sheet's "Link logo" cell still wins).
  * Add a line here for every new store: no health claims, only what the store sells.
  */
 const STORE_INFO = {
@@ -366,7 +367,7 @@ const STORE_INFO = {
   "parfaitlingerie": { name: "Parfait", category: "clothing-accessories", about: "Plus-size lingerie, from 32A to 44G in select styles." },
   "topdon": { name: "TOPDON", category: "electronics", about: "Car diagnostic scanners, battery testers, jump starters and thermal cameras. European store, prices in euros." },
   "telesinstore": { name: "Telesin", category: "electronics", about: "Action camera and phone camera gear: mounts, underwater housings, selfie sticks and lights." },
-  "babyquip": { name: "BabyQuip", category: "toys-kids", about: "Rent baby gear like cribs, car seats and strollers when you travel, delivered and set up for you." },
+  "babyquip": { name: "BabyQuip", category: "toys-kids", logo: "https://d28w2s5u3j4b6n.cloudfront.net/img/BQ_PrimaryCentered_RGB.jpg", about: "Rent baby gear like cribs, car seats and strollers when you travel, delivered and set up for you." },
   "carlinkit": { name: "Carlinkit", category: "electronics", about: "Wireless CarPlay and Android Auto adapters." },
   "mixsoon": { name: "mixsoon", category: "skincare-beauty", about: "Korean skincare essences, serums and toners." },
   "ulanzi": { name: "Ulanzi", category: "electronics", about: "Camera tripods, cages, mounts, lights and other gear for creators." },
