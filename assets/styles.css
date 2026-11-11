@@ -168,14 +168,33 @@ h1, h2, h3 { font-weight: 400; text-wrap: balance; }
 }
 .site-header .search input { border-color: transparent; }
 
+/* The Menu button only shows on phones, where the menu folds away. */
+.nav-toggle {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-left: auto;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.nav-toggle svg { width: 20px; height: 20px; }
+.nav-toggle[aria-expanded="true"] { background: rgba(255, 255, 255, 0.12); }
+
 @media (max-width: 760px) {
-  .header-search { flex: 1 1 100%; margin-left: 0; }
-  .main-nav { order: 3; width: 100%; }
-  .main-nav ul { gap: 0; }
-  .main-nav a { padding: 10px 8px; font-size: 0.9375rem; }
-  /* About and the disclosure are also in the footer; dropping them keeps the menu on one line. */
-  .main-nav .nav-about,
-  .main-nav .nav-disclaimer { display: none; }
+  .site-header .wrap { gap: 10px 16px; min-height: 64px; }
+  .nav-toggle { display: inline-flex; }
+  .header-search { order: 4; flex: 1 1 100%; margin-left: 0; }
+  .main-nav { order: 3; width: 100%; display: none; }
+  .site-header.nav-open .main-nav { display: block; }
+  .main-nav ul { flex-direction: column; gap: 2px; padding-bottom: 6px; }
+  .main-nav a { padding: 12px 12px; font-size: 1rem; }
 }
 
 /* ---------- Home hero ---------- */
@@ -299,6 +318,14 @@ h1, h2, h3 { font-weight: 400; text-wrap: balance; }
   .ticket .amt { font-size: 1.625rem; }
 }
 
+/* On phones the codes come first; while searching, results come straight under the search box. */
+.hero.searching .ticket-fan { display: none; }
+@media (max-width: 560px) {
+  .ticket-fan { display: none; }
+  .hero { padding: 28px 0 8px; }
+  .hero p { font-size: 1.0625rem; margin-bottom: 20px; }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .ticket { animation: deal-in 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
   .ticket:last-child { animation-delay: 120ms; }
@@ -327,6 +354,16 @@ h1, h2, h3 { font-weight: 400; text-wrap: balance; }
 }
 .section-head p { margin: 0; color: var(--ink-soft); }
 .result-note { color: var(--ink-soft); margin: -8px 0 20px; }
+.link-btn {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--focus);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 .chips {
   display: flex;
@@ -1211,9 +1248,111 @@ body.modal-open { overflow: hidden; }
   border-radius: var(--radius-lg);
 }
 .post-offer .who { margin-bottom: 12px; }
-.faq details { border-bottom: 1px solid var(--line); padding: 14px 0; }
-.faq summary { cursor: pointer; font-weight: 700; }
-.faq details p { margin: 10px 0 0; color: var(--ink-soft); }
+
+/* The short code box under an article's headline (data-quick). Before the scripts run it holds a
+   plain sentence with the code; both versions are the same height so nothing moves. */
+.post-quick {
+  min-height: 84px;
+  margin: 20px 0 0;
+  padding: 14px 16px;
+  background: var(--gold-tint);
+  border: 1px dashed var(--gold-line);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+}
+.post-quick > p { margin: 0; color: var(--ink); }
+.post-quick a { color: var(--focus); font-weight: 700; }
+.quick { display: flex; align-items: center; gap: 14px; width: 100%; }
+.quick-text { display: flex; flex-direction: column; gap: 2px; margin: 0; flex: 1; min-width: 0; }
+.quick-text strong { font-family: var(--font-display); font-weight: 400; font-size: 1.375rem; line-height: 1.15; color: var(--gold-ink); }
+.quick-text span { color: var(--ink-soft); font-size: 0.875rem; }
+.quick-action { flex: none; }
+.quick .reveal { min-width: 180px; }
+@media (max-width: 560px) {
+  .quick { flex-wrap: wrap; gap: 10px 12px; }
+  .quick-action { flex-basis: 100%; }
+  .quick .reveal, .quick .btn { width: 100%; }
+}
+
+/* A code in the text copies with a tap. */
+.code-chip {
+  padding: 1px 6px;
+  border: 1px dashed var(--gold-line);
+  border-radius: 6px;
+  background: var(--gold-tint);
+  color: var(--gold-ink);
+  cursor: copy;
+  white-space: nowrap;
+}
+.code-chip::after {
+  content: "";
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  margin-left: 5px;
+  vertical-align: -0.05em;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linejoin='round'%3E%3Crect x='8' y='8' width='13' height='13' rx='2'/%3E%3Cpath d='M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linejoin='round'%3E%3Crect x='8' y='8' width='13' height='13' rx='2'/%3E%3Cpath d='M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.code-chip:hover { border-style: solid; }
+
+/* "See it at the store" buttons for the products an article compares. */
+.post-buy { clear: both; margin: 4px 0 24px; }
+.post-body .post-buy a.btn { color: var(--ink); text-decoration: none; }
+
+/* The code bar at the bottom of an article. */
+.sticky-offer {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  z-index: 20;
+  width: min(720px, calc(100% - 24px));
+  transform: translateX(-50%);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 30px rgba(38, 26, 46, 0.22);
+}
+.sticky-offer[hidden] { display: none; }
+.sticky-inner { display: flex; align-items: center; gap: 12px; padding: 10px 10px 10px 12px; }
+.sticky-inner p { flex: 1; min-width: 0; margin: 0; line-height: 1.25; }
+.sticky-inner p strong { font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; color: var(--gold-ink); }
+.sticky-inner p span { color: var(--ink-soft); font-size: 0.9375rem; }
+.sticky-inner .reveal { min-width: 150px; flex: none; }
+.sticky-close {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.sticky-close svg { width: 16px; height: 16px; }
+@media (max-width: 560px) {
+  .sticky-offer { bottom: 0; width: 100%; border-radius: var(--radius-lg) var(--radius-lg) 0 0; padding-bottom: env(safe-area-inset-bottom); }
+  .sticky-inner { gap: 10px; padding: 10px 8px 10px 12px; }
+  .sticky-inner .logo { display: none; }
+  .sticky-inner .reveal { width: auto; min-width: 160px; flex: none; }
+  .sticky-inner .reveal-label { padding: 0 16px 0 12px; }
+  .sticky-inner p span { display: block; font-size: 0.8125rem; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sticky-offer { animation: bar-in 240ms ease-out both; }
+}
+@keyframes bar-in {
+  from { opacity: 0; translate: 0 16px; }
+  to { opacity: 1; translate: 0 0; }
+}
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { cursor: pointer; font-weight: 700; padding: 12px 0; min-height: 48px; }
+.faq details p { margin: 0 0 14px; color: var(--ink-soft); }
 .faq details a { color: var(--focus); }
 .home-faq .faq { max-width: 760px; }
 
@@ -1276,6 +1415,10 @@ body.modal-open { overflow: hidden; }
   margin: 0;
   padding: 0;
 }
+@media (max-width: 760px) {
+  .site-footer ul { gap: 0 20px; }
+  .site-footer ul a { display: inline-block; padding: 11px 0; }
+}
 .footer-guides {
   flex-basis: 100%;
   padding-top: 20px;
@@ -1301,6 +1444,8 @@ body.modal-open { overflow: hidden; }
   opacity: 1;
   transform: translate(-50%, 0);
 }
+body.has-sticky .toast { bottom: 100px; }
+.toast { z-index: 30; max-width: calc(100% - 32px); text-align: center; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

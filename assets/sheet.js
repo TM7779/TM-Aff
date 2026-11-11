@@ -12,7 +12,7 @@
 (function () {
   // data.js's own stores, kept before app.js swaps STORES for the sheet's list.
   const KNOWN = STORES.slice();
-  const CACHE_KEY = "nb-sheet-stores-v4";
+  const CACHE_KEY = "nb-sheet-stores-v5";
   const PRODUCT_CACHE_KEY = "nb-shopify-v1";
   const META_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
   const DOWN_MAX_AGE = 24 * 60 * 60 * 1000;
@@ -178,6 +178,7 @@
     const pc = productStart >= 0 ? columnsFor(head, PRODUCT_COLUMNS, productStart, head.length) : {};
     const autoLogoCol = head.indexOf(AUTO_LOGO_COLUMN);
     const knownBySlug = new Map(known.map((s) => [s.slug, s]));
+    const info = typeof STORE_INFO === "undefined" ? {} : STORE_INFO;
     const stores = [];
     const bySlug = new Map();
     let current = null;
@@ -192,18 +193,21 @@
         let store = bySlug.get(slug);
         if (!store) {
           const k = knownBySlug.get(slug) || {};
+          // STORE_INFO (data.js) gives the store a clean name, a neutral description and a fixed category.
+          const fixed = info[slug] || {};
           store = {
             slug,
-            name: name || k.name || nameFromLink(url),
-            nameFromLink: !name && !k.name,
-            category: k.category || "",
+            name: name || fixed.name || k.name || nameFromLink(url),
+            nameFromLink: !name && !fixed.name && !k.name,
+            category: fixed.category || k.category || "",
+            categoryFixed: Boolean(fixed.category),
             url: k.url || "",
             website: "",
             logo: k.logo || "",
             color: k.color || PALETTE[stores.length % PALETTE.length],
             cover: k.cover || "",
             coverZoom: k.coverZoom,
-            about: k.about || "",
+            about: fixed.about || k.about || "",
             coupons: [],
             products: [],
             known: k,
@@ -220,7 +224,9 @@
         if (autoLogoCol >= 0 && !store.foundIcon) store.foundIcon = String(row[autoLogoCol] || "").trim();
         if (get("cover")) set("cover", get("cover")) && (store.coverZoom = undefined);
         // "Tự động", empty or an old category name: sorted automatically later.
-        const cat = CATEGORIES.find((c) => norm(c.name) === norm(get("category")) || c.slug === get("category"));
+        const cat = CATEGORIES.find(
+          (c) => norm(c.name) === norm(get("category")) || c.slug === get("category") || (c.aliases || []).includes(get("category"))
+        );
         if (cat && set("category", cat.slug)) store.categoryFixed = true;
         if (norm(get("status")).startsWith("tam dung")) store.paused = true;
         current = store;
@@ -428,14 +434,36 @@
       if (!store.cover) store.cover = (store.products.find((p) => p.image) || {}).image || "";
       const meta = metas.get(store);
       if (store.nameFromLink && meta && meta.name.trim()) store.name = meta.name.trim();
-      if (!store.about) store.about = shortAbout(meta && meta.description) || `Coupon codes and deals for ${store.name}.`;
-      if (!store.categoryFixed) store.category = classify(store, meta) || store.category || CATEGORIES[CATEGORIES.length - 1].slug;
+      // A shop description written in the brand's own voice ("Our formulas…", "We create…") reads as if
+      // the brand wrote this page, so it's only used when it doesn't speak as "we".
+      const shopAbout = shortAbout(meta && meta.description);
+      const firstPerson = /\b([Ww]e|[Ww]e're|[Oo]urs?|us|[Mm]y)\b/.test(shopAbout);
+      if (!store.about) store.about = (!firstPerson && shopAbout) || `Discount codes and deals for ${store.name}, with how to use them.`;
+      // Without the shop description (a slow or blocked meta.json), sorting by keyword has less to go on,
+      // so a store the snapshot already sorted keeps that category instead of jumping to another.
+      const before = !meta && snapshotCategory(store.slug);
+      if (!store.categoryFixed) store.category = before || classify(store, meta) || store.category || CATEGORIES[CATEGORIES.length - 1].slug;
       delete store.nameFromLink;
       delete store.categoryFixed;
     }
   }
 
+  function snapshotCategory(slug) {
+    const snap = window.STORE_SNAPSHOT;
+    const s = snap && snap.stores && snap.stores.find((x) => x.slug === slug);
+    return s && CATEGORIES.some((c) => c.slug === s.category) ? s.category : "";
+  }
+
   /* ---------- Entry points used by app.js ---------- */
+
+  // A product link that keeps the affiliate link's ref (used by articles' "See it at…" buttons).
+  window.withAffiliate = withRef;
+
+  // When the codes on screen were last read from the sheet: this browser's copy or the site's snapshot.
+  window.storesUpdatedAt = function () {
+    const copies = [readCache(CACHE_KEY), window.STORE_SNAPSHOT].filter((c) => c && c.stores && c.stores.length);
+    return copies.reduce((at, c) => Math.max(at, c.at || 0), 0);
+  };
 
   // The newest saved store list: this browser's last load of the sheet, or the snapshot that ships
   // with the site (assets/snapshot.js, made by tools/snapshot.mjs). Null when there's neither.

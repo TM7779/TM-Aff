@@ -28,7 +28,7 @@
 
 const SITE = {
   name: "Kinsley Deals",
-  tagline: "Discount codes for supplement and wellness brands like Heights, MaryRuth's and BodyBio, with guides to pay less on every order.",
+  tagline: "Discount codes for 60+ brands, from supplements and skincare to tech, toys and outdoor gear, with guides to pay less on every order.",
   // Left empty so no email is shown. To show one later, set it here (or CONTACT_EMAIL on Hostinger)
   // and add <a data-site-email href="#"></a> where it should appear.
   email: (window.SITE_ENV && window.SITE_ENV.email) || "",
@@ -241,51 +241,73 @@ const HERO_PICKS = [
 ];
 
 /*
- * Categories, in the order they're shown. A store whose "Ngành hàng" cell in the sheet is empty or
- * "Tự động" is sorted automatically: its name, description, products and Shopify shop description
- * are matched against each category's `words` (plurals count too), and the most matches win.
- * A store with no matches goes to the last category.
+ * Categories, in the order they're shown. Stores listed in STORE_INFO below always go to the
+ * category given there. Any other store whose "Ngành hàng" cell in the sheet is empty or "Tự động"
+ * is sorted automatically: its name, description, products and Shopify shop description are matched
+ * against each category's `words` (plurals count too), and the most matches win. A store with no
+ * matches goes to the last category. `aliases` are old slugs that still open the category.
  */
 const CATEGORIES = [
   {
     slug: "skincare-beauty",
     name: "Skincare & beauty",
-    intro: "Face masks, eye patches, serums and other skincare from independent brands.",
-    words: ["skin", "skincare", "face", "facial", "mask", "serum", "patch", "collagen", "wrinkle", "beauty", "cosmetic",
+    intro: "Face masks, tanning, nails, hair care and makeup tools from independent beauty brands.",
+    words: ["skin", "skincare", "face", "facial", "mask", "serum", "patch", "wrinkle", "beauty", "cosmetic",
       "makeup", "lipstick", "moisturizer", "moisturiser", "acne", "sunscreen", "spf", "nail", "fragrance", "perfume",
-      "hair", "haircare", "shampoo", "conditioner"],
+      "hair", "haircare", "shampoo", "conditioner", "tan", "tanning", "keratin", "essence", "toner"],
   },
   {
     slug: "vitamins-supplements",
-    name: "Vitamins & supplements",
-    intro: "Multivitamins, gummies, prenatal and longevity supplements, plus gut and brain support.",
+    name: "Supplements & wellness",
+    intro: "Multivitamins, gummies, prenatal packs, electrolytes and other everyday wellness brands.",
     words: ["vitamin", "multivitamin", "supplement", "gummy", "gummies", "capsule", "probiotic", "prebiotic", "magnesium",
-      "omega", "nutrition", "nutrient", "mineral", "prenatal", "longevity", "nootropic", "protein", "electrolyte", "creatine"],
+      "omega", "nutrition", "nutrient", "mineral", "prenatal", "longevity", "nootropic", "protein", "electrolyte", "creatine",
+      "collagen", "nutraceutical", "wellness"],
   },
   {
-    slug: "herbal-teas",
-    name: "Herbal teas",
-    intro: "Herbal tea blends and traditional wellness drinks.",
-    words: ["tea", "herbal", "herb", "matcha", "infusion", "essiac", "chai", "tisane", "kombucha"],
+    slug: "food-drink",
+    aliases: ["herbal-teas"],
+    name: "Food & drink",
+    intro: "Herbal teas, honey and other food and drink sold direct by the brand.",
+    words: ["tea", "herbal", "herb", "matcha", "infusion", "essiac", "chai", "tisane", "kombucha", "honey", "manuka",
+      "coffee", "snack", "chocolate", "food", "drink", "beverage"],
   },
   {
     slug: "clothing-accessories",
     name: "Clothing & accessories",
-    intro: "Grip socks, activewear, bags and everyday basics.",
+    intro: "Streetwear, menswear, lingerie, grip socks, bags and jewelry.",
     words: ["sock", "apparel", "clothing", "shirt", "dress", "legging", "activewear", "sportswear", "jewelry", "jewellery",
-      "handbag", "backpack", "duffel", "duffle", "luggage", "suitcase", "shoe", "sneaker", "hoodie", "swimwear", "underwear", "bra"],
+      "handbag", "backpack", "duffel", "duffle", "luggage", "suitcase", "shoe", "sneaker", "hoodie", "swimwear", "underwear",
+      "bra", "lingerie", "menswear", "womenswear", "streetwear", "fashion", "bracelet", "necklace", "ring"],
   },
   {
     slug: "home-garden",
     name: "Home & garden",
-    intro: "Bedding, kitchenware, plants and tools for every room and yard.",
-    words: ["homeware", "kitchen", "cookware", "bedding", "pillow", "mattress", "furniture", "decor", "candle", "garden", "plant"],
+    intro: "Juicers, water filters, lighting, power tools and other gear for the home and yard.",
+    words: ["homeware", "kitchen", "cookware", "bedding", "pillow", "mattress", "furniture", "decor", "candle", "garden",
+      "plant", "juicer", "blender", "filter", "filtration", "lamp", "lighting", "tool", "drill", "lawn", "alarm"],
   },
   {
     slug: "electronics",
     name: "Electronics",
-    intro: "Audio, chargers, smart-home gear and accessories for your devices.",
-    words: ["electronic", "charger", "headphone", "earbud", "speaker", "laptop", "gadget", "camera", "smartwatch"],
+    intro: "Keyboards, mice, audio, chargers, cameras, smart-home and car tech, plus laptop bags and cases.",
+    words: ["electronic", "charger", "headphone", "earbud", "speaker", "laptop", "gadget", "camera", "smartwatch",
+      "keyboard", "keycap", "mouse", "mice", "gaming", "controller", "console", "amplifier", "audio", "hifi", "radio",
+      "projector", "tablet", "monitor", "smart", "carplay", "tripod", "power station", "solar", "usb"],
+  },
+  {
+    slug: "toys-kids",
+    name: "Toys & kids",
+    intro: "Plushies, squishies, building tiles, RC cars, lightsabers and baby gear.",
+    words: ["toy", "plush", "plushie", "squishy", "kid", "kids", "baby", "toddler", "stem", "lego", "rc", "lightsaber",
+      "kawaii", "puzzle", "doll"],
+  },
+  {
+    slug: "sports-outdoors",
+    name: "Sports & outdoors",
+    intro: "Fitness gear, boat parts, e-bike batteries and road-trip guides.",
+    words: ["fitness", "gym", "workout", "calisthenics", "yoga", "pilates", "boat", "marine", "outboard", "bike", "ebike",
+      "cycling", "camping", "hiking", "fishing", "golf", "outdoor", "tour"],
   },
   {
     slug: "more-deals",
@@ -294,6 +316,80 @@ const CATEGORIES = [
     words: [],
   },
 ];
+
+/*
+ * How each store shows on the site, by its slug (the part after store.html?s=). Shopify's own shop
+ * name and description are often written for the brand's home page ("Our formulas…", "Official
+ * Store"), so each store gets a clean name, a short neutral description and a fixed category here.
+ * The sheet's own "Tên cửa hàng" and "Mô tả ngắn" cells still win when anh fills them.
+ * Add a line here for every new store: no health claims, only what the store sells.
+ */
+const STORE_INFO = {
+  "tolevita": { name: "Tolevita", category: "skincare-beauty", about: "Bio-collagen face masks, hydrogel eye patches and wellness patches. Free shipping on US orders over $20." },
+  "genuine-essiac": { name: "Genuine Essiac", category: "food-drink", about: "The eight-herb Essiac tea blend from Rene Caisse's formula, sold loose in 1 oz to 1 lb packs." },
+  "maryruthorganics": { name: "MaryRuth's", category: "vitamins-supplements", about: "Liquid multivitamins, gummies and other vegan, non-GMO vitamins for adults and kids." },
+  "heights": { name: "Heights", category: "vitamins-supplements", about: "A UK supplement brand selling Vitals⁺, Biotic⁺, Magnesium⁺ and Thrive⁺, one-off or on subscription." },
+  "birdandbe": { name: "Bird&Be", category: "vitamins-supplements", about: "Prenatal vitamin packs and at-home tests for women and men, sold one-off or by subscription." },
+  "elliosa": { name: "Elliosa", category: "clothing-accessories", about: "Grip socks for Pilates, barre and yoga in bright, playful designs." },
+  "avea-life": { name: "AVEA", category: "vitamins-supplements", about: "A Swiss longevity supplement brand: Collagen Activator, Sereniser, Stabiliser and more." },
+  "mizulabdrinks": { name: "Mizu Lab", category: "vitamins-supplements", about: "Zero-sugar, Asian-inspired electrolyte drink mixes in flavors like Japanese soda and white peach." },
+  "enhancedlabs": { name: "Enhanced Labs", category: "vitamins-supplements", about: "Sports and fitness supplements." },
+  "wavwatch": { name: "WAVwatch", category: "vitamins-supplements", about: "A wearable that plays sound frequencies through the skin, sold as the WAVwatch 2.2." },
+  "bodybio": { name: "BodyBio", category: "vitamins-supplements", about: "Supplements built around phospholipids, like BodyBio PC, plus butyrate and the e-lyte electrolyte concentrate." },
+  "jennibag": { name: "JenniBag", category: "clothing-accessories", about: "Rolling duffel bags that work as carry-on luggage, from the Classic to the Roller." },
+  "korekawaii": { name: "Kore Kawaii", category: "toys-kids", about: "Kawaii plushies, keychains, hoodies and decor, with free worldwide shipping." },
+  "niepceinc": { name: "Niepce", category: "clothing-accessories", about: "Techwear and streetwear: joggers, cargo pants, jackets and crossbody bags." },
+  "lussotan": { name: "Lusso Tan", category: "skincare-beauty", about: "Self-tanning mousses, gradual tanners and tanning mitts." },
+  "protoarc": { name: "ProtoArc", category: "electronics", about: "Ergonomic split keyboards, vertical mice, trackballs and office chairs." },
+  "ohora": { name: "ohora", category: "skincare-beauty", about: "Semi-cured gel nail strips and starter kits for salon-style nails at home." },
+  "galyna": { name: "GALYNA", category: "skincare-beauty", about: "Skincare creams and balms, many made with CBD." },
+  "legendairymilk": { name: "Legendairy Milk", category: "vitamins-supplements", about: "Organic herbal supplements made for breastfeeding mothers." },
+  "tabasquishy": { name: "TABASQUISHY", category: "toys-kids", about: "Soft squishy toys, blind bags and collectible squishies." },
+  "fosiaudio": { name: "Fosi Audio", category: "electronics", about: "Compact hi-fi amplifiers, DACs, headphone amps and CD players." },
+  "webbernaturals": { name: "Webber Naturals", category: "vitamins-supplements", about: "Canadian vitamins, minerals and omega-3s, priced in Canadian dollars, with free shipping over C$25." },
+  "womierkeyboard": { name: "Womier", category: "electronics", about: "Mechanical and Hall effect keyboards, keycaps and accessories for gaming and work." },
+  "slimq": { name: "SlimQ", category: "electronics", about: "GaN USB-C chargers and gaming laptop chargers up to 330W." },
+  "jessupbeauty": { name: "Jessup Beauty", category: "skincare-beauty", about: "Makeup brush sets, sponges, brush cleaners and cosmetic bags." },
+  "jlmmarine": { name: "JLM Marine", category: "sports-outdoors", about: "Aftermarket outboard engine parts and boating supplies, sold direct by the maker." },
+  "meross": { name: "Meross", category: "electronics", about: "Smart garage door openers, plugs, sensors and other smart-home devices that work with Apple Home, Alexa and Google." },
+  "mellif-tools": { name: "Mellif", category: "home-garden", about: "Cordless power tools, pumps and outdoor equipment for DIY and yard work." },
+  "atk": { name: "ATK Gear", category: "electronics", about: "Lightweight gaming mice and magnetic-switch keyboards." },
+  "tomtoc": { name: "tomtoc", category: "electronics", about: "Laptop sleeves, briefcases, backpacks and cases for laptops, tablets and game consoles." },
+  "homezada": { name: "HomeZada", category: "home-garden", about: "A home management app for keeping track of your home inventory, upkeep and projects." },
+  "quntis": { name: "Quntis", category: "home-garden", about: "Monitor light bars, desk lamps, solar lights and fairy lights." },
+  "amandean": { name: "Amandean", category: "vitamins-supplements", about: "Marine collagen, collagen peptides, gelatin and other supplement powders." },
+  "tidradio": { name: "TIDRADIO", category: "electronics", about: "Ham, GMRS and two-way radios, plus antennas and accessories." },
+  "palmpals": { name: "Palm Pals", category: "toys-kids", about: "Small, palm-sized plush toys in collectible characters." },
+  "grecell": { name: "GRECELL", category: "electronics", about: "Portable power stations and solar panels for camping and power cuts." },
+  "barriorzz": { name: "BARRIORZZ", category: "sports-outdoors", about: "Calisthenics and strength gear: dip belts, gymnastic rings, parallettes and wrist wraps." },
+  "picassotiles": { name: "PicassoTiles", category: "toys-kids", about: "Magnetic building tiles and STEM toy sets for kids." },
+  "parfaitlingerie": { name: "Parfait", category: "clothing-accessories", about: "Plus-size lingerie, from 32A to 44G in select styles." },
+  "topdon": { name: "TOPDON", category: "electronics", about: "Car diagnostic scanners, battery testers, jump starters and thermal cameras. European store, prices in euros." },
+  "telesinstore": { name: "Telesin", category: "electronics", about: "Action camera and phone camera gear: mounts, underwater housings, selfie sticks and lights." },
+  "babyquip": { name: "BabyQuip", category: "toys-kids", about: "Rent baby gear like cribs, car seats and strollers when you travel, delivered and set up for you." },
+  "carlinkit": { name: "Carlinkit", category: "electronics", about: "Wireless CarPlay and Android Auto adapters." },
+  "mixsoon": { name: "mixsoon", category: "skincare-beauty", about: "Korean skincare essences, serums and toners." },
+  "ulanzi": { name: "Ulanzi", category: "electronics", about: "Camera tripods, cages, mounts, lights and other gear for creators." },
+  "carpuride": { name: "Carpuride", category: "electronics", about: "Portable wireless CarPlay and Android Auto screens for cars and motorcycles." },
+  "clocky": { name: "Clocky", category: "home-garden", about: "The alarm clock on wheels that rolls off the nightstand when you hit snooze." },
+  "ivankyo": { name: "VANKYO", category: "electronics", about: "Mini and portable projectors, plus tablets." },
+  "evilhair": { name: "Evilhair", category: "skincare-beauty", about: "Pastel and vivid color-depositing hair conditioners." },
+  "redcatracing": { name: "Redcat Racing", category: "toys-kids", about: "Ready-to-run RC cars, trucks and crawlers, plus parts." },
+  "yosepower": { name: "Yose Power", category: "sports-outdoors", about: "Electric bike batteries and e-bike conversion kits." },
+  "omegajuicers": { name: "Omega Juicers", category: "home-garden", about: "Slow masticating juicers, blenders and other kitchen appliances." },
+  "elevatedfaith": { name: "Elevated Faith", category: "clothing-accessories", about: "Christian jewelry and apparel: bracelets, rings, hoodies and tees." },
+  "chicchoi": { name: "ChicChoi", category: "clothing-accessories", about: "Cute backpacks, pencil cases, planners and journals." },
+  "cleannutra": { name: "Clean Nutraceuticals", category: "vitamins-supplements", about: "US-made supplements sold direct by the brand." },
+  "shakaguide": { name: "Shaka Guide", category: "sports-outdoors", about: "GPS audio tour apps for road trips, from Hawaii to US national parks." },
+  "crystalquest": { name: "Crystal Quest", category: "home-garden", about: "Water filters for the whole house, under the sink, the countertop and the shower." },
+  "playvital": { name: "PlayVital", category: "electronics", about: "Skins, grips, thumb caps and other accessories for game controllers and consoles." },
+  "burbur": { name: "BUR BUR", category: "skincare-beauty", about: "Plant-based botanical hair oils." },
+  "owowbeauty-uk": { name: "ANSWR", category: "skincare-beauty", about: "At-home keratin hair treatments and skincare. UK store." },
+  "newzealandhoneyco": { name: "New Zealand Honey Co.", category: "food-drink", about: "Raw, UMF-certified Manuka honey from New Zealand, with free US shipping over $30." },
+  "epomaker": { name: "EPOMAKER", category: "electronics", about: "Mechanical keyboards, gaming mice and audio gear." },
+  "parijanofficial": { name: "PARIJAN", category: "clothing-accessories", about: "Classic menswear in an \"old money\" style, without the luxury markup." },
+  "neosabers": { name: "NEO Sabers", category: "toys-kids", about: "Neopixel lightsabers and blades with sound effects." },
+};
 
 const STORES = [
   {
@@ -359,7 +455,7 @@ const STORES = [
   {
     slug: "genuine-essiac",
     name: "Genuine Essiac",
-    category: "herbal-teas",
+    category: "food-drink",
     url: "https://genuineessiac.com/pages/genuine-essiac-tea?sca_ref=11220825.VSlmwyWinf",
     logo: "https://genuineessiac.com/cdn/shop/files/GE-white-bk_copy_300x300.jpg?v=1753917442",
     color: "#2F5D46",

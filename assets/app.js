@@ -14,6 +14,8 @@
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>';
   const ICON_CHECK =
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+  const ICON_MENU =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>';
   const ICON_CLOSE =
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>';
   // A four-point "nova" star.
@@ -30,7 +32,7 @@
     const live = liveCoupons(store);
     return live.find((c) => c.code) || live[0];
   };
-  const categoryBySlug = (slug) => CATEGORIES.find((c) => c.slug === slug);
+  const categoryBySlug = (slug) => CATEGORIES.find((c) => c.slug === slug || (c.aliases || []).includes(slug));
   // Categories without any store are left out of the chips and footer. Set once the stores load.
   let activeCategories = [];
   const storeUrl = (s) => `store.html?s=${encodeURIComponent(s.slug)}`;
@@ -80,6 +82,9 @@
     return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
   }
 
+  // "Heights" -> "Heights’", "tomtoc" -> "tomtoc’s"
+  const possessive = (name) => (/s$/i.test(name) ? `${name}’` : `${name}’s`);
+
   function initials(name) {
     return name
       .replace(/[^A-Za-z0-9 ]/g, "")
@@ -94,8 +99,10 @@
   // so the monogram shows instead of a broken image.
   function logoHTML(store, large) {
     const cls = large ? "logo lg" : "logo";
+    // The large logo is in the code dialog and on the store page: it loads at once, so its box is never
+    // empty while the dialog opens.
     const img = store.logo
-      ? `<img ${imgSrc(store.logo, ...IMG[large ? "logoLarge" : "logo"])} alt="${esc(store.name)} logo" loading="lazy" decoding="async" width="72" height="72" onerror="this.remove()">`
+      ? `<img ${imgSrc(store.logo, ...IMG[large ? "logoLarge" : "logo"])} alt="${esc(store.name)} logo" loading="${large ? "eager" : "lazy"}" decoding="async" width="72" height="72" onerror="this.remove()">`
       : "";
     return `<span class="${cls}" style="background:${esc(store.color || "#261A2E")}" aria-hidden="true">${esc(initials(store.name))}${img}</span>`;
   }
@@ -169,7 +176,8 @@
       <header class="site-header">
         <div class="wrap">
           <a class="brand" href="./">${BRAND_MARK}<span>${esc(SITE.name)}</span></a>
-          <nav class="main-nav" aria-label="Main"><ul>${nav}</ul></nav>
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">${ICON_MENU}<span>Menu</span></button>
+          <nav class="main-nav" id="site-nav" aria-label="Main"><ul>${nav}</ul></nav>
           ${headerSearch}
         </div>
       </header>`;
@@ -316,7 +324,8 @@
 
   /* ---------- Saving Tips ---------- */
 
-  const posts = typeof POSTS === "undefined" ? [] : POSTS;
+  // Newest first, so the home page and Saving Tips open on what was published last.
+  const posts = (typeof POSTS === "undefined" ? [] : POSTS.slice()).sort((a, b) => String(b.date).localeCompare(String(a.date)));
   const postCategories = typeof POST_CATEGORIES === "undefined" ? [] : POST_CATEGORIES;
   const postCategory = (slug) => postCategories.find((c) => c.slug === slug);
 
@@ -365,12 +374,68 @@
       <div class="wrap">
         <div class="section-head"><h2 id="how-title">How it works</h2></div>
         <ol class="steps">
-          <li><h3>Pick a code</h3><p>Select <strong>Show code</strong> on any offer. The code is copied for you.</p></li>
-          <li><h3>Shop the store</h3><p>The store opens in a new tab. Add what you like to your cart.</p></li>
+          <li><h3>Pick a code</h3><p>Select <strong>Show code</strong> on any offer. The code is copied for you and opens in a new tab.</p></li>
+          <li><h3>Shop the store</h3><p>This tab takes you to the store. Add what you like to your cart.</p></li>
           <li><h3>Paste at checkout</h3><p>Paste the code in the discount box and the price drops before you pay.</p></li>
         </ol>
       </div>
     </section>`;
+
+  /* ---------- Search ---------- */
+
+  // Search forgives spacing, apostrophes, accents and small typos: "mary ruths", "maryruth" and
+  // "tomtok" all find their store.
+  const fold = (t) => String(t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  const compact = (t) => fold(t).replace(/[^a-z0-9]+/g, "");
+  const wordsOf = (t) => fold(t).split(/[^a-z0-9]+/).filter(Boolean);
+
+  // Edit distance, stopping early once it's over `max`.
+  function distance(a, b, max) {
+    if (Math.abs(a.length - b.length) > max) return max + 1;
+    let prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+    for (let i = 1; i <= a.length; i++) {
+      const cur = [i];
+      let best = i;
+      for (let j = 1; j <= b.length; j++) {
+        cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+        best = Math.min(best, cur[j]);
+      }
+      if (best > max) return max + 1;
+      prev = cur;
+    }
+    return prev[b.length];
+  }
+  const allowed = (word) => (word.length >= 8 ? 2 : word.length >= 4 ? 1 : 0);
+
+  function textMatches(text, term) {
+    const want = compact(term);
+    if (!want) return true;
+    const hay = compact(text);
+    if (hay.includes(want)) return true;
+    const hayWords = wordsOf(text);
+    return wordsOf(term).every(
+      (w) => hay.includes(w) || (allowed(w) > 0 && hayWords.some((h) => distance(h.slice(0, w.length + 2), w, allowed(w)) <= allowed(w)))
+    );
+  }
+
+  // The store whose name is closest to what was typed, for "Did you mean…?".
+  // Each typed word is tried on its own too, so "heightz vitamins" still suggests Heights.
+  function closestStore(term) {
+    const tries = [compact(term), ...wordsOf(term).filter((w) => w.length >= 3)];
+    let best = null;
+    let bestScore = Infinity;
+    STORES.forEach((s) => {
+      const name = compact(s.name);
+      tries.forEach((w) => {
+        const d = Math.min(distance(name, w, 4), distance(name.slice(0, w.length), w, 4));
+        if (d <= Math.max(1, Math.floor(w.length / 3)) && d < bestScore) {
+          best = s;
+          bestScore = d;
+        }
+      });
+    });
+    return best;
+  }
 
   /* ---------- Pages ---------- */
 
@@ -403,12 +468,22 @@
     if (!input.value) input.value = new URLSearchParams(location.search).get("q") || "";
     const first = STORES[0];
     input.placeholder = `Search${first ? `, like “${first.name}”` : ""}`;
-    hero.querySelector(".ticket-fan").innerHTML = heroTicketsHTML();
+    // On a phone the tickets would push the codes a full screen down, so they're left out there.
+    const narrow = window.matchMedia && window.matchMedia("(max-width: 560px)").matches;
+    hero.querySelector(".ticket-fan").innerHTML = narrow ? "" : heroTicketsHTML();
     // Sections marked data-keep (the questions at the bottom) are in index.html and stay below the lists.
     [...main.children].forEach((el) => el !== hero && !el.hasAttribute("data-keep") && el.remove());
     hero.insertAdjacentHTML(
       "afterend",
-      `${
+      `<section class="section" aria-labelledby="deals-title" id="deals-section">
+        <div class="wrap">
+          <div class="section-head"><h2 id="deals-title">Today’s codes</h2></div>
+          <p class="result-note" id="note" aria-live="polite"></p>
+          <ul class="deals" id="deals"></ul>
+          <div class="more" hidden><button class="btn ghost" type="button" id="more-deals"></button></div>
+        </div>
+      </section>
+      ${
         activeCategories.length > 1
           ? `<section class="section" aria-labelledby="cats-title" id="cats-section">
                <div class="wrap">
@@ -418,14 +493,6 @@
              </section>`
           : ""
       }
-      <section class="section" aria-labelledby="deals-title">
-        <div class="wrap">
-          <div class="section-head"><h2 id="deals-title">Today’s codes</h2></div>
-          <p class="result-note" id="note" aria-live="polite"></p>
-          <ul class="deals" id="deals"></ul>
-          <div class="more" hidden><button class="btn ghost" type="button" id="more-deals"></button></div>
-        </div>
-      </section>
       <section class="section" aria-labelledby="shop-title" id="shop-section">
         <div class="wrap">
           <div class="section-head">
@@ -471,12 +538,10 @@
       }
       const matchesStore = (s) => {
         const cat = categoryBySlug(s.category);
-        return [s.name, cat && cat.name, s.about, ...s.coupons.map((c) => c.title)].join(" ").toLowerCase().includes(term);
+        return textMatches([s.name, s.slug, cat && cat.name, s.about, ...s.coupons.map((c) => c.title)].join(" "), term);
       };
       const storeHits = term ? STORES.filter(matchesStore) : STORES;
-      const productHits = allProducts(STORES).filter(
-        ([p, s]) => !term || storeHits.includes(s) || p.name.toLowerCase().includes(term)
-      );
+      const productHits = allProducts(STORES).filter(([p, s]) => !term || storeHits.includes(s) || textMatches(p.name, term));
       // A product match also surfaces its store's code.
       const dealStores = term ? STORES.filter((s) => storeHits.includes(s) || productHits.some(([, ps]) => ps === s)) : STORES;
 
@@ -488,11 +553,16 @@
       shopSection.hidden = productHits.length === 0;
       // While searching, results come straight under the search box.
       if (catsSection) catsSection.hidden = Boolean(term);
-      note.textContent = !term
+      hero.classList.toggle("searching", Boolean(term));
+      const typed = esc(input.value.trim());
+      const guess = term && !dealStores.length ? closestStore(term) : null;
+      note.innerHTML = !term
         ? ""
         : dealStores.length
-          ? `${dealStores.length} store${dealStores.length === 1 ? "" : "s"} match “${input.value.trim()}”.`
-          : `Nothing matches “${input.value.trim()}”. Check the spelling or clear the search to see every code.`;
+          ? `${dealStores.length} store${dealStores.length === 1 ? "" : "s"} match “${typed}”.`
+          : guess
+            ? `Nothing matches “${typed}”. Did you mean <button type="button" class="link-btn" data-suggest="${esc(guess.name)}">${esc(guess.name)}</button>?`
+            : `Nothing matches “${typed}”. Check the spelling or clear the search to see every code.`;
 
       const url = new URL(location);
       term ? url.searchParams.set("q", input.value.trim()) : url.searchParams.delete("q");
@@ -514,6 +584,21 @@
 
     // A property, not addEventListener, so a redraw replaces the handler instead of adding another.
     input.oninput = update;
+    note.onclick = (e) => {
+      const pick = e.target.closest("[data-suggest]");
+      if (!pick) return;
+      input.value = pick.dataset.suggest;
+      update();
+    };
+    // Enter (or the phone keyboard's Search key) closes the keyboard and brings the results into view.
+    const form = input.closest("form");
+    if (form)
+      form.onsubmit = (e) => {
+        e.preventDefault();
+        input.blur();
+        document.getElementById("deals-section").scrollIntoView({ behavior: "smooth", block: "start" });
+        return false;
+      };
     update();
   }
 
@@ -587,12 +672,20 @@
 
     const products = (store.products || []).map((p) => productCardHTML(p, store)).join("");
     const listDate = new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+    // Rows with nothing to show ("Verified 0") are left out: they read as if the codes were never checked.
+    const codeCount = coupons.filter((c) => c.code).length;
+    const dealCount = coupons.filter((c) => !c.code).length;
+    const verifiedCount = coupons.filter((c) => c.verified).length;
+    const updatedAt = window.storesUpdatedAt ? window.storesUpdatedAt() : 0;
     const highlights = [
       ["Best discount", best ? (/^[$€£]?\d+%?$/.test(best.discount) ? `${best.discount} off` : best.discount) : "None"],
-      ["Coupon codes", coupons.filter((c) => c.code).length],
-      ["Deals", coupons.filter((c) => !c.code).length],
-      ["Verified", coupons.filter((c) => c.verified).length],
+      codeCount ? ["Coupon codes", codeCount] : null,
+      dealCount ? ["Deals", dealCount] : null,
+      verifiedCount ? ["Verified", verifiedCount] : null,
+      codeCount ? ["Code from", `${possessive(store.name)} partner program`] : null,
+      updatedAt ? ["List updated", formatDate(new Date(updatedAt).toISOString().slice(0, 10))] : null,
     ]
+      .filter(Boolean)
       .map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`)
       .join("");
 
@@ -706,11 +799,35 @@
         <a class="who" href="${storeUrl(store)}">${logoHTML(store)}<span>${esc(store.name)} code</span></a>
         <ul class="coupons">${couponItemHTML(store, best)}</ul>`;
     });
+    // The short code box under the headline: the offer and its Show code button in the first screen.
+    document.querySelectorAll("[data-quick]").forEach((el) => {
+      const store = storeFor(el, "data-quick");
+      const best = store && bestCoupon(store);
+      if (best) el.innerHTML = quickOfferHTML(store, best);
+    });
+    // "See it at …" buttons for the products an article compares: the product page, with the affiliate ref.
+    document.querySelectorAll("a[data-product]").forEach((el) => {
+      const store = storeFor(el, "data-product");
+      if (store && el.dataset.url && window.withAffiliate) el.href = window.withAffiliate(el.dataset.url, store.url);
+      else if (store) el.href = store.url;
+    });
+    // Codes in the text copy with a tap.
+    document.querySelectorAll("strong[data-code]").forEach((el) => {
+      if (el.closest("[data-offer], [data-quick]") || !el.textContent.trim()) return;
+      el.classList.add("code-chip");
+      el.setAttribute("role", "button");
+      el.tabIndex = 0;
+      el.title = "Copy code";
+    });
+
 
     // Pages may be served with or without ".html".
     const fileOf = (url) => url.split("/").pop().replace(/\.html$/, "");
     const here = fileOf(location.pathname);
     const me = posts.find((p) => fileOf(p.url) === here) || {};
+    const quick = document.querySelector("[data-quick]");
+    const offerStore = STORES.find((st) => st.slug === ((quick && quick.dataset.quick) || me.store));
+    if (offerStore && bestCoupon(offerStore)) stickyOffer(offerStore, bestCoupon(offerStore));
     const related = posts
       .filter((p) => fileOf(p.url) !== here)
       .sort((a, b) => (b.store === me.store) - (a.store === me.store))
@@ -718,6 +835,71 @@
     const box = document.getElementById("related");
     if (box) box.innerHTML = related.map(postCardHTML).join("");
     if (box && !related.length) box.closest("section").hidden = true;
+  }
+
+  // "25% off at Heights" with the logo and the Show code button, for the top of an article.
+  function offerAmount(best) {
+    return isAmountOff(best.discount) ? `${best.discount} off` : best.title;
+  }
+  function quickOfferHTML(store, best) {
+    // Above the fold, so its logo loads at once.
+    return `<div class="quick">
+      ${logoHTML(store).replace('loading="lazy"', 'loading="eager"')}
+      <p class="quick-text"><strong>${esc(offerAmount(best))} at ${esc(store.name)}</strong>
+        <span>${best.code ? "Tap Show code: it’s copied and the store opens." : "No code needed."}</span></p>
+      <div class="quick-action">${actionHTML(store, best)}</div>
+    </div>`;
+  }
+
+  // A slim bar at the bottom of the screen that keeps the code one tap away while reading. It hides
+  // while a code box is on screen, near the footer, and once closed.
+  let sticky = null;
+  let stickyClosed = false;
+  function stickyOffer(store, best) {
+    if (!sticky) {
+      sticky = document.createElement("div");
+      sticky.className = "sticky-offer";
+      sticky.hidden = true;
+      sticky.setAttribute("role", "region");
+      sticky.setAttribute("aria-label", "Discount code");
+      document.body.appendChild(sticky);
+      sticky.addEventListener("click", (e) => {
+        if (!e.target.closest(".sticky-close")) return;
+        stickyClosed = true;
+        placeSticky();
+      });
+      let queued = false;
+      const onScroll = () => {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(() => {
+          queued = false;
+          placeSticky();
+        });
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll, { passive: true });
+    }
+    sticky.innerHTML = `<div class="sticky-inner">
+      ${logoHTML(store)}
+      <p><strong>${esc(offerAmount(best))}</strong> <span>at ${esc(store.name)}</span></p>
+      ${actionHTML(store, best)}
+      <button class="sticky-close" type="button" aria-label="Hide the code bar">${ICON_CLOSE}</button>
+    </div>`;
+    placeSticky();
+  }
+  function placeSticky() {
+    if (!sticky) return;
+    const onScreen = (el) => {
+      const r = el.getBoundingClientRect();
+      return r.bottom > 0 && r.top < window.innerHeight;
+    };
+    const top = document.querySelector("[data-quick]") || document.querySelector(".post-head");
+    const pastTop = top ? top.getBoundingClientRect().bottom < 0 : window.scrollY > 400;
+    const boxInView = [...document.querySelectorAll("[data-offer], #footer")].some(onScreen);
+    const show = !stickyClosed && pastTop && !boxInView && !document.querySelector(".modal");
+    sticky.hidden = !show;
+    document.body.classList.toggle("has-sticky", show);
   }
 
   function renderNotFound(message) {
@@ -783,6 +965,7 @@
       </div>`;
     document.body.appendChild(wrap);
     document.body.classList.add("modal-open");
+    placeSticky();
     wrap.addEventListener("click", (e) => {
       if (e.target === wrap || e.target.closest(".modal-close")) closeModal();
     });
@@ -804,6 +987,7 @@
     if (!m) return;
     m.remove();
     document.body.classList.remove("modal-open");
+    placeSticky();
     const url = new URL(location);
     if (url.searchParams.has("c")) {
       url.searchParams.delete("c");
@@ -813,6 +997,11 @@
   }
 
   document.addEventListener("keydown", (e) => {
+    if ((e.key === "Enter" || e.key === " ") && e.target.classList && e.target.classList.contains("code-chip")) {
+      e.preventDefault();
+      copy(e.target.textContent.trim());
+      return;
+    }
     const m = document.querySelector(".modal");
     if (!m) return;
     if (e.key === "Escape") closeModal();
@@ -857,14 +1046,28 @@
     }
 
     // A product opens in a new tab (the link's own behaviour); this tab keeps the store's code ready.
-    const productLink = e.target.closest("a.product[data-store]");
+    const productLink = e.target.closest("a.product[data-store], a[data-product]");
     if (productLink) {
-      const store = STORES.find((s) => s.slug === productLink.dataset.store);
+      const store = STORES.find((s) => s.slug === (productLink.dataset.store || productLink.dataset.product));
       const coupon = store && bestCoupon(store);
       if (coupon && coupon.code) {
         copy(coupon.code);
-        openModal(store, coupon, productLink.querySelector(".name")?.textContent);
+        openModal(store, coupon, productLink.dataset.name || productLink.querySelector(".name")?.textContent);
       }
+      return;
+    }
+
+    const chip = e.target.closest(".code-chip");
+    if (chip) {
+      copy(chip.textContent.trim());
+      return;
+    }
+
+    const toggle = e.target.closest(".nav-toggle");
+    if (toggle) {
+      const open = toggle.getAttribute("aria-expanded") !== "true";
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.closest(".site-header").classList.toggle("nav-open", open);
       return;
     }
 
