@@ -15,6 +15,7 @@
   const CACHE_KEY = "nb-sheet-stores-v4";
   const PRODUCT_CACHE_KEY = "nb-shopify-v1";
   const META_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
+  const DOWN_MAX_AGE = 24 * 60 * 60 * 1000;
   const PALETTE = ["#1F6F8B", "#2F5D46", "#7A4B00", "#6B3FD1", "#B43C62", "#3E5C76"];
 
   const STORE_COLUMNS = {
@@ -360,16 +361,24 @@
     const metas = new Map();
     for (const store of stores) {
       // Shop name and description from Shopify's small meta.json, kept for a week.
+      // A shop that isn't Shopify (no meta.json, or it blocks other sites) is skipped for a day,
+      // so each visit doesn't log the same blocked requests again. A timeout doesn't count.
       const origin = (toURL(store.website) || {}).origin;
-      if (origin) {
+      const downKey = `down:${origin}`;
+      const isDown = () => origin && cache[downKey] && Date.now() - cache[downKey] < DOWN_MAX_AGE;
+      const markDown = (err) => {
+        if (origin && !(err && err.name === "AbortError")) cache[downKey] = Date.now();
+      };
+      let metaJob = Promise.resolve();
+      if (origin && !isDown()) {
         const key = `meta:${origin}`;
         if (cache[key] && Date.now() - cache[key].at < META_MAX_AGE) metas.set(store, cache[key]);
         else
           jobs.push(
-            getJSON(`${origin}/meta.json`, 3000)
-              .then((d) => d && (cache[key] = { name: d.name || "", description: d.description || "", at: Date.now() }))
-              .catch(() => {})
-              .then(() => cache[key] && metas.set(store, cache[key]))
+            (metaJob = getJSON(`${origin}/meta.json`, 3000)
+              .then((d) => (d ? (cache[key] = { name: d.name || "", description: d.description || "", at: Date.now() }) : markDown()))
+              .catch(markDown)
+              .then(() => cache[key] && metas.set(store, cache[key])))
           );
       }
       for (const p of store.products) {
@@ -397,7 +406,8 @@
         if (cache[key]) store.cover = cache[key];
         else
           jobs.push(
-            getJSON(`${store.website.replace(/\/$/, "")}/products.json?limit=1`, 3000)
+            metaJob
+              .then(() => (isDown() ? null : getJSON(`${store.website.replace(/\/$/, "")}/products.json?limit=1`, 3000)))
               .then((d) => {
                 const src = d && d.products && d.products[0] && d.products[0].images[0];
                 if (src) store.cover = cache[key] = src.src;

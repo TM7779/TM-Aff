@@ -478,6 +478,20 @@ const POSTS = [
     minutes: 4,
   },
   {
+    slug: "tomtoc-a14-vs-a17-vs-a42",
+    url: "saving-tips-tomtoc-a14-vs-a17-vs-a42.html",
+    title: "tomtoc Defender A14 vs A17 vs A42: Which Laptop Bag Should You Buy?",
+    excerpt:
+      "tomtoc A14, A17 or A42? Sizes, pockets and shoulder straps side by side, what each costs with the code, and which suits how you carry your laptop.",
+    image: "https://cdn.shopify.com/s/files/1/0256/7979/0179/files/BL3A0307-_-17.jpg?v=1769594014",
+    imageAlt: "A black tomtoc Defender-A17 laptop handbag with a laptop sliding out of the side and its two front pockets open",
+    focus: "center 50%",
+    category: "buying-guides",
+    store: "tomtoc",
+    date: "2026-11-11",
+    minutes: 6,
+  },
+  {
     slug: "tidradio-h3-plus-vs-h8-vs-h9",
     url: "saving-tips-tidradio-h3-plus-vs-h8-vs-h9.html",
     title: "TIDRADIO H3 Plus vs H8 vs H9: Which Radio Should You Buy?",
