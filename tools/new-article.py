@@ -66,7 +66,10 @@ def amp(s):
 
 
 def possessive(name):
-    return name if name.endswith(("'s", "’s")) else name + "'s"
+    """"Heights" -> "Heights'", "tomtoc" -> "tomtoc's"."""
+    if name.endswith(("'s", "’s")):
+        return name
+    return name + "'" if name.endswith("s") else name + "'s"
 
 
 def shopify_sized(url, width, attr=False):
@@ -166,9 +169,7 @@ class Writer:
 
     def body(self):
         st, brand = self.s["store"], self.brand
-        offer = (f'    <div class="post-offer" data-offer="{st}">\n      <p>Save <span data-discount="{st}">{esc(self.pct)}</span> at '
-                 f'{amp(brand)} with code <strong data-code="{st}">{esc(self.code)}</strong>. <a data-shop="{st}" href="{esc(self.aff)}" '
-                 f'target="_blank" rel="sponsored nofollow noopener">Shop at {amp(brand)}</a></p>\n    </div>')
+        # The code box sits under the headline (quick_offer, in page()); the body starts with the note.
         if self.s["type"] == "guide":
             note = (f"Kinsley Deals earns a commission when you buy through links on this page, at no extra cost to you. "
                     f"Prices are {possessive(brand)} US prices in {self.month}, before any code, and can change.")
@@ -176,7 +177,7 @@ class Writer:
             note = (f"Kinsley Deals earns a commission when you buy through links on this page, at no extra cost to you. "
                     f"This review brings together {possessive(brand)} own product facts, public ratings and buying terms as we "
                     f"found them on {self.date_text}. We haven't tested the products ourselves.")
-        out = [f'    <p class="post-note">{amp(note)}</p>', offer]
+        out = [f'    <p class="post-note">{amp(note)}</p>']
         code = f'<strong data-code="{st}">{esc(self.code)}</strong>'
         if self.s["type"] == "guide":
             out.append(f"""    <h2>How to use the {amp(brand)} discount code</h2>
@@ -214,6 +215,13 @@ class Writer:
             src.append(f'<li><a href="{esc(url)}" target="_blank" rel="noopener">{amp(title)}</a>: {amp(used)}.</li>')
         out.append("    <h2>Sources</h2>\n    <ul class=\"post-sources\">\n      " + "\n      ".join(src) + "\n    </ul>")
         return "\n\n".join(o for o in out if o)
+
+    def quick_offer(self):
+        """The code box under the headline. app.js turns it into the offer with its Show code button."""
+        st, brand = self.s["store"], self.brand
+        return (f'    <div class="post-quick" data-quick="{st}">\n      <p>Save <span data-discount="{st}">{esc(self.pct)}</span> at '
+                f'{amp(brand)} with code <strong data-code="{st}">{esc(self.code)}</strong>. <a data-shop="{st}" href="{esc(self.aff)}" '
+                f'target="_blank" rel="sponsored nofollow noopener">Shop at {amp(brand)}</a></p>\n    </div>')
 
     def page(self):
         s, k = self.s, self.kind
@@ -272,6 +280,7 @@ class Writer:
     <h1>{amp(title)}</h1>
     <p class="post-lede">{self.text(s["lede"])}</p>
     <p class="post-meta"><time datetime="{s["date"]}">{self.date_text}</time><span>{self.minutes} min read</span></p>
+{self.quick_offer()}
   </header>
 
   <figure class="post-hero">

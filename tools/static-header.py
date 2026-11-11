@@ -12,7 +12,7 @@ import re
 
 SITE_NAME = "Kinsley Deals"
 # Same as SITE.tagline in assets/data.js.
-TAGLINE = "Discount codes for supplement and wellness brands like Heights, MaryRuth's and BodyBio, with guides to pay less on every order."
+TAGLINE = "Discount codes for 60+ brands, from supplements and skincare to tech, toys and outdoor gear, with guides to pay less on every order."
 NAV = [
     ("./", "All stores", "home"),
     ("saving-tips.html", "Saving Tips", "blog"),
@@ -22,6 +22,10 @@ NAV = [
 ]
 BRAND_MARK = (
     '<svg class="brand-mark" viewBox="3 10 59 44" aria-hidden="true"><path fill="#EF4E7B" fill-rule="evenodd" d="M20 11H53A8 8 0 0 1 61 19V45A8 8 0 0 1 53 53H20L4 35.2A4.6 4.6 0 0 1 4 28.8ZM17 27.5A4.5 4.5 0 1 0 17 36.5A4.5 4.5 0 1 0 17 27.5Z"/><path fill="#261A2E" d="M27.32 46V45.64H27.46Q28.76 45.64 29.55 44.85Q30.34 44.06 30.34 42.76V22.24Q30.34 20.94 29.55 20.15Q28.76 19.36 27.46 19.36H27.32V19H38.37V19.36H38.23Q36.93 19.36 36.14 20.15Q35.35 20.94 35.35 22.24V31.17L44.56 22.82Q46.04 21.48 46.04 20.42Q46.04 19.36 44.38 19.36H44.35V19H51.98V19.36Q51.26 19.4 50.27 19.68Q49.28 19.97 48.31 20.42Q47.34 20.87 46.65 21.48L39.02 28.5L51.8 43.84Q52.45 44.63 53.2 45.14Q53.96 45.64 54.68 45.64V46H44.02V45.64Q45.54 45.64 45.91 45.05Q46.29 44.45 45.5 43.52L35.35 31.35V42.76Q35.35 44.06 36.14 44.85Q36.93 45.64 38.23 45.64H38.37V46Z"/></svg>'
+)
+ICON_MENU = (
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" '
+    'aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>'
 )
 ICON_SEARCH = (
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" '
@@ -55,7 +59,8 @@ def header(page):
         f'{START}\n<a class="skip" href="#main">Skip to content</a>\n'
         f'<header class="site-header"><div class="wrap">'
         f'<a class="brand" href="./">{BRAND_MARK}<span>{esc(SITE_NAME)}</span></a>'
-        f'<nav class="main-nav" aria-label="Main"><ul>{nav}</ul></nav>{search}</div></header>\n{END}'
+        f'<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">{ICON_MENU}<span>Menu</span></button>'
+        f'<nav class="main-nav" id="site-nav" aria-label="Main"><ul>{nav}</ul></nav>{search}</div></header>\n{END}'
     )
 
 
