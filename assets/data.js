@@ -232,6 +232,11 @@ const BEST_SELLERS = {
     { name: "Bastila Legendary Saber", url: "https://neosabers.com/products/bastila-legendary-saber", image: SHOPIFY_CDN + "0883/1929/5779/files/bastilla_5.png" },
     { name: "OWK Replica II Saber", url: "https://neosabers.com/products/owk-replica-ii-saber", image: SHOPIFY_CDN + "0883/1929/5779/files/OWK_replica_II_4.png" },
   ],
+  "picassotiles.com": [
+    { name: "Classic Starter Set (100 Pieces)", url: "https://picassotiles.com/products/picassotiles-100-piece-set-magnet-building-blocks-pt100", image: SHOPIFY_CDN + "0316/6489/8092/files/PT100-01_V2_df2421c4-d8fe-44df-b5f5-79d6850e053c.jpg" },
+    { name: "Magnetic Marble Run Race Track Set (108 Pieces)", url: "https://picassotiles.com/products/picassotiles-108pc-2-in-1-magnetic-marble-run-set-racing-track-set-ptg108", image: SHOPIFY_CDN + "0316/6489/8092/files/PTG108-01_7.jpg" },
+    { name: "Magnetic Tile Race Track Set (150 Pieces)", url: "https://picassotiles.com/products/picassotiles-150pc-race-track-building-blocks-ptr150", image: SHOPIFY_CDN + "0316/6489/8092/files/PTR150-01V2.jpg" },
+  ],
   "mixsoon.us": [
     { name: "Bean Cream 50ml", url: "https://mixsoon.us/products/mixsoon-bean-cream-50ml", image: SHOPIFY_CDN + "0797/3299/8445/files/Bean_Cream_50ml.png" },
     { name: "Bean Essence 50ml", url: "https://mixsoon.us/products/mixsoon-bean-essence-50ml", image: SHOPIFY_CDN + "0797/3299/8445/files/Bean_Essence_50ml.png" },
