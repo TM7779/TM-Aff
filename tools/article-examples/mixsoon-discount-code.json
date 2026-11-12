@@ -1,0 +1,78 @@
+{
+  "type": "guide",
+  "store": "mixsoon",
+  "slug": "mixsoon",
+  "brand": "mixsoon",
+  "date": "2026-11-12",
+  "title": "mixsoon Discount Code: 10% Off Bean Essence, Bean Cream and More",
+  "title_tag": "mixsoon Discount Code 2026: 10% Off | Kinsley Deals",
+  "description": "mixsoon discount code {code} takes 10% off at mixsoon.us. Bean Cream, Bean Essence and Bean Sunscreen prices with the code, free shipping over $60 and the 14-day return.",
+  "excerpt": "Code {code} takes 10% off at mixsoon US. What the Bean Cream, Bean Essence and Bean Sunscreen cost with it, plus free shipping over $60 and the return rules.",
+  "image": "https://cdn.shopify.com/s/files/1/0797/3299/8445/files/Bean_Essence_50ml.png?v=1791243662",
+  "image_alt": "A 50ml bottle of mixsoon Bean Essence",
+  "focus": "center 50%",
+  "lede": "Use mixsoon discount code {code} for {pct} off at mixsoon.us, the US store of the Korean skincare brand known for its Bean Essence. Here's what the best sellers cost with the code, and how to pay less.",
+  "cart_tip": "Orders over $60 ship free in the US, so a duo or two full-size bottles usually clears the bar.",
+  "sections": [
+    {
+      "h2": "mixsoon prices with the code",
+      "parts": [
+        {"table": {"head": ["Product", "Price", "With 10% off"], "rows": [
+          ["Bean Cream 50ml", "$35.00", "$31.50"],
+          ["Bean Essence 50ml", "$35.00", "$31.50"],
+          ["Bean Sunscreen 50ml", "$28.00", "$25.20"],
+          ["Bean Essence 30ml", "$25.00", "$22.50"],
+          ["Bean Cleansing Oil 195ml", "$25.00", "$22.50"],
+          ["Centella Cleansing Foam 150ml", "$18.00", "$16.20"],
+          ["Bean Glass Skin Duo (Essence 50ml + Cream 50ml)", "$63.00 (was $70.00)", "$56.70"],
+          ["Bean Copper Peptides Firming Serum 30ml", "$19.20 (was $32.00)", "$17.28"]
+        ]}},
+        {"small": "Prices in US dollars on mixsoon.us on November 12, 2026. Items already on sale may not take the code too, so check the total at checkout."}
+      ]
+    },
+    {
+      "figure": {"src": "https://cdn.shopify.com/s/files/1/0797/3299/8445/files/beanduonukki_7442919d-7d8a-46ff-897f-44845c55a88d.png?v=1790131144", "alt": "The mixsoon Bean Glass Skin Duo: Bean Essence and Bean Cream", "width": 300, "height": 300},
+      "h2": "1. Buy the essence and cream as a duo",
+      "parts": [
+        "The Bean Glass Skin Duo pairs the 50ml Bean Essence and the 50ml Bean Cream for $63.00, against $70.00 bought one by one. With {code} on top, if it applies, the pair comes to $56.70."
+      ]
+    },
+    {
+      "h2": "2. Spend $60 for free shipping",
+      "parts": [
+        "mixsoon ships free on US orders over $60 and shows the shipping cost at checkout below that. The duo alone clears the bar; so do two 50ml bottles. Check the total after the code, since a 10% discount can take a small order back under $60."
+      ]
+    },
+    {
+      "h2": "3. Pick the bigger bottle",
+      "parts": [
+        "The Bean Essence costs $25.00 for 30ml and $35.00 for 50ml, about $0.83 against $0.70 per ml. If you already know you like it, the 50ml bottle is the better buy."
+      ]
+    },
+    {
+      "h2": "4. Check the sale prices first",
+      "parts": [
+        "The store was running a Black Friday sale when we checked: the Bean Copper Peptides Firming Serum was $19.20 instead of $32.00 and the PDRN Collagen Retinal 6 Capsule Serum $14.30 instead of $22.00. On a sale item, try {code} and keep whichever total is lower."
+      ]
+    },
+    {
+      "h2": "Shipping and returns",
+      "parts": [
+        "Orders ship from mixsoon's US storage by UPS or USPS, and the billing and shipping address must be in the same country. If tracking says delivered but nothing arrived, email the store within a month of the delivery date.",
+        "Returns are accepted within 14 days of arrival for items that are unused, unopened and in the original packaging. You pay the return shipping, which is taken off the refund, and free gifts must come back too. Refunds go to the original payment method."
+      ]
+    }
+  ],
+  "faq": [
+    ["Is there a mixsoon discount code?", "Yes. Code {code} takes {pct} off at mixsoon.us. Check the total at checkout before you pay."],
+    ["Is there a mixsoon promo code or coupon code?", "For mixsoon, a promo code, a coupon code and a discount code are the same thing: {code} for {pct} off on mixsoon.us. People also search for a mixsoon US code or a mix soon code; it's the same one."],
+    ["Does mixsoon have a first order discount?", "Code {code} works on a first order. Check the total at checkout, since sale items may not take it too."],
+    ["Does mixsoon offer free shipping?", "Yes, on US orders over $60. Below that, the shipping cost shows at checkout."],
+    ["How much is mixsoon Bean Essence?", "$35.00 for 50ml, or $31.50 with code {code}. The 30ml bottle is $25.00, or $22.50 with the code."],
+    ["How much is mixsoon Bean Cream?", "$35.00 for 50ml, or $31.50 with the code."],
+    ["How much is mixsoon Bean Sunscreen?", "$28.00 for 50ml, or $25.20 with the code."],
+    ["Is the mixsoon Bean Glass Skin Duo cheaper?", "Yes. It's $63.00 for the 50ml Bean Essence and 50ml Bean Cream, $7.00 less than buying them apart, or $56.70 with the code if it applies on top."],
+    ["What is mixsoon's return policy?", "14 days from arrival, for items that are unused, unopened and in the original packaging. You pay the return shipping."],
+    ["Why isn't my mixsoon discount code working?", "Type {code} exactly, with no spaces, and remove any other code: most stores accept one per order. Sale items may not take an extra code, so compare the totals and keep the lower one. We list the current code on our [mixsoon coupon page](store.html?s=mixsoon)."]
+  ]
+}
