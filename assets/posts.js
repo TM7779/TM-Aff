@@ -18,7 +18,7 @@ const POSTS = [
   {
     slug: "heights-discount-code",
     url: "saving-tips-heights-discount-code.html",
-    title: "Heights Discount Code: 25% Off, Plus 4 Ways to Pay Even Less",
+    title: "Heights Discount Code & Coupon: 25% Off, Plus 4 Ways to Pay Even Less",
     excerpt:
       "Code CHANTELLEPANG takes 25% off at Heights. Then pay less again with a subscription, a bundle or the 90-day supply, with the prices side by side.",
     image: "https://cdn.shopify.com/s/files/1/0092/3834/7861/files/magnesium-biotic-vitals-bundle-new.png?v=1746177540",
@@ -130,7 +130,7 @@ const POSTS = [
   {
     slug: "tolevita-discount-code",
     url: "saving-tips-tolevita-discount-code.html",
-    title: "Tolevita Discount Code: 10% Off Sleep Patches and Face Masks",
+    title: "Tolevita Coupon & Discount Code: 10% Off Patches and Face Masks",
     excerpt:
       "Code SALA38 takes 10% off at Tolevita. What the sleep patches, eye patches and face masks cost with it, and how to make free shipping work for you.",
     image: "https://cdn.shopify.com/s/files/1/0619/3476/4164/files/sleep_patch-main_pic.jpg?v=1762243249",
@@ -186,7 +186,7 @@ const POSTS = [
   {
     slug: "niepce-discount-code",
     url: "saving-tips-niepce-discount-code.html",
-    title: "Niepce Inc Discount Code: 10% Off Techwear Joggers, Hoodies and Bags",
+    title: "Niepce Coupon & Discount Code: 10% Off Techwear Joggers, Hoodies and Bags",
     excerpt:
       "Code JOVELAMY takes 10% off at Niepce Inc. What the best-selling joggers, bags and hoodies cost with it, when Clearance beats the code, and the return rules.",
     image: "https://cdn.shopify.com/s/files/1/2541/1806/files/d71b5854_cd222a75-af14-4d86-a9ab-5a447657283c.jpg?v=1762197921",
