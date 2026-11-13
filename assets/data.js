@@ -237,6 +237,11 @@ const BEST_SELLERS = {
     { name: "Magnetic Marble Run Race Track Set (108 Pieces)", url: "https://picassotiles.com/products/picassotiles-108pc-2-in-1-magnetic-marble-run-set-racing-track-set-ptg108", image: SHOPIFY_CDN + "0316/6489/8092/files/PTG108-01_7.jpg" },
     { name: "Magnetic Tile Race Track Set (150 Pieces)", url: "https://picassotiles.com/products/picassotiles-150pc-race-track-building-blocks-ptr150", image: SHOPIFY_CDN + "0316/6489/8092/files/PTR150-01V2.jpg" },
   ],
+  "carpuride.com": [
+    { name: "702RS Pro Motorcycle CarPlay with Radar", url: "https://carpuride.com/products/carpuride-702rs-pro-motorcycle-stereo-with-radar-bsd-system", image: SHOPIFY_CDN + "0566/5112/0797/files/702RS_Pro.jpg" },
+    { name: "W125A/W125S 10.25\" Car Screen with Dash Cam", url: "https://carpuride.com/products/carpuride-w125a-w125s-best-car-audio-touch-screen-with-dvr", image: SHOPIFY_CDN + "0566/5112/0797/files/Carpuride-W125A.jpg" },
+    { name: "W702BS/W502BS for BMW Motorcycles", url: "https://carpuride.com/products/carpuride-w702bs-motorcycle-stereo", image: SHOPIFY_CDN + "0566/5112/0797/files/Carpuride_W702BS.jpg" },
+  ],
   "redcatracing.com": [
     { name: "Ascent-18 1/18 Rock Crawler", url: "https://www.redcatracing.com/products/redcat-ascent-18-crawler-1-18-rock-crawler", image: SHOPIFY_CDN + "0079/2428/5530/files/A18HS_FAMILY_LS_1.jpg" },
     { name: "SixtyFour 1/10 Hopping Lowrider", url: "https://www.redcatracing.com/products/sixtyfour", image: SHOPIFY_CDN + "0079/2428/5530/files/64_V2_OS_1_all3_6d767ab3-b71a-449e-85bd-123fac5f9d89.jpg" },
@@ -389,7 +394,7 @@ const STORE_INFO = {
   "jlmmarine": { name: "JLM Marine", category: "sports-outdoors", about: "Aftermarket outboard engine parts and boating supplies, sold direct by the maker." },
   "meross": { name: "Meross", category: "electronics", about: "Smart garage door openers, plugs, sensors and other smart-home devices that work with Apple Home, Alexa and Google." },
   "mellif-tools": { name: "Mellif", category: "home-garden", about: "Cordless power tools, pumps and outdoor equipment for DIY and yard work." },
-  "atk": { name: "ATK Gear", category: "electronics", about: "Lightweight gaming mice and magnetic-switch keyboards." },
+  "atk": { name: "ATK Gear", category: "electronics", logo: "https://www.atk.store/cdn/shop/files/flash_logo.png?v=1778741417", about: "Lightweight gaming mice and magnetic-switch keyboards." },
   "tomtoc": { name: "tomtoc", category: "electronics", about: "Laptop sleeves, briefcases, backpacks and cases for laptops, tablets and game consoles." },
   "homezada": { name: "HomeZada", category: "home-garden", about: "A home management app for keeping track of your home inventory, upkeep and projects." },
   "quntis": { name: "Quntis", category: "home-garden", about: "Monitor light bars, desk lamps, solar lights and fairy lights." },
@@ -403,7 +408,7 @@ const STORE_INFO = {
   "topdon": { name: "TOPDON", category: "electronics", logo: "https://eu.topdon.com/cdn/shop/files/TOPDON_512-512.jpg?v=1679465687", about: "Car diagnostic scanners, battery testers, jump starters and thermal cameras. European store, prices in euros." },
   "telesinstore": { name: "Telesin", category: "electronics", about: "Action camera and phone camera gear: mounts, underwater housings, selfie sticks and lights." },
   "babyquip": { name: "BabyQuip", category: "toys-kids", logo: "https://d28w2s5u3j4b6n.cloudfront.net/img/BQ_PrimaryCentered_RGB.jpg", about: "Rent baby gear like cribs, car seats and strollers when you travel, delivered and set up for you." },
-  "carlinkit": { name: "Carlinkit", category: "electronics", about: "Wireless CarPlay and Android Auto adapters." },
+  "carlinkit": { name: "Carlinkit", category: "electronics", logo: "https://www.carlinkit.store/cdn/shop/files/911.png?v=1783563401", about: "Wireless CarPlay and Android Auto adapters." },
   "mixsoon": { name: "mixsoon", category: "skincare-beauty", logo: "https://mixsoon.us/cdn/shop/files/2c033f04efc2ffb54d04b8b15ceceb30.png?v=1755158966&width=400", about: "Korean skincare essences, creams, sunscreens and cleansers, shipped from the US." },
   "ulanzi": { name: "Ulanzi", category: "electronics", about: "Camera tripods, cages, mounts, lights and other gear for creators." },
   "carpuride": { name: "Carpuride", category: "electronics", about: "Portable wireless CarPlay and Android Auto screens for cars and motorcycles." },
@@ -419,12 +424,12 @@ const STORE_INFO = {
   "shakaguide": { name: "Shaka Guide", category: "sports-outdoors", about: "GPS audio tour apps for road trips, from Hawaii to US national parks." },
   "crystalquest": { name: "Crystal Quest", category: "home-garden", logo: "https://crystalquest.com/cdn/shop/files/CQLogo.png?v=1738491527&width=480", about: "Water filters for the whole house, under the sink, the countertop and the shower." },
   "playvital": { name: "PlayVital", category: "electronics", logo: "https://www.playvital.com/cdn/shop/files/banner.png?v=1658218504&width=400", about: "Skins, grips, thumb caps and other accessories for game controllers and consoles." },
-  "burbur": { name: "BUR BUR", category: "skincare-beauty", about: "Plant-based botanical hair oils." },
+  "burbur": { name: "BUR BUR", category: "skincare-beauty", logo: "https://burbur.com/cdn/shop/files/favicon.png?v=1778793666", about: "Plant-based botanical hair oils." },
   "owowbeauty-uk": { name: "ANSWR", category: "skincare-beauty", about: "At-home keratin hair treatments and skincare. UK store." },
   "newzealandhoneyco": { name: "New Zealand Honey Co.", category: "food-drink", about: "Raw, UMF-certified Manuka honey from New Zealand, with free US shipping over $30." },
   "epomaker": { name: "EPOMAKER", category: "electronics", logo: "https://epomaker.com/cdn/shop/files/epomaker-favicon.png?v=1646776453", about: "Mechanical keyboards, gaming mice and audio gear." },
   "parijanofficial": { name: "PARIJAN", category: "clothing-accessories", about: "Classic menswear in an \"old money\" style, without the luxury markup." },
-  "neosabers": { name: "NEO Sabers", category: "toys-kids", about: "Neopixel lightsabers and blades with sound effects." },
+  "neosabers": { name: "NEO Sabers", category: "toys-kids", logo: "https://neosabers.com/cdn/shop/files/neosabers-favicon.png?v=1719048441", about: "Neopixel lightsabers and blades with sound effects." },
 };
 
 const STORES = [
