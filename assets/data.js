@@ -237,6 +237,11 @@ const BEST_SELLERS = {
     { name: "Magnetic Marble Run Race Track Set (108 Pieces)", url: "https://picassotiles.com/products/picassotiles-108pc-2-in-1-magnetic-marble-run-set-racing-track-set-ptg108", image: SHOPIFY_CDN + "0316/6489/8092/files/PTG108-01_7.jpg" },
     { name: "Magnetic Tile Race Track Set (150 Pieces)", url: "https://picassotiles.com/products/picassotiles-150pc-race-track-building-blocks-ptr150", image: SHOPIFY_CDN + "0316/6489/8092/files/PTR150-01V2.jpg" },
   ],
+  "redcatracing.com": [
+    { name: "Ascent-18 1/18 Rock Crawler", url: "https://www.redcatracing.com/products/redcat-ascent-18-crawler-1-18-rock-crawler", image: SHOPIFY_CDN + "0079/2428/5530/files/A18HS_FAMILY_LS_1.jpg" },
+    { name: "SixtyFour 1/10 Hopping Lowrider", url: "https://www.redcatracing.com/products/sixtyfour", image: SHOPIFY_CDN + "0079/2428/5530/files/64_V2_OS_1_all3_6d767ab3-b71a-449e-85bd-123fac5f9d89.jpg" },
+    { name: "Monte Carlo 1/10 Lowrider", url: "https://www.redcatracing.com/products/montecarlo", image: SHOPIFY_CDN + "0079/2428/5530/files/MC_v2_LS_both_1.jpg" },
+  ],
   "mixsoon.us": [
     { name: "Bean Cream 50ml", url: "https://mixsoon.us/products/mixsoon-bean-cream-50ml", image: SHOPIFY_CDN + "0797/3299/8445/files/Bean_Cream_50ml.png" },
     { name: "Bean Essence 50ml", url: "https://mixsoon.us/products/mixsoon-bean-essence-50ml", image: SHOPIFY_CDN + "0797/3299/8445/files/Bean_Essence_50ml.png" },

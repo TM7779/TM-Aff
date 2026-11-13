@@ -590,6 +590,20 @@ const POSTS = [
     minutes: 6,
   },
   {
+    slug: "redcat-racing-discount-code",
+    url: "saving-tips-redcat-racing-discount-code.html",
+    title: "Redcat Racing Discount Code: 5% Off RC Crawlers, Monster Trucks and Lowriders",
+    excerpt:
+      "Code JAMESWICKENDEN takes 5% off at Redcat Racing. What the Ascent-18 crawler and the SixtyFour and Monte Carlo lowriders cost with it, plus Rewards points and the return rules.",
+    image: "https://cdn.shopify.com/s/files/1/0079/2428/5530/files/A18HS_FAMILY_LS_1.jpg?v=1770931204",
+    imageAlt: "The Redcat Ascent-18 1/18 scale rock crawler in mint green, pink, blue and red",
+    focus: "center 55%",
+    category: "coupon-guides",
+    store: "redcatracing",
+    date: "2026-11-13",
+    minutes: 6,
+  },
+  {
     slug: "topdon-carpal-vs-topscan",
     url: "saving-tips-topdon-carpal-vs-topscan.html",
     title: "TOPDON CarPal vs TopScan Lite vs Pro vs Master: Which Scanner to Buy?",
@@ -601,6 +615,20 @@ const POSTS = [
     category: "buying-guides",
     store: "topdon",
     date: "2026-11-12",
+    minutes: 6,
+  },
+  {
+    slug: "redcat-ascent-18-vs-apex",
+    url: "saving-tips-redcat-ascent-18-vs-apex.html",
+    title: "Redcat Ascent-18 vs Ascent-18 APEX: Which 1/18 Crawler to Buy?",
+    excerpt:
+      "Brushed or brushless? The standard Ascent-18 and the APEX side by side: motor, battery, chassis, wheels, size and price, with what each costs with the code.",
+    image: "https://cdn.shopify.com/s/files/1/0079/2428/5530/files/A-18_APEX_both_0.jpg?v=1757969783",
+    imageAlt: "The Redcat Ascent-18 APEX brushless rock crawler in red and in gray",
+    focus: "center 50%",
+    category: "buying-guides",
+    store: "redcatracing",
+    date: "2026-11-13",
     minutes: 6,
   },
   {
@@ -1231,6 +1259,20 @@ const POSTS = [
     category: "reviews",
     store: "picassotiles",
     date: "2026-11-12",
+    minutes: 5,
+  },
+  {
+    slug: "redcat-racing-review",
+    url: "saving-tips-redcat-racing-review.html",
+    title: "Redcat Racing Reviews: Is Redcat Legit, and Are Its RC Cars Worth It?",
+    excerpt:
+      "Is Redcat Racing legit? What the RC brand sells, what its prices and policies look like, what we could and couldn't find in reviews, and who it suits.",
+    image: "https://cdn.shopify.com/s/files/1/0079/2428/5530/files/64_V2_OS_1_all3_6d767ab3-b71a-449e-85bd-123fac5f9d89.jpg?v=1727195826",
+    imageAlt: "The Redcat SixtyFour 1/10 scale hopping lowrider in three color schemes",
+    focus: "center 50%",
+    category: "reviews",
+    store: "redcatracing",
+    date: "2026-11-13",
     minutes: 5,
   },
 ];
