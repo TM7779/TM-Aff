@@ -117,14 +117,14 @@ class Writer:
         s = amp(s)
         s = s.replace("{code}", f'<strong data-code="{st}">{esc(self.code)}</strong>')
         s = s.replace("{pct}", f'<span data-discount="{st}">{esc(self.pct)}</span>')
-        s = re.sub(r"\[([^\]\n]+)\]\((saving-tips-[^)\s]+\.html)\)", r'<a href="\2">\1</a>', s)
+        s = re.sub(r"\[([^\]\n]+)\]\((saving-tips-[^)\s]+\.html|store\.html\?s=[\w-]+)\)", r'<a href="\2">\1</a>', s)
         return re.sub(r"\{shop:([^}]+)\}",
                       lambda m: f'<a data-shop="{st}" href="{esc(self.aff)}" target="_blank" rel="sponsored nofollow noopener">{m.group(1)}</a>', s)
 
     def plain(self, s):
         """The text as the page shows it, for meta tags and search data."""
         s = s.replace("{code}", self.code).replace("{pct}", self.pct)
-        s = re.sub(r"\[([^\]\n]+)\]\((saving-tips-[^)\s]+\.html)\)", r"\1", s)
+        s = re.sub(r"\[([^\]\n]+)\]\((saving-tips-[^)\s]+\.html|store\.html\?s=[\w-]+)\)", r"\1", s)
         return re.sub(r"\{shop:([^}]+)\}", r"\1", s)
 
     def part(self, p):
