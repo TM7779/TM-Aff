@@ -242,6 +242,11 @@ const BEST_SELLERS = {
     { name: "W125A/W125S 10.25\" Car Screen with Dash Cam", url: "https://carpuride.com/products/carpuride-w125a-w125s-best-car-audio-touch-screen-with-dvr", image: SHOPIFY_CDN + "0566/5112/0797/files/Carpuride-W125A.jpg" },
     { name: "W702BS/W502BS for BMW Motorcycles", url: "https://carpuride.com/products/carpuride-w702bs-motorcycle-stereo", image: SHOPIFY_CDN + "0566/5112/0797/files/Carpuride_W702BS.jpg" },
   ],
+  "omegajuicers.com": [
+    { name: "Effortless Batch Juicer (JC2022)", url: "https://omegajuicers.com/products/omega-effortless-batch-juicer", image: SHOPIFY_CDN + "2792/7334/files/JC2022GY11_LS4_feca47a5-8458-436b-a4c1-4aab12e8bb7f.jpg" },
+    { name: "Pure Press Vertical Cold Press Juicer (VSJ843)", url: "https://omegajuicers.com/products/omega-cold-press-masticating-vertical-low-speed-juicer", image: SHOPIFY_CDN + "2792/7334/files/VSJ843QS_LS4.jpg" },
+    { name: "Time Saving Cold Press Batch Juicer (OMJCSMVB)", url: "https://omegajuicers.com/products/omega-time-saving-cold-press-batch-juicer", image: SHOPIFY_CDN + "2792/7334/files/OMJCSMVBBK13_LS_Comfort_in_a_Cup_-_Main_LS.jpg" },
+  ],
   "redcatracing.com": [
     { name: "Ascent-18 1/18 Rock Crawler", url: "https://www.redcatracing.com/products/redcat-ascent-18-crawler-1-18-rock-crawler", image: SHOPIFY_CDN + "0079/2428/5530/files/A18HS_FAMILY_LS_1.jpg" },
     { name: "SixtyFour 1/10 Hopping Lowrider", url: "https://www.redcatracing.com/products/sixtyfour", image: SHOPIFY_CDN + "0079/2428/5530/files/64_V2_OS_1_all3_6d767ab3-b71a-449e-85bd-123fac5f9d89.jpg" },

@@ -618,6 +618,20 @@ const POSTS = [
     minutes: 6,
   },
   {
+    slug: "omega-juicers-discount-code",
+    url: "saving-tips-omega-juicers-discount-code.html",
+    title: "Omega Juicer Discount Code: 10% Off Cold Press and Batch Juicers",
+    excerpt:
+      "Code JAMESWICKENDEN takes 10% off at Omega Juicers. What the Effortless, Pure Press and batch juicers cost with it, the site-wide sale to check first, and the return rules.",
+    image: "https://cdn.shopify.com/s/files/1/2792/7334/files/JC2022GY11_LS4_feca47a5-8458-436b-a4c1-4aab12e8bb7f.jpg?v=1759147861",
+    imageAlt: "The Omega Effortless batch juicer in gray on a kitchen counter",
+    focus: "center 50%",
+    category: "coupon-guides",
+    store: "omegajuicers",
+    date: "2026-11-14",
+    minutes: 7,
+  },
+  {
     slug: "topdon-carpal-vs-topscan",
     url: "saving-tips-topdon-carpal-vs-topscan.html",
     title: "TOPDON CarPal vs TopScan Lite vs Pro vs Master: Which Scanner to Buy?",
@@ -644,6 +658,20 @@ const POSTS = [
     store: "redcatracing",
     date: "2026-11-13",
     minutes: 6,
+  },
+  {
+    slug: "best-omega-juicer",
+    url: "saving-tips-best-omega-juicer.html",
+    title: "Which Omega Juicer Is Best? All 5 Models Omega Sells Now, Compared",
+    excerpt:
+      "Effortless, Pure Press, JC4000, Time Saving batch or High Speed? Speeds, warranties, ratings and prices side by side, and what each costs with the code.",
+    image: "https://cdn.shopify.com/s/files/1/2792/7334/files/JC2022GY11_IG2_1.jpg?v=1759147861",
+    imageAlt: "The Omega Effortless batch juicer in gray with its juice cup, pulp container and cleaning brush",
+    focus: "center 45%",
+    category: "buying-guides",
+    store: "omegajuicers",
+    date: "2026-11-14",
+    minutes: 7,
   },
   {
     slug: "tomtoc-a14-vs-a17-vs-a42",
@@ -1301,6 +1329,20 @@ const POSTS = [
     category: "reviews",
     store: "carpuride",
     date: "2026-11-13",
+    minutes: 6,
+  },
+  {
+    slug: "omega-juicers-review",
+    url: "saving-tips-omega-juicers-review.html",
+    title: "Omega Juicer Reviews: Is Omega a Good Brand, and Which Juicer Is Worth It?",
+    excerpt:
+      "Is Omega a good juicer brand? What omegajuicers.com sells, how each juicer is rated, the big warranty gap between models, and who each one suits.",
+    image: "https://cdn.shopify.com/s/files/1/2792/7334/files/JC4000_Hero.jpg?v=1742409996",
+    imageAlt: "The Omega JC4000 wide mouth vertical cold press juicer in silver",
+    focus: "center 50%",
+    category: "reviews",
+    store: "omegajuicers",
+    date: "2026-11-14",
     minutes: 6,
   },
 ];
