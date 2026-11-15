@@ -257,6 +257,11 @@ const BEST_SELLERS = {
     { name: "Bean Essence 50ml", url: "https://mixsoon.us/products/mixsoon-bean-essence-50ml", image: SHOPIFY_CDN + "0797/3299/8445/files/Bean_Essence_50ml.png" },
     { name: "Bean Sunscreen 50ml", url: "https://mixsoon.us/products/mixsoon-bean-sunscreen-50ml", image: SHOPIFY_CDN + "0797/3299/8445/files/2560__1.jpg" },
   ],
+  "clocky.com": [
+    { name: "Clocky Runaway Alarm Clock", url: "https://clocky.com/products/clocky?sca_ref=11075813.QiwO47sRLa", image: SHOPIFY_CDN + "0555/7529/files/1.png" },
+    { name: "Clocky Blue", url: "https://clocky.com/products/clocky-blue?sca_ref=11075813.QiwO47sRLa", image: SHOPIFY_CDN + "0555/7529/products/Clocky_Aqua__8copy.jpg" },
+    { name: "Nap Sleep Snooze Throw Pillow", url: "https://clocky.com/products/nap-sleep-snooze-throw-pillow-blue?sca_ref=11075813.QiwO47sRLa", image: SHOPIFY_CDN + "0555/7529/products/mockup-5230b521.jpg" },
+  ],
   "topdon.com": [
     { name: "TopScan Bluetooth Scanner", url: "https://eu.topdon.com/products/topscan", image: SHOPIFY_CDN + "0555/3753/3209/files/TopScan_Pro-0.jpg" },
     { name: "CarPal Wireless Scanner", url: "https://eu.topdon.com/products/carpal", image: SHOPIFY_CDN + "0555/3753/3209/files/CarPal-1.jpg" },
@@ -417,7 +422,7 @@ const STORE_INFO = {
   "mixsoon": { name: "mixsoon", category: "skincare-beauty", logo: "https://mixsoon.us/cdn/shop/files/2c033f04efc2ffb54d04b8b15ceceb30.png?v=1755158966&width=400", about: "Korean skincare essences, creams, sunscreens and cleansers, shipped from the US." },
   "ulanzi": { name: "Ulanzi", category: "electronics", about: "Camera tripods, cages, mounts, lights and other gear for creators." },
   "carpuride": { name: "Carpuride", category: "electronics", about: "Portable wireless CarPlay and Android Auto screens for cars and motorcycles." },
-  "clocky": { name: "Clocky", category: "home-garden", about: "The alarm clock on wheels that rolls off the nightstand when you hit snooze." },
+  "clocky": { name: "Clocky", category: "home-garden", about: "The original alarm clock on wheels that rolls off the nightstand and beeps until you get up." },
   "ivankyo": { name: "VANKYO", category: "electronics", about: "Mini and portable projectors, plus tablets." },
   "evilhair": { name: "Evilhair", category: "skincare-beauty", logo: "https://evilhair.com/cdn/shop/t/40/assets/logo.png?v=30331125676332007051740436577", about: "Pastel and vivid color-depositing hair conditioners." },
   "redcatracing": { name: "Redcat Racing", category: "toys-kids", about: "Ready-to-run RC cars, trucks and crawlers, plus parts." },

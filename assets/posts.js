@@ -632,6 +632,20 @@ const POSTS = [
     minutes: 7,
   },
   {
+    slug: "clocky-discount-code",
+    url: "saving-tips-clocky-discount-code.html",
+    title: "Clocky Discount Code: 25% Off the Original Alarm Clock on Wheels",
+    excerpt:
+      "Code JAMESWICKENDEN takes 25% off the original Clocky alarm clock on wheels. What each color costs with it, the two-clock bundle, free US shipping and the $6 restocking fee.",
+    image: "https://cdn.shopify.com/s/files/1/0555/7529/files/black-5.jpg?v=1741902177",
+    imageAlt: "A black Clocky alarm clock on wheels rolling off a nightstand while someone sleeps in the background",
+    focus: "center 60%",
+    category: "coupon-guides",
+    store: "clocky",
+    date: "2026-11-15",
+    minutes: 6,
+  },
+  {
     slug: "topdon-carpal-vs-topscan",
     url: "saving-tips-topdon-carpal-vs-topscan.html",
     title: "TOPDON CarPal vs TopScan Lite vs Pro vs Master: Which Scanner to Buy?",
@@ -672,6 +686,20 @@ const POSTS = [
     store: "omegajuicers",
     date: "2026-11-14",
     minutes: 7,
+  },
+  {
+    slug: "meross-msg100-vs-msg200",
+    url: "saving-tips-meross-msg100-vs-msg200.html",
+    title: "Meross MSG100 vs MSG200HK: Which Smart Garage Door Opener Should You Buy?",
+    excerpt:
+      "One garage door or three? The Meross MSG100 and MSG200HK side by side: antenna, sensors, compatibility, cost per door and prices with the code.",
+    image: "https://cdn.shopify.com/s/files/1/0488/4289/9612/files/1150x1500-01_4ad81409-00a9-4dfa-98a1-28cc5146cafb.jpg?v=1772678950",
+    imageAlt: "A woman holding a child in front of an open garage door while a hand holds a phone showing the Meross app",
+    focus: "center 55%",
+    category: "buying-guides",
+    store: "meross",
+    date: "2026-11-15",
+    minutes: 6,
   },
   {
     slug: "tomtoc-a14-vs-a17-vs-a42",
@@ -1343,6 +1371,20 @@ const POSTS = [
     category: "reviews",
     store: "omegajuicers",
     date: "2026-11-14",
+    minutes: 6,
+  },
+  {
+    slug: "clocky-review",
+    url: "saving-tips-clocky-review.html",
+    title: "Clocky Reviews: Is the Alarm Clock on Wheels Legit, and Is It Worth $31.99?",
+    excerpt:
+      "Is Clocky legit, and does the rolling alarm clock hold up? Its ratings and complaints, the warranty and return rules, and who it suits.",
+    image: "https://cdn.shopify.com/s/files/1/0555/7529/files/black-5.jpg?v=1741902177",
+    imageAlt: "A black Clocky alarm clock on wheels rolling off a nightstand while someone sleeps in the background",
+    focus: "center 60%",
+    category: "reviews",
+    store: "clocky",
+    date: "2026-11-15",
     minutes: 6,
   },
 ];
