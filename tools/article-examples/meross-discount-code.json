@@ -12,7 +12,7 @@
   "image_alt": "The Meross MSG100 smart garage door opener",
   "focus": "center 50%",
   "lede": "Use the Meross discount code {code} for {pct} off at {shop:shop.meross.com}, the smart home brand known for garage door openers, sensors and plugs that work with Apple Home, Alexa and Google. Here's what the best sellers cost with the code, and how to pay less.",
-  "cart_tip": "Pick your plug or region version on the product page. The US garage door openers cost $10 less than the EU, UK and AU versions.",
+  "cart_tip": "Pick your plug or region version on the product page. On November 15, 2026, every plug version of the garage door openers cost the same.",
   "sections": [
     {
       "h2": "Meross prices with the code",
@@ -68,7 +68,8 @@
     {
       "h2": "3. Choose the right version the first time",
       "parts": [
-        "Some Meross devices need a hub, such as the smoke alarm, which needs the Matter Smart Hub. The starter kit at $44.99 includes one alarm and the hub, so check that before you buy a device on its own."
+        "Some Meross devices need a hub, such as the smoke alarm, which needs the Matter Smart Hub. The starter kit at $44.99 includes one alarm and the hub, so check that before you buy a device on its own.",
+        "Choosing a garage door opener? Our [Meross MSG100 vs MSG200HK comparison](saving-tips-meross-msg100-vs-msg200.html) shows which one suits one, two or three doors."
       ]
     },
     {
