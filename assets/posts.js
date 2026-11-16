@@ -646,6 +646,19 @@ const POSTS = [
     minutes: 6,
   },
   {
+    slug: "vankyo-discount-code",
+    url: "saving-tips-vankyo-discount-code.html",
+    title: "VANKYO Discount Code: 10% Off Projectors at ivankyo.com, With Every Price Worked Out",
+    excerpt:
+      "Code JAMESWICKENDEN takes 10% off VANKYO projectors at ivankyo.com. What the H500R, V700G Pro and V700 Neo cost with it, which models include a screen, and the shipping and return rules.",
+    image: "https://cdn.shopify.com/s/files/1/0268/7015/3313/files/11_11zon_2_dd728509-894e-4188-93fa-14112e4575b2.webp?v=1788173266",
+    imageAlt: "A VANKYO home projector on a living room table casting a movie onto the wall",
+    category: "coupon-guides",
+    store: "ivankyo",
+    date: "2026-11-16",
+    minutes: 7,
+  },
+  {
     slug: "topdon-carpal-vs-topscan",
     url: "saving-tips-topdon-carpal-vs-topscan.html",
     title: "TOPDON CarPal vs TopScan Lite vs Pro vs Master: Which Scanner to Buy?",
@@ -686,6 +699,19 @@ const POSTS = [
     store: "omegajuicers",
     date: "2026-11-14",
     minutes: 7,
+  },
+  {
+    slug: "vankyo-h500r-vs-v700g-vs-v700-pro",
+    url: "saving-tips-vankyo-h500r-vs-v700g-vs-v700-pro.html",
+    title: "VANKYO H500R vs V700G vs V700 Neo vs V700G Pro: Which Projector Should You Buy?",
+    excerpt:
+      "Four VANKYO projectors side by side: brightness, Roku TV or Google TV, price per lumen, what comes in the box and prices with the code.",
+    image: "https://cdn.shopify.com/s/files/1/0268/7015/3313/files/11_11zon_2_dd728509-894e-4188-93fa-14112e4575b2.webp?v=1788173266",
+    imageAlt: "A VANKYO home projector on a living room table casting a movie onto the wall",
+    category: "buying-guides",
+    store: "ivankyo",
+    date: "2026-11-16",
+    minutes: 6,
   },
   {
     slug: "meross-msg100-vs-msg200",
@@ -1385,6 +1411,19 @@ const POSTS = [
     category: "reviews",
     store: "clocky",
     date: "2026-11-15",
+    minutes: 6,
+  },
+  {
+    slug: "vankyo-review",
+    url: "saving-tips-vankyo-review.html",
+    title: "VANKYO Reviews: Is the Projector Brand Legit, and Is a VANKYO Projector Worth It?",
+    excerpt:
+      "Is VANKYO legit, and are its projectors worth the money? Who runs the store, the specs and prices side by side, the warranty and return rules, and who each model suits.",
+    image: "https://cdn.shopify.com/s/files/1/0268/7015/3313/files/11_11zon_2_dd728509-894e-4188-93fa-14112e4575b2.webp?v=1788173266",
+    imageAlt: "A VANKYO home projector on a living room table casting a movie onto the wall",
+    category: "reviews",
+    store: "ivankyo",
+    date: "2026-11-16",
     minutes: 6,
   },
 ];
