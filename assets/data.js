@@ -272,6 +272,11 @@ const BEST_SELLERS = {
     { name: "CarPal Wireless Scanner", url: "https://eu.topdon.com/products/carpal", image: SHOPIFY_CDN + "0555/3753/3209/files/CarPal-1.jpg" },
     { name: "ArtiDiag600 S Scan Tool", url: "https://eu.topdon.com/products/artidiag600-s", image: SHOPIFY_CDN + "0555/3753/3209/files/AD600-S-7.jpg" },
   ],
+  "carlinkit.store": [
+    { name: "Carlinkit Mini Ultra 6 Wireless CarPlay & Android Auto Adapter", url: "https://www.carlinkit.store/products/carlinkit-mini-ultra-6-4-in-1-wireless-screen-mirror-wireless-carplay-android-auto-adapter-auto-connect-mirror-phone-play-video?ref=zfdzgiow", image: SHOPIFY_CDN + "0337/6722/7530/files/main-image-1_70c0cd98-f459-4142-a951-78a530c9de6f.jpg" },
+    { name: "Carlinkit Mini SE Pro Wireless Adapter", url: "https://www.carlinkit.store/products/carlinkit-mini-se-pro-wireless-adapter-smart-wireless-carplay-android-auto-usb-dongle-wifi-bluetooth-auto-connection-ota-upgrade?ref=zfdzgiow", image: SHOPIFY_CDN + "0337/6722/7530/files/Mini5_pro.jpg" },
+    { name: "Carlinkit Fire Drive Link for Fire TV Stick", url: "https://www.carlinkit.store/products/carlinkit-fire-tv-stick-specifically-designed-for-amazon-fire-tv-stick-enjoy-streaming-in-your-car-wired-carplay-to-hdmi?ref=zfdzgiow", image: SHOPIFY_CDN + "0337/6722/7530/files/Fire_Drive_Link.jpg" },
+  ],
 };
 
 /*
