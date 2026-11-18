@@ -674,9 +674,9 @@ const POSTS = [
   {
     slug: "telesin-discount-code",
     url: "saving-tips-telesin-discount-code.html",
-    title: "Telesin Discount Code: 10% Off GoPro and Phone Camera Gear, With Every Price Worked Out",
+    title: "Telesin Discount Code: 15% Off GoPro and Phone Camera Gear, With Every Price Worked Out",
     excerpt:
-      "Code JAMESWICKENDEN takes 10% off Telesin action camera and phone camera gear at telesinstore.com. What the floating sticks, waterproof cases, neck mounts and selfie sticks cost with it, plus shipping and returns.",
+      "Code JAMESWICKENDEN takes 15% off Telesin action camera and phone camera gear at telesinstore.com. What the floating sticks, waterproof cases, neck mounts and selfie sticks cost with it, plus shipping and returns.",
     image: "https://cdn.shopify.com/s/files/1/0571/8648/4422/files/4_741b9995-bd75-4de2-ad1d-f53dbe74a6ef.png?v=1787139804",
     imageAlt: "The Telesin clear waterproof dive case for GoPro Hero 9 to 13 with a black lens filter frame and a mounting buckle",
     category: "coupon-guides",
