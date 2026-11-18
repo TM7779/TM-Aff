@@ -5,7 +5,7 @@
   "brand": "TOPDON",
   "date": "2026-11-12",
   "title": "TOPDON Discount Code: 5% Off Scanners, Jump Starters and Thermal Cameras",
-  "title_tag": "TOPDON Discount Code 2026: 5% Off (EU & UK) | Kinsley Deals",
+  "title_tag": "TOPDON Discount Code November 2026: 5% Off (EU & UK)",
   "description": "TOPDON discount code {code} takes 5% off at TOPDON Europe. TopScan, CarPal and ArtiDiag600 S prices with the code, VAT, shipping to the EU and UK, and the return fees.",
   "excerpt": "Code {code} takes 5% off at TOPDON Europe. What the TopScan, CarPal and ArtiDiag600 S cost with it, plus shipping to the EU and UK and the 30-day return fees.",
   "image": "https://cdn.shopify.com/s/files/1/0555/3753/3209/files/TopScan_Pro-0.jpg?v=1734421506",
@@ -17,21 +17,69 @@
     {
       "h2": "TOPDON prices with the code",
       "parts": [
-        {"table": {"head": ["Product", "Price (excl. VAT)", "With 5% off"], "rows": [
-          ["TopScan Lite", "€65.99", "€62.69"],
-          ["TopScan Pro", "€109.00", "€103.55"],
-          ["TopScan Master", "€175.99", "€167.19"],
-          ["CarPal", "€40.99", "€38.94"],
-          ["ArtiDiag600 S", "€220.83", "€209.79"],
-          ["BT200 battery tester", "€57.99", "€55.09"],
-          ["JumpSurge3000 jump starter", "€139.99", "€132.99"],
-          ["TC001 thermal camera (Android)", "€225.00", "€213.75"]
-        ]}},
-        {"small": "Prices in euros, without VAT, on eu.topdon.com on November 12, 2026. VAT for your country is added at checkout."}
+        {
+          "table": {
+            "head": [
+              "Product",
+              "Price (excl. VAT)",
+              "With 5% off"
+            ],
+            "rows": [
+              [
+                "TopScan Lite",
+                "€65.99",
+                "€62.69"
+              ],
+              [
+                "TopScan Pro",
+                "€109.00",
+                "€103.55"
+              ],
+              [
+                "TopScan Master",
+                "€175.99",
+                "€167.19"
+              ],
+              [
+                "CarPal",
+                "€40.99",
+                "€38.94"
+              ],
+              [
+                "ArtiDiag600 S",
+                "€220.83",
+                "€209.79"
+              ],
+              [
+                "BT200 battery tester",
+                "€57.99",
+                "€55.09"
+              ],
+              [
+                "JumpSurge3000 jump starter",
+                "€139.99",
+                "€132.99"
+              ],
+              [
+                "TC001 thermal camera (Android)",
+                "€225.00",
+                "€213.75"
+              ]
+            ]
+          }
+        },
+        {
+          "small": "Prices in euros, without VAT, on eu.topdon.com on November 12, 2026. VAT for your country is added at checkout."
+        }
       ]
     },
     {
-      "figure": {"src": "https://cdn.shopify.com/s/files/1/0555/3753/3209/files/CarPal-1.jpg?v=1724989090", "alt": "The TOPDON CarPal wireless OBD2 scanner", "width": 300, "height": 300},
+      "figure": {
+        "src": "https://cdn.shopify.com/s/files/1/0555/3753/3209/files/CarPal-1.jpg?v=1724989090",
+        "alt": "The TOPDON CarPal wireless OBD2 scanner",
+        "width": 300,
+        "height": 300
+      },
       "h2": "1. Pick the smallest tool that does the job",
       "parts": [
         "CarPal (€40.99) is the entry tool: an all-system check-up and the 6 most common resets from your phone. The TopScan comes in three editions, Lite (€65.99), Pro (€109.00) and Master (€175.99), with bi-directional tests that send commands to parts such as injectors and windows. The ArtiDiag600 S (€220.83) is a handheld scanner with its own screen, covering engine, transmission, airbag and ABS on more than 80 car brands, with nine service resets.",
@@ -59,15 +107,45 @@
     }
   ],
   "faq": [
-    ["Is there a TOPDON discount code?", "Yes. Code {code} takes {pct} off at eu.topdon.com, TOPDON's store for Europe and the UK. Check the total at checkout before you pay."],
-    ["Is there a TOPDON promo code or coupon code?", "For TOPDON, a promo code, a coupon code, a voucher code and a discount code are the same thing: {code} for {pct} off at TOPDON Europe. People also search for a Topdon scanner discount code or a Top Don code; it's the same one."],
-    ["Is there a TOPDON discount code for the UK?", "Yes. TOPDON Europe ships to the UK, and code {code} works there too. UK VAT is added at checkout."],
-    ["Are TOPDON Europe prices with VAT?", "No. The store shows prices without VAT and adds your country's VAT at checkout."],
-    ["How much is the TOPDON TopScan?", "From €65.99 for the Lite, €109.00 for the Pro and €175.99 for the Master, without VAT. With code {code}: €62.69, €103.55 and €167.19."],
-    ["How much is the TOPDON CarPal?", "€40.99 without VAT, or €38.94 with the code."],
-    ["How much is the TOPDON ArtiDiag600 S?", "€220.83 without VAT, or €209.79 with the code."],
-    ["Does TOPDON offer free shipping?", "TOPDON Europe calculates shipping by weight and destination and shows it at checkout. We didn't see a free-shipping threshold on November 12, 2026."],
-    ["What is TOPDON's return policy?", "30 days, with a service fee that depends on timing and condition: none for an unopened tool returned within 14 days, up to 20% for a used one. You pay the return shipping, and software can't be returned."],
-    ["Why isn't my TOPDON discount code working?", "Type {code} exactly, with no spaces, on eu.topdon.com, and remove any other code: most stores accept one per order. It won't work on topdon.com or on Amazon. We list the current code on our [TOPDON coupon page](store.html?s=topdon)."]
+    [
+      "Is there a TOPDON discount code?",
+      "Yes. Code {code} takes {pct} off at eu.topdon.com, TOPDON's store for Europe and the UK. Check the total at checkout before you pay."
+    ],
+    [
+      "Is there a TOPDON promo code or coupon code?",
+      "For TOPDON, a promo code, a coupon code, a voucher code and a discount code are the same thing: {code} for {pct} off at TOPDON Europe. People also search for a Topdon scanner discount code or a Top Don code; it's the same one."
+    ],
+    [
+      "Is there a TOPDON discount code for the UK?",
+      "Yes. TOPDON Europe ships to the UK, and code {code} works there too. UK VAT is added at checkout."
+    ],
+    [
+      "Are TOPDON Europe prices with VAT?",
+      "No. The store shows prices without VAT and adds your country's VAT at checkout."
+    ],
+    [
+      "How much is the TOPDON TopScan?",
+      "From €65.99 for the Lite, €109.00 for the Pro and €175.99 for the Master, without VAT. With code {code}: €62.69, €103.55 and €167.19."
+    ],
+    [
+      "How much is the TOPDON CarPal?",
+      "€40.99 without VAT, or €38.94 with the code."
+    ],
+    [
+      "How much is the TOPDON ArtiDiag600 S?",
+      "€220.83 without VAT, or €209.79 with the code."
+    ],
+    [
+      "Does TOPDON offer free shipping?",
+      "TOPDON Europe calculates shipping by weight and destination and shows it at checkout. We didn't see a free-shipping threshold on November 12, 2026."
+    ],
+    [
+      "What is TOPDON's return policy?",
+      "30 days, with a service fee that depends on timing and condition: none for an unopened tool returned within 14 days, up to 20% for a used one. You pay the return shipping, and software can't be returned."
+    ],
+    [
+      "Why isn't my TOPDON discount code working?",
+      "Type {code} exactly, with no spaces, on eu.topdon.com, and remove any other code: most stores accept one per order. It won't work on topdon.com or on Amazon. We list the current code on our [TOPDON coupon page](store.html?s=topdon)."
+    ]
   ]
 }

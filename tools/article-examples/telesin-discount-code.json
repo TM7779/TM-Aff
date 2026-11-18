@@ -5,7 +5,7 @@
   "brand": "Telesin",
   "date": "2026-11-18",
   "title": "Telesin Discount Code: 15% Off GoPro and Phone Camera Gear, With Every Price Worked Out",
-  "title_tag": "Telesin Discount Code 2026: 15% Off | Kinsley Deals",
+  "title_tag": "Telesin Discount Code November 2026: 15% Off | Kinsley Deals",
   "description": "Telesin discount code {code} takes 15% off at telesinstore.com. The Floating Tripod Selfie Stick drops from $24.99 to $21.24. Prices, free shipping over $79 and returns.",
   "excerpt": "Code {code} takes 15% off Telesin action camera and phone camera gear at telesinstore.com. What the floating sticks, waterproof cases, neck mounts and selfie sticks cost with it, plus shipping and returns.",
   "image": "https://cdn.shopify.com/s/files/1/0571/8648/4422/files/4_741b9995-bd75-4de2-ad1d-f53dbe74a6ef.png?v=1787139804",
@@ -18,21 +18,77 @@
       "parts": [
         {
           "table": {
-            "head": ["Product", "Price", "With 15% off"],
+            "head": [
+              "Product",
+              "Price",
+              "With 15% off"
+            ],
             "rows": [
-              ["Floating Tripod Selfie Stick (for action cameras)", "$24.99", "$21.24"],
-              ["Bluetooth Floating Stick for GoPro 8 to 13", "$34.99", "$29.74"],
-              ["Waterproof Case for GoPro Hero 9 to 13, case only", "$13.99", "$11.89"],
-              ["Waterproof Case for GoPro Hero 9 to 13, case + 3 filters", "$17.99", "$15.29"],
-              ["60m Waterproof Case for DJI Osmo Action 6", "$16.99", "$14.44"],
-              ["Windshield Clamp Mount", "$21.99", "$18.69"],
-              ["Handlebar Clamp Ring Mount (basic)", "$19.99", "$16.99"],
-              ["Quick Release Vest Chest Belt (standard)", "$13.99", "$11.89"],
-              ["Action Camera Neck Holder SE 2.0", "$25.99", "$22.09"],
-              ["Magnetic Neck Mount for Phones (regular)", "$23.99", "$20.39"],
-              ["3m Carbon Fiber Selfie Stick (3.0)", "$56.99", "$48.44"],
-              ["Underwater Diving Phone Case (20m)", "$63.99", "$54.39"],
-              ["Master Grip Kit for iPhone 18 Pro Series", "$71.99", "$61.19"]
+              [
+                "Floating Tripod Selfie Stick (for action cameras)",
+                "$24.99",
+                "$21.24"
+              ],
+              [
+                "Bluetooth Floating Stick for GoPro 8 to 13",
+                "$34.99",
+                "$29.74"
+              ],
+              [
+                "Waterproof Case for GoPro Hero 9 to 13, case only",
+                "$13.99",
+                "$11.89"
+              ],
+              [
+                "Waterproof Case for GoPro Hero 9 to 13, case + 3 filters",
+                "$17.99",
+                "$15.29"
+              ],
+              [
+                "60m Waterproof Case for DJI Osmo Action 6",
+                "$16.99",
+                "$14.44"
+              ],
+              [
+                "Windshield Clamp Mount",
+                "$21.99",
+                "$18.69"
+              ],
+              [
+                "Handlebar Clamp Ring Mount (basic)",
+                "$19.99",
+                "$16.99"
+              ],
+              [
+                "Quick Release Vest Chest Belt (standard)",
+                "$13.99",
+                "$11.89"
+              ],
+              [
+                "Action Camera Neck Holder SE 2.0",
+                "$25.99",
+                "$22.09"
+              ],
+              [
+                "Magnetic Neck Mount for Phones (regular)",
+                "$23.99",
+                "$20.39"
+              ],
+              [
+                "3m Carbon Fiber Selfie Stick (3.0)",
+                "$56.99",
+                "$48.44"
+              ],
+              [
+                "Underwater Diving Phone Case (20m)",
+                "$63.99",
+                "$54.39"
+              ],
+              [
+                "Master Grip Kit for iPhone 18 Pro Series",
+                "$71.99",
+                "$61.19"
+              ]
             ]
           }
         },
@@ -82,16 +138,49 @@
     }
   ],
   "faq": [
-    ["Is there a Telesin discount code?", "Yes. Code {code} takes {pct} off at telesinstore.com, Telesin's own store. Enter it in the discount box at checkout."],
-    ["Is there a Telesin promo code or coupon code?", "For Telesin, a promo code, a coupon code and a discount code are the same thing: {code} for {pct} off. People also search for a Telesin store or TELESIN official store code; it's the same store and the same code."],
-    ["Does Telesin have a first order discount?", "Telesin's site offers 10% off a first order to newsletter subscribers. Code {code} gives {pct}, and only one code usually applies, so {code} saves more."],
-    ["Does Telesin offer free shipping?", "Yes, on orders over $79. Express shipping costs $25 to $35 and takes about 7 to 15 days."],
-    ["What is Telesin's return policy?", "You have 30 days after receiving an item to request a return, unused and in its original packaging. The policy says sale items and gift cards can't be returned."],
-    ["How much is the Telesin Floating Tripod Selfie Stick with the code?", "It was $24.99 on November 18, 2026, or $21.24 with code {code}."],
-    ["How much is the Telesin Bluetooth Floating Stick with the code?", "$34.99, or $29.74 with code {code}. The product page lists it for GoPro 8 to 13."],
-    ["How much is the Telesin GoPro waterproof case with the code?", "The case alone was $13.99 ($11.89 with the code), and the case with three filters $17.99 ($15.29 with the code). It fits GoPro Hero 9 to 13."],
-    ["How much is the Telesin 3m carbon fiber selfie stick with the code?", "$56.99, or $48.44 with code {code}."],
-    ["Does Telesin have a Black Friday sale?", "Yes. On November 18, 2026 the store ran a Black Friday and Cyber Monday sale from November 16 to 30, with up to 50% off selected products."],
-    ["Why isn't my Telesin discount code working?", "Type {code} exactly, with no spaces, and remove any other code, since only one usually applies. The code works only on telesinstore.com, not on Amazon or other sellers. We list the current code on our [Telesin coupon page](store.html?s=telesinstore)."]
+    [
+      "Is there a Telesin discount code?",
+      "Yes. Code {code} takes {pct} off at telesinstore.com, Telesin's own store. Enter it in the discount box at checkout."
+    ],
+    [
+      "Is there a Telesin promo code or coupon code?",
+      "For Telesin, a promo code, a coupon code and a discount code are the same thing: {code} for {pct} off. People also search for a Telesin store or TELESIN official store code; it's the same store and the same code."
+    ],
+    [
+      "Does Telesin have a first order discount?",
+      "Telesin's site offers 10% off a first order to newsletter subscribers. Code {code} gives {pct}, and only one code usually applies, so {code} saves more."
+    ],
+    [
+      "Does Telesin offer free shipping?",
+      "Yes, on orders over $79. Express shipping costs $25 to $35 and takes about 7 to 15 days."
+    ],
+    [
+      "What is Telesin's return policy?",
+      "You have 30 days after receiving an item to request a return, unused and in its original packaging. The policy says sale items and gift cards can't be returned."
+    ],
+    [
+      "How much is the Telesin Floating Tripod Selfie Stick with the code?",
+      "It was $24.99 on November 18, 2026, or $21.24 with code {code}."
+    ],
+    [
+      "How much is the Telesin Bluetooth Floating Stick with the code?",
+      "$34.99, or $29.74 with code {code}. The product page lists it for GoPro 8 to 13."
+    ],
+    [
+      "How much is the Telesin GoPro waterproof case with the code?",
+      "The case alone was $13.99 ($11.89 with the code), and the case with three filters $17.99 ($15.29 with the code). It fits GoPro Hero 9 to 13."
+    ],
+    [
+      "How much is the Telesin 3m carbon fiber selfie stick with the code?",
+      "$56.99, or $48.44 with code {code}."
+    ],
+    [
+      "Does Telesin have a Black Friday sale?",
+      "Yes. On November 18, 2026 the store ran a Black Friday and Cyber Monday sale from November 16 to 30, with up to 50% off selected products."
+    ],
+    [
+      "Why isn't my Telesin discount code working?",
+      "Type {code} exactly, with no spaces, and remove any other code, since only one usually applies. The code works only on telesinstore.com, not on Amazon or other sellers. We list the current code on our [Telesin coupon page](store.html?s=telesinstore)."
+    ]
   ]
 }
