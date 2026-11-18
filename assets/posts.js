@@ -16,6 +16,19 @@ const POST_CATEGORIES = [
 
 const POSTS = [
   {
+    slug: "black-friday-2026",
+    url: "saving-tips-black-friday-2026.html",
+    title: "Black Friday 2026: What 48 Brands Are Offering, Checked Daily",
+    excerpt:
+      "Black Friday is November 27 and Cyber Monday November 30. The Black Friday offer each brand shows on its own site, beside our code, updated every day until Cyber Monday.",
+    image: "https://cdn.shopify.com/s/files/1/0608/9362/6573/files/mixed_4.jpg",
+    imageAlt: "A hand holding a pair of Elliosa grip socks, with a satin ribbon tied around the wrist",
+    focus: "center 40%",
+    category: "buying-guides",
+    date: "2026-11-18",
+    minutes: 8,
+  },
+  {
     slug: "heights-discount-code",
     url: "saving-tips-heights-discount-code.html",
     title: "Heights Discount Code & Coupon: 25% Off, Plus 4 Ways to Pay Even Less",
