@@ -277,6 +277,11 @@ const BEST_SELLERS = {
     { name: "Carlinkit Mini SE Pro Wireless Adapter", url: "https://www.carlinkit.store/products/carlinkit-mini-se-pro-wireless-adapter-smart-wireless-carplay-android-auto-usb-dongle-wifi-bluetooth-auto-connection-ota-upgrade?ref=zfdzgiow", image: SHOPIFY_CDN + "0337/6722/7530/files/Mini5_pro.jpg" },
     { name: "Carlinkit Fire Drive Link for Fire TV Stick", url: "https://www.carlinkit.store/products/carlinkit-fire-tv-stick-specifically-designed-for-amazon-fire-tv-stick-enjoy-streaming-in-your-car-wired-carplay-to-hdmi?ref=zfdzgiow", image: SHOPIFY_CDN + "0337/6722/7530/files/Fire_Drive_Link.jpg" },
   ],
+  "telesinstore.com": [
+    { name: "Telesin Floating Tripod Selfie Stick", url: "https://www.telesinstore.com/products/telesin-floating-tripod-selfie-stick?ref=bxlfrlfm", image: SHOPIFY_CDN + "0571/8648/4422/files/1_8.png" },
+    { name: "Telesin Bluetooth Floating Stick for GoPro", url: "https://www.telesinstore.com/products/bluetooth-floating-stick?ref=bxlfrlfm", image: SHOPIFY_CDN + "0571/8648/4422/files/1_363a72ef-7345-4ab7-935d-4b0f7309b08f.png" },
+    { name: "Telesin Waterproof Case for GoPro Hero 9-13", url: "https://www.telesinstore.com/products/telesin-45m-diving-waterproof-case-with-lens-filter-for-gopro-hero?ref=bxlfrlfm", image: SHOPIFY_CDN + "0571/8648/4422/files/4_741b9995-bd75-4de2-ad1d-f53dbe74a6ef.png" },
+  ],
 };
 
 /*

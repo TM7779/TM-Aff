@@ -672,6 +672,19 @@ const POSTS = [
     minutes: 8,
   },
   {
+    slug: "telesin-discount-code",
+    url: "saving-tips-telesin-discount-code.html",
+    title: "Telesin Discount Code: 10% Off GoPro and Phone Camera Gear, With Every Price Worked Out",
+    excerpt:
+      "Code JAMESWICKENDEN takes 10% off Telesin action camera and phone camera gear at telesinstore.com. What the floating sticks, waterproof cases, neck mounts and selfie sticks cost with it, plus shipping and returns.",
+    image: "https://cdn.shopify.com/s/files/1/0571/8648/4422/files/4_741b9995-bd75-4de2-ad1d-f53dbe74a6ef.png?v=1787139804",
+    imageAlt: "The Telesin clear waterproof dive case for GoPro Hero 9 to 13 with a black lens filter frame and a mounting buckle",
+    category: "coupon-guides",
+    store: "telesinstore",
+    date: "2026-11-18",
+    minutes: 7,
+  },
+  {
     slug: "topdon-carpal-vs-topscan",
     url: "saving-tips-topdon-carpal-vs-topscan.html",
     title: "TOPDON CarPal vs TopScan Lite vs Pro vs Master: Which Scanner to Buy?",
@@ -712,6 +725,19 @@ const POSTS = [
     store: "omegajuicers",
     date: "2026-11-14",
     minutes: 7,
+  },
+  {
+    slug: "carlinkit-3-vs-4-vs-5",
+    url: "saving-tips-carlinkit-3-vs-4-vs-5.html",
+    title: "Carlinkit 3.0 vs 4.0 vs 5.0: Which Carlinkit Adapter Should You Buy?",
+    excerpt:
+      "The Carlinkit 3.0, 4.0 and both 5.0 models side by side: which do Android Auto, which car each needs, Wi-Fi, size and prices with the code.",
+    image: "https://cdn.shopify.com/s/files/1/0337/6722/7530/files/1_a7e1aa18-5ec3-4d2e-8cb4-9ab0e51b186a.jpg?v=1793330146",
+    imageAlt: "The black CarlinKit 5.0 2Air adapter next to car screens showing wireless CarPlay and Android Auto",
+    category: "buying-guides",
+    store: "carlinkit",
+    date: "2026-11-18",
+    minutes: 6,
   },
   {
     slug: "vankyo-h500r-vs-v700g-vs-v700-pro",
@@ -1450,6 +1476,19 @@ const POSTS = [
     category: "reviews",
     store: "carlinkit",
     date: "2026-11-16",
-    minutes: 6,
+    minutes: 7,
+  },
+  {
+    slug: "telesin-review",
+    url: "saving-tips-telesin-review.html",
+    title: "Telesin Reviews: Is Telesin Legit, and Is Its Camera Gear Worth Buying?",
+    excerpt:
+      "Is Telesin legit, and is its action camera and phone camera gear worth buying? Who makes it, what the ratings on its store say, what it costs, the 30-day return rules and who it suits.",
+    image: "https://cdn.shopify.com/s/files/1/0571/8648/4422/files/4_741b9995-bd75-4de2-ad1d-f53dbe74a6ef.png?v=1787139804",
+    imageAlt: "The Telesin clear waterproof dive case for GoPro Hero 9 to 13 with a black lens filter frame and a mounting buckle",
+    category: "reviews",
+    store: "telesinstore",
+    date: "2026-11-18",
+    minutes: 7,
   },
 ];
