@@ -455,6 +455,10 @@ const STORE_INFO = {
   "epomaker": { name: "EPOMAKER", category: "electronics", logo: "https://epomaker.com/cdn/shop/files/epomaker-favicon.png?v=1646776453", about: "Mechanical keyboards, gaming mice and audio gear." },
   "parijanofficial": { name: "PARIJAN", category: "clothing-accessories", about: "Classic menswear in an \"old money\" style, without the luxury markup." },
   "neosabers": { name: "NEO Sabers", category: "toys-kids", logo: "https://neosabers.com/cdn/shop/files/neosabers-favicon.png?v=1719048441", about: "Neopixel lightsabers and blades with sound effects." },
+  "simpletics": { name: "Simpletics", category: "skincare-beauty", about: "Men's hair styling products with short ingredient lists: sea salt spray, hair clay, texture powder and curl mousse." },
+  "birdfy": { name: "Birdfy", category: "home-garden", logo: "https://www.birdfy.com/cdn/shop/files/birdy-logo-notxt.png?v=1724646186", about: "Bird feeders, birdhouses and bird baths with built-in cameras that send photos and alerts to a phone app." },
+  "koshinemall": { name: "Koshine", category: "skincare-beauty", about: "A Hong Kong hair and scalp care brand." },
+  "lumibricks": { name: "Lumibricks", category: "toys-kids", logo: "https://cdn.shopify.com/s/files/1/0627/5278/4483/files/LUMIBRICKS_Transparent_LOGO_1000x1000_1.png?v=1745735434", about: "Brick building sets with built-in lights, in steampunk, medieval, train and other themes." },
 };
 
 const STORES = [
