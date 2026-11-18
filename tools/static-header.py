@@ -8,11 +8,28 @@ Run from the site folder after changing the site name, the menu or SITE.tagline:
 """
 
 import glob
+import os
 import re
 
 SITE_NAME = "Kinsley Deals"
-# Same as SITE.tagline in assets/data.js.
-TAGLINE = "Discount codes for 60+ brands, from supplements and skincare to tech, toys and outdoor gear, with guides to pay less on every order."
+# The home page's h1 says what the site is (the SEO course, lesson 1: Google ranks pages on their topic),
+# and the line under it what's covered. app.js draws the same two lines if the hero is ever missing.
+HEADLINE = "Discount codes for 60+ brands"
+TAGLINE = "From supplements and skincare to tech, toys and outdoor gear, with guides to pay less on every order."
+# "Popular" links under the home search box, most searched first (Keyword Planner and Search Console;
+# see "Course lessons applied" in the daily task). The home page is the site's strongest page, and these
+# are the guides it passes that strength to. Missing files are skipped. Drop Black Friday on December 1.
+POPULAR = [
+    ("saving-tips-heights-discount-code.html", "Heights"),
+    ("saving-tips-babyquip-discount-code.html", "BabyQuip"),
+    ("saving-tips-elevated-faith-discount-code.html", "Elevated Faith"),
+    ("saving-tips-maryruths-discount-code.html", "MaryRuth's"),
+    ("saving-tips-mixsoon-discount-code.html", "mixsoon"),
+    ("saving-tips-topdon-discount-code.html", "TOPDON"),
+    ("saving-tips-tolevita-discount-code.html", "Tolevita"),
+    ("saving-tips-niepce-discount-code.html", "Niepce"),
+    ("saving-tips-black-friday-2026.html", "Black Friday 2026"),
+]
 NAV = [
     ("./", "All stores", "home"),
     ("saving-tips.html", "Saving Tips", "blog"),
@@ -65,16 +82,22 @@ def header(page):
 
 
 # The home hero's text and search box, as renderHome() draws them; the tickets are added by app.js.
+POPULAR_HTML = (
+    '<p class="hero-popular"><span>Popular codes:</span> '
+    + " ".join(f'<a href="{href}">{esc(label)}</a>' for href, label in POPULAR if os.path.exists(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), href)))
+    + "</p>"
+)
 HERO = (
     '<!-- hero: written by tools/static-header.py -->\n'
     '<section class="hero"><div class="wrap"><div>'
-    '<h1>Self-care, for less.</h1>'
+    f'<h1>{esc(HEADLINE)}</h1>'
     f'<p>{esc(TAGLINE)}</p>'
     '<form role="search" onsubmit="return false"><label class="search">'
     + ICON_SEARCH
     + '<span class="skip">Search stores and products</span>'
     '<input id="q" type="search" placeholder="Search" autocomplete="off" value=""></label></form>'
-    '</div><div class="ticket-fan"></div></div></section>\n'
+    + POPULAR_HTML
+    + '</div><div class="ticket-fan"></div></div></section>\n'
     '<!-- /hero -->'
 )
 

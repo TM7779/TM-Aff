@@ -5,8 +5,9 @@
 The code, the discount and the affiliate link come from the store in assets/snapshot.js, so they
 always match the sheet (run `node tools/snapshot.mjs` first). The tool also:
   - adds the article to assets/posts.js and sitemap.xml;
-  - links it from the other guides ("Shopping another brand?") or reviews ("More brand reviews"),
-    and, for a guide, from about.html; links the brand's guide and review to each other;
+  - adds the brand to tools/brand-names.json and runs tools/site-links.py, which links it from a few
+    related guides ("Shopping another brand?") or reviews ("More brand reviews") and from the A-Z list
+    on Saving Tips; for a guide, links it from about.html; links the brand's guide and review to each other;
   - writes the site header (tools/static-header.py) and the "On this page" list, "Written by" box
     and search data (tools/article-seo.py).
 Running it again with the same spec rewrites the article in place.
@@ -161,8 +162,8 @@ class Writer:
         return "\n".join(out)
 
     def cross_links(self):
-        """The paragraph linking every other article of the same kind, in posts.js order."""
-        names = link_names(self.kind["list_intro"])
+        """The paragraph linking other articles of the same kind; tools/site-links.py then keeps 4 of them."""
+        names = link_names()
         names[self.file] = self.brand
         links = [f'<a href="{u}">{amp(names[u])}</a>' for u in post_urls(self.kind["category"]) if u != self.file and u in names]
         return f"    <p>{self.kind['list_intro']}{join_and(links)}.</p>" if links else ""
@@ -318,14 +319,12 @@ def post_urls(category):
     return [u for u, c in re.findall(r'url: "([^"]+)",.*?category: "([^"]+)"', js, re.S) if c == category]
 
 
-def link_names(intro):
-    """Link text for each article, read from the cross-link paragraphs that already exist."""
-    names = {}
-    for path in glob.glob("saving-tips-*.html"):
-        m = re.search(r"<p>" + re.escape(intro) + r"(.*?)\.</p>", open(path, encoding="utf-8").read(), re.S)
-        if m:
-            names.update({u: html.unescape(t) for u, t in re.findall(r'<a href="([^"]+)">(.*?)</a>', m.group(1))})
-    return names
+NAMES = "tools/brand-names.json"
+
+
+def link_names():
+    """Link text for each article (the brand's name), from tools/brand-names.json."""
+    return json.load(open(NAMES, encoding="utf-8"))
 
 
 def join_and(items):
@@ -392,10 +391,12 @@ def main():
     print("wrote", w.file, flush=True)
     update_posts(w)
     update_sitemap(w)
-    intro = w.kind["list_intro"]
-    for path in sorted(glob.glob("saving-tips-*.html")):
-        if path != w.file:
-            add_to_list(path, intro, w.file, w.brand)
+    # The brand's name for links, then the related links and the A-Z list on Saving Tips.
+    names = link_names()
+    if names.get(w.file) != w.brand:
+        names[w.file] = w.brand
+        json.dump(dict(sorted(names.items())), open(NAMES, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
+        open(NAMES, "a", encoding="utf-8").write("\n")
     if spec["type"] == "guide":
         add_to_list("about.html", "Discount code guides for ", w.file, w.brand, after=' See all of them on <a href="saving-tips.html">Saving Tips</a>.')
     elif os.path.exists(w.guide):
@@ -406,6 +407,7 @@ def main():
             open(w.guide, "w", encoding="utf-8").write(g)
             print("linked from", w.guide, flush=True)
     here = os.path.dirname(os.path.abspath(__file__))
+    subprocess.run([sys.executable, os.path.join(here, "site-links.py")], check=True)
     subprocess.run([sys.executable, os.path.join(here, "static-header.py")], check=True)
     subprocess.run([sys.executable, os.path.join(here, "article-seo.py")], check=True)
 
