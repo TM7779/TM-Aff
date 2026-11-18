@@ -277,6 +277,11 @@ const BEST_SELLERS = {
     { name: "Carlinkit Mini SE Pro Wireless Adapter", url: "https://www.carlinkit.store/products/carlinkit-mini-se-pro-wireless-adapter-smart-wireless-carplay-android-auto-usb-dongle-wifi-bluetooth-auto-connection-ota-upgrade?ref=zfdzgiow", image: SHOPIFY_CDN + "0337/6722/7530/files/Mini5_pro.jpg" },
     { name: "Carlinkit Fire Drive Link for Fire TV Stick", url: "https://www.carlinkit.store/products/carlinkit-fire-tv-stick-specifically-designed-for-amazon-fire-tv-stick-enjoy-streaming-in-your-car-wired-carplay-to-hdmi?ref=zfdzgiow", image: SHOPIFY_CDN + "0337/6722/7530/files/Fire_Drive_Link.jpg" },
   ],
+  "ulanzi.com": [
+    { name: "Ulanzi MA30 Carabiner-Mounted Phone Tripod", url: "https://www.ulanzi.com/products/carabiner-mounted-phone-tripod-m030?aff=3125", image: SHOPIFY_CDN + "0136/3119/3188/files/20250806-162346.webp" },
+    { name: "Falcam F38 Quick Release System", url: "https://www.ulanzi.com/products/ulanzi-falcam-f38-quick-release-system?aff=3125", image: SHOPIFY_CDN + "0136/3119/3188/products/ulanzi-presale-falcam-f38-quick-release-system-22730741153985.jpg" },
+    { name: "Ulanzi VL49 Rechargeable Mini RGB Light", url: "https://www.ulanzi.com/products/ulanzi-vl49-rgb-light-2287?aff=3125", image: SHOPIFY_CDN + "0136/3119/3188/products/ulanzi-pre-sale-ulanzi-vl49-rgb-light-19960304992408.png" },
+  ],
   "telesinstore.com": [
     { name: "Telesin Floating Tripod Selfie Stick", url: "https://www.telesinstore.com/products/telesin-floating-tripod-selfie-stick?ref=bxlfrlfm", image: SHOPIFY_CDN + "0571/8648/4422/files/1_8.png" },
     { name: "Telesin Bluetooth Floating Stick for GoPro", url: "https://www.telesinstore.com/products/bluetooth-floating-stick?ref=bxlfrlfm", image: SHOPIFY_CDN + "0571/8648/4422/files/1_363a72ef-7345-4ab7-935d-4b0f7309b08f.png" },
