@@ -1453,3 +1453,52 @@ body.has-sticky .toast { bottom: 100px; }
     transition: none !important;
   }
 }
+
+/* ---------- Code card on articles (2026-11-18) ----------
+   Coupon guides open like the coupon sites people expect: the headline, then the best code as a big
+   ticket, then the article. The static HTML holds a one-line version of the box; app.js draws the card. */
+.post-head:has(a[href*="t=coupon-guides"]) { display: flex; flex-direction: column; }
+.post-head:has(a[href*="t=coupon-guides"]) .crumbs { order: 0; }
+.post-head:has(a[href*="t=coupon-guides"]) h1 { order: 1; }
+.post-head:has(a[href*="t=coupon-guides"]) .post-quick { order: 2; margin: 0 0 20px; }
+/* Room for the card before app.js draws it, so the page doesn't jump. */
+.post-quick:not(:has(.quick-card)) { min-height: 236px; }
+.post-head:has(a[href*="t=coupon-guides"]) .post-lede { order: 3; }
+.post-head:has(a[href*="t=coupon-guides"]) .post-meta { order: 4; }
+.post-quick:has(.quick-card) { display: block; padding: 0; background: none; border: 0; min-height: 0; }
+.quick-card { display: grid; gap: 12px; }
+.qc-head { display: flex; align-items: center; gap: 12px; }
+.qc-title { display: flex; flex-direction: column; gap: 2px; margin: 0; min-width: 0; }
+.qc-label { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sage); }
+.qc-facts { display: flex; flex-wrap: wrap; gap: 2px 0; color: var(--ink-soft); font-size: 0.875rem; font-weight: 600; }
+.qc-facts span + span::before { content: "·"; margin: 0 8px; }
+.qc-list .coupon { grid-template-columns: 148px 1fr; }
+.qc-list .coupon .stub .amt { font-size: 2.75rem; }
+.qc-list .coupon h3 { font-size: 1.625rem; }
+.qc-note { margin: 0; color: var(--ink-soft); font-size: 0.8125rem; line-height: 1.5; }
+.more-offers { margin: 0 0 28px; }
+.more-offers-title { font-family: var(--font-display); font-size: 1.375rem; margin: 0 0 12px; }
+.similar-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+.similar-list a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 72px;
+  padding: 12px 14px;
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+  color: var(--ink);
+  text-decoration: none;
+}
+.similar-list a:hover .sim-name { text-decoration: underline; }
+.similar-list a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.sim-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.sim-name { font-weight: 700; }
+.sim-offer { color: var(--gold-ink); font-weight: 700; font-size: 0.875rem; }
+@media (max-width: 560px) {
+  .post-quick:not(:has(.quick-card)) { min-height: 330px; }
+  .qc-list .coupon { grid-template-columns: 104px 1fr; }
+  .qc-list .coupon .stub .amt { font-size: 2.125rem; }
+  .qc-list .coupon h3 { font-size: 1.375rem; }
+}

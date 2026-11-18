@@ -835,20 +835,92 @@
     const box = document.getElementById("related");
     if (box) box.innerHTML = related.map(postCardHTML).join("");
     if (box && !related.length) box.closest("section").hidden = true;
+
+    // On a store's own articles: its other offers at the top of the body, and similar stores at the end.
+    if (offerStore && (me.category === "coupon-guides" || me.category === "reviews")) {
+      const best = bestCoupon(offerStore);
+      const body = document.querySelector(".post-body");
+      const more = best && moreOffersHTML(offerStore, best);
+      if (body && more && me.category === "coupon-guides" && !document.querySelector(".more-offers")) {
+        const div = document.createElement("div");
+        div.className = "more-offers";
+        div.innerHTML = more;
+        body.prepend(div);
+      }
+      const similar = similarStoresHTML(offerStore);
+      const relatedSection = box && box.closest("section");
+      if (similar && !document.querySelector(".similar")) {
+        if (relatedSection) relatedSection.insertAdjacentHTML("beforebegin", similar);
+        else document.getElementById("main").insertAdjacentHTML("beforeend", similar);
+      }
+    }
   }
 
   // "25% off at Heights" with the logo and the Show code button, for the top of an article.
   function offerAmount(best) {
     return isAmountOff(best.discount) ? `${best.discount} off` : best.title;
   }
+  // The code card under an article's headline: the store, how many offers it has, and its best one as a
+  // big ticket with the Show code button, all in the first screen.
   function quickOfferHTML(store, best) {
+    const live = liveCoupons(store);
+    const codes = live.filter((c) => c.code).length;
+    const deals = live.length - codes;
+    const host = (() => {
+      try {
+        return new URL(store.website || store.url).hostname.replace(/^www\./, "");
+      } catch {
+        return "";
+      }
+    })();
+    const facts = [
+      codes ? `${codes} code${codes > 1 ? "s" : ""}` : "",
+      deals ? `${deals} deal${deals > 1 ? "s" : ""}` : "",
+      host,
+    ].filter(Boolean);
+    const note = best.code
+      ? `Tap Show code: it’s copied and ${esc(store.name)} opens. The code comes from ${esc(possessive(store.name))} affiliate program; we don’t place test orders, so check the total at checkout.`
+      : `No code needed: the offer applies on ${esc(possessive(store.name))} site.`;
     // Above the fold, so its logo loads at once.
-    return `<div class="quick">
-      ${logoHTML(store).replace('loading="lazy"', 'loading="eager"')}
-      <p class="quick-text"><strong>${esc(offerAmount(best))} at ${esc(store.name)}</strong>
-        <span>${best.code ? "Tap Show code: it’s copied and the store opens." : "No code needed."}</span></p>
-      <div class="quick-action">${actionHTML(store, best)}</div>
+    return `<div class="quick-card">
+      <div class="qc-head">
+        ${logoHTML(store).replace('loading="lazy"', 'loading="eager"')}
+        <p class="qc-title"><span class="qc-label">${best.code ? "Best code right now" : "Best deal right now"}</span>
+          <span class="qc-facts">${facts.map((f) => `<span>${esc(f)}</span>`).join("")}</span></p>
+      </div>
+      <ul class="coupons qc-list">${couponItemHTML(store, best)}</ul>
+      <p class="qc-note">${note}</p>
     </div>`;
+  }
+
+  // The store's other live offers (free shipping, a sale), at the top of the article body.
+  function moreOffersHTML(store, best) {
+    const others = liveCoupons(store).filter((c) => c !== best);
+    if (!others.length) return "";
+    return `<p class="more-offers-title">More ${esc(store.name)} offers</p>
+      <ul class="coupons">${others.map((c) => couponItemHTML(store, c)).join("")}</ul>`;
+  }
+
+  // Up to 8 other stores with a code guide, the same kind of store first, each linking to its guide.
+  function similarStoresHTML(store) {
+    const guideOf = (slug) => posts.find((p) => p.store === slug && p.category === "coupon-guides");
+    const pick = (list) => list.filter((s) => s.slug !== store.slug && guideOf(s.slug) && bestCoupon(s));
+    const same = pick(STORES.filter((s) => s.category === store.category));
+    const rest = pick(STORES.filter((s) => s.category !== store.category));
+    const list = [...same, ...rest].slice(0, 8);
+    if (!list.length) return "";
+    const items = list
+      .map((s) => {
+        const best = bestCoupon(s);
+        return `<li><a href="${esc(guideOf(s.slug).url)}">${logoHTML(s)}<span class="sim-text"><span class="sim-name">${esc(s.name)}</span><span class="sim-offer">${esc(offerAmount(best))}</span></span></a></li>`;
+      })
+      .join("");
+    return `<section class="section similar" aria-labelledby="similar-title">
+      <div class="wrap">
+        <div class="section-head"><h2 id="similar-title">More stores with codes</h2></div>
+        <ul class="similar-list">${items}</ul>
+      </div>
+    </section>`;
   }
 
   // A slim bar at the bottom of the screen that keeps the code one tap away while reading. It hides
