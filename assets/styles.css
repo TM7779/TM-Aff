@@ -1523,3 +1523,51 @@ body.has-sticky .toast { bottom: 100px; }
   .post-card-meta { padding-top: 2px; font-size: 0.8125rem; gap: 10px; }
   .cat-logos .logo:nth-child(n+5) { display: none; }
 }
+
+/* ---------- Links Google can follow (2026-11-18) ----------
+   From the SEO course (lesson 4, PageRank): the home page is the site's strongest page, so it links
+   straight to the most searched coupon guides ("Popular codes"), and Saving Tips ends with an A-Z list
+   of every article in its HTML. */
+.hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+/* lets the sideways-scrolling row shrink instead of widening the hero column */
+.hero .wrap > * { min-width: 0; }
+.hero .hero-popular {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  max-width: 520px;
+  margin: 16px 0 0;
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+}
+.hero-popular span { font-weight: 600; margin-right: 2px; }
+.hero-popular a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 4px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.hero-popular a:hover { border-color: var(--ink); }
+.hero.searching .hero-popular { display: none; }
+@media (max-width: 560px) {
+  /* one row that scrolls sideways, so the codes stay near the top */
+  .hero .hero-popular { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
+  .hero-popular::-webkit-scrollbar { display: none; }
+  .hero-popular span, .hero-popular a { flex: none; }
+}
+.az h3 { font-size: 1.125rem; font-weight: 700; margin: 28px 0 12px; scroll-margin-top: 96px; }
+.az-list { list-style: none; padding: 0; margin: 0; columns: 4 9rem; column-gap: 24px; }
+.az-list li { break-inside: avoid; padding: 5px 0; }
+.az-list a { color: var(--ink); font-weight: 600; text-decoration: none; }
+.az-list a:hover { text-decoration: underline; }
+.az-list.wide { columns: 2 22rem; }
+.az-list.wide a { font-weight: 500; }

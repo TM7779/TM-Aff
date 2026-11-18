@@ -287,12 +287,15 @@
   }
 
   // Compact ticket for a store's best offer; the logo stands in for a photo so many fit on screen.
+  // The store's name links to its coupon guide when it has one: the store page is kept out of Google
+  // (noindex), so a link there passes nothing on, while the guide is the page we want to rank.
   function dealCardHTML(store) {
     const best = bestCoupon(store);
     if (!best) return "";
+    const guide = guideOf(store.slug);
     return `<li class="deal">
       <div class="deal-body">
-        <a class="who" href="${storeUrl(store)}">${logoHTML(store)}<span>${esc(store.name)}</span></a>
+        <a class="who" href="${guide ? esc(guide.url) : storeUrl(store)}">${logoHTML(store)}<span>${esc(store.name)}</span></a>
         <h3>${esc(best.title)}</h3>
         <div class="deal-meta">${labelsHTML(best)}<span class="meta">${metaHTML(best)}</span></div>
         <div class="action">${actionHTML(store, best)}</div>
@@ -328,6 +331,8 @@
   const posts = (typeof POSTS === "undefined" ? [] : POSTS.slice()).sort((a, b) => String(b.date).localeCompare(String(a.date)));
   const postCategories = typeof POST_CATEGORIES === "undefined" ? [] : POST_CATEGORIES;
   const postCategory = (slug) => postCategories.find((c) => c.slug === slug);
+  // A store's coupon guide, if it has one.
+  const guideOf = (slug) => posts.find((p) => p.store === slug && p.category === "coupon-guides");
 
   function postCardHTML(post, index) {
     const cat = postCategory(post.category);
@@ -451,8 +456,8 @@
         <section class="hero">
           <div class="wrap">
             <div>
-              <h1>Self-care, for less.</h1>
-              <p>${esc(SITE.tagline)}</p>
+              <h1>Discount codes for 60+ brands</h1>
+              <p>From supplements and skincare to tech, toys and outdoor gear, with guides to pay less on every order.</p>
               <form role="search" onsubmit="return false">
                 <label class="search">${ICON_SEARCH}
                   <span class="skip">Search stores and products</span>
@@ -757,6 +762,9 @@
           .concat(used.map((c) => chip(`saving-tips.html?t=${c.slug}`, c.name, posts.filter((p) => p.category === c.slug).length, c === current)))
           .join("")}</ul></nav>`
       : "";
+    // The A-Z list of every article (data-keep, written into saving-tips.html by tools/site-links.py)
+    // stays below the cards, so Google finds every article without pressing "Show more tips".
+    const keep = [...main.querySelectorAll(":scope > [data-keep]")];
     main.innerHTML = `
       <section class="page-head">
         <div class="wrap">
@@ -775,6 +783,7 @@
           }
         </div>
       </section>`;
+    keep.forEach((el) => main.appendChild(el));
     // The list grows a page at a time, so a phone doesn't lay out 100+ cards at once.
     const more = document.getElementById("tips-more");
     if (more) {
@@ -925,7 +934,6 @@
 
   // Up to 8 other stores with a code guide, the same kind of store first, each linking to its guide.
   function similarStoresHTML(store) {
-    const guideOf = (slug) => posts.find((p) => p.store === slug && p.category === "coupon-guides");
     const pick = (list) => list.filter((s) => s.slug !== store.slug && guideOf(s.slug) && bestCoupon(s));
     const same = pick(STORES.filter((s) => s.category === store.category));
     const rest = pick(STORES.filter((s) => s.category !== store.category));
