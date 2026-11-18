@@ -1502,3 +1502,24 @@ body.has-sticky .toast { bottom: 100px; }
   .qc-list .coupon .stub .amt { font-size: 2.125rem; }
   .qc-list .coupon h3 { font-size: 1.375rem; }
 }
+
+/* ---------- Lighter pages on phones (2026-11-18) ----------
+   Article cards turn into rows (small photo left, title right) so a list of tips takes a screen, not
+   a dozen; Saving Tips loads 12 at a time; category cards show only the logos that fit. */
+.more-wrap { display: flex; justify-content: center; margin-top: 28px; }
+.more-wrap .btn { gap: 10px; }
+.more-wrap .count { font-weight: 600; opacity: 0.75; font-size: 0.875rem; }
+.cat-logos { overflow: hidden; flex-wrap: nowrap; }
+@media (max-width: 600px) {
+  .posts { gap: 12px; }
+  .post-card { flex-direction: row; align-items: stretch; border-radius: var(--radius-sm); }
+  .post-card-img { flex: none; width: 112px; aspect-ratio: auto; min-height: 112px; }
+  .post-card:hover .post-card-img img { transform: none; }
+  .post-card-body { padding: 12px 14px; gap: 6px; min-width: 0; }
+  .post-card-tag { font-size: 0.75rem; padding: 2px 8px; }
+  .post-card-title { font-size: 1.0625rem; line-height: 1.25; display: -webkit-box; -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden; }
+  .post-card-excerpt { display: none; }
+  .post-card-meta { padding-top: 2px; font-size: 0.8125rem; gap: 10px; }
+  .cat-logos .logo:nth-child(n+5) { display: none; }
+}

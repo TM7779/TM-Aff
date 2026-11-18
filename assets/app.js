@@ -329,11 +329,12 @@
   const postCategories = typeof POST_CATEGORIES === "undefined" ? [] : POST_CATEGORIES;
   const postCategory = (slug) => postCategories.find((c) => c.slug === slug);
 
-  function postCardHTML(post) {
+  function postCardHTML(post, index) {
     const cat = postCategory(post.category);
+    const eager = typeof index === "number" && index < 2;
     return `<li>
       <a class="post-card" href="${esc(post.url)}">
-        <span class="post-card-img"><img ${imgSrc(post.image, ...IMG.post)} alt="" loading="lazy" decoding="async" width="350" height="220"${post.focus ? ` style="object-position:${esc(post.focus)}"` : ""}></span>
+        <span class="post-card-img"><img ${imgSrc(post.image, ...IMG.post)} alt="" loading="${eager ? "eager" : "lazy"}" decoding="async" width="350" height="220"${post.focus ? ` style="object-position:${esc(post.focus)}"` : ""}></span>
         <span class="post-card-body">
           ${cat ? `<span class="post-card-tag">${esc(cat.name)}</span>` : ""}
           <span class="post-card-title">${esc(post.title)}</span>
@@ -349,7 +350,7 @@
     return `<section class="section" aria-labelledby="${id}">
       <div class="wrap">
         <div class="section-head"><h2 id="${id}">${title}</h2>${moreLink ? `<a class="section-link" href="saving-tips.html">All saving tips</a>` : ""}</div>
-        <ul class="posts">${list.map(postCardHTML).join("")}</ul>
+        <ul class="posts">${list.map((p) => postCardHTML(p)).join("")}</ul>
       </div>
     </section>`;
   }
@@ -768,12 +769,33 @@
         <div class="wrap">
           ${
             list.length
-              ? `<ul class="posts">${list.map(postCardHTML).join("")}</ul>`
+              ? `<ul class="posts" id="tips-list">${list.slice(0, TIPS_PAGE).map(postCardHTML).join("")}</ul>
+                 ${list.length > TIPS_PAGE ? `<div class="more-wrap"><button class="btn secondary" type="button" id="tips-more">Show more tips <span class="count">${list.length - TIPS_PAGE} left</span></button></div>` : ""}`
               : `<div class="empty"><h2>No tips here yet</h2><p>Read <a href="saving-tips.html">all saving tips</a> in the meantime.</p></div>`
           }
         </div>
       </section>`;
+    // The list grows a page at a time, so a phone doesn't lay out 100+ cards at once.
+    const more = document.getElementById("tips-more");
+    if (more) {
+      let shown = TIPS_PAGE;
+      more.addEventListener("click", () => {
+        const next = list.slice(shown, shown + TIPS_PAGE);
+        const ul = document.getElementById("tips-list");
+        ul.insertAdjacentHTML("beforeend", next.map((p) => postCardHTML(p)).join(""));
+        const firstNew = ul.children[shown] && ul.children[shown].querySelector("a");
+        shown += next.length;
+        const left = list.length - shown;
+        if (left > 0) more.querySelector(".count").textContent = `${left} left`;
+        else {
+          // the button is gone, so keyboard focus moves to the first card it brought in
+          more.parentElement.remove();
+          if (firstNew) firstNew.focus();
+        }
+      });
+    }
   }
+  const TIPS_PAGE = 12;
 
   // A post's text is in its own HTML. This fills in the live parts: the current code and discount,
   // the offer box with its Show code button, shop links, and other posts to read next.
@@ -833,7 +855,7 @@
       .sort((a, b) => (b.store === me.store) - (a.store === me.store))
       .slice(0, 3);
     const box = document.getElementById("related");
-    if (box) box.innerHTML = related.map(postCardHTML).join("");
+    if (box) box.innerHTML = related.map((p) => postCardHTML(p)).join("");
     if (box && !related.length) box.closest("section").hidden = true;
 
     // On a store's own articles: its other offers at the top of the body, and similar stores at the end.

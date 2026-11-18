@@ -365,7 +365,29 @@
     const cache = readCache(PRODUCT_CACHE_KEY) || {};
     const jobs = [];
     const metas = new Map();
+    // In a browser, assets/snapshot.js already holds what these requests would find for every store it
+    // lists (tools/snapshot.mjs runs this same code with the requests). Reusing it spares each new
+    // visitor about 60 requests to the brands' sites; only stores added since the snapshot are fetched.
+    const snapStores = window.STORE_SNAPSHOT && window.STORE_SNAPSHOT.stores;
+    const known = new Map((snapStores || []).map((s) => [s.slug, s]));
     for (const store of stores) {
+      const snap = known.get(store.slug);
+      if (snap) {
+        if (store.nameFromLink && snap.name) {
+          store.name = snap.name;
+          delete store.nameFromLink;
+        }
+        if (!store.about && snap.about) store.about = snap.about;
+        if (!store.cover && snap.cover) store.cover = snap.cover;
+        for (const p of store.products) {
+          const sp = (snap.products || []).find((x) => x.url === p.url);
+          if (sp) {
+            p.name = p.name || sp.name;
+            p.image = p.image || sp.image;
+          }
+        }
+        if (store.products.every((p) => p.name && p.image)) continue;
+      }
       // Shop name and description from Shopify's small meta.json, kept for a week.
       // A shop that isn't Shopify (no meta.json, or it blocks other sites) is skipped for a day,
       // so each visit doesn't log the same blocked requests again. A timeout doesn't count.
@@ -376,7 +398,7 @@
         if (origin && !(err && err.name === "AbortError")) cache[downKey] = Date.now();
       };
       let metaJob = Promise.resolve();
-      if (origin && !isDown()) {
+      if (origin && !isDown() && !snap) {
         const key = `meta:${origin}`;
         if (cache[key] && Date.now() - cache[key].at < META_MAX_AGE) metas.set(store, cache[key]);
         else
