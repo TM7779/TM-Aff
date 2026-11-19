@@ -24,7 +24,7 @@
   "offer": "Early BFCM sale, week 2 (November 13 to 19, Pacific time), shown at 50% on its home page, and an early Christmas sale shown at 30%"
  },
  "tabasquishy": {
-  "offer": "Black Friday and Cyber Monday deals run November 19 to 30, after a warm-up from November 8 to 18"
+  "offer": "Black Friday and Cyber Monday deals, November 19 to 30"
  },
  "womierkeyboard": {
   "offer": "Black Friday Sale: up to 50% off, plus a Black Friday giveaway for the L98 ISO keyboard"
@@ -53,7 +53,7 @@
   "offer": "Black Friday and Cyber Monday: up to 50% off selected products"
  },
  "carlinkit": {
-  "offer": "Early Black Friday deals sitewide with Carlinkit's own code SAVE15; the countdown on its home page ends November 18"
+  "offer": "Early Black Friday deals sitewide with Carlinkit's own code SAVE15"
  },
  "mixsoon": {
   "offer": "Black Friday: four weeks of deals, now in week 3"
@@ -80,5 +80,8 @@
  "heights": {
   "offer": "",
   "extra": "Its home page shows bundle savings of up to 20%; a Black Friday banner seen on November 13 was gone by November 18."
+ },
+ "ulanzi": {
+  "offer": "Early Black Friday, November 18 to 26: 20% off most items, 15% off selected items and 30% off clearance"
  }
 }
