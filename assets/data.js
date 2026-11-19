@@ -277,6 +277,11 @@ const BEST_SELLERS = {
     { name: "Carlinkit Mini SE Pro Wireless Adapter", url: "https://www.carlinkit.store/products/carlinkit-mini-se-pro-wireless-adapter-smart-wireless-carplay-android-auto-usb-dongle-wifi-bluetooth-auto-connection-ota-upgrade?ref=zfdzgiow", image: SHOPIFY_CDN + "0337/6722/7530/files/Mini5_pro.jpg" },
     { name: "Carlinkit Fire Drive Link for Fire TV Stick", url: "https://www.carlinkit.store/products/carlinkit-fire-tv-stick-specifically-designed-for-amazon-fire-tv-stick-enjoy-streaming-in-your-car-wired-carplay-to-hdmi?ref=zfdzgiow", image: SHOPIFY_CDN + "0337/6722/7530/files/Fire_Drive_Link.jpg" },
   ],
+  "crystalquest.com": [
+    { name: "Crystal Quest Water Pitcher Filter System", url: "https://crystalquest.com/products/water-filter-pitcher?aff=983", image: SHOPIFY_CDN + "1286/9985/files/water-pitcher-filter-system-crystal-quest-pitcher-water-filter-1230731117.webp" },
+    { name: "Crystal Quest Shower Filter", url: "https://crystalquest.com/products/premium-shower-filter?aff=983", image: SHOPIFY_CDN + "1286/9985/files/shower-filter-crystal-quest-shower-bath-filters-1230711936.webp" },
+    { name: "Crystal Quest SMART Under Sink Water Filter System", url: "https://crystalquest.com/products/smart-under-sink-water-filter-system?aff=983", image: SHOPIFY_CDN + "1286/9985/files/single-smart-under-sink-water-filter-system-crystal-quest-under-sink-water-filters-33135882960989.png" },
+  ],
   "ulanzi.com": [
     { name: "Ulanzi MA30 Carabiner-Mounted Phone Tripod", url: "https://www.ulanzi.com/products/carabiner-mounted-phone-tripod-m030?aff=3125", image: SHOPIFY_CDN + "0136/3119/3188/files/20250806-162346.webp" },
     { name: "Falcam F38 Quick Release System", url: "https://www.ulanzi.com/products/ulanzi-falcam-f38-quick-release-system?aff=3125", image: SHOPIFY_CDN + "0136/3119/3188/products/ulanzi-presale-falcam-f38-quick-release-system-22730741153985.jpg" },

@@ -711,6 +711,19 @@ const POSTS = [
     minutes: 7,
   },
   {
+    slug: "crystal-quest-discount-code",
+    url: "saving-tips-crystal-quest-discount-code.html",
+    title: "Crystal Quest Discount Code: 15% Off Water Filters, Pitchers and Shower Filters, Priced Out",
+    excerpt:
+      "Code JAMESWICKENDEN takes 15% off Crystal Quest water filter pitchers, shower filters, countertop and under-sink systems at crystalquest.com. What the best sellers cost with it, cartridge subscriptions, shipping and the return rules.",
+    image: "https://cdn.shopify.com/s/files/1/1286/9985/files/water-pitcher-filter-system-crystal-quest-pitcher-water-filter-1230731117.webp?v=1774987776",
+    imageAlt: "The Crystal Quest water filter pitcher, a clear jug with a white lid and handle and a filter cartridge inside",
+    category: "coupon-guides",
+    store: "crystalquest",
+    date: "2026-11-19",
+    minutes: 7,
+  },
+  {
     slug: "topdon-carpal-vs-topscan",
     url: "saving-tips-topdon-carpal-vs-topscan.html",
     title: "TOPDON CarPal vs TopScan Lite vs Pro vs Master: Which Scanner to Buy?",
@@ -763,6 +776,19 @@ const POSTS = [
     category: "buying-guides",
     store: "carlinkit",
     date: "2026-11-18",
+    minutes: 6,
+  },
+  {
+    slug: "ulanzi-mt16-vs-mt44-vs-mt85",
+    url: "saving-tips-ulanzi-mt16-vs-mt44-vs-mt85.html",
+    title: "Ulanzi MT-16 vs MT-44 vs MT-44B vs MT85: Which Ulanzi Tripod Should You Buy?",
+    excerpt:
+      "Four Ulanzi phone tripods side by side: height, weight, load, which have a remote or a MagSafe mount, and what each costs with the code.",
+    image: "https://cdn.shopify.com/s/files/1/0136/3119/3188/files/1_1_11zon_11dae890-4e7a-46ae-a015-2738efe30432.webp?v=1765524373",
+    imageAlt: "The Ulanzi MT85 pop-up phone tripod folded into a black handle with a Bluetooth remote button and the Ulanzi logo",
+    category: "buying-guides",
+    store: "ulanzi",
+    date: "2026-11-19",
     minutes: 6,
   },
   {
@@ -1529,5 +1555,18 @@ const POSTS = [
     store: "ulanzi",
     date: "2026-11-18",
     minutes: 7,
+  },
+  {
+    slug: "crystal-quest-review",
+    url: "saving-tips-crystal-quest-review.html",
+    title: "Crystal Quest Water Filter Reviews: Is Crystal Quest Legit, and Is It Worth the Price?",
+    excerpt:
+      "Is Crystal Quest legit, and are its water filter pitchers, shower filters and under-sink systems worth buying? Who makes them, what the ratings on its store say, what they cost and the strict return rules.",
+    image: "https://cdn.shopify.com/s/files/1/1286/9985/files/water-pitcher-filter-system-crystal-quest-pitcher-water-filter-1230731117.webp?v=1774987776",
+    imageAlt: "The Crystal Quest water filter pitcher, a clear jug with a white lid and handle and a filter cartridge inside",
+    category: "reviews",
+    store: "crystalquest",
+    date: "2026-11-19",
+    minutes: 6,
   },
 ];
