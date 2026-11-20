@@ -1607,9 +1607,10 @@ body.has-sticky .toast { bottom: 100px; }
 .deal-meta.meta { font-size: 0.8125rem; }
 .deal-body .action { padding-top: 2px; }
 
+/* Six across, so the 12 tiles make two even rows; four on tablets, three on phones. */
 .brand-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 12px;
   list-style: none;
   margin: 0;
@@ -1642,6 +1643,9 @@ body.has-sticky .toast { bottom: 100px; }
   font-size: 0.8125rem;
 }
 
+@media (max-width: 900px) {
+  .brand-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
 @media (max-width: 560px) {
   .promo-bar { font-size: 0.875rem; }
   .deals { gap: 12px; }
