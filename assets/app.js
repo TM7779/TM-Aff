@@ -297,11 +297,56 @@
       <div class="deal-body">
         <a class="who" href="${guide ? esc(guide.url) : storeUrl(store)}">${logoHTML(store)}<span>${esc(store.name)}</span></a>
         <h3>${esc(best.title)}</h3>
-        <div class="deal-meta">${labelsHTML(best)}<span class="meta">${metaHTML(best)}</span></div>
+        ${dealMetaHTML(best)}
         <div class="action">${actionHTML(store, best)}</div>
       </div>
       ${stubHTML(best.discount)}
     </li>`;
+  }
+
+  // On a compact card the button already says "Show code", so only facts worth reading are listed:
+  // a verified code, an expiry date, or that no code is needed.
+  function dealMetaHTML(c) {
+    const bits = [
+      c.verified ? `<span class="label ok">${ICON_CHECK}Verified</span>` : "",
+      c.expires ? `<span>Expires ${formatDate(c.expires)}</span>` : "",
+      c.code ? "" : `<span>No code needed</span>`,
+    ].filter(Boolean);
+    return bits.length ? `<div class="deal-meta meta">${bits.join("")}</div>` : "";
+  }
+
+  // How big a store's headline offer is, for sorting: 25 for "25%", 15 for "$15".
+  function codeValue(store) {
+    const best = bestCoupon(store);
+    const m = best && /(\d+(?:\.\d+)?)/.exec(best.discount);
+    return m ? parseFloat(m[1]) : 0;
+  }
+
+  // A logo tile for the home page's store grid, linking to the store's coupon guide when it has one.
+  function brandTileHTML(store) {
+    const best = bestCoupon(store);
+    const guide = guideOf(store.slug);
+    const amount = best ? (isAmountOff(best.discount) ? `${best.discount} off` : best.discount) : "";
+    const img = store.logo
+      ? `<img ${imgSrc(store.logo, [80, 160], "56px")} alt="" loading="lazy" decoding="async" width="56" height="56" onerror="this.remove()">`
+      : "";
+    return `<li>
+      <a class="brand-tile" href="${guide ? esc(guide.url) : storeUrl(store)}">
+        <span class="logo" style="background:${esc(store.color || "#261A2E")}" aria-hidden="true">${esc(initials(store.name))}${img}</span>
+        <span class="brand-name">${esc(store.name)}</span>
+        ${amount ? `<span class="brand-off">${esc(amount)}</span>` : ""}
+      </a>
+    </li>`;
+  }
+
+  // The stores under "Popular codes" in the hero (the most searched) first, then the biggest codes.
+  function popularStores(hero, limit) {
+    const fromHero = [...hero.querySelectorAll(".hero-popular a")]
+      .map((a) => posts.find((p) => p.url === a.getAttribute("href")))
+      .map((p) => p && STORES.find((s) => s.slug === p.store))
+      .filter(Boolean);
+    const rest = [...STORES].filter((s) => s.logo).sort((a, b) => codeValue(b) - codeValue(a));
+    return [...new Set([...fromHero, ...rest])].filter(bestCoupon).slice(0, limit);
   }
 
   function productCardHTML(product, store) {
@@ -363,11 +408,6 @@
   // Brands with bigger codes come first; within a brand, products keep their best-selling order.
   // Brands are interleaved so one brand doesn't fill the whole grid.
   function allProducts(stores) {
-    const codeValue = (s) => {
-      const best = bestCoupon(s);
-      const m = best && /(\d+(?:\.\d+)?)/.exec(best.discount);
-      return m ? parseFloat(m[1]) : 0;
-    };
     const ordered = [...stores].sort((a, b) => codeValue(b) - codeValue(a));
     const lists = ordered.map((s) => (s.products || []).map((p) => [p, s]));
     const out = [];
@@ -477,16 +517,32 @@
     // On a phone the tickets would push the codes a full screen down, so they're left out there.
     const narrow = window.matchMedia && window.matchMedia("(max-width: 560px)").matches;
     hero.querySelector(".ticket-fan").innerHTML = narrow ? "" : heroTicketsHTML();
+    // The numbers under the search box (index.html ships the snapshot's, so nothing moves).
+    const stat = (key, value) => hero.querySelectorAll(`[data-stat="${key}"]`).forEach((el) => (el.textContent = value));
+    const withCodes = STORES.filter((st) => liveCoupons(st).some((c) => c.code));
+    stat("brands", withCodes.length);
+    stat("codes", withCodes.reduce((n, st) => n + liveCoupons(st).filter((c) => c.code).length, 0));
+    const updatedAt = window.storesUpdatedAt ? window.storesUpdatedAt() : 0;
+    if (updatedAt) stat("updated", formatDate(new Date(updatedAt).toISOString().slice(0, 10)).replace(/, \d{4}$/, ""));
     // Sections marked data-keep (the questions at the bottom) are in index.html and stay below the lists.
     [...main.children].forEach((el) => el !== hero && !el.hasAttribute("data-keep") && el.remove());
     hero.insertAdjacentHTML(
       "afterend",
       `<section class="section" aria-labelledby="deals-title" id="deals-section">
         <div class="wrap">
-          <div class="section-head"><h2 id="deals-title">Today’s codes</h2></div>
+          <div class="section-head">
+            <h2 id="deals-title">Today’s top codes</h2>
+            <p>Biggest discounts first. Select <strong>Show code</strong>: we copy it and open the store.</p>
+          </div>
           <p class="result-note" id="note" aria-live="polite"></p>
           <ul class="deals" id="deals"></ul>
           <div class="more" hidden><button class="btn ghost" type="button" id="more-deals"></button></div>
+        </div>
+      </section>
+      <section class="section" aria-labelledby="brands-title" id="brands-section">
+        <div class="wrap">
+          <div class="section-head"><h2 id="brands-title">Popular stores</h2></div>
+          <ul class="brand-grid">${popularStores(hero, 12).map(brandTileHTML).join("")}</ul>
         </div>
       </section>
       ${
@@ -517,12 +573,14 @@
     const products = document.getElementById("products");
     const shopSection = document.getElementById("shop-section");
     const catsSection = document.getElementById("cats-section");
+    const brandsSection = document.getElementById("brands-section");
     const note = document.getElementById("note");
     const moreDeals = document.getElementById("more-deals");
     const moreProducts = document.getElementById("more-products");
 
     // Long lists open a few rows at a time: three rows of codes, two rows of products on a wide screen.
-    const DEAL_STEP = 9;
+    // A phone shows six codes first, so the store logos and categories are a short scroll away.
+    const DEAL_STEP = narrow ? 6 : 9;
     const PRODUCT_STEP = 12;
     let dealLimit = DEAL_STEP;
     let productLimit = PRODUCT_STEP;
@@ -551,7 +609,8 @@
       // A product match also surfaces its store's code.
       const dealStores = term ? STORES.filter((s) => storeHits.includes(s) || productHits.some(([, ps]) => ps === s)) : STORES;
 
-      const dealCards = dealStores.filter(bestCoupon);
+      // Biggest codes first, like the top coupon sites; ties keep the sheet's order.
+      const dealCards = dealStores.filter(bestCoupon).sort((a, b) => codeValue(b) - codeValue(a));
       deals.innerHTML = dealCards.slice(0, dealLimit).map(dealCardHTML).join("");
       products.innerHTML = productHits.slice(0, productLimit).map(([p, s]) => productCardHTML(p, s)).join("");
       showMore(moreDeals, deals, dealCards.length, DEAL_STEP, "code");
@@ -559,6 +618,7 @@
       shopSection.hidden = productHits.length === 0;
       // While searching, results come straight under the search box.
       if (catsSection) catsSection.hidden = Boolean(term);
+      brandsSection.hidden = Boolean(term);
       hero.classList.toggle("searching", Boolean(term));
       const typed = esc(input.value.trim());
       const guess = term && !dealStores.length ? closestStore(term) : null;
@@ -633,7 +693,7 @@
         <div class="wrap">
           ${
             stores.length
-              ? `<ul class="deals">${stores.map(dealCardHTML).join("")}</ul>`
+              ? `<ul class="deals">${[...stores].sort((a, b) => codeValue(b) - codeValue(a)).map(dealCardHTML).join("")}</ul>`
               : `<div class="empty"><h2>No stores here yet</h2><p>New codes are added every week. Browse <a href="./">all stores</a> in the meantime.</p></div>`
           }
         </div>
@@ -1219,6 +1279,8 @@
 
   async function boot() {
     renderHeader();
+    // A sale bar (tools/static-header.py) on a page written before its season ended.
+    document.querySelectorAll(".promo-bar[data-until]").forEach((el) => el.dataset.until < today && el.remove());
     // Pages that show codes (and posts, which fill in their store's code) need the live sheet.
     // They draw at once from the newest saved copy, this browser's or the site's snapshot, and check
     // the sheet in the background. Without a saved copy, or for a store the copy doesn't have yet,
