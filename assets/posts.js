@@ -802,6 +802,19 @@ const POSTS = [
     minutes: 5,
   },
   {
+    slug: "playvital-discount-code",
+    url: "saving-tips-playvital-discount-code.html",
+    title: "PlayVital Discount Code: 10% Off Switch 2 Cases, Controller Grips and Wall Mounts",
+    excerpt:
+      "Code JAMES10 takes 10% off at PlayVital. What the Switch 2 case, the Pro Controller grip skin and the wall mount cost with it, plus the Black Friday sale.",
+    image: "https://cdn.shopify.com/s/files/1/0557/3912/1800/files/PlayVitalCuteSolid-ColorDockableHardProtectiveCaseforNintendoSwitch2withThumbGrip_Sticker_ButtonCaps-CherryBlossomsPink-1_fbf4e524-a6dd-46b2-a576-c502d7c67bce.jpg?v=1790070063",
+    imageAlt: "The PlayVital Cute Solid-Color dockable hard case on a Nintendo Switch 2, in cherry blossom pink with matching thumb grips",
+    category: "coupon-guides",
+    store: "playvital",
+    date: "2026-11-20",
+    minutes: 6,
+  },
+  {
     slug: "topdon-carpal-vs-topscan",
     url: "saving-tips-topdon-carpal-vs-topscan.html",
     title: "TOPDON CarPal vs TopScan Lite vs Pro vs Master: Which Scanner to Buy?",
@@ -813,6 +826,20 @@ const POSTS = [
     category: "buying-guides",
     store: "topdon",
     date: "2026-11-12",
+    minutes: 6,
+  },
+  {
+    slug: "picassotiles-mini-vs-regular",
+    url: "saving-tips-picassotiles-mini-vs-regular.html",
+    title: "PicassoTiles Mini vs Regular vs Nano: Which Size Should You Buy?",
+    excerpt:
+      "Which PicassoTiles sizes fit together, what age they're labeled for, and what the Classic, Mini Diamond and Nano sets cost per piece, with the code.",
+    image: "https://cdn.shopify.com/s/files/1/0316/6489/8092/files/PTM100-01_V2_NO_SHADOW.jpg?v=1759957769",
+    imageAlt: "The PicassoTiles Mini Diamond 100-piece travel set: small magnetic tiles with a diamond-textured surface",
+    focus: "center 50%",
+    category: "buying-guides",
+    store: "picassotiles",
+    date: "2026-11-20",
     minutes: 6,
   },
   {
@@ -1724,5 +1751,18 @@ const POSTS = [
     store: "seeqsupply",
     date: "2026-11-19",
     minutes: 5,
+  },
+  {
+    slug: "playvital-review",
+    url: "saving-tips-playvital-review.html",
+    title: "PlayVital Reviews: Is PlayVital Legit, and Are Its Switch 2 Cases Worth It?",
+    excerpt:
+      "Is PlayVital legit? What the gaming accessory brand sells, what its prices and policies look like, what we found in reviews, and who it suits.",
+    image: "https://cdn.shopify.com/s/files/1/0557/3912/1800/files/PlayVitalCuteSolid-ColorDockableHardProtectiveCaseforNintendoSwitch2withThumbGrip_Sticker_ButtonCaps-CherryBlossomsPink-1_fbf4e524-a6dd-46b2-a576-c502d7c67bce.jpg?v=1790070063",
+    imageAlt: "The PlayVital Cute Solid-Color dockable hard case on a Nintendo Switch 2, in cherry blossom pink",
+    category: "reviews",
+    store: "playvital",
+    date: "2026-11-20",
+    minutes: 6,
   },
 ];
