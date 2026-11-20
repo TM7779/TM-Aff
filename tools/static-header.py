@@ -7,7 +7,9 @@ Run from the site folder after changing the site name, the menu or SITE.tagline:
     python3 tools/static-header.py
 """
 
+import datetime
 import glob
+import json
 import os
 import re
 
@@ -30,6 +32,9 @@ POPULAR = [
     ("saving-tips-niepce-discount-code.html", "Niepce"),
     ("saving-tips-black-friday-2026.html", "Black Friday 2026"),
 ]
+# A slim bar above the header for a sale season, like the big coupon sites run. It's written only up to
+# and including its last day; app.js also removes it from pages written earlier. Set to None between seasons.
+PROMO = ("Black Friday 2026: see what every brand is offering", "saving-tips-black-friday-2026.html", "2026-11-30")
 NAV = [
     ("./", "All stores", "home"),
     ("saving-tips.html", "Saving Tips", "blog"),
@@ -72,8 +77,11 @@ def header(page):
         + '<span class="skip">Search stores</span>'
         '<input type="search" name="q" placeholder="Search stores and products" autocomplete="off"></label></form>'
     )
+    promo = ""
+    if PROMO and datetime.date.today().isoformat() <= PROMO[2]:
+        promo = f'<p class="promo-bar" data-until="{PROMO[2]}"><a href="{PROMO[1]}">{esc(PROMO[0])}</a></p>\n'
     return (
-        f'{START}\n<a class="skip" href="#main">Skip to content</a>\n'
+        f'{START}\n<a class="skip" href="#main">Skip to content</a>\n{promo}'
         f'<header class="site-header"><div class="wrap">'
         f'<a class="brand" href="./">{BRAND_MARK}<span>{esc(SITE_NAME)}</span></a>'
         f'<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">{ICON_MENU}<span>Menu</span></button>'
@@ -87,6 +95,28 @@ POPULAR_HTML = (
     + " ".join(f'<a href="{href}">{esc(label)}</a>' for href, label in POPULAR if os.path.exists(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), href)))
     + "</p>"
 )
+
+
+def snapshot_counts():
+    """Brands and codes in assets/snapshot.js, so the hero's numbers are right before the scripts run."""
+    path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "snapshot.js")
+    try:
+        text = open(path, encoding="utf-8").read()
+        stores = json.loads(text[text.index("{"): text.rindex("}") + 1])["stores"]
+    except (OSError, ValueError, KeyError):
+        return 0, 0
+    live = [s for s in stores if any(c.get("code") for c in s.get("coupons", []))]
+    return len(live), sum(1 for s in live for c in s["coupons"] if c.get("code"))
+
+
+BRANDS, CODES = snapshot_counts()
+STATS_HTML = (
+    '<ul class="hero-stats">'
+    f'<li><b data-stat="brands">{BRANDS}</b> brands</li>'
+    f'<li><b data-stat="codes">{CODES}</b> live codes</li>'
+    '<li>Updated <b data-stat="updated">daily</b></li>'
+    "</ul>"
+) if BRANDS else ""
 HERO = (
     '<!-- hero: written by tools/static-header.py -->\n'
     '<section class="hero"><div class="wrap"><div>'
@@ -96,6 +126,7 @@ HERO = (
     + ICON_SEARCH
     + '<span class="skip">Search stores and products</span>'
     '<input id="q" type="search" placeholder="Search" autocomplete="off" value=""></label></form>'
+    + STATS_HTML
     + POPULAR_HTML
     + '</div><div class="ticket-fan"></div></div></section>\n'
     '<!-- /hero -->'
