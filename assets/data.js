@@ -327,6 +327,16 @@ const BEST_SELLERS = {
     { name: "SEEQ Clear Protein Blue Razz Freeze", url: "https://www.seeqsupply.com/JAMES26287", image: SHOPIFY_CDN + "0557/2345/8749/files/1_1d2ea5e4-8d49-4762-ac71-9fffa1e02409.jpg" },
     { name: "SEEQ Clear Protein Mango Pineapple", url: "https://www.seeqsupply.com/JAMES26287", image: SHOPIFY_CDN + "0557/2345/8749/files/clear-protein-mango-pineapple-4939641.png" },
   ],
+  "birdfy.com": [
+    { name: "Birdfy Feeder Smart Bird Feeder with Camera", url: "https://www.birdfy.com/products/birdfy-feeder?ref=kytnnors", image: SHOPIFY_CDN + "0782/9346/7416/files/birdfy_feeder_1_1.png" },
+    { name: "Birdfy Feeder Metal 2 4K Gift Set", url: "https://www.birdfy.com/products/birdfy-feeder-metal-2-4k-gift-set?ref=kytnnors", image: SHOPIFY_CDN + "0782/9346/7416/files/4k_0.5x.png" },
+    { name: "Birdfy Feeder 2 Pro Dual-Lens Camera Feeder", url: "https://www.birdfy.com/products/birdfy-feeder-2-pro?ref=kytnnors", image: SHOPIFY_CDN + "0782/9346/7416/files/feeder_2_pro.png" },
+  ],
+  "lumibricks.com": [
+    { name: "Lumibricks Izakaya (1,987 pieces)", url: "https://www.lumibricks.com/products/izakaya-1987pcs-f9073?ref=usubgedf", image: SHOPIFY_CDN + "0631/7060/9388/files/F9073.webp" },
+    { name: "Lumibricks Game Stack (2,580 pieces)", url: "https://www.lumibricks.com/products/game-stack-l9095?ref=usubgedf", image: SHOPIFY_CDN + "0631/7060/9388/files/L9095.webp" },
+    { name: "Lumibricks Book-Cafe (1,718 pieces)", url: "https://www.lumibricks.com/products/book-cafe-1718pcs?ref=usubgedf", image: SHOPIFY_CDN + "0631/7060/9388/files/15002_F9031.webp" },
+  ],
 };
 
 /*
