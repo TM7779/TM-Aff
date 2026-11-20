@@ -6,7 +6,7 @@
   "offer": "Black Friday Sale: up to 55% off"
  },
  "avea-life": {
-  "offer": "Black Friday: an extra 30% off sitewide, plus a free Welcome Kit and a free full-size product"
+  "offer": "Black Friday: an extra 30% off subscriptions, plus a free Welcome Kit and a free full-size product"
  },
  "wavwatch": {
   "offer": "Early-access Black Friday and Cyber Monday price: 20% off the WAVwatch 2.2 through November 23"
@@ -38,13 +38,13 @@
   "black_friday": true
  },
  "tomtoc": {
-  "offer": ""
+  "offer": "Black Friday Sale: up to 50% off, plus $5 off orders of $149 or $10 off orders of $199 and up"
  },
  "quntis": {
   "offer": "Black Friday Christmas lights sale: buy 2 and save 10%, buy 3 or more and save 15%"
  },
  "tidradio": {
-  "offer": "Black Friday early access is open; the home page shows no discount amount yet"
+  "offer": "Black Friday flash sale on radios, which TIDRADIO says ends November 30"
  },
  "picassotiles": {
   "offer": ""
@@ -83,5 +83,22 @@
  },
  "ulanzi": {
   "offer": "Early Black Friday, November 18 to 26: 20% off most items, 15% off selected items and 30% off clearance"
+ },
+ "fosiaudio": {
+  "offer": "",
+  "black_friday": true,
+  "extra": "Its home page shows a Black Friday banner without a discount amount."
+ },
+ "jsaux": {
+  "offer": "Black Friday Sale: up to 60% off, November 13 to December 2"
+ },
+ "wubenlight": {
+  "offer": "Black Friday 2026 sale with free gifts and 5x reward points, says Wuben's home page"
+ },
+ "seeqsupply": {
+  "offer": "Black Friday: up to 30% off sitewide, plus a free gift with new subscriptions and orders over $75"
+ },
+ "playvital": {
+  "offer": "Black Friday Loot Drop: up to 20% off a Black Friday collection, November 19 to 30 (Pacific time)"
  }
 }
