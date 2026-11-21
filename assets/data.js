@@ -332,6 +332,11 @@ const BEST_SELLERS = {
     { name: "Birdfy Feeder Metal 2 4K Gift Set", url: "https://www.birdfy.com/products/birdfy-feeder-metal-2-4k-gift-set?ref=kytnnors", image: SHOPIFY_CDN + "0782/9346/7416/files/4k_0.5x.png" },
     { name: "Birdfy Feeder 2 Pro Dual-Lens Camera Feeder", url: "https://www.birdfy.com/products/birdfy-feeder-2-pro?ref=kytnnors", image: SHOPIFY_CDN + "0782/9346/7416/files/feeder_2_pro.png" },
   ],
+  "yosepower.com": [
+    { name: "Yose Power 36V 350W 27.5\" Rear Motor Kit with 13Ah Battery", url: "https://yosepower.com/products/e-bike-conversion-kit-36v-350w-27-5-rear-motor-kit-for-freewheel-with-36v-13ah-battery-and-charger?ref=rfwqolmn", image: SHOPIFY_CDN + "0378/5506/8295/files/E-BikeConversionKit36V350W27.5RearMotorKitforFreewheelwith36V13AhBatteryandCharger-1.jpg" },
+    { name: "Yose Power 36V Rear Rack E-Bike Battery", url: "https://yosepower.com/products/36v-battery-with-taillight-and-rear-carrier?ref=rfwqolmn", image: SHOPIFY_CDN + "0378/5506/8295/products/36VE-BikeLi-ionBatterytaillightRearCarrier-1.jpg" },
+    { name: "Yose Power 36V Hailong Down Tube Battery", url: "https://yosepower.com/products/hailong-2-down-tube-battery?ref=rfwqolmn", image: SHOPIFY_CDN + "0378/5506/8295/products/36VDownTubeHailong1-2BatteryLithium-ionAccuE-BikeElectricBicycleBottleDIY-1.jpg" },
+  ],
   "lumibricks.com": [
     { name: "Lumibricks Izakaya (1,987 pieces)", url: "https://www.lumibricks.com/products/izakaya-1987pcs-f9073?ref=usubgedf", image: SHOPIFY_CDN + "0631/7060/9388/files/F9073.webp" },
     { name: "Lumibricks Game Stack (2,580 pieces)", url: "https://www.lumibricks.com/products/game-stack-l9095?ref=usubgedf", image: SHOPIFY_CDN + "0631/7060/9388/files/L9095.webp" },

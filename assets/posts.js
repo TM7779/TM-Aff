@@ -841,6 +841,19 @@ const POSTS = [
     minutes: 5,
   },
   {
+    slug: "yose-power-discount-code",
+    url: "saving-tips-yose-power-discount-code.html",
+    title: "Yose Power Discount Code: 10% Off E-Bike Conversion Kits and Batteries",
+    excerpt:
+      "Code JAMESWICKENDEN takes 10% off at Yose Power. What its conversion kits and batteries cost with it, free shipping across Europe, and why sale items can't be returned.",
+    image: "https://cdn.shopify.com/s/files/1/0378/5506/8295/files/E-BikeConversionKit36V350W27.5RearMotorKitforFreewheelwith36V13AhBatteryandCharger-1.jpg?v=1740115060",
+    imageAlt: "Yose Power 36V 350W 27.5 inch rear motor e-bike conversion kit with its 13Ah down tube battery, display and charger",
+    category: "coupon-guides",
+    store: "yosepower",
+    date: "2026-11-21",
+    minutes: 6,
+  },
+  {
     slug: "topdon-carpal-vs-topscan",
     url: "saving-tips-topdon-carpal-vs-topscan.html",
     title: "TOPDON CarPal vs TopScan Lite vs Pro vs Master: Which Scanner to Buy?",
@@ -852,6 +865,20 @@ const POSTS = [
     category: "buying-guides",
     store: "topdon",
     date: "2026-11-12",
+    minutes: 6,
+  },
+  {
+    slug: "birdfy-feeder-2-vs-pro-vs-duo",
+    url: "saving-tips-birdfy-feeder-2-vs-pro-vs-duo.html",
+    title: "Birdfy Feeder 2 vs Feeder 2 Pro vs Feeder 2 Duo: Which Smart Bird Feeder Should You Buy?",
+    excerpt:
+      "One lens, two or three? The Birdfy Feeder 2, Pro and Duo compared: video, solar panel, Wi-Fi, membership and what each costs with the code.",
+    image: "https://cdn.shopify.com/s/files/1/0782/9346/7416/files/feeder_2_pro.png?v=1760519607",
+    imageAlt: "The green Birdfy Feeder 2 Pro smart bird feeder with its dual-lens camera and solar panel",
+    focus: "center 50%",
+    category: "buying-guides",
+    store: "birdfy",
+    date: "2026-11-21",
     minutes: 6,
   },
   {
@@ -1816,5 +1843,18 @@ const POSTS = [
     store: "lumibricks",
     date: "2026-11-20",
     minutes: 5,
+  },
+  {
+    slug: "yose-power-review",
+    url: "saving-tips-yose-power-review.html",
+    title: "Yose Power Reviews: Is Yose Power Legit, and Are Its E-Bike Kits Worth It?",
+    excerpt:
+      "Is Yose Power legit? What the e-bike kit and battery shop sells, what customers say (complaints included), its prices, warranty and who it suits.",
+    image: "https://cdn.shopify.com/s/files/1/0378/5506/8295/files/E-BikeConversionKit36V250WFrontMotorKit26withHL136V18AhBatteryHubMotorDIY-1.jpg?v=1739861334",
+    imageAlt: "Yose Power 36V 250W 26 inch front motor e-bike conversion kit with an 18Ah down tube battery",
+    category: "reviews",
+    store: "yosepower",
+    date: "2026-11-21",
+    minutes: 6,
   },
 ];
