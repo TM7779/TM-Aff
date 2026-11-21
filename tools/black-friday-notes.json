@@ -21,7 +21,7 @@
   "offer": "Black Friday: up to 52% off"
  },
  "ohora": {
-  "offer": "Early BFCM sale, week 2 (November 13 to 19, Pacific time), shown at 50% on its home page, and an early Christmas sale shown at 30%"
+  "offer": "BFCM sale: up to 80% off (November 20 to December 2, Pacific time), plus a free gift until December 8, as shown on its home page"
  },
  "tabasquishy": {
   "offer": "Black Friday and Cyber Monday deals, November 19 to 30"
@@ -53,7 +53,7 @@
   "offer": "Black Friday and Cyber Monday: up to 50% off selected products"
  },
  "carlinkit": {
-  "offer": "Early Black Friday deals sitewide with Carlinkit's own code SAVE15"
+  "offer": "Black Friday Week deals sitewide with Carlinkit's own code SAVE15"
  },
  "mixsoon": {
   "offer": "Black Friday: four weeks of deals, now in week 3"
@@ -68,7 +68,7 @@
   "offer": "BFCM sale from November 16 to December 3, 2026 (GMT+8), with 15% off sitewide from November 18, mystery boxes and a giveaway"
  },
  "parijanofficial": {
-  "offer": "Early Black Friday: up to 75% off"
+  "offer": "Early Black Friday: up to 70% off"
  },
  "neosabers": {
   "offer": "Black Friday offers: 2 free combat sabers, 2 free replica sabers and buy-one-get-one-free sabers, on the terms shown on its site"
@@ -96,9 +96,28 @@
   "offer": "Black Friday 2026 sale with free gifts and 5x reward points, says Wuben's home page"
  },
  "seeqsupply": {
-  "offer": "Black Friday: up to 30% off sitewide, plus a free gift with new subscriptions and orders over $75"
+  "offer": "Black Friday: up to 30% off sitewide, plus a free gift on orders over $75 and new subscriptions"
  },
  "playvital": {
   "offer": "Black Friday Loot Drop: up to 20% off a Black Friday collection, November 19 to 30 (Pacific time)"
+ },
+ "maryruthorganics": {
+  "offer": "Early Black Friday: 30% off the products marked on its site"
+ },
+ "webbernaturals": {
+  "offer": "Black Friday: 30% off sitewide while supplies last"
+ },
+ "omegajuicers": {
+  "offer": "Black Friday: 20% off sitewide plus free shipping with Omega's own code HOLIDAY20"
+ },
+ "birdfy": {
+  "offer": "Black Friday: add a yellow Birdfy Feeder to the cart for $69.99 with any Birdfy device"
+ },
+ "lumibricks": {
+  "offer": "",
+  "extra": "No Black Friday sale shown on its home page yet; it offers 10% off for joining its email list."
+ },
+ "yosepower": {
+  "offer": "Black Friday: up to 15% off e-bike conversion kits and batteries, ending November 30"
  }
 }
