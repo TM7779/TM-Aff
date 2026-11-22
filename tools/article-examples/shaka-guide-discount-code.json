@@ -1,0 +1,100 @@
+{
+  "type": "guide",
+  "store": "shakaguide",
+  "slug": "shaka-guide",
+  "brand": "Shaka Guide",
+  "date": "2026-11-22",
+  "title": "Shaka Guide Promo Code: 15% Off GPS Audio Tours, Plus Bundle Prices Compared",
+  "title_tag": "Shaka Guide Promo Code November 2026: 15% Off Audio Tours",
+  "description": "Shaka Guide promo code {code} takes {pct} off tours on shakaguide.com. Road to Hana costs $24.99, island bundles $34.99: every price with the code and the bundle math.",
+  "excerpt": "Code {code} takes {pct} off Shaka Guide's GPS audio tours. What single tours and island bundles cost, what they cost with the code, and when a bundle beats the code.",
+  "image": "https://shakablog.s3.us-west-1.amazonaws.com/images/f4356e477260135aad937a544414624a.webp",
+  "image_alt": "Two travelers in a convertible on a forest road, with a phone navigation app mounted on the dashboard",
+  "focus": "center 50%",
+  "lede": "Use the Shaka Guide promo code {code} for {pct} off GPS audio tours bought on shakaguide.com. A single tour costs $6.99 to $24.99 (the Classic Road to Hana tour is $24.99), and each island bundle is $34.99. Here's every price with the code, and when a bundle saves more than the code does.",
+  "cart_tip": "Buy on shakaguide.com, not in the app: the code box is at the website checkout, and your receipt email has the redeem code that unlocks the tours in the app.",
+  "sections": [
+    {
+      "h2": "What Shaka Guide tours cost with the code",
+      "parts": [
+        "Each tour is a one-time purchase that you download to your phone and keep. These were the prices on shakaguide.com:",
+        {
+          "table": {
+            "head": ["Tour", "Price", "With 15% off"],
+            "rows": [
+              ["Classic Road to Hana (Maui)", "$24.99", "$21.24"],
+              ["Hawaii Volcanoes National Park (Big Island)", "$22.99", "$19.54"],
+              ["Grand Circle Island (Oahu)", "$19.99", "$16.99"],
+              ["Yellowstone National Park", "$18.99", "$16.14"],
+              ["Grand Canyon South Rim", "$16.99", "$14.44"],
+              ["Zion National Park", "$14.99", "$12.74"],
+              ["Historic Downtown Honolulu (walking)", "$6.99", "$5.94"],
+              ["Maui bundle (6 tours)", "$34.99", "$29.74"],
+              ["Big Island bundle (5 tours)", "$34.99", "$29.74"],
+              ["Oahu bundle (6 tours)", "$34.99", "$29.74"],
+              ["Kauai bundle (4 tours)", "$34.99", "$29.74"]
+            ]
+          }
+        },
+        {
+          "small": "Prices on shakaguide.com on November 22, 2026. The price with the code assumes the code applies to that item; the checkout shows the final price before you pay."
+        },
+        "The app itself is free to download. You only pay for the tours."
+      ]
+    },
+    {
+      "h2": "1. Buy the island bundle if you'll take two tours or more",
+      "parts": [
+        "Every Hawaii island bundle costs $34.99, about the price of one and a half single tours. Shaka Guide lists the tours in each bundle at their single prices, so the saving is easy to check:",
+        {
+          "list": [
+            "Maui: 6 tours worth $124.94 for $34.99, including Classic, Loop and Reverse Road to Hana, Sunrise at Haleakala and Sunset and Stargazing Haleakala.",
+            "Big Island: 5 tours worth $102.95 for $34.99, including Hawaii Volcanoes National Park.",
+            "Oahu: 6 tours worth $93.94 for $34.99, including Grand Circle Island and the Legendary North Shore Loop.",
+            "Kauai: 4 tours worth $82.96 for $34.99, including Waimea and Na Pali."
+          ]
+        },
+        "If you only want the Road to Hana, the single tour with the code ($21.24) is cheaper. If you also plan to drive up Haleakala, the Maui bundle with the code ($29.74) covers both for less than the two single tours cost."
+      ]
+    },
+    {
+      "h2": "2. Look at the two big collections for long trips",
+      "parts": [
+        "Shaka Guide sells two larger collections, both marked as Black Friday deals when we checked:",
+        {
+          "list": [
+            "<strong>The Hawaii Tour Collection:</strong> all 21 Hawaii tours for $59.99 (shown as $79.99 before the sale). It suits a trip to two or more islands.",
+            "<strong>The Ultimate National Park Tour Collection:</strong> 55 tours for $114.99 (shown as $199.99 before the sale). National park tours cost $14.99 to $22.99 each, so it pays off from about seven parks."
+          ]
+        },
+        "The Black Friday page says the offer can't be combined with other promotions, so expect the code not to take more off these two collections while the sale runs."
+      ]
+    },
+    {
+      "h2": "3. Buy on the website, not through an app store",
+      "parts": [
+        "Shaka Guide's own sale terms say its website discounts don't apply to App Store, Google Play, Viator, Go City and other resellers. Buy on shakaguide.com, check out with the code, then open the receipt email on your phone: it has a download link and a redeem code (it starts with SG_) that unlocks the tours under My Stuff in the app."
+      ]
+    },
+    {
+      "h2": "Refunds and what you get",
+      "parts": [
+        "Tours are digital, so there's nothing to ship. Shaka Guide's terms say payments are non-refundable except as the terms provide, and that refunds under its money-back satisfaction guarantee are at its discretion. Contact its support (by phone, chat or email from the support page) before disputing a charge.",
+        "Each tour includes offline audio, an offline map, turn-by-turn directions and a list of stops and nearby sights. Download it over Wi-Fi before you set out: after that it works without cell service. The app works with Apple CarPlay but not Android Auto, according to Shaka Guide's FAQ. The Black Friday page also says tours never expire."
+      ]
+    }
+  ],
+  "faq": [
+    ["Is there a Shaka Guide discount code?", "Yes. Code <strong data-code=\"shakaguide\">{code}</strong> takes <span data-discount=\"shakaguide\">{pct}</span> off tours bought on shakaguide.com. Enter it in the discount box at the website checkout."],
+    ["Is there a Shaka Guide promo code or coupon code?", "For Shaka Guide, a promo code, a coupon code and a discount code are the same thing: <strong data-code=\"shakaguide\">{code}</strong> for <span data-discount=\"shakaguide\">{pct}</span> off. It works the same whether you search Shaka Guide, ShakaGuide or the Shaka Guide app."],
+    ["How much does a Shaka Guide tour cost?", "Single tours cost $6.99 to $24.99 on shakaguide.com (November 22, 2026). Most national park tours are $14.99 to $18.99, and each Hawaii island bundle is $34.99. The app is free."],
+    ["How much is the Shaka Guide Road to Hana tour with the code?", "The Classic Road to Hana tour costs $24.99, or $21.24 with <span data-discount=\"shakaguide\">{pct}</span> off. The Maui bundle, with it and five other Maui tours, is $34.99, or $29.74 with the code."],
+    ["How much is the Shaka Guide Yellowstone tour?", "The Yellowstone National Park tour costs $18.99, or $16.14 with code <strong data-code=\"shakaguide\">{code}</strong>. Shaka Guide lists 37 stops and six starting points for it."],
+    ["How much is the Shaka Guide Oahu tour?", "The Grand Circle Island tour costs $19.99, or $16.99 with the code. The Oahu bundle of 6 driving and walking tours costs $34.99, or $29.74 with the code."],
+    ["Is the Shaka Guide bundle worth it?", "If you'll take two tours or more on one island, yes: each island bundle costs $34.99, against $82.96 to $124.94 for its tours bought one by one."],
+    ["Does the Shaka Guide code work on Black Friday deals?", "Shaka Guide's Black Friday page says its offer can't be combined with other promotions, so the code may not take more off the Hawaii Tour Collection ($59.99) or the Ultimate National Park Tour Collection ($114.99) during the sale."],
+    ["Can I use the code in the Shaka Guide app?", "Use it on shakaguide.com. Shaka Guide says its website discounts don't apply to App Store, Google Play or reseller purchases. After you buy, the redeem code in your receipt unlocks the tours in the app."],
+    ["Can I get a refund from Shaka Guide?", "Its terms say payments are non-refundable except as the terms provide, and that refunds under its satisfaction guarantee are at Shaka Guide's discretion. Contact its support first."],
+    ["Why isn't my Shaka Guide discount code working?", "Check that you're checking out on shakaguide.com rather than in an app store, that the code is typed exactly as <strong data-code=\"shakaguide\">{code}</strong>, and that no sale price is already applied: sale offers can't be combined with other codes."]
+  ]
+}
