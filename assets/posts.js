@@ -854,6 +854,20 @@ const POSTS = [
     minutes: 6,
   },
   {
+    slug: "shaka-guide-discount-code",
+    url: "saving-tips-shaka-guide-discount-code.html",
+    title: "Shaka Guide Promo Code: 15% Off GPS Audio Tours, Plus Bundle Prices Compared",
+    excerpt:
+      "Code JAMESWICKENDEN takes 15% off Shaka Guide's GPS audio tours. What single tours and island bundles cost, what they cost with the code, and when a bundle beats the code.",
+    image: "https://shakablog.s3.us-west-1.amazonaws.com/images/f4356e477260135aad937a544414624a.webp",
+    imageAlt: "Two travelers in a convertible on a forest road, with a phone navigation app mounted on the dashboard",
+    focus: "center 50%",
+    category: "coupon-guides",
+    store: "shakaguide",
+    date: "2026-11-22",
+    minutes: 7,
+  },
+  {
     slug: "topdon-carpal-vs-topscan",
     url: "saving-tips-topdon-carpal-vs-topscan.html",
     title: "TOPDON CarPal vs TopScan Lite vs Pro vs Master: Which Scanner to Buy?",
@@ -1870,5 +1884,19 @@ const POSTS = [
     store: "yosepower",
     date: "2026-11-21",
     minutes: 6,
+  },
+  {
+    slug: "shaka-guide-review",
+    url: "saving-tips-shaka-guide-review.html",
+    title: "Shaka Guide Reviews: Is the GPS Audio Tour App Worth It for Road to Hana and National Parks?",
+    excerpt:
+      "Is Shaka Guide worth it? How the GPS audio tour app works, its App Store ratings, the complaints reviewers raise, what tours and bundles cost, and who it suits.",
+    image: "https://shakablog.s3.us-west-1.amazonaws.com/images/497906fe51eef864cb5a1506dcfa286c.webp",
+    imageAlt: "A hiker beside a turquoise pool below a tall waterfall on a moss-covered cliff",
+    focus: "center 45%",
+    category: "reviews",
+    store: "shakaguide",
+    date: "2026-11-22",
+    minutes: 7,
   },
 ];
