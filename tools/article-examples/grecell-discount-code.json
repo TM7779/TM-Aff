@@ -32,8 +32,8 @@
               ],
               [
                 "T300S Portable Power Station 300W",
-                "$149.99",
-                "$142.49"
+                "$179.99",
+                "$170.99"
               ],
               [
                 "T-1000 Portable Power Station 1000W (green)",
@@ -42,32 +42,27 @@
               ],
               [
                 "Portable Power Station 2400W (green)",
-                "$539.99",
-                "$512.99"
-              ],
-              [
-                "Portable Power Station 2400W with 100W solar panel",
-                "$649.99",
-                "$617.49"
+                "$549.99",
+                "$522.49"
               ]
             ]
           }
         },
         {
-          "small": "Prices in US dollars, checked on November 9, 2026. The price with the code assumes the code applies to that item."
+          "small": "Prices in US dollars, checked on November 22, 2026. The price with the code assumes the code applies to that item."
         }
       ]
     },
     {
       "h2": "1. Colors can cost very different amounts",
       "parts": [
-        "When we checked, the 1000W was $359.99 in green and $699.99 in orange (sold out). The 2400W was $539.99 in green and $1,289.99 in black. Check the color selector before you assume a model's price."
+        "When we checked, the 1000W was $359.99 in green and $699.99 in orange (sold out). On November 22, 2026 the 2400W was $549.99 in both green and black, after a big gap between colors earlier in the month. Check the color selector before you assume a model's price."
       ]
     },
     {
       "h2": "2. Compare the solar bundle",
       "parts": [
-        "The 2400W in green was $539.99 alone and $649.99 with a 100W solar panel. If you want a panel anyway, price it separately and pick the lower total."
+        "On November 9, 2026 the 2400W came with a 100W solar panel for $649.99; on November 22 that listing offered only the power station, at $549.99. GRECELL's 200W portable solar panel sells on its own for $269.99, so if you want a panel, price both ways and pick the lower total."
       ]
     },
     {
@@ -106,7 +101,7 @@
     ],
     [
       "How much is the GRECELL T300S Portable Power Station 300W?",
-      "$149.99, or $142.49 with code {code} if it applies to that item."
+      "$179.99, or $170.99 with code {code} if it applies to that item."
     ],
     [
       "How much is the GRECELL T-1000 Portable Power Station 1000W?",
@@ -114,7 +109,7 @@
     ],
     [
       "How much is the GRECELL Portable Power Station 2400W?",
-      "$539.99, or $512.99 with code {code} if it applies to that item."
+      "$549.99, or $522.49 with code {code} if it applies to that item."
     ],
     [
       "Does GRECELL have a warranty?",
@@ -124,5 +119,6 @@
       "Why isn't my GRECELL discount code working?",
       "Type {code} exactly, with no spaces, and remove any other code, because most stores accept one per order. Items on sale may not take it. We list the current code on our <a href=\"store.html?s=grecell\">GRECELL coupon page</a>."
     ]
-  ]
+  ],
+  "updated": "2026-11-22"
 }
