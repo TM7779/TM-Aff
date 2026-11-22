@@ -868,6 +868,20 @@ const POSTS = [
     minutes: 6,
   },
   {
+    slug: "grecell-300w-vs-1000w-vs-2400w",
+    url: "saving-tips-grecell-300w-vs-1000w-vs-2400w.html",
+    title: "GRECELL 300W vs 1000W vs 2400W: Which Power Station Should You Buy?",
+    excerpt:
+      "GRECELL's 240W, 300W, 500W, 1000W and 2400W side by side: battery size, outlets, run times and what each costs with the code.",
+    image: "https://cdn.shopify.com/s/files/1/0284/7306/5544/files/t1000-gc2_2.jpg?v=1763438126",
+    imageAlt: "The green GRECELL T-1000 portable power station with its front display and outlets",
+    focus: "center 50%",
+    category: "buying-guides",
+    store: "grecell",
+    date: "2026-11-22",
+    minutes: 6,
+  },
+  {
     slug: "birdfy-feeder-2-vs-pro-vs-duo",
     url: "saving-tips-birdfy-feeder-2-vs-pro-vs-duo.html",
     title: "Birdfy Feeder 2 vs Feeder 2 Pro vs Feeder 2 Duo: Which Smart Bird Feeder Should You Buy?",
