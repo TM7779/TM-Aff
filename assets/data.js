@@ -342,6 +342,11 @@ const BEST_SELLERS = {
     { name: "Lumibricks Game Stack (2,580 pieces)", url: "https://www.lumibricks.com/products/game-stack-l9095?ref=usubgedf", image: SHOPIFY_CDN + "0631/7060/9388/files/L9095.webp" },
     { name: "Lumibricks Book-Cafe (1,718 pieces)", url: "https://www.lumibricks.com/products/book-cafe-1718pcs?ref=usubgedf", image: SHOPIFY_CDN + "0631/7060/9388/files/15002_F9031.webp" },
   ],
+  "evilhair.com": [
+    { name: "Evilhair Intense Magenta Pink ColorConditioner", url: "https://evilhair.com/products/intense-magenta-pink-200-ml?ref=faidejug", image: SHOPIFY_CDN + "1705/5107/files/Intense_Magenta_Pink_2025_5.png" },
+    { name: "Evilhair Intense Violet Purple ColorConditioner", url: "https://evilhair.com/products/intense-purple-200-ml?ref=faidejug", image: SHOPIFY_CDN + "1705/5107/files/Intense_Violet_Purple_2024.png" },
+    { name: "Evilhair Intense Cherry Red ColorConditioner", url: "https://evilhair.com/products/intense-cherry-red-200-ml?ref=faidejug", image: SHOPIFY_CDN + "1705/5107/products/intense-cherry-red-web.png" },
+  ],
 };
 
 /*

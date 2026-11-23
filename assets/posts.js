@@ -236,7 +236,7 @@ const POSTS = [
     category: "coupon-guides",
     store: "protoarc",
     date: "2026-11-03",
-    minutes: 4,
+    minutes: 5,
   },
   {
     slug: "ohora-discount-code",
@@ -868,6 +868,19 @@ const POSTS = [
     minutes: 7,
   },
   {
+    slug: "evilhair-discount-code",
+    url: "saving-tips-evilhair-discount-code.html",
+    title: "Evilhair Discount Code: 10% Off ColorConditioner Hair Color",
+    excerpt:
+      "Code JAMESWICKENDEN takes 10% off at Evilhair. What its color conditioners and bundles cost with it, how the Vivid Days cart discount compares, and the shipping and return rules.",
+    image: "https://cdn.shopify.com/s/files/1/1705/5107/files/Intense_Magenta_Pink_2025_5.png?v=1740500159",
+    imageAlt: "A bottle of Evilhair Intense Magenta Pink ColorConditioner semi-permanent hair color",
+    category: "coupon-guides",
+    store: "evilhair",
+    date: "2026-11-23",
+    minutes: 6,
+  },
+  {
     slug: "topdon-carpal-vs-topscan",
     url: "saving-tips-topdon-carpal-vs-topscan.html",
     title: "TOPDON CarPal vs TopScan Lite vs Pro vs Master: Which Scanner to Buy?",
@@ -880,6 +893,20 @@ const POSTS = [
     store: "topdon",
     date: "2026-11-12",
     minutes: 6,
+  },
+  {
+    slug: "protoarc-em11-nl-vs-em11-pro",
+    url: "saving-tips-protoarc-em11-nl-vs-em11-pro.html",
+    title: "ProtoArc EM11 NL vs EM11 Pro: Which Vertical Mouse Should You Buy?",
+    excerpt:
+      "ProtoArc's two vertical mice side by side: hand size, DPI, buttons, Mac support and what each costs with the code.",
+    image: "https://cdn.shopify.com/s/files/1/0551/3972/9497/files/protoarc_mouse_side_1600x2000_e4ebd203-e4e1-4085-bdaa-69065a25694e.png?v=1779333948",
+    imageAlt: "The ProtoArc EM11 Pro ergonomic vertical mouse seen from the side, showing its thumb buttons and side scroll wheel",
+    focus: "center 45%",
+    category: "buying-guides",
+    store: "protoarc",
+    date: "2026-11-23",
+    minutes: 5,
   },
   {
     slug: "grecell-300w-vs-1000w-vs-2400w",
@@ -1898,5 +1925,18 @@ const POSTS = [
     store: "shakaguide",
     date: "2026-11-22",
     minutes: 7,
+  },
+  {
+    slug: "evilhair-review",
+    url: "saving-tips-evilhair-review.html",
+    title: "Evilhair Reviews: Is Evilhair Legit, and Is ColorConditioner Worth It?",
+    excerpt:
+      "Is Evilhair legit? What the hair color conditioner brand sells, what customers say (delivery complaints included), its prices, returns and who it suits.",
+    image: "https://cdn.shopify.com/s/files/1/1705/5107/files/Intense_Violet_Purple_2024.png?v=1736431758",
+    imageAlt: "A bottle of Evilhair Intense Violet Purple ColorConditioner semi-permanent hair color",
+    category: "reviews",
+    store: "evilhair",
+    date: "2026-11-23",
+    minutes: 6,
   },
 ];
