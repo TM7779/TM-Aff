@@ -514,7 +514,7 @@ const STORE_INFO = {
   "yosepower": { name: "Yose Power", category: "sports-outdoors", about: "Electric bike batteries and e-bike conversion kits." },
   "omegajuicers": { name: "Omega Juicers", category: "home-garden", logo: "https://omegajuicers.com/cdn/shop/files/omega-logo.jpg?v=1727974878", about: "Slow masticating juicers, blenders and other kitchen appliances." },
   "elevatedfaith": { name: "Elevated Faith", category: "clothing-accessories", about: "Christian jewelry and apparel: bracelets, rings, hoodies and tees." },
-  "chicchoi": { logo: "https://chicchoi.com/cdn/shop/files/1000_x_500_1.png?v=1762334818&width=400", name: "ChicChoi", category: "clothing-accessories", about: "Cute stationery: backpacks, pencil cases, planners, journals, pens and stamps." },
+  "chicchoi": { name: "ChicChoi", category: "clothing-accessories", about: "Cute stationery: backpacks, pencil cases, planners, journals, pens and stamps." },
   "cleannutra": { name: "Clean Nutraceuticals", category: "vitamins-supplements", about: "US-made supplements sold direct by the brand." },
   "shakaguide": { name: "Shaka Guide", category: "sports-outdoors", about: "GPS audio tour apps for road trips, from Hawaii to US national parks." },
   "crystalquest": { name: "Crystal Quest", category: "home-garden", logo: "https://crystalquest.com/cdn/shop/files/CQLogo.png?v=1738491527&width=480", about: "Water filters for the whole house, under the sink, the countertop and the shower." },
