@@ -342,6 +342,11 @@ const BEST_SELLERS = {
     { name: "Lumibricks Game Stack (2,580 pieces)", url: "https://www.lumibricks.com/products/game-stack-l9095?ref=usubgedf", image: SHOPIFY_CDN + "0631/7060/9388/files/L9095.webp" },
     { name: "Lumibricks Book-Cafe (1,718 pieces)", url: "https://www.lumibricks.com/products/book-cafe-1718pcs?ref=usubgedf", image: SHOPIFY_CDN + "0631/7060/9388/files/15002_F9031.webp" },
   ],
+  "chicchoi.com": [
+    { name: "ChicChoi Cream Star Drawstring Backpack", url: "https://chicchoi.com/products/cream-star-drawstring-backpack?ref=bpbnttfh", image: SHOPIFY_CDN + "0734/9246/3789/files/CreamStarDrawstringBackpackchicchoistationery.png" },
+    { name: "ChicChoi Star Series Drawstring Pencil Case", url: "https://chicchoi.com/products/star-series-large-capacity-drawstring-pencil-case?ref=bpbnttfh", image: SHOPIFY_CDN + "0734/9246/3789/files/ChicChoiStarSeriesPencilCase1.jpg" },
+    { name: "ChicChoi 6-in-1 Multicolor Pen Stamp Set", url: "https://chicchoi.com/products/multi-pattern-6-in-1-pen-stamp-set?ref=bpbnttfh", image: SHOPIFY_CDN + "0734/9246/3789/files/penstampsetportablecutechicchoistationery.jpg" },
+  ],
   "evilhair.com": [
     { name: "Evilhair Intense Magenta Pink ColorConditioner", url: "https://evilhair.com/products/intense-magenta-pink-200-ml?ref=faidejug", image: SHOPIFY_CDN + "1705/5107/files/Intense_Magenta_Pink_2025_5.png" },
     { name: "Evilhair Intense Violet Purple ColorConditioner", url: "https://evilhair.com/products/intense-purple-200-ml?ref=faidejug", image: SHOPIFY_CDN + "1705/5107/files/Intense_Violet_Purple_2024.png" },
@@ -509,7 +514,7 @@ const STORE_INFO = {
   "yosepower": { name: "Yose Power", category: "sports-outdoors", about: "Electric bike batteries and e-bike conversion kits." },
   "omegajuicers": { name: "Omega Juicers", category: "home-garden", logo: "https://omegajuicers.com/cdn/shop/files/omega-logo.jpg?v=1727974878", about: "Slow masticating juicers, blenders and other kitchen appliances." },
   "elevatedfaith": { name: "Elevated Faith", category: "clothing-accessories", about: "Christian jewelry and apparel: bracelets, rings, hoodies and tees." },
-  "chicchoi": { name: "ChicChoi", category: "clothing-accessories", about: "Cute backpacks, pencil cases, planners and journals." },
+  "chicchoi": { logo: "https://chicchoi.com/cdn/shop/files/1000_x_500_1.png?v=1762334818&width=400", name: "ChicChoi", category: "clothing-accessories", about: "Cute stationery: backpacks, pencil cases, planners, journals, pens and stamps." },
   "cleannutra": { name: "Clean Nutraceuticals", category: "vitamins-supplements", about: "US-made supplements sold direct by the brand." },
   "shakaguide": { name: "Shaka Guide", category: "sports-outdoors", about: "GPS audio tour apps for road trips, from Hawaii to US national parks." },
   "crystalquest": { name: "Crystal Quest", category: "home-garden", logo: "https://crystalquest.com/cdn/shop/files/CQLogo.png?v=1738491527&width=480", about: "Water filters for the whole house, under the sink, the countertop and the shower." },

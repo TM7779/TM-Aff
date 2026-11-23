@@ -881,6 +881,19 @@ const POSTS = [
     minutes: 6,
   },
   {
+    slug: "chicchoi-discount-code",
+    url: "saving-tips-chicchoi-discount-code.html",
+    title: "ChicChoi Discount Code: 10% Off Cute Backpacks, Pencil Cases and Planners",
+    excerpt:
+      "Code JAMES10 takes 10% off at ChicChoi. What its drawstring backpacks, pencil cases and pen stamps cost with it, plus shipping times from China and the return rules.",
+    image: "https://cdn.shopify.com/s/files/1/0734/9246/3789/files/CreamStarDrawstringBackpackchicchoistationery.png?v=1774342942",
+    imageAlt: "ChicChoi Cream Star Drawstring Backpack in pastel colors",
+    category: "coupon-guides",
+    store: "chicchoi",
+    date: "2026-11-23",
+    minutes: 6,
+  },
+  {
     slug: "topdon-carpal-vs-topscan",
     url: "saving-tips-topdon-carpal-vs-topscan.html",
     title: "TOPDON CarPal vs TopScan Lite vs Pro vs Master: Which Scanner to Buy?",
@@ -1938,5 +1951,18 @@ const POSTS = [
     store: "evilhair",
     date: "2026-11-23",
     minutes: 6,
+  },
+  {
+    slug: "chicchoi-review",
+    url: "saving-tips-chicchoi-review.html",
+    title: "ChicChoi Reviews: Is ChicChoi Legit, and Is Its Cute Stationery Worth It?",
+    excerpt:
+      "Is ChicChoi legit? What the cute stationery shop sells, its product ratings, shipping from China, the return fees, and who it suits.",
+    image: "https://cdn.shopify.com/s/files/1/0734/9246/3789/files/DOTDOTDrawstringBackpackschicchoi_b653774c-cae7-424d-8347-13df89d1b70a.jpg?v=1774340753",
+    imageAlt: "ChicChoi DOT DOT drawstring backpacks in blue, pink, white and black",
+    category: "reviews",
+    store: "chicchoi",
+    date: "2026-11-23",
+    minutes: 5,
   },
 ];
