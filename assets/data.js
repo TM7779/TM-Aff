@@ -347,6 +347,11 @@ const BEST_SELLERS = {
     { name: "BUR BUR The Mermaid Brush, Essential Boar Bristle", url: "https://burbur.com/products/the-mermaid-brush-essential-boar-bristle-brush?ref=tomlkuce", image: SHOPIFY_CDN + "0588/9841/5771/files/Screenshot_2026-11-16_at_2.36.18_PM.png" },
     { name: "BUR BUR The Mermaid Bundle", url: "https://burbur.com/products/the-mermaid-bundle?ref=tomlkuce", image: SHOPIFY_CDN + "0588/9841/5771/files/MERMAIDBUNDLE-LUDMILLA-STONE.jpg" },
   ],
+  "simpletics.com": [
+    { name: "Simpletics Sea Salt Spray", url: "https://simpletics.com/products/salt-spray?ref=zljdpacm", image: SHOPIFY_CDN + "0595/3536/0061/files/1-HERO-WHITE.png" },
+    { name: "Simpletics Texture Powder", url: "https://simpletics.com/products/texture-powder?ref=zljdpacm", image: SHOPIFY_CDN + "0595/3536/0061/files/TEXTURE_73e600a8-85df-4c49-b35c-4376b35f2c35.jpg" },
+    { name: "Simpletics Hair Clay", url: "https://simpletics.com/products/clay?ref=zljdpacm", image: SHOPIFY_CDN + "0595/3536/0061/files/CLAYY_9ed16f7b-6770-4259-834b-1f9eecf6bbda.jpg" },
+  ],
   "chicchoi.com": [
     { name: "ChicChoi Cream Star Drawstring Backpack", url: "https://chicchoi.com/products/cream-star-drawstring-backpack?ref=bpbnttfh", image: SHOPIFY_CDN + "0734/9246/3789/files/CreamStarDrawstringBackpackchicchoistationery.png" },
     { name: "ChicChoi Star Series Drawstring Pencil Case", url: "https://chicchoi.com/products/star-series-large-capacity-drawstring-pencil-case?ref=bpbnttfh", image: SHOPIFY_CDN + "0734/9246/3789/files/ChicChoiStarSeriesPencilCase1.jpg" },
