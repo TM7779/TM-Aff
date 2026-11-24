@@ -894,6 +894,19 @@ const POSTS = [
     minutes: 6,
   },
   {
+    slug: "bur-bur-discount-code",
+    url: "saving-tips-bur-bur-discount-code.html",
+    title: "BUR BUR Discount Code: 15% Off Growing Season Hair Oil and Mermaid Brushes",
+    excerpt:
+      "Code JAMESWICKENDEN takes 15% off at BUR BUR. What its burdock hair oil, Mermaid brushes and bundles cost with it, how the Black Friday code compares, and the return rules.",
+    image: "https://cdn.shopify.com/s/files/1/0588/9841/5771/files/MERMAIDBUNDLE-LUDMILLA-STONE.jpg?v=1795062941",
+    imageAlt: "BUR BUR Growing Season hair oil bottle next to a wooden Mermaid boar bristle brush",
+    category: "coupon-guides",
+    store: "burbur",
+    date: "2026-11-24",
+    minutes: 6,
+  },
+  {
     slug: "topdon-carpal-vs-topscan",
     url: "saving-tips-topdon-carpal-vs-topscan.html",
     title: "TOPDON CarPal vs TopScan Lite vs Pro vs Master: Which Scanner to Buy?",
@@ -905,6 +918,19 @@ const POSTS = [
     category: "buying-guides",
     store: "topdon",
     date: "2026-11-12",
+    minutes: 6,
+  },
+  {
+    slug: "wuben-x4-vs-x2-pro-vs-x5-vs-x1-pro",
+    url: "saving-tips-wuben-x4-vs-x2-pro-vs-x5-vs-x1-pro.html",
+    title: "Wuben X4 vs X2 Pro+ vs X5 vs X1 Pro: Which Wuben EDC Flashlight Should You Buy?",
+    excerpt:
+      "Four Wuben flashlights side by side: lumens, beam distance, battery, weight, extras like UV, laser and a power bank, and what each costs with the code.",
+    image: "https://cdn.shopify.com/s/files/1/0281/0203/3487/files/wuben-x4-compact-multi-function-1500-lumen-edc-tactical-flashlight-7473197.jpg?v=1773192735",
+    imageAlt: "The black Wuben X4 flat EDC flashlight with its LED head, side light strip and mode buttons",
+    category: "buying-guides",
+    store: "wubenlight",
+    date: "2026-11-24",
     minutes: 6,
   },
   {
@@ -1964,5 +1990,18 @@ const POSTS = [
     store: "chicchoi",
     date: "2026-11-23",
     minutes: 5,
+  },
+  {
+    slug: "bur-bur-review",
+    url: "saving-tips-bur-bur-review.html",
+    title: "BUR BUR Reviews: Is BUR BUR Legit, and Are Its Hair Oil and Mermaid Brush Worth It?",
+    excerpt:
+      "Is BUR BUR legit? What the Glendale hair care brand sells, the ratings for its burdock oil and Mermaid brush, the 14-day return rules, and who it suits.",
+    image: "https://cdn.shopify.com/s/files/1/0588/9841/5771/files/Oil-web-02.jpg?v=1782166724",
+    imageAlt: "BUR BUR Growing Season burdock hair oil in a 50 ml glass dropper bottle",
+    category: "reviews",
+    store: "burbur",
+    date: "2026-11-24",
+    minutes: 6,
   },
 ];

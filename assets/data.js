@@ -342,6 +342,11 @@ const BEST_SELLERS = {
     { name: "Lumibricks Game Stack (2,580 pieces)", url: "https://www.lumibricks.com/products/game-stack-l9095?ref=usubgedf", image: SHOPIFY_CDN + "0631/7060/9388/files/L9095.webp" },
     { name: "Lumibricks Book-Cafe (1,718 pieces)", url: "https://www.lumibricks.com/products/book-cafe-1718pcs?ref=usubgedf", image: SHOPIFY_CDN + "0631/7060/9388/files/15002_F9031.webp" },
   ],
+  "burbur.com": [
+    { name: "BUR BUR Growing Season Burdock Hair Oil", url: "https://burbur.com/products/growing-season-burdock-hair-growth-oil?ref=tomlkuce", image: SHOPIFY_CDN + "0588/9841/5771/files/Oil-web-02.jpg" },
+    { name: "BUR BUR The Mermaid Brush, Essential Boar Bristle", url: "https://burbur.com/products/the-mermaid-brush-essential-boar-bristle-brush?ref=tomlkuce", image: SHOPIFY_CDN + "0588/9841/5771/files/Screenshot_2026-11-16_at_2.36.18_PM.png" },
+    { name: "BUR BUR The Mermaid Bundle", url: "https://burbur.com/products/the-mermaid-bundle?ref=tomlkuce", image: SHOPIFY_CDN + "0588/9841/5771/files/MERMAIDBUNDLE-LUDMILLA-STONE.jpg" },
+  ],
   "chicchoi.com": [
     { name: "ChicChoi Cream Star Drawstring Backpack", url: "https://chicchoi.com/products/cream-star-drawstring-backpack?ref=bpbnttfh", image: SHOPIFY_CDN + "0734/9246/3789/files/CreamStarDrawstringBackpackchicchoistationery.png" },
     { name: "ChicChoi Star Series Drawstring Pencil Case", url: "https://chicchoi.com/products/star-series-large-capacity-drawstring-pencil-case?ref=bpbnttfh", image: SHOPIFY_CDN + "0734/9246/3789/files/ChicChoiStarSeriesPencilCase1.jpg" },
