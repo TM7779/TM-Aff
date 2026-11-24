@@ -9,7 +9,7 @@
   "offer": "Black Friday: an extra 30% off subscriptions, plus a free Welcome Kit and a free full-size product"
  },
  "wavwatch": {
-  "offer": "Early-access Black Friday and Cyber Monday price: 20% off the WAVwatch 2.2 through November 23"
+  "offer": "Black Friday early access: 20% off the WAVwatch 2.2 (the banner still showed it on November 24 after its November 23 end date), plus 40% off refurbished WAVwatch 2.2 for Cyber Monday"
  },
  "jennibag": {
   "offer": "Black Friday: buy 1, get 1 free"
@@ -68,7 +68,7 @@
   "offer": "BFCM sale from November 16 to December 3, 2026 (GMT+8), with 15% off sitewide from November 18, mystery boxes and a giveaway"
  },
  "parijanofficial": {
-  "offer": "Early Black Friday: up to 70% off"
+  "offer": "Black Friday sale: up to 70% off"
  },
  "neosabers": {
   "offer": "Black Friday offers: 2 free combat sabers, 2 free replica sabers and buy-one-get-one-free sabers, on the terms shown on its site"
@@ -82,7 +82,7 @@
   "extra": "Its home page shows bundle savings of up to 20%; a Black Friday banner seen on November 13 was gone by November 18."
  },
  "ulanzi": {
-  "offer": "Early Black Friday, November 18 to 26: 20% off most items, 15% off selected items and 30% off clearance"
+  "offer": "Early Black Friday, November 18 to 26: 20% off most items, 15% off selected items and 50% off clearance"
  },
  "fosiaudio": {
   "offer": "",
@@ -111,7 +111,8 @@
   "offer": "Black Friday: 20% off sitewide plus free shipping with Omega's own code HOLIDAY20"
  },
  "birdfy": {
-  "offer": "Black Friday: add a yellow Birdfy Feeder to the cart for $69.99 with any Birdfy device"
+  "offer": "Black Friday deals, now in their “final call” stage",
+  "black_friday": true
  },
  "lumibricks": {
   "offer": "",
@@ -125,5 +126,20 @@
  },
  "evilhair": {
   "offer": "Vivid Days: 15% off 1 to 2 products, 30% off 3 to 4 and 45% off 5 or more full-size products, taken off in the cart with no code, until Cyber Monday, November 30"
+ },
+ "elevatedfaith": {
+  "offer": "Black Friday: 40% off sitewide, with free shipping on orders over $100"
+ },
+ "chicchoi": {
+  "offer": "Black Friday sale section, labeled “Black Friday 50% Off” on selected items"
+ },
+ "crystalquest": {
+  "offer": "Black Friday early access: 15% off home water filters and systems, a free shower filter at $250 and 20% off at $1,000"
+ },
+ "jessupbeauty": {
+  "offer": "Black Friday Mega Sale: up to 60% off"
+ },
+ "burbur": {
+  "offer": "Black Friday: 30% off sitewide with its own code shown on the banner (one code per order, so compare it with ours)"
  }
 }
