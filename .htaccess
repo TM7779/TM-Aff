@@ -20,7 +20,7 @@ RewriteCond %{HTTP_HOST} ^www\. [NC]
 RewriteRule ^ https://kinsleydeals.com%{REQUEST_URI} [L,R=301]
 
 # One page per brand (2026-11-25): each brand's review now lives on its discount code page
-RewriteRule ^saving-tips-(.+)-review(\.html)?/?$ https://kinsleydeals.com/saving-tips-$1-discount-code.html#review [R=301,NE,L]
+RewriteRule ^saving-tips-(.+)-review(\.html)?/?$ https://kinsleydeals.com/saving-tips-$1-discount-code.html#review [R=301,NE,QSD,L]
 
 # Links without .html still open the page, as they did on GitHub Pages
 RewriteCond %{REQUEST_FILENAME} !-f
