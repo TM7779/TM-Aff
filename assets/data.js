@@ -347,6 +347,11 @@ const BEST_SELLERS = {
     { name: "BUR BUR The Mermaid Brush, Essential Boar Bristle", url: "https://burbur.com/products/the-mermaid-brush-essential-boar-bristle-brush?ref=tomlkuce", image: SHOPIFY_CDN + "0588/9841/5771/files/Screenshot_2026-11-16_at_2.36.18_PM.png" },
     { name: "BUR BUR The Mermaid Bundle", url: "https://burbur.com/products/the-mermaid-bundle?ref=tomlkuce", image: SHOPIFY_CDN + "0588/9841/5771/files/MERMAIDBUNDLE-LUDMILLA-STONE.jpg" },
   ],
+  "parfaitlingerie.com": [
+    { name: "Parfait Elise Full Bust T-Shirt Bra", url: "https://parfaitlingerie.com/products/parfait-elise-seamless-t-shirt-bra-bare-p6270?rfsn=9040007.bece8f", image: SHOPIFY_CDN + "0067/1288/5337/files/PARFAIT_Elise_P5270_T-ShirtBra_Bare_Front1.jpg" },
+    { name: "Parfait Simplicity Wire-Free Bra", url: "https://parfaitlingerie.com/products/simplicity-wirefree-bra-bare-p2400?rfsn=9040007.bece8f", image: SHOPIFY_CDN + "0067/1288/5337/files/PARFAIT_Simplicity_P2400_SeamlessWire-Free_Bra_Bare_Front.jpg" },
+    { name: "Parfait Elissa Longline Strapless Bra", url: "https://parfaitlingerie.com/products/elissa-bustier-pearl-white-p50116?rfsn=9040007.bece8f", image: SHOPIFY_CDN + "0067/1288/5337/files/PARFAIT_Elissa_StraplessContourBustierP50116_PearlWhite_Front1.jpg" },
+  ],
   "simpletics.com": [
     { name: "Simpletics Sea Salt Spray", url: "https://simpletics.com/products/salt-spray?ref=zljdpacm", image: SHOPIFY_CDN + "0595/3536/0061/files/1-HERO-WHITE.png" },
     { name: "Simpletics Texture Powder", url: "https://simpletics.com/products/texture-powder?ref=zljdpacm", image: SHOPIFY_CDN + "0595/3536/0061/files/TEXTURE_73e600a8-85df-4c49-b35c-4376b35f2c35.jpg" },
@@ -509,7 +514,7 @@ const STORE_INFO = {
   "grecell": { logo: "https://grecell.com/cdn/shop/files/LOGO_new.png?v=1758185054", name: "GRECELL", category: "electronics", about: "Portable power stations and solar panels for camping and power cuts." },
   "barriorzz": { name: "BARRIORZZ", logo: "https://barriorzz.com/cdn/shop/files/HQ_foto_zwart_vierkant.png?v=1724321877", category: "sports-outdoors", about: "Calisthenics and strength gear: dip belts, gymnastic rings, parallettes and wrist wraps." },
   "picassotiles": { name: "PicassoTiles", category: "toys-kids", logo: "https://www.picassotiles.com/cdn/shop/files/PicassoTiles_Circle_Logo__Stacked_Colored_WHTBG.png?v=1669403570&width=400", about: "Magnetic building tiles and STEM toy sets for kids." },
-  "parfaitlingerie": { name: "Parfait", category: "clothing-accessories", logo: "https://parfaitlingerie.com/cdn/shop/files/ParfaitBLKlogo_600x.png?v=1738542576", about: "Plus-size lingerie, from 32A to 44G in select styles." },
+  "parfaitlingerie": { name: "Parfait", category: "clothing-accessories", logo: "https://parfaitlingerie.com/cdn/shop/files/ParfaitBLKlogo_600x.png?v=1738542576", about: "Full-bust and full-figure bras, panties and lingerie from a Los Angeles brand, in bands 28 to 44 and cups up to US L in select styles." },
   "topdon": { name: "TOPDON", category: "electronics", logo: "https://eu.topdon.com/cdn/shop/files/TOPDON_512-512.jpg?v=1679465687", about: "Car diagnostic scanners, battery testers, jump starters and thermal cameras. European store, prices in euros." },
   "telesinstore": { name: "Telesin", category: "electronics", about: "Action camera and phone camera gear: mounts, underwater housings, selfie sticks and lights." },
   "babyquip": { name: "BabyQuip", category: "toys-kids", logo: "https://d28w2s5u3j4b6n.cloudfront.net/img/BQ_PrimaryCentered_RGB.jpg", about: "Rent baby gear like cribs, car seats and strollers when you travel, delivered and set up for you." },

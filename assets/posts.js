@@ -920,6 +920,19 @@ const POSTS = [
     minutes: 6,
   },
   {
+    slug: "parfait-discount-code",
+    url: "saving-tips-parfait-discount-code.html",
+    title: "Parfait Discount Code: 15% Off Full-Bust Bras, Bralettes and Panty Packs",
+    excerpt:
+      "Code JAMES15 takes 15% off at Parfait Lingerie. What its best-selling full-bust bras and panty packs cost with it, how it compares with the Black Friday codes, and the return rules.",
+    image: "https://cdn.shopify.com/s/files/1/0067/1288/5337/files/PARFAIT_Elissa_StraplessContourBustierP50116_PearlWhite_Front1.jpg?v=1776062175",
+    imageAlt: "Parfait Elissa longline strapless bra in pearl white, front view on a model",
+    category: "coupon-guides",
+    store: "parfaitlingerie",
+    date: "2026-11-25",
+    minutes: 6,
+  },
+  {
     slug: "topdon-carpal-vs-topscan",
     url: "saving-tips-topdon-carpal-vs-topscan.html",
     title: "TOPDON CarPal vs TopScan Lite vs Pro vs Master: Which Scanner to Buy?",
@@ -944,6 +957,19 @@ const POSTS = [
     category: "buying-guides",
     store: "wubenlight",
     date: "2026-11-24",
+    minutes: 6,
+  },
+  {
+    slug: "carpuride-w702-vs-w702-pro-vs-w702-plus",
+    url: "saving-tips-carpuride-w702-vs-w702-pro-vs-w702-plus.html",
+    title: "Carpuride W702 vs W702 Pro vs W702 Plus: Which Motorcycle CarPlay Screen to Buy?",
+    excerpt:
+      "Carpuride's three 7-inch motorcycle screens side by side: intercom, SOS, TPMS, built-in GPS, cameras and what each costs with the code.",
+    image: "https://cdn.shopify.com/s/files/1/0566/5112/0797/files/Carpuride-W702-carplay-and-Android-Auto-on-motorcycle.jpg?v=1747187472",
+    imageAlt: "A Carpuride W702 7-inch CarPlay and Android Auto screen mounted on a motorcycle",
+    category: "buying-guides",
+    store: "carpuride",
+    date: "2026-11-25",
     minutes: 6,
   },
   {
@@ -2028,6 +2054,19 @@ const POSTS = [
     category: "reviews",
     store: "simpletics",
     date: "2026-11-24",
+    minutes: 6,
+  },
+  {
+    slug: "parfait-review",
+    url: "saving-tips-parfait-review.html",
+    title: "Parfait Lingerie Reviews: Is Parfait Legit, and Do Its Full-Bust Bras Fit?",
+    excerpt:
+      "Is Parfait Lingerie legit? Its bras' store ratings, the fit complaints, the size range, the 30-day return rules and who its full-bust bras suit.",
+    image: "https://cdn.shopify.com/s/files/1/0067/1288/5337/files/PARFAIT_Elise_P5270_T-ShirtBra_Bare_Front1.jpg?v=1776062537",
+    imageAlt: "Parfait Elise full-bust T-shirt bra in the Bare color, front view",
+    category: "reviews",
+    store: "parfaitlingerie",
+    date: "2026-11-25",
     minutes: 6,
   },
 ];
