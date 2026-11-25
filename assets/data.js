@@ -347,6 +347,11 @@ const BEST_SELLERS = {
     { name: "BUR BUR The Mermaid Brush, Essential Boar Bristle", url: "https://burbur.com/products/the-mermaid-brush-essential-boar-bristle-brush?ref=tomlkuce", image: SHOPIFY_CDN + "0588/9841/5771/files/Screenshot_2026-11-16_at_2.36.18_PM.png" },
     { name: "BUR BUR The Mermaid Bundle", url: "https://burbur.com/products/the-mermaid-bundle?ref=tomlkuce", image: SHOPIFY_CDN + "0588/9841/5771/files/MERMAIDBUNDLE-LUDMILLA-STONE.jpg" },
   ],
+  "owowbeauty-uk.myshopify.com": [
+    { name: "ANSWR At-Home Keratin Treatment", url: "https://owowbeauty-uk.myshopify.com/products/at-home-keratin-treatment?ref=tcemxosf", image: SHOPIFY_CDN + "0416/1031/3877/files/keratin_treatment_bottle_only.jpg" },
+    { name: "ANSWR At-Home Keratin Treatment Kit", url: "https://owowbeauty-uk.myshopify.com/products/at-home-keratin-treatment-kit?ref=tcemxosf", image: SHOPIFY_CDN + "0416/1031/3877/files/Kerating_treatment_kit_global_makeup_awards_Answr_3f0dceca-837e-447a-8a18-642acaa31129.jpg" },
+    { name: "ANSWR Exfoliating Hair Removal Drop", url: "https://owowbeauty-uk.myshopify.com/products/exfoliating-hair-removal-drop?ref=tcemxosf", image: SHOPIFY_CDN + "0416/1031/3877/files/Drop_main_image_e60ab7f5-f94c-4754-ac8a-4651543ba1e2.jpg" },
+  ],
   "parfaitlingerie.com": [
     { name: "Parfait Elise Full Bust T-Shirt Bra", url: "https://parfaitlingerie.com/products/parfait-elise-seamless-t-shirt-bra-bare-p6270?rfsn=9040007.bece8f", image: SHOPIFY_CDN + "0067/1288/5337/files/PARFAIT_Elise_P5270_T-ShirtBra_Bare_Front1.jpg" },
     { name: "Parfait Simplicity Wire-Free Bra", url: "https://parfaitlingerie.com/products/simplicity-wirefree-bra-bare-p2400?rfsn=9040007.bece8f", image: SHOPIFY_CDN + "0067/1288/5337/files/PARFAIT_Simplicity_P2400_SeamlessWire-Free_Bra_Bare_Front.jpg" },
@@ -535,7 +540,7 @@ const STORE_INFO = {
   "crystalquest": { name: "Crystal Quest", category: "home-garden", logo: "https://crystalquest.com/cdn/shop/files/CQLogo.png?v=1738491527&width=480", about: "Water filters for the whole house, under the sink, the countertop and the shower." },
   "playvital": { name: "PlayVital", category: "electronics", logo: "https://www.playvital.com/cdn/shop/files/banner.png?v=1658218504&width=400", about: "Skins, grips, thumb caps and other accessories for game controllers and consoles." },
   "burbur": { name: "BUR BUR", category: "skincare-beauty", logo: "https://burbur.com/cdn/shop/files/favicon.png?v=1778793666", about: "Plant-based botanical hair oils." },
-  "owowbeauty-uk": { logo: "https://owowbeauty-uk.myshopify.com/cdn/shop/files/ANSWR_favicon.png?v=1650282034", name: "ANSWR", category: "skincare-beauty", about: "At-home keratin hair treatments and skincare. UK store." },
+  "owowbeauty-uk": { logo: "https://owowbeauty-uk.myshopify.com/cdn/shop/files/ANSWR_favicon.png?v=1650282034", name: "ANSWR", category: "skincare-beauty", about: "At-home keratin treatments, hair removal and lash kits from a home-salon beauty brand, sold through its UK store." },
   "newzealandhoneyco": { name: "New Zealand Honey Co.", logo: "https://newzealandhoneyco.com/cdn/shop/files/Swirl-Logo-PNG.png?v=1697672827", category: "food-drink", about: "Raw, UMF-certified Manuka honey from New Zealand, with free US shipping over $30." },
   "epomaker": { name: "EPOMAKER", category: "electronics", logo: "https://epomaker.com/cdn/shop/files/epomaker-favicon.png?v=1646776453", about: "Mechanical keyboards, gaming mice and audio gear." },
   "parijanofficial": { name: "PARIJAN", category: "clothing-accessories", about: "Classic menswear in an \"old money\" style, without the luxury markup." },

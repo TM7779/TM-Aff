@@ -932,6 +932,19 @@ const POSTS = [
     minutes: 10,
   },
   {
+    slug: "answr-discount-code",
+    url: "saving-tips-answr-discount-code.html",
+    title: "ANSWR Discount Code: 15% Off the At-Home Keratin Treatment and Kit (UK)",
+    excerpt:
+      "Code JAMESWICKENDEN takes 15% off at ANSWR's UK store. What the at-home keratin treatment, the kit and the hair removal drop cost with it, the 2-pack and subscription savings, and the return rules.",
+    image: "https://cdn.shopify.com/s/files/1/0416/1031/3877/files/keratin_treatment_bottle_only.jpg?v=1776457791",
+    imageAlt: "Bottle of ANSWR at-home keratin treatment spray",
+    category: "coupon-guides",
+    store: "owowbeauty-uk",
+    date: "2026-11-25",
+    minutes: 9,
+  },
+  {
     slug: "topdon-carpal-vs-topscan",
     url: "saving-tips-topdon-carpal-vs-topscan.html",
     title: "TOPDON CarPal vs TopScan Lite vs Pro vs Master: Which Scanner to Buy?",
