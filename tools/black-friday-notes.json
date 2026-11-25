@@ -9,7 +9,7 @@
   "offer": "Black Friday: an extra 30% off subscriptions, plus a free Welcome Kit and a free full-size product"
  },
  "wavwatch": {
-  "offer": "Black Friday early access: 20% off the WAVwatch 2.2 (the banner still showed it on November 24 after its November 23 end date), plus 40% off refurbished WAVwatch 2.2 for Cyber Monday"
+  "offer": "Black Friday through November 29: 20% off one or two WAVwatch 2.2, 25% off three or four, 30% off five or more, applied at checkout"
  },
  "jennibag": {
   "offer": "Black Friday: buy 1, get 1 free"
@@ -71,7 +71,7 @@
   "offer": "Black Friday sale: up to 70% off"
  },
  "neosabers": {
-  "offer": "Black Friday offers: 2 free combat sabers, 2 free replica sabers and buy-one-get-one-free sabers, on the terms shown on its site"
+  "offer": "Black Friday sale: buy one replica pixel saber and get two free, 5 free gifts with every order and free US shipping over $99, on the terms shown on its site"
  },
  "korekawaii": {
   "offer": "",
@@ -102,7 +102,7 @@
   "offer": "Black Friday Loot Drop: up to 20% off a Black Friday collection, November 19 to 30 (Pacific time)"
  },
  "maryruthorganics": {
-  "offer": "Early Black Friday: 30% off the products marked on its site"
+  "offer": "Black Friday sale: up to 37% off sitewide, as its banner says (many products are marked 30% off)"
  },
  "webbernaturals": {
   "offer": "Black Friday: 30% off sitewide while supplies last"
@@ -141,5 +141,11 @@
  },
  "burbur": {
   "offer": "Black Friday: 30% off sitewide with its own code shown on the banner (one code per order, so compare it with ours)"
+ },
+ "simpletics": {
+  "offer": "Black Friday early access: a free mystery salt spray with every order"
+ },
+ "parfaitlingerie": {
+  "offer": "Black Friday: $25 off a $150 purchase and $50 off a $200 purchase with its own codes shown on the banner (one code per order, so compare them with ours)"
  }
 }
