@@ -2,6 +2,10 @@
 
     python3 tools/new-article.py path/to/spec.json
 
+One page per brand (since 2026-11-25): write the guide first, then the review. The review is not
+published on its own: tools/merge-review.py moves it into the guide (after "If the code doesn't work",
+from the heading with id="review"), and rewriting a guide keeps the review merged into it.
+
 The code, the discount and the affiliate link come from the store in assets/snapshot.js, so they
 always match the sheet (run `node tools/snapshot.mjs` first). The tool also:
   - adds the article to assets/posts.js and sitemap.xml;
@@ -71,6 +75,24 @@ def possessive(name):
     if name.endswith(("'s", "’s")):
         return name
     return name + "'" if name.endswith("s") else name + "'s"
+
+
+CURRENCIES = [("C$", "prices in Canadian dollars"), ("A$", "prices in Australian dollars"), ("NZ$", "prices in New Zealand dollars"),
+              ("£", "prices in pounds"), ("€", "prices in euros"), ("$", "US prices")]
+
+
+def price_kind(spec):
+    """What the prices in the spec's tables are in, from the currency sign most of the cells start with."""
+    cells = [str(c) for sec in spec.get("sections", []) for part in sec.get("parts", []) if isinstance(part, dict)
+             and "table" in part for row in part["table"].get("rows", []) for c in row]
+    counts = {label: 0 for _, label in CURRENCIES}
+    for c in cells:
+        for sign, label in CURRENCIES:
+            if c.strip().startswith(sign):
+                counts[label] += 1
+                break
+    best = max(counts, key=counts.get)
+    return best if counts[best] else "US prices"
 
 
 def shopify_sized(url, width, attr=False):
@@ -173,7 +195,7 @@ class Writer:
         # The code box sits under the headline (quick_offer, in page()); the body starts with the note.
         if self.s["type"] == "guide":
             note = (f"Kinsley Deals earns a commission when you buy through links on this page, at no extra cost to you. "
-                    f"Prices are {possessive(brand)} US prices in {self.month}, before any code, and can change.")
+                    f"Prices are {possessive(brand)} {price_kind(self.s)} in {self.month}, before any code, and can change.")
         else:
             note = (f"Kinsley Deals earns a commission when you buy through links on this page, at no extra cost to you. "
                     f"This review brings together {possessive(brand)} own product facts, public ratings and buying terms as we "
@@ -383,10 +405,26 @@ def update_sitemap(w):
     open("sitemap.xml", "w", encoding="utf-8").write(sm)
 
 
+def merger():
+    """tools/merge-review.py as a module (its file name has a hyphen)."""
+    import importlib.util
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "merge-review.py")
+    spec = importlib.util.spec_from_file_location("merge_review", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
 def main():
     spec = json.load(open(sys.argv[1], encoding="utf-8"))
     w = Writer(spec)
+    # A rewritten guide keeps the review that was merged into it (see tools/merge-review.py).
+    kept = None
+    if spec["type"] == "guide" and os.path.exists(w.file):
+        kept = merger().from_merged_guide(open(w.file, encoding="utf-8").read())
     page = w.page()
+    if kept:
+        page, w.minutes = merger().apply(page, kept, spec["slug"], w.brand, datetime.date.today())
     open(w.file, "w", encoding="utf-8").write(page)
     print("wrote", w.file, flush=True)
     update_posts(w)
@@ -407,6 +445,10 @@ def main():
             open(w.guide, "w", encoding="utf-8").write(g)
             print("linked from", w.guide, flush=True)
     here = os.path.dirname(os.path.abspath(__file__))
+    if os.path.exists(w.guide) and os.path.exists(w.review):
+        # One page per brand: the review goes into the guide (it runs the three tools below itself).
+        subprocess.run([sys.executable, os.path.join(here, "merge-review.py"), spec["slug"]], check=True)
+        return
     subprocess.run([sys.executable, os.path.join(here, "site-links.py")], check=True)
     subprocess.run([sys.executable, os.path.join(here, "static-header.py")], check=True)
     subprocess.run([sys.executable, os.path.join(here, "article-seo.py")], check=True)

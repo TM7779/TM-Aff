@@ -1,12 +1,12 @@
 """Internal links between articles, as the SEO course teaches them (PageRank is split between a page's
 links, so each page links to a few close pages, and one hub page links to everything):
 
-  - every coupon guide ends with "Shopping another brand?" naming 4 other guides, and every review with
-    "More brand reviews" naming 4 other reviews: the same kind of store first (category in the sheet),
-    taken in turn after the page's own brand in A-Z order so every article gets about the same number of
-    links; then a link to the A-Z list;
-  - saving-tips.html carries that A-Z list of every coupon guide, brand review and buying guide in its
-    HTML, so Google finds them all without pressing "Show more tips".
+  - every brand's page (its discount code guide, which also carries its review since 2026-11-25, see
+    tools/merge-review.py) ends with "Shopping another brand?" naming 4 other brands: the same kind of
+    store first (category in the sheet), taken in turn after the page's own brand in A-Z order so every
+    page gets about the same number of links; then a link to the A-Z list;
+  - saving-tips.html carries that A-Z list of every brand page and buying guide in its HTML, so Google
+    finds them all without pressing "Show more tips".
 
     python3 tools/site-links.py
 
@@ -24,10 +24,7 @@ PER_PAGE = 4
 KINDS = {
     "coupon-guides": dict(
         intro="Shopping another brand? See our discount code guides for ",
-        outro=', or find any brand in our <a href="saving-tips.html#all-guides">A–Z list of coupon guides</a>.'),
-    "reviews": dict(
-        intro="More brand reviews: ",
-        outro='. Every other brand is in our <a href="saving-tips.html#all-reviews">A–Z list of brand reviews</a>.'),
+        outro=', or find any brand in our <a href="saving-tips.html#all-guides">A–Z list of brands</a>.'),
 }
 HUB_START = "<!-- az: written by tools/site-links.py -->"
 HUB_END = "<!-- /az -->"
@@ -125,10 +122,8 @@ def main():
         '<section class="section az" aria-labelledby="az-title" data-keep>\n'
         '  <div class="wrap">\n'
         '    <h2 id="az-title">Every article, A–Z</h2>\n'
-        '    <h3 id="all-guides">Coupon guides</h3>\n'
+        '    <h3 id="all-guides">Brands: discount codes and reviews</h3>\n'
         f'    <ul class="az-list">{az("coupon-guides")}</ul>\n'
-        '    <h3 id="all-reviews">Brand reviews</h3>\n'
-        f'    <ul class="az-list">{az("reviews")}</ul>\n'
         '    <h3 id="all-buying">Buying guides</h3>\n'
         f'    <ul class="az-list wide">{az("buying-guides", label=lambda p: p["title"])}</ul>\n'
         "  </div>\n"
