@@ -945,6 +945,19 @@ const POSTS = [
     minutes: 9,
   },
   {
+    slug: "new-zealand-honey-co-discount-code",
+    url: "saving-tips-new-zealand-honey-co-discount-code.html",
+    title: "New Zealand Honey Co. Discount Code: 10% Off Manuka Honey, Prices by UMF Grade",
+    excerpt:
+      "Code kd takes 10% off at New Zealand Honey Co. What its UMF 10+, 15+ and 20+ Manuka honey costs with it, how the Black Friday sale and Subscribe & Save compare, shipping and returns.",
+    image: "https://cdn.shopify.com/s/files/1/0071/9755/6794/files/manuka-honey-umf20-250g-611528.png",
+    imageAlt: "250g jar of New Zealand Honey Co. Manuka honey UMF 20+ MGO 829+",
+    category: "coupon-guides",
+    store: "newzealandhoneyco",
+    date: "2026-11-26",
+    minutes: 11,
+  },
+  {
     slug: "topdon-carpal-vs-topscan",
     url: "saving-tips-topdon-carpal-vs-topscan.html",
     title: "TOPDON CarPal vs TopScan Lite vs Pro vs Master: Which Scanner to Buy?",
@@ -956,6 +969,19 @@ const POSTS = [
     category: "buying-guides",
     store: "topdon",
     date: "2026-11-12",
+    minutes: 6,
+  },
+  {
+    slug: "epomaker-th80-v2-vs-v2-pro",
+    url: "saving-tips-epomaker-th80-v2-vs-v2-pro.html",
+    title: "EPOMAKER TH80 V2 vs TH80 V2 Pro: Which 75% Keyboard Should You Buy?",
+    excerpt:
+      "The TH80 V2 and V2 Pro side by side: the Pro's glass screen and bigger battery, weight, switches, sale prices and what each costs with the code.",
+    image: "https://cdn.shopify.com/s/files/1/0280/3931/5529/files/EPOMAKERTH80V2PRO_v2_04_2a636c34-da9e-4c4b-8d8c-30b039af4fe8.png?v=1773121903",
+    imageAlt: "Black EPOMAKER TH80 V2 Pro keyboard seen from above, with RGB-lit translucent keycaps, a small screen and a knob",
+    category: "buying-guides",
+    store: "epomaker",
+    date: "2026-11-26",
     minutes: 6,
   },
   {

@@ -347,6 +347,11 @@ const BEST_SELLERS = {
     { name: "BUR BUR The Mermaid Brush, Essential Boar Bristle", url: "https://burbur.com/products/the-mermaid-brush-essential-boar-bristle-brush?ref=tomlkuce", image: SHOPIFY_CDN + "0588/9841/5771/files/Screenshot_2026-11-16_at_2.36.18_PM.png" },
     { name: "BUR BUR The Mermaid Bundle", url: "https://burbur.com/products/the-mermaid-bundle?ref=tomlkuce", image: SHOPIFY_CDN + "0588/9841/5771/files/MERMAIDBUNDLE-LUDMILLA-STONE.jpg" },
   ],
+  "newzealandhoneyco.com": [
+    { name: "Manuka Honey UMF™ 20+ MGO 829+", url: "https://newzealandhoneyco.com/products/manuka-honey-umf-20-mgo-829?afmc=kd", image: SHOPIFY_CDN + "0071/9755/6794/files/manuka-honey-umf20-250g-611528.png" },
+    { name: "Manuka Honey UMF™ 15+ MGO 514+", url: "https://newzealandhoneyco.com/products/manuka-honey-umf-15?afmc=kd", image: SHOPIFY_CDN + "0071/9755/6794/files/manuka-honey-umf15-250g_3a1626f9-0087-436d-9242-17e1d96f1663-523900.png" },
+    { name: "Manuka Honey UMF™ 10+ MGO 263+", url: "https://newzealandhoneyco.com/products/manuka-honey-umf-10?afmc=kd", image: SHOPIFY_CDN + "0071/9755/6794/files/manuka-honey-umf10-250g-451582.png" },
+  ],
   "owowbeauty-uk.myshopify.com": [
     { name: "ANSWR At-Home Keratin Treatment", url: "https://owowbeauty-uk.myshopify.com/products/at-home-keratin-treatment?ref=tcemxosf", image: SHOPIFY_CDN + "0416/1031/3877/files/keratin_treatment_bottle_only.jpg" },
     { name: "ANSWR At-Home Keratin Treatment Kit", url: "https://owowbeauty-uk.myshopify.com/products/at-home-keratin-treatment-kit?ref=tcemxosf", image: SHOPIFY_CDN + "0416/1031/3877/files/Kerating_treatment_kit_global_makeup_awards_Answr_3f0dceca-837e-447a-8a18-642acaa31129.jpg" },
